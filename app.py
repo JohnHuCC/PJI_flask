@@ -166,21 +166,7 @@ def reactive_diagram():
         predict_data = Vision_compare.tran_df(arr)
         result1 = Vision_compare.rf_predict(predict_data)
         print("running start")
-        y_true = test_y
-        y_pred = rf_predict(test_X)
-        mat_con = (confusion_matrix(y_true, y_pred, labels=[0, 1]))
-
-        # Setting the attributes
-        fig, px = plt.subplots(figsize=(7.5, 7.5))
-        px.matshow(mat_con, cmap=plt.cm.YlOrRd, alpha=0.5)
-        for m in range(mat_con.shape[0]):
-            for n in range(mat_con.shape[1]):
-                px.text(x=m, y=n, s=mat_con[m, n],
-                        va='center', ha='center', size='xx-large')
-
-        # Sets the labels
-        # plt.show()
-        plt.savefig('confusion_matrix.png')
+        Vision_compare.plt_con()
         print("running end")
         return render_template('reactive_diagram.html', result=result1)
 

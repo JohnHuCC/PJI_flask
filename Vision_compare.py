@@ -7,6 +7,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import confusion_matrix
+import matplotlib
+
+import platform
+if platform.system() == 'Darwin':
+    matplotlib.use("tkAgg")
+
 import matplotlib.pyplot as plt
 
 df_data = pd.read_csv(
