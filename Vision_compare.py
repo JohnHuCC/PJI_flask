@@ -10,7 +10,7 @@ from sklearn.metrics import confusion_matrix
 import matplotlib.pyplot as plt
 
 df_data = pd.read_csv(
-    '/Users/johnnyhu/Desktop/PJI_Dataset/PJI_train.csv')
+    'PJI_Dataset/PJI_train.csv')
 
 PJI_X = pd.DataFrame([df_data["Age"],
                       df_data["Segment"],
