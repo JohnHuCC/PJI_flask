@@ -10,6 +10,7 @@
     <title>PJI Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="/static/css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/static/assets/img/favicon.png" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -46,7 +47,7 @@
             </li>
         </ul>
     </nav>
-    <div id="layoutSidenav">
+    <!-- <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
@@ -125,7 +126,7 @@
                     Johnny Hu
                 </div>
             </nav>
-        </div>
+        </div> -->
         <div id="layoutSidenav_content">
             <main>
                 <!-- <div class="container-fluid px-4">
@@ -200,35 +201,36 @@
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Age</th>
-                                    <th>HGB</th>
-                                    <th>PLATELET</th>
-                                    <th>APTT</th>
+                                    <th>No.</th>
                                     <th>Group</th>
-                                    <th>Personal Info</th>
+                                    <th>Name</th>
+                                    <th>Serum ESR</th>
+                                    <th>Positive Histology</th>
+                                    <th>Synovial WBC</th>
+                                    <th>Serum CRP</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Age</th>
-                                    <th>HGB</th>
-                                    <th>PLATELET</th>
-                                    <th>APTT</th>
+                                    <th>No.</th>
                                     <th>Group</th>
-                                    <th>Personal Info</th>
+                                    <th>Name</th>
+                                    <th>Serum ESR</th>
+                                    <th>Positive Histology</th>
+                                    <th>Synovial WBC</th>
+                                    <th>Serum CRP</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 {% for i in u %}
                                 <tr>
                                     <td>{{ i[0] }}</td>
-                                    <td>{{ i[1] }}</td>
                                     <td>{{ i[2] }}</td>
                                     <td>{{ i[3] }}</td>
-                                    <td>{{ i[4] }}</td>
-                                    <td>{{ i[5] }}</td>
+                                    <td>{{ i[19] }}</td>
+                                    <td>{{ i[32] }}</td>
+                                    <td>{{ i[33] }}</td>
+                                    <td>{{ i[28] }}</td>
                                     <td>
                                         <!-- <a class="nav-link" href="index.html">
                                             <div class="sb-nav-link-icon"></div>
