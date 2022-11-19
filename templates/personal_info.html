@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>PJI Admin</title>
+    <title>Personal profile</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
     <link href="/static/css/styles.css" rel="stylesheet" />
     <link href="/static/css/style.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/static/assets/img/favicon.png" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script data-search-pseudo-elements defer
@@ -25,7 +26,7 @@
     <h1>Welcome {{ name }}</h1>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start</a>
+        <a class="navbar-brand ps-3" href="/">Start</a>
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
@@ -60,22 +61,22 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="/">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
+                            Patient Table
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                             data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Layouts
+                            Functions
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
                             data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                                <a class="nav-link" href="model_diagnosis">Decision Path</a>
+                                <a class="nav-link" href="reactive_diagram">Reactive Diagram</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
@@ -117,7 +118,7 @@
                                 </div>
                             </nav>
                         </div>
-                        <div class="sb-sidenav-menu-heading">Addons</div>
+                        <!-- <div class="sb-sidenav-menu-heading">Addons</div>
                         <a class="nav-link" href="charts.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                             Charts
@@ -125,7 +126,7 @@
                         <a class="nav-link" href="tables.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Tables
-                        </a>
+                        </a> -->
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -172,21 +173,23 @@
                                         <img class="img-account-profile rounded-circle mb-2"
                                             src="static/assets/img/profile-2.png" alt="" />
                                         <!-- Profile picture help block-->
-                                        <div class="small font-italic text-muted mb-4">Name: Johnny Hu
+                                        {% for i in u %}
+                                        <div class="small font-italic text-muted mb-4">Name: {{ i[3] }}
                                         </div>
-                                        <div class="small font-italic text-muted mb-4">Age: 25
+                                        <div class="small font-italic text-muted mb-4">Age: {{ i[15] }}
                                         </div>
-                                        <div class="small font-italic text-muted mb-4">Height/Weight: 175/70
+                                        <div class="small font-italic text-muted mb-4">Height(m)/Weight(kg): {{ i[16] }}/{{ i[17] }}
                                         </div>
-                                        <div class="small font-italic text-muted mb-4">ID: A9527
+                                        <div class="small font-italic text-muted mb-4">ID: {{ i[0] }}
                                         </div>
+                                        {% endfor %}
                                         <!-- Profile picture upload button-->
-                                        <button class="btn btn-primary" type="button">Upload new image</button>
+                                        <!-- <button class="btn btn-primary" type="button">Upload new image</button> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xxl-4 col-xl-6 mb-4">
+                        <!-- <div class="col-xxl-4 col-xl-6 mb-4">
                             <div class="card card-header-actions h-100">
                                 <div class="card-header">
                                     Recent Record
@@ -211,7 +214,6 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="timeline timeline-xs">
-                                        <!-- Timeline Item 1-->
                                         <div class="timeline-item">
                                             <div class="timeline-item-marker">
                                                 <div class="timeline-item-marker-text">3 Days</div>
@@ -223,7 +225,6 @@
                                                 has been successfully placed.
                                             </div>
                                         </div>
-                                        <!-- Timeline Item 2-->
                                         <div class="timeline-item">
                                             <div class="timeline-item-marker">
                                                 <div class="timeline-item-marker-text">10 Days</div>
@@ -235,7 +236,6 @@
                                                 has been generated and is ready to view.
                                             </div>
                                         </div>
-                                        <!-- Timeline Item 3-->
                                         <div class="timeline-item">
                                             <div class="timeline-item-marker">
                                                 <div class="timeline-item-marker-text">1 month</div>
@@ -247,7 +247,6 @@
                                                 has registered
                                             </div>
                                         </div>
-                                        <!-- Timeline Item 4-->
                                         <div class="timeline-item">
                                             <div class="timeline-item-marker">
                                                 <div class="timeline-item-marker-text">3 months</div>
@@ -256,7 +255,6 @@
                                             <div class="timeline-item-content">Server activity monitor alert
                                             </div>
                                         </div>
-                                        <!-- Timeline Item 5-->
                                         <div class="timeline-item">
                                             <div class="timeline-item-marker">
                                                 <div class="timeline-item-marker-text">6 months</div>
@@ -268,7 +266,6 @@
                                                 has been successfully placed.
                                             </div>
                                         </div>
-                                        <!-- Timeline Item 6-->
                                         <div class="timeline-item">
                                             <div class="timeline-item-marker">
                                                 <div class="timeline-item-marker-text">1 year</div>
@@ -280,7 +277,6 @@
                                                 have been updated.
                                             </div>
                                         </div>
-                                        <!-- Timeline Item 7-->
                                         <div class="timeline-item">
                                             <div class="timeline-item-marker">
                                                 <div class="timeline-item-marker-text">2 years</div>
@@ -295,8 +291,8 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xxl-4 col-xl-6 mb-4">
+                        </div> -->
+                        <!-- <div class="col-xxl-4 col-xl-6 mb-4">
                             <div class="card card-header-actions h-100">
                                 <div class="card-header">
                                     Treatment Tracker
@@ -374,7 +370,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="row">
@@ -406,33 +402,37 @@
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Age</th>
-                                    <th>HGB</th>
-                                    <th>PLATELET</th>
-                                    <th>APTT</th>
+                                    <th>No.</th>
                                     <th>Group</th>
+                                    <th>Name</th>
+                                    <th>Serum ESR</th>
+                                    <th>Positive Histology</th>
+                                    <th>Synovial WBC</th>
+                                    <th>Serum CRP</th>
+
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Age</th>
-                                    <th>HGB</th>
-                                    <th>PLATELET</th>
-                                    <th>APTT</th>
+                                    <th>No.</th>
                                     <th>Group</th>
+                                    <th>Name</th>
+                                    <th>Serum ESR</th>
+                                    <th>Positive Histology</th>
+                                    <th>Synovial WBC</th>
+                                    <th>Serum CRP</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 {% for i in u %}
                                 <tr>
                                     <td>{{ i[0] }}</td>
-                                    <td>{{ i[1] }}</td>
                                     <td>{{ i[2] }}</td>
                                     <td>{{ i[3] }}</td>
-                                    <td>{{ i[4] }}</td>
-                                    <td>{{ i[5] }}</td>
+                                    <td>{{ i[19] }}</td>
+                                    <td>{{ i[32] }}</td>
+                                    <td>{{ i[33] }}</td>
+                                    <td>{{ i[28] }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

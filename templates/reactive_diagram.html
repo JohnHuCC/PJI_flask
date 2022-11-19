@@ -6,31 +6,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Dashboard - SB Admin Pro</title>
+        <title>Reactive diagram</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/static/css/styles.css" rel="stylesheet" />
         <link href="/static/css/style.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="/staticassets/img/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="/static/assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="nav-fixed">
-        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
+        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-light" id="sidenavAccordion">
             <!-- Sidenav Toggle Button-->
             <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
             <!-- Navbar Brand-->
             <!-- * * Tip * * You can use text or an image for your navbar brand.-->
             <!-- * * * * * * When using an image, we recommend the SVG format.-->
             <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html">SB Admin Pro</a>
+            <!-- <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html">SB Admin Pro</a> -->
+            <a class="navbar-brand ps-3" href="/">Start</a>
             <!-- Navbar Search Input-->
             <!-- * * Note: * * Visible only on and above the lg breakpoint-->
-            <form class="form-inline me-auto d-none d-lg-block me-3">
+            <!-- <form class="form-inline me-auto d-none d-lg-block me-3">
                 <div class="input-group input-group-joined input-group-solid">
                     <input class="form-control pe-0" type="search" placeholder="Search" aria-label="Search" />
                     <div class="input-group-text"><i data-feather="search"></i></div>
                 </div>
-            </form>
+            </form> -->
             <!-- Navbar Items-->
             <ul class="navbar-nav align-items-center ms-auto">
                 <!-- Documentation Dropdown-->
@@ -192,312 +193,85 @@
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
-                <nav class="sidenav shadow-right sidenav-light">
-                    <div class="sidenav-menu">
-                        <div class="nav accordion" id="accordionSidenav">
-                            <!-- Sidenav Menu Heading (Account)-->
-                            <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                            <div class="sidenav-menu-heading d-sm-none">Account</div>
-                            <!-- Sidenav Link (Alerts)-->
-                            <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                            <a class="nav-link d-sm-none" href="#!">
-                                <div class="nav-link-icon"><i data-feather="bell"></i></div>
-                                Alerts
-                                <span class="badge bg-warning-soft text-warning ms-auto">4 New!</span>
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <a class="nav-link" href="/">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Patient Table
                             </a>
-                            <!-- Sidenav Link (Messages)-->
-                            <!-- * * Note: * * Visible only on and above the sm breakpoint-->
-                            <a class="nav-link d-sm-none" href="#!">
-                                <div class="nav-link-icon"><i data-feather="mail"></i></div>
-                                Messages
-                                <span class="badge bg-success-soft text-success ms-auto">2 New!</span>
+                            <div class="sb-sidenav-menu-heading">Interface</div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                                Functions
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <!-- Sidenav Menu Heading (Core)-->
-                            <div class="sidenav-menu-heading">Core</div>
-                            <!-- Sidenav Accordion (Dashboard)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
-                                <div class="nav-link-icon"><i data-feather="activity"></i></div>
-                                Dashboards
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseDashboards" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
-                                    <a class="nav-link" href="dashboard-1.html">
-                                        Default
-                                        <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
-                                    </a>
-                                    <a class="nav-link" href="dashboard-2.html">Multipurpose</a>
-                                    <a class="nav-link" href="dashboard-3.html">Affiliate</a>
+                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                                data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="model_diagnosis">Decision Path</a>
+                                    <a class="nav-link" href="reactive_diagram">Reactive Diagram</a>
                                 </nav>
                             </div>
-                            <!-- Sidenav Heading (Custom)-->
-                            <div class="sidenav-menu-heading">Custom</div>
-                            <!-- Sidenav Accordion (Pages)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                <div class="nav-link-icon"><i data-feather="grid"></i></div>
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                                aria-expanded="false" aria-controls="collapsePages">
+                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Pages
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
-                            <div class="collapse" id="collapsePages" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesMenu">
-                                    <!-- Nested Sidenav Accordion (Pages -> Account)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAccount" aria-expanded="false" aria-controls="pagesCollapseAccount">
-                                        Account
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAccount" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="account-profile.html">Profile</a>
-                                            <a class="nav-link" href="account-billing.html">Billing</a>
-                                            <a class="nav-link" href="account-security.html">Security</a>
-                                            <a class="nav-link" href="account-notifications.html">Notifications</a>
-                                        </nav>
-                                    </div>
-                                    <!-- Nested Sidenav Accordion (Pages -> Authentication)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
+                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                                data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                        data-bs-target="#pagesCollapseAuth" aria-expanded="false"
+                                        aria-controls="pagesCollapseAuth">
                                         Authentication
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
-                                    <div class="collapse" id="pagesCollapseAuth" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPagesAuth">
-                                            <!-- Nested Sidenav Accordion (Pages -> Authentication -> Basic)-->
-                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthBasic" aria-expanded="false" aria-controls="pagesCollapseAuthBasic">
-                                                Basic
-                                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                            </a>
-                                            <div class="collapse" id="pagesCollapseAuthBasic" data-bs-parent="#accordionSidenavPagesAuth">
-                                                <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="auth-login-basic.html">Login</a>
-                                                    <a class="nav-link" href="auth-register-basic.html">Register</a>
-                                                    <a class="nav-link" href="auth-password-basic.html">Forgot Password</a>
-                                                </nav>
-                                            </div>
-                                            <!-- Nested Sidenav Accordion (Pages -> Authentication -> Social)-->
-                                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuthSocial" aria-expanded="false" aria-controls="pagesCollapseAuthSocial">
-                                                Social
-                                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                            </a>
-                                            <div class="collapse" id="pagesCollapseAuthSocial" data-bs-parent="#accordionSidenavPagesAuth">
-                                                <nav class="sidenav-menu-nested nav">
-                                                    <a class="nav-link" href="auth-login-social.html">Login</a>
-                                                    <a class="nav-link" href="auth-register-social.html">Register</a>
-                                                    <a class="nav-link" href="auth-password-social.html">Forgot Password</a>
-                                                </nav>
-                                            </div>
+                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+                                        data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="login.html">Login</a>
+                                            <a class="nav-link" href="register.html">Register</a>
+                                            <a class="nav-link" href="password.html">Forgot Password</a>
                                         </nav>
                                     </div>
-                                    <!-- Nested Sidenav Accordion (Pages -> Error)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
+                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                        data-bs-target="#pagesCollapseError" aria-expanded="false"
+                                        aria-controls="pagesCollapseError">
                                         Error
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                     </a>
-                                    <div class="collapse" id="pagesCollapseError" data-bs-parent="#accordionSidenavPagesMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="error-400.html">400 Error</a>
-                                            <a class="nav-link" href="error-401.html">401 Error</a>
-                                            <a class="nav-link" href="error-403.html">403 Error</a>
-                                            <a class="nav-link" href="error-404-1.html">404 Error 1</a>
-                                            <a class="nav-link" href="error-404-2.html">404 Error 2</a>
-                                            <a class="nav-link" href="error-500.html">500 Error</a>
-                                            <a class="nav-link" href="error-503.html">503 Error</a>
-                                            <a class="nav-link" href="error-504.html">504 Error</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link" href="pricing.html">Pricing</a>
-                                    <a class="nav-link" href="invoice.html">Invoice</a>
-                                </nav>
-                            </div>
-                            <!-- Sidenav Accordion (Applications)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseApps" aria-expanded="false" aria-controls="collapseApps">
-                                <div class="nav-link-icon"><i data-feather="globe"></i></div>
-                                Applications
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseApps" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavAppsMenu">
-                                    <!-- Nested Sidenav Accordion (Apps -> Knowledge Base)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#appsCollapseKnowledgeBase" aria-expanded="false" aria-controls="appsCollapseKnowledgeBase">
-                                        Knowledge Base
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="appsCollapseKnowledgeBase" data-bs-parent="#accordionSidenavAppsMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="knowledge-base-home-1.html">Home 1</a>
-                                            <a class="nav-link" href="knowledge-base-home-2.html">Home 2</a>
-                                            <a class="nav-link" href="knowledge-base-category.html">Category</a>
-                                            <a class="nav-link" href="knowledge-base-article.html">Article</a>
-                                        </nav>
-                                    </div>
-                                    <!-- Nested Sidenav Accordion (Apps -> User Management)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#appsCollapseUserManagement" aria-expanded="false" aria-controls="appsCollapseUserManagement">
-                                        User Management
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="appsCollapseUserManagement" data-bs-parent="#accordionSidenavAppsMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="user-management-list.html">Users List</a>
-                                            <a class="nav-link" href="user-management-edit-user.html">Edit User</a>
-                                            <a class="nav-link" href="user-management-add-user.html">Add User</a>
-                                            <a class="nav-link" href="user-management-groups-list.html">Groups List</a>
-                                            <a class="nav-link" href="user-management-org-details.html">Organization Details</a>
-                                        </nav>
-                                    </div>
-                                    <!-- Nested Sidenav Accordion (Apps -> Posts Management)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#appsCollapsePostsManagement" aria-expanded="false" aria-controls="appsCollapsePostsManagement">
-                                        Posts Management
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="appsCollapsePostsManagement" data-bs-parent="#accordionSidenavAppsMenu">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="blog-management-posts-list.html">Posts List</a>
-                                            <a class="nav-link" href="blog-management-create-post.html">Create Post</a>
-                                            <a class="nav-link" href="blog-management-edit-post.html">Edit Post</a>
-                                            <a class="nav-link" href="blog-management-posts-admin.html">Posts Admin</a>
+                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
+                                        data-bs-parent="#sidenavAccordionPages">
+                                        <nav class="sb-sidenav-menu-nested nav">
+                                            <a class="nav-link" href="401.html">401 Page</a>
+                                            <a class="nav-link" href="404.html">404 Page</a>
+                                            <a class="nav-link" href="500.html">500 Page</a>
                                         </nav>
                                     </div>
                                 </nav>
                             </div>
-                            <!-- Sidenav Accordion (Flows)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseFlows" aria-expanded="false" aria-controls="collapseFlows">
-                                <div class="nav-link-icon"><i data-feather="repeat"></i></div>
-                                Flows
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseFlows" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav">
-                                    <a class="nav-link" href="multi-tenant-select.html">Multi-Tenant Registration</a>
-                                    <a class="nav-link" href="wizard.html">Wizard</a>
-                                </nav>
-                            </div>
-                            <!-- Sidenav Heading (UI Toolkit)-->
-                            <div class="sidenav-menu-heading">UI Toolkit</div>
-                            <!-- Sidenav Accordion (Layout)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="nav-link-icon"><i data-feather="layout"></i></div>
-                                Layout
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseLayouts" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavLayout">
-                                    <!-- Nested Sidenav Accordion (Layout -> Navigation)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutSidenavVariations" aria-expanded="false" aria-controls="collapseLayoutSidenavVariations">
-                                        Navigation
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="collapseLayoutSidenavVariations" data-bs-parent="#accordionSidenavLayout">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="layout-static.html">Static Sidenav</a>
-                                            <a class="nav-link" href="layout-dark.html">Dark Sidenav</a>
-                                            <a class="nav-link" href="layout-rtl.html">RTL Layout</a>
-                                        </nav>
-                                    </div>
-                                    <!-- Nested Sidenav Accordion (Layout -> Container Options)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutContainers" aria-expanded="false" aria-controls="collapseLayoutContainers">
-                                        Container Options
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="collapseLayoutContainers" data-bs-parent="#accordionSidenavLayout">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="layout-boxed.html">Boxed Layout</a>
-                                            <a class="nav-link" href="layout-fluid.html">Fluid Layout</a>
-                                        </nav>
-                                    </div>
-                                    <!-- Nested Sidenav Accordion (Layout -> Page Headers)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsPageHeaders" aria-expanded="false" aria-controls="collapseLayoutsPageHeaders">
-                                        Page Headers
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="collapseLayoutsPageHeaders" data-bs-parent="#accordionSidenavLayout">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="header-simplified.html">Simplified</a>
-                                            <a class="nav-link" href="header-compact.html">Compact</a>
-                                            <a class="nav-link" href="header-overlap.html">Content Overlap</a>
-                                            <a class="nav-link" href="header-breadcrumbs.html">Breadcrumbs</a>
-                                            <a class="nav-link" href="header-light.html">Light</a>
-                                        </nav>
-                                    </div>
-                                    <!-- Nested Sidenav Accordion (Layout -> Starter Layouts)-->
-                                    <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseLayoutsStarterTemplates" aria-expanded="false" aria-controls="collapseLayoutsStarterTemplates">
-                                        Starter Layouts
-                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="collapseLayoutsStarterTemplates" data-bs-parent="#accordionSidenavLayout">
-                                        <nav class="sidenav-menu-nested nav">
-                                            <a class="nav-link" href="starter-default.html">Default</a>
-                                            <a class="nav-link" href="starter-minimal.html">Minimal</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div>
-                            <!-- Sidenav Accordion (Components)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseComponents" aria-expanded="false" aria-controls="collapseComponents">
-                                <div class="nav-link-icon"><i data-feather="package"></i></div>
-                                Components
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseComponents" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav">
-                                    <a class="nav-link" href="alerts.html">Alerts</a>
-                                    <a class="nav-link" href="avatars.html">Avatars</a>
-                                    <a class="nav-link" href="badges.html">Badges</a>
-                                    <a class="nav-link" href="buttons.html">Buttons</a>
-                                    <a class="nav-link" href="cards.html">
-                                        Cards
-                                        <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
-                                    </a>
-                                    <a class="nav-link" href="dropdowns.html">Dropdowns</a>
-                                    <a class="nav-link" href="forms.html">
-                                        Forms
-                                        <span class="badge bg-primary-soft text-primary ms-auto">Updated</span>
-                                    </a>
-                                    <a class="nav-link" href="modals.html">Modals</a>
-                                    <a class="nav-link" href="navigation.html">Navigation</a>
-                                    <a class="nav-link" href="progress.html">Progress</a>
-                                    <a class="nav-link" href="step.html">Step</a>
-                                    <a class="nav-link" href="timeline.html">Timeline</a>
-                                    <a class="nav-link" href="toasts.html">Toasts</a>
-                                    <a class="nav-link" href="tooltips.html">Tooltips</a>
-                                </nav>
-                            </div>
-                            <!-- Sidenav Accordion (Utilities)-->
-                            <a class="nav-link collapsed" href="javascript:void(0);" data-bs-toggle="collapse" data-bs-target="#collapseUtilities" aria-expanded="false" aria-controls="collapseUtilities">
-                                <div class="nav-link-icon"><i data-feather="tool"></i></div>
-                                Utilities
-                                <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapseUtilities" data-bs-parent="#accordionSidenav">
-                                <nav class="sidenav-menu-nested nav">
-                                    <a class="nav-link" href="animations.html">Animations</a>
-                                    <a class="nav-link" href="background.html">Background</a>
-                                    <a class="nav-link" href="borders.html">Borders</a>
-                                    <a class="nav-link" href="lift.html">Lift</a>
-                                    <a class="nav-link" href="shadows.html">Shadows</a>
-                                    <a class="nav-link" href="typography.html">Typography</a>
-                                </nav>
-                            </div>
-                            <!-- Sidenav Heading (Addons)-->
-                            <div class="sidenav-menu-heading">Plugins</div>
-                            <!-- Sidenav Link (Charts)-->
+                            <!-- <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">
-                                <div class="nav-link-icon"><i data-feather="bar-chart"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                 Charts
                             </a>
-                            <!-- Sidenav Link (Tables)-->
                             <a class="nav-link" href="tables.html">
-                                <div class="nav-link-icon"><i data-feather="filter"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Tables
-                            </a>
+                            </a> -->
                         </div>
                     </div>
-                    <!-- Sidenav Footer-->
-                    <div class="sidenav-footer">
-                        <div class="sidenav-footer-content">
-                            <div class="sidenav-footer-subtitle">Logged in as:</div>
-                            <div class="sidenav-footer-title">Valerie Luna</div>
-                        </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Logged in as:</div>
+                        Johnny Hu
                     </div>
                 </nav>
             </div>
+        
             <div id="layoutSidenav_content">
                 <main>
                     <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
@@ -507,9 +281,9 @@
                                     <div class="col-auto mt-4">
                                         <h1 class="page-header-title">
                                             <div class="page-header-icon"><i data-feather="activity"></i></div>
-                                            Dashboard
+                                            Reactive diagram
                                         </h1>
-                                        <div class="page-header-subtitle">Example dashboard overview and content summary</div>
+                                        <!-- <div class="page-header-subtitle">Example dashboard overview and content summary</div> -->
                                     </div>
                                 </div>
                             </div>
@@ -518,8 +292,7 @@
                     <!-- Main page content-->
                     <div class="container-xl px-4 mt-n10">
                         <div class="row">
-                            <div class="col-xl-4 mb-4">
-                                <!-- Dashboard example card 1-->
+                            <!-- <div class="col-xl-4 mb-4">
                                 <a class="card lift h-100" href="#!">
                                     <div class="card-body d-flex justify-content-center flex-column">
                                         <div class="d-flex align-items-center justify-content-between">
@@ -534,7 +307,6 @@
                                 </a>
                             </div>
                             <div class="col-xl-4 mb-4">
-                                <!-- Dashboard example card 2-->
                                 <a class="card lift h-100" href="#!">
                                     <div class="card-body d-flex justify-content-center flex-column">
                                         <div class="d-flex align-items-center justify-content-between">
@@ -547,9 +319,8 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
-                            <div class="col-xl-4 mb-4">
-                                <!-- Dashboard example card 3-->
+                            </div> -->
+                            <!-- <div class="col-xl-4 mb-4">
                                 <a class="card lift h-100" href="#!">
                                     <div class="card-body d-flex justify-content-center flex-column">
                                         <div class="d-flex align-items-center justify-content-between">
@@ -562,7 +333,7 @@
                                         </div>
                                     </div>
                                 </a>
-                            </div>
+                            </div> -->
                         </div>
                         <div class="row">
                             <div class="col-xxl-8">
@@ -571,16 +342,18 @@
                                     <div class="card-header border-bottom">
                                         <!-- Dashboard card navigation-->
                                         <ul class="nav nav-tabs card-header-tabs" id="dashboardNav" role="tablist">
-                                            <li class="nav-item me-1"><a class="nav-link active" id="overview-pill" href="#overview" data-bs-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">Overview</a></li>
-                                            <li class="nav-item"><a class="nav-link" id="activities-pill" href="#activities" data-bs-toggle="tab" role="tab" aria-controls="activities" aria-selected="false">Activities</a></li>
+                                            <li class="nav-item me-1"><a class="nav-link active" id="overview-pill" href="#overview" data-bs-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">Interactive Bar</a></li>
+                                            <li class="nav-item"><a class="nav-link" id="activities-pill" href="#activities" data-bs-toggle="tab" role="tab" aria-controls="activities" aria-selected="false">SHAP</a></li>
                                         </ul>
                                     </div>
                                     <div class="card-body">
                                         <div class="tab-content" id="dashboardNavContent">
                                             <!-- Dashboard Tab Pane 1-->
                                             <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-pill">
-                                                <div class="chart-area mb-4 mb-lg-0" style="height: 20rem"><canvas id="myAreaChart" width="100%" height="30"></canvas></div>
-                                            </div>
+                                                <div class="chart-area mb-4 mb-lg-0" style="height: 20rem"><img src="static/assets/img/confusion_matrix.jpg" 
+                                                    width="400"
+                                                    height="400"></div>
+                                            
                                             <div style="display: flex; flex-direction: row;">
                                             <div style="flex: 1;">
                                                 <p>Input parameters:</p>
@@ -588,53 +361,166 @@
                                                     <div>
                                                         <label for="age">Age</label>
                                                         <input type="range" id="age" name="age" 
-                                                                min="0" max="200" value="100" step="1">                                                 
+                                                                min="0" max="200" value="100" step="1" list="tickmarks_1">
+                                                                <datalist id="tickmarks_1">
+                                                                    <option value="0" label="0%"></option>
+                                                                    <option value="20"></option>
+                                                                    <option value="40"></option>
+                                                                    <option value="60"></option>
+                                                                    <option value="80"></option>
+                                                                    <option value="100" label="100%"></option>
+                                                                    <option value="120"></option>
+                                                                    <option value="140"></option>
+                                                                    <option value="160"></option>
+                                                                    <option value="180"></option>
+                                                                    <option value="200" label="200%"></option>
+                                                                </datalist>                                                 
                                                     </div>
                                                     <div>
                                                         <label for="segment">Segment</label>
                                                         <input type="range" id="segment" name="segment"
-                                                                min="0" max="100" step="1">
+                                                                min="0" max="100" step="1" list="tickmarks_2">
+                                                                <datalist id="tickmarks_2">
+                                                                    <option value="0"></option>
+                                                                    <option value="10"></option>
+                                                                    <option value="20"></option>
+                                                                    <option value="30"></option>
+                                                                    <option value="40"></option>
+                                                                    <option value="50"></option>
+                                                                    <option value="60"></option>
+                                                                    <option value="70"></option>
+                                                                    <option value="80"></option>
+                                                                    <option value="90"></option>
+                                                                    <option value="100"></option>
+                                                                </datalist>
                                                     </div>
                                                     <div>
                                                         <label for="HGB">HGB</label>
                                                         <input type="range" id="HGB" name="HGB" 
-                                                                min="0" max="20" value="10" step="1">
+                                                                min="0" max="20" value="10" step="1" list="tickmarks_3">
+                                                                <datalist id="tickmarks_3">
+                                                                    <option value="0"></option>
+                                                                    <option value="2"></option>
+                                                                    <option value="4"></option>
+                                                                    <option value="6"></option>
+                                                                    <option value="8"></option>
+                                                                    <option value="10"></option>
+                                                                    <option value="12"></option>
+                                                                    <option value="14"></option>
+                                                                    <option value="16"></option>
+                                                                    <option value="18"></option>
+                                                                    <option value="20"></option>
+                                                                </datalist>
                                                     </div>
 
                                                     <div>
                                                         <label for="PLATELET">PLATELET</label>
                                                         <input type="range" id="PLATELET" name="PLATELET" 
-                                                                min="0" max="1000" value="500" step="1">
+                                                                min="0" max="1000" value="500" step="1" list="tickmarks_4">
+                                                                <datalist id="tickmarks_4">
+                                                                    <option value="0"></option>
+                                                                    <option value="100"></option>
+                                                                    <option value="200"></option>
+                                                                    <option value="300"></option>
+                                                                    <option value="400"></option>
+                                                                    <option value="500"></option>
+                                                                    <option value="600"></option>
+                                                                    <option value="700"></option>
+                                                                    <option value="800"></option>
+                                                                    <option value="900"></option>
+                                                                    <option value="1000"></option>
+                                                                </datalist>
                                                     </div>
 
                                                     <div>
                                                         <label for="Serum">Serum</label>
                                                         <input type="range" id="Serum" name="Serum" 
-                                                                min="0" max="40" value="20" step="1">
+                                                                min="0" max="40" value="20" step="1" list="tickmarks_5">
+                                                                <datalist id="tickmarks_5">
+                                                                    <option value="0"></option>
+                                                                    <option value="4"></option>
+                                                                    <option value="8"></option>
+                                                                    <option value="12"></option>
+                                                                    <option value="16"></option>
+                                                                    <option value="20"></option>
+                                                                    <option value="24"></option>
+                                                                    <option value="28"></option>
+                                                                    <option value="32"></option>
+                                                                    <option value="36"></option>
+                                                                    <option value="40"></option>
+                                                                </datalist>
                                                     </div>
 
                                                     <div>
                                                         <label for="P.T">P.T</label>
                                                         <input type="range" id="P.T" name="P.T" 
-                                                                min="0" max="50" value="25" step="1">
+                                                                min="0" max="50" value="25" step="1" list="tickmarks_6">
+                                                                <datalist id="tickmarks_6">
+                                                                    <option value="0"></option>
+                                                                    <option value="5"></option>
+                                                                    <option value="10"></option>
+                                                                    <option value="15"></option>
+                                                                    <option value="20"></option>
+                                                                    <option value="25"></option>
+                                                                    <option value="30"></option>
+                                                                    <option value="35"></option>
+                                                                    <option value="40"></option>
+                                                                    <option value="45"></option>
+                                                                    <option value="50"></option>
+                                                                </datalist>
                                                     </div>
 
                                                     <div>
                                                         <label for="APTT">APTT</label>
                                                         <input type="range" id="APTT" name="APTT" 
-                                                                min="0" max="100" value="50" step="1">
+                                                                min="0" max="100" value="50" step="1" list="tickmarks_7">
+                                                                <datalist id="tickmarks_7">
+                                                                    <option value="0"></option>
+                                                                    <option value="10"></option>
+                                                                    <option value="20"></option>
+                                                                    <option value="30"></option>
+                                                                    <option value="40"></option>
+                                                                    <option value="50"></option>
+                                                                    <option value="60"></option>
+                                                                    <option value="70"></option>
+                                                                    <option value="80"></option>
+                                                                    <option value="90"></option>
+                                                                    <option value="100"></option>
+                                                                </datalist>
                                                     </div>
 
                                                     <div>
                                                         <label for="CCI">Total CCI</label>
                                                         <input type="range" id="CCI" name="CCI" 
-                                                                min="0" max="10" value="5" step="1">
+                                                                min="0" max="10" value="5" step="1" list="tickmarks_8">
+                                                                <datalist id="tickmarks_8">
+                                                                    <option value="0"></option>
+                                                                    <option value="1"></option>
+                                                                    <option value="2"></option>
+                                                                    <option value="3"></option>
+                                                                    <option value="4"></option>
+                                                                    <option value="5"></option>
+                                                                    <option value="6"></option>
+                                                                    <option value="7"></option>
+                                                                    <option value="8"></option>
+                                                                    <option value="9"></option>
+                                                                    <option value="10"></option>
+                                                                </datalist>
                                                     </div>
 
                                                     <div>
                                                         <label for="Elixhauser">Elixhauser</label>
                                                         <input type="range" id="Elixhauser" name="Elixhauser" 
-                                                                min="0" max="6" value="3" step="1">
+                                                                min="0" max="6" value="3" step="1" list="tickmarks_9">
+                                                                <datalist id="tickmarks_9">
+                                                                    <option value="0"></option>
+                                                                    <option value="1"></option>
+                                                                    <option value="2"></option>
+                                                                    <option value="3"></option>
+                                                                    <option value="4"></option>
+                                                                    <option value="5"></option>
+                                                                    <option value="6"></option>
+                                                                </datalist>
                                                     </div>
 
                                                     <div>
@@ -673,19 +559,58 @@
                                                     <div>
                                                         <label for="Serum_CRP">Serum CRP</label>
                                                         <input type="range" id="Serum_CRP" name="Serum_CRP" 
-                                                                min="0" max="500" value="250" step="1">
+                                                                min="0" max="500" value="250" step="1" list="tickmarks_10">
+                                                                <datalist id="tickmarks_10">
+                                                                    <option value="0"></option>
+                                                                    <option value="50"></option>
+                                                                    <option value="100"></option>
+                                                                    <option value="150"></option>
+                                                                    <option value="200"></option>
+                                                                    <option value="250"></option>
+                                                                    <option value="300"></option>
+                                                                    <option value="350"></option>
+                                                                    <option value="400"></option>
+                                                                    <option value="450"></option>
+                                                                    <option value="500"></option>
+                                                                </datalist>
                                                     </div>
 
                                                     <div>
                                                         <label for="Serum_ESR">Serum ESR</label>
                                                         <input type="range" id="Serum_ESR" name="Serum_ESR" 
-                                                                min="0" max="200" value="100" step="1">
+                                                                min="0" max="200" value="100" step="1" list="tickmarks_11">
+                                                                <datalist id="tickmarks_11">
+                                                                    <option value="0"></option>
+                                                                    <option value="20"></option>
+                                                                    <option value="40"></option>
+                                                                    <option value="60"></option>
+                                                                    <option value="80"></option>
+                                                                    <option value="100"></option>
+                                                                    <option value="120"></option>
+                                                                    <option value="140"></option>
+                                                                    <option value="160"></option>
+                                                                    <option value="180"></option>
+                                                                    <option value="200"></option>
+                                                                </datalist>
                                                     </div>
 
                                                     <div>
                                                         <label for="Synovial_WBC">Synovial WBC</label>
                                                         <input type="range" id="Synovial_WBC" name="Synovial_WBC" 
-                                                                min="0" max="1000000" value="500000" step="1">
+                                                                min="0" max="1000000" value="500000" step="1" list="tickmarks_12">
+                                                                <datalist id="tickmarks_12">
+                                                                    <option value="0"></option>
+                                                                    <option value="100000"></option>
+                                                                    <option value="200000"></option>
+                                                                    <option value="300000"></option>
+                                                                    <option value="400000"></option>
+                                                                    <option value="500000"></option>
+                                                                    <option value="600000"></option>
+                                                                    <option value="700000"></option>
+                                                                    <option value="800000"></option>
+                                                                    <option value="900000"></option>
+                                                                    <option value="1000000"></option>
+                                                                </datalist>
                                                     </div>
                                                     <div>
                                                         <!-- <input type="range" id="Single_Positive_culture" name="Single_Positive_culture" 
@@ -700,7 +625,7 @@
                                                     <div>
                                                         <label for="Synovial_PMN">Synovial PMN</label>
                                                         <input type="range" id="Synovial_PMN" name="Synovial_PMN" 
-                                                                min="0" max="100" value="50" step="1">
+                                                                min="0" max="100" value="50" step="1" list="tickmarks">
                                                     </div>
                                                     <div>
                                                         <!-- <input type="range" id="Positive_Histology" name="Positive_Histology" 
@@ -728,11 +653,21 @@
                                                     </div>
                                                 </form>
                                             </div>
-                                            <div style="flex: 1;">{{result}}</div>
+                                                <div style="flex: 1;">{{result}}</div>
                                             </div>
+                                        </div>
                                             <!-- Dashboard Tab Pane 2-->
                                             <div class="tab-pane fade" id="activities" role="tabpanel" aria-labelledby="activities-pill">
-                                                <table id="datatablesSimple">
+                                                <img src="static/assets/img/feature_importances.png" 
+                                                    width="600"
+                                                    height="600">
+                                                <img src="static/assets/img/force_plot.png" 
+                                                    width="900"
+                                                    height="135">
+                                                <img src="static/assets/img/summary_plot.png" 
+                                                    width="600"
+                                                    height="600">
+                                                <!-- <table id="datatablesSimple">
                                                     <thead>
                                                         <tr>
                                                             <th>Date</th>
@@ -870,13 +805,13 @@
                                                             <td>10:56 AM</td>
                                                         </tr>
                                                     </tbody>
-                                                </table>
+                                                </table> -->
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- Illustration dashboard card example-->
-                                <div class="card mb-4">
+                                <!-- <div class="card mb-4">
                                     <div class="card-body py-5">
                                         <div class="d-flex flex-column justify-content-center">
                                             <img class="img-fluid mb-4" src="static/assets/img/illustrations/data-report.svg" alt="" style="height: 10rem" />
@@ -887,11 +822,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row">
                                     <div class="col-xl-6 mb-4">
-                                        <!-- Dashboard activity timeline example-->
-                                        <div class="card card-header-actions h-100">
+                                        <!-- <div class="card card-header-actions h-100">
                                             <div class="card-header">
                                                 Recent Activity
                                                 <div class="dropdown no-caret">
@@ -907,7 +841,6 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="timeline timeline-xs">
-                                                    <!-- Timeline Item 1-->
                                                     <div class="timeline-item">
                                                         <div class="timeline-item-marker">
                                                             <div class="timeline-item-marker-text">27 min</div>
@@ -919,7 +852,6 @@
                                                             has been successfully placed.
                                                         </div>
                                                     </div>
-                                                    <!-- Timeline Item 2-->
                                                     <div class="timeline-item">
                                                         <div class="timeline-item-marker">
                                                             <div class="timeline-item-marker-text">58 min</div>
@@ -931,7 +863,6 @@
                                                             has been generated and is ready to view.
                                                         </div>
                                                     </div>
-                                                    <!-- Timeline Item 3-->
                                                     <div class="timeline-item">
                                                         <div class="timeline-item-marker">
                                                             <div class="timeline-item-marker-text">2 hrs</div>
@@ -943,7 +874,6 @@
                                                             has registered
                                                         </div>
                                                     </div>
-                                                    <!-- Timeline Item 4-->
                                                     <div class="timeline-item">
                                                         <div class="timeline-item-marker">
                                                             <div class="timeline-item-marker-text">1 day</div>
@@ -951,7 +881,6 @@
                                                         </div>
                                                         <div class="timeline-item-content">Server activity monitor alert</div>
                                                     </div>
-                                                    <!-- Timeline Item 5-->
                                                     <div class="timeline-item">
                                                         <div class="timeline-item-marker">
                                                             <div class="timeline-item-marker-text">1 day</div>
@@ -963,7 +892,6 @@
                                                             has been successfully placed.
                                                         </div>
                                                     </div>
-                                                    <!-- Timeline Item 6-->
                                                     <div class="timeline-item">
                                                         <div class="timeline-item-marker">
                                                             <div class="timeline-item-marker-text">1 day</div>
@@ -975,7 +903,6 @@
                                                             have been updated.
                                                         </div>
                                                     </div>
-                                                    <!-- Timeline Item 7-->
                                                     <div class="timeline-item">
                                                         <div class="timeline-item-marker">
                                                             <div class="timeline-item-marker-text">2 days</div>
@@ -989,11 +916,10 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                     <div class="col-xl-6 mb-4">
-                                        <!-- Pie chart with legend example-->
-                                        <div class="card h-100">
+                                        <!-- <div class="card h-100">
                                             <div class="card-header">Traffic Sources</div>
                                             <div class="card-body">
                                                 <div class="chart-pie mb-4"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
@@ -1021,7 +947,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -1180,14 +1106,14 @@
                                     </div>
                                 </div>
                                 <!-- Illustration dashboard card example-->
-                                <div class="card">
+                                <!-- <div class="card">
                                     <div class="card-body text-center p-5">
                                         <img class="img-fluid mb-4" src="static/assets/img/illustrations/team-spirit.svg" alt="" style="max-width: 16.25rem" />
                                         <h5>Team Access</h5>
                                         <p class="mb-4">Upgrade your plan to get access to team collaboration tools.</p>
                                         <a class="btn btn-primary p-3" href="#!">Upgrade</a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>

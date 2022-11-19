@@ -1,5 +1,6 @@
   // Create a new directed graph
-  console.log(decision_list,'from decisionpath.js')
+  console.log('from decisionpath.js')
+
   var g = new dagreD3.graphlib.Graph().setGraph({});
 
   var nodes = [ "Start", "Histology", "Serum CRP", "PT",

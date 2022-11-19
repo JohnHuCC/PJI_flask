@@ -23,6 +23,8 @@
 # In[1]: Import Library
 # 引用適當的 Library
 ##
+import re
+import json
 import itertools
 from sympy.logic.boolalg import to_dnf
 from sympy.logic import simplify_logic, SOPform
@@ -557,8 +559,8 @@ svc_pipe = Pipeline([
 ])
 
 model_xgb = xgb.fit(X_tr.values, y_tr.values)
+joblib.dump(model_xgb, 'XGB_model')
 xgb_predict = model_xgb.predict(X_val)
-
 
 # 8.2 Stacking Model from 80% dataset   ?
 stacking_model = StackingClassifier(
@@ -579,7 +581,12 @@ df_y_train.to_csv(r"C:\Users\JohnnyHu\Desktop\PJI_y_train.csv",
                   index=False, sep=',')
 # 8.3 Stacking Model from 100% dataset
 stacking_model.fit(X_train.values, y_train.values)
-joblib.dump(stacking_model, 'stacking_model.pkl')
+joblib.dump(stacking_model, 'Stacking_model')
+
+loaded_model = joblib.load('Stacking_model')
+
+print(loaded_model.predict(X_test))
+
 target = ['0', '1']
 # 8.4 Explainer Modeling from 100% dataset   ?
 explainer = RandomForestClassifier(
@@ -789,7 +796,7 @@ end_c = time.time()
 # In[14]: Concatenate multi lists for CONDITIOS_AvgFidelity
 rules_list = getTopN_Fidelity(
     CONDITIOS_AvgFidelity, list(explainers.keys()), 13)
-print(rules_list)
+# print(rules_list)
 
 #!/usr/bin/env python
 ###
@@ -971,7 +978,7 @@ def singleton_opt(X_test):
                 decision_list[val] = [
                     variable, operator, lower_bound, upper_bound]
 
-            print(val, decision_list[val])
+            # print(val, decision_list[val])
             decision_list_file.write(str(val)+" "+str(decision_list[val])+"\n")
             # decision_list_file.write(str(val)+"\n")
         except Exception as e:
@@ -1216,10 +1223,43 @@ ns_all = list()
 for s_, singleton_ in zip(sym_array, final_singleton):
     ns_all.append(Symbol(singleton_))
 
+# print(sym_array)
+# print(final_singleton)
 # In[30]: call the simplify_logic and get the Simplify_decisionRules
 Simplify_DecisionRules = "{}".format(
     simplify_logic(SOPform(ns_all, minterms_), 'dnf'))
 
+rule_str = Simplify_DecisionRules
+j = 65
+for i in range(len(final_singleton)):
+    a = j + i
+    rule_str = rule_str.replace(final_singleton[i], str(chr(a)))
+
+regex = re.compile('[A-Z]')
+rule_str_sp = rule_str.split('|')
+
+decision_rule = {}
+for i in range(len(rule_str_sp)):
+    temp = regex.findall(rule_str_sp[i])
+    decision_rule.setdefault(i, temp)
+
+with open("decision_rule.json", "w") as decision_rule_file:
+    json.dump(decision_rule, decision_rule_file, indent=4)
+
+decision_rule_map = {}
+for i in range(len(final_singleton)):
+    a = j + i
+    decision_rule_map.setdefault(str(chr(a)), final_singleton[i])
+
+with open("decision_rule_map.json", "w") as decision_rule_file:
+    json.dump(decision_rule_map, decision_rule_file, indent=4)
+print(rule_str)
+print(decision_rule)
+# print(ns_all)
+# print(minterms_)
+# print(SOPform(ns_all, minterms_))
+# print(simplify_logic(SOPform(ns_all, minterms_), 'dnf'))
+print(Simplify_DecisionRules)
 cytime = end_c - start_c
 print("Start time = {}".format(start_c))
 print("End time = {}".format(end_c))

@@ -48,8 +48,6 @@ forest = ensemble.RandomForestClassifier(n_estimators=50, max_depth=5)
 forest_fit = forest.fit(train_X, train_y)
 joblib.dump(forest, 'RF_model')
 
-# arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-
 
 def tran_df(arr):
     predict_data = pd.DataFrame(
@@ -85,7 +83,10 @@ def plt_con():
 
     # Sets the labels
     # plt.show()
-    plt.savefig('confusion_matrix.png')
+    plt.xlabel('Predictions', fontsize=16)
+    plt.ylabel('Actuals', fontsize=16)
+    plt.title('Confusion Matrix', fontsize=15)
+    plt.savefig('static/assets/img/confusion_matrix.jpg')
 
 # plt_con(test_y, rf_predict(test_X))
 # rf_predict(predict_data)

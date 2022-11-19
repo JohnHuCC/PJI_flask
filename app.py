@@ -1,8 +1,18 @@
+import matplotlib.pyplot as plt
+from sklearn.metrics import recall_score
+from sklearn.metrics import precision_score
+from sklearn.model_selection import train_test_split
+from sklearn import ensemble, preprocessing, metrics
+import joblib
+import plotly.express as px
+import pandas as pd
+import numpy as np
 from sklearn.metrics import confusion_matrix
 import Vision_compare
 from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
 import pymysql
+import json
 
 db = SQLAlchemy()
 app = Flask(__name__)
@@ -12,16 +22,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:love29338615@127.0
 
 db.init_app(app)
 
-import numpy as np
-import pandas as pd
-import plotly.express as px
-import joblib
-from sklearn import ensemble, preprocessing, metrics
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import precision_score
-from sklearn.metrics import recall_score
-from sklearn.metrics import confusion_matrix
-import matplotlib.pyplot as plt
 
 df_data = pd.read_csv(
     'PJI_Dataset/PJI_train.csv')
@@ -84,7 +84,7 @@ def index():
     conn = pymysql.connect(host='127.0.0.1', user='root',
                            password='love29338615', port=3306, db='PJI')
     cur = conn.cursor()
-    sql = "SELECT * FROM PJI.pji_small"
+    sql = "SELECT * FROM PJI.revision_pji"
     cur.execute(sql)
     u = cur.fetchall()
     conn.close()
@@ -113,6 +113,21 @@ if __name__ == "__main__":
     app.run()
 
 
+@app.route("/auth_login")
+def auth_login():
+    return render_template('auth_login.html')
+
+
+@app.route("/auth_password")
+def auth_password():
+    return render_template('auth_password.html')
+
+
+@app.route("/auth_register")
+def auth_register():
+    return render_template('auth_register.html')
+
+
 @app.route("/dashboard")
 def dashboard():
     return render_template('dashboard.html')
@@ -134,7 +149,10 @@ def model_diagnosis():
     decision_list_file_content = decision_list_file.read().strip()
     decision_list = decision_list_file_content.split("\n")
     decision_list_file.close()
-    return render_template('model_diagnosis.html', decision_list=decision_list)
+    decision_list_json = json.load(open("decision_rule.json"))
+    rule_map_json = json.load(open("decision_rule_map.json"))
+    return render_template('model_diagnosis.html', decision_list=decision_list, decision_list_json=decision_list_json, rule_map_json=rule_map_json)
+    # return render_template('model_diagnosis.html', decision_list_json=decision_list_json, rule_map_json=rule_map_json)
 
 
 @app.route('/reactive_diagram', methods=['GET', 'POST'])
@@ -176,10 +194,11 @@ def reactive_diagram():
 @app.route('/personal_info')
 def personal_info():
     name = request.args.get('p_id')
+    print(name)
     conn = pymysql.connect(host='127.0.0.1', user='root',
                            password='love29338615', port=3306, db='PJI')
     cur = conn.cursor()
-    sql = "SELECT * FROM PJI.pji_small WHERE ID =" + str(name)
+    sql = "SELECT * FROM PJI.revision_pji WHERE ID =" + str(name)
     cur.execute(sql)
     u = cur.fetchall()
     conn.close()
