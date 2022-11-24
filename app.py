@@ -1,27 +1,30 @@
-import matplotlib.pyplot as plt
+from form import FormLogin
+from model import UserRegister
 from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 from sklearn.model_selection import train_test_split
-from sklearn import ensemble, preprocessing, metrics
+from sklearn import ensemble
 import joblib
-import plotly.express as px
 import pandas as pd
 import numpy as np
 from sklearn.metrics import confusion_matrix
 import Vision_compare
 from flask import Flask, render_template, request, url_for, redirect
-from flask_sqlalchemy import SQLAlchemy
 import pymysql
 import json
+from flask_login import LoginManager
+from db import db
+from flask_bootstrap import Bootstrap5
+from flask_migrate import Migrate
 
-db = SQLAlchemy()
+
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = 'Your Key'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:love29338615@127.0.0.1:3306/PJI"
-
+bootstrap = Bootstrap5(app)
 db.init_app(app)
-
+migrate = Migrate(app, db)
 
 df_data = pd.read_csv(
     'PJI_Dataset/PJI_train.csv')
@@ -113,9 +116,23 @@ if __name__ == "__main__":
     app.run()
 
 
-@app.route("/auth_login")
+@app.route("/auth_login", methods=['GET', 'POST'])
 def auth_login():
-    return render_template('auth_login.html')
+    form = FormLogin()
+    if form.validate_on_submit():
+        #  當使用者按下login之後，先檢核帳號是否存在系統內。
+        user = UserRegister.query.filter_by(email=form.email.data).first()
+        if user:
+            #  當使用者存在資料庫內再核對密碼是否正確。
+            if user.check_password(form.password.data):
+                return 'Welcome'
+            else:
+                #  如果密碼驗證錯誤，就顯示錯誤訊息。
+                flash('Wrong Email or Password')
+        else:
+            #  如果資料庫無此帳號，就顯示錯誤訊息。
+            flash('Wrong Email or Password')
+    return render_template('auth_login.html', form=form)
 
 
 @app.route("/auth_password")
@@ -177,12 +194,13 @@ def reactive_diagram():
         Synovial_PMN = request.form["Synovial_PMN"]
         Positive_Histology = request.form["Positive_Histology"]
         Purulence = request.form["Purulence"]
-        print("age:", age)
+        print(type(age))
         arr = [age, segment, HGB, PLATELET, Serum, P_T, APTT, CCI, Elixhauser,
                Rivision, ASA_2, positive_culture, Serum_CRP, Serum_ESR, Synovial_WBC,
                Single_Positive_culture, Synovial_PMN, Positive_Histology, Purulence]
+        arr[:] = [int(x) for x in arr]
         predict_data = Vision_compare.tran_df(arr)
-        result1 = Vision_compare.rf_predict(predict_data)
+        result1 = Vision_compare.stacking_predict(predict_data)
         print("running start")
         Vision_compare.plt_con()
         print("running end")

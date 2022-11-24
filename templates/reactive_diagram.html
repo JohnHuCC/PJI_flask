@@ -360,7 +360,7 @@
                                                 <form id="myForm" action="#" method="post">
                                                     <div>
                                                         <label for="age">Age</label>
-                                                        <input type="range" id="age" name="age" 
+                                                        <input class="range_input" type="range" id="age" name="age" 
                                                                 min="0" max="200" value="100" step="1" list="tickmarks_1">
                                                                 <datalist id="tickmarks_1">
                                                                     <option value="0" label="0%"></option>
@@ -374,11 +374,12 @@
                                                                     <option value="160"></option>
                                                                     <option value="180"></option>
                                                                     <option value="200" label="200%"></option>
-                                                                </datalist>                                                 
+                                                                </datalist>
+                                                        <span id="age_value"></span>
                                                     </div>
                                                     <div>
                                                         <label for="segment">Segment</label>
-                                                        <input type="range" id="segment" name="segment"
+                                                        <input class="range_input" type="range" id="segment" name="segment"
                                                                 min="0" max="100" step="1" list="tickmarks_2">
                                                                 <datalist id="tickmarks_2">
                                                                     <option value="0"></option>
@@ -393,10 +394,11 @@
                                                                     <option value="90"></option>
                                                                     <option value="100"></option>
                                                                 </datalist>
+                                                        <span id="segment_value"></span>
                                                     </div>
                                                     <div>
                                                         <label for="HGB">HGB</label>
-                                                        <input type="range" id="HGB" name="HGB" 
+                                                        <input class="range_input" type="range" id="HGB" name="HGB" 
                                                                 min="0" max="20" value="10" step="1" list="tickmarks_3">
                                                                 <datalist id="tickmarks_3">
                                                                     <option value="0"></option>
@@ -411,11 +413,12 @@
                                                                     <option value="18"></option>
                                                                     <option value="20"></option>
                                                                 </datalist>
+                                                        <span id="HGB_value"></span>
                                                     </div>
 
                                                     <div>
                                                         <label for="PLATELET">PLATELET</label>
-                                                        <input type="range" id="PLATELET" name="PLATELET" 
+                                                        <input class="range_input" type="range" id="PLATELET" name="PLATELET" 
                                                                 min="0" max="1000" value="500" step="1" list="tickmarks_4">
                                                                 <datalist id="tickmarks_4">
                                                                     <option value="0"></option>
@@ -430,11 +433,12 @@
                                                                     <option value="900"></option>
                                                                     <option value="1000"></option>
                                                                 </datalist>
+                                                        <span id="PLATELET_value"></span>
                                                     </div>
 
                                                     <div>
                                                         <label for="Serum">Serum</label>
-                                                        <input type="range" id="Serum" name="Serum" 
+                                                        <input class="range_input" type="range" id="Serum" name="Serum" 
                                                                 min="0" max="40" value="20" step="1" list="tickmarks_5">
                                                                 <datalist id="tickmarks_5">
                                                                     <option value="0"></option>
@@ -449,11 +453,12 @@
                                                                     <option value="36"></option>
                                                                     <option value="40"></option>
                                                                 </datalist>
+                                                        <span id="Serum_value"></span>
                                                     </div>
 
                                                     <div>
                                                         <label for="P.T">P.T</label>
-                                                        <input type="range" id="P.T" name="P.T" 
+                                                        <input class="range_input" type="range" id="P_T" name="P.T" 
                                                                 min="0" max="50" value="25" step="1" list="tickmarks_6">
                                                                 <datalist id="tickmarks_6">
                                                                     <option value="0"></option>
@@ -468,11 +473,12 @@
                                                                     <option value="45"></option>
                                                                     <option value="50"></option>
                                                                 </datalist>
+                                                        <span id="P_T_value"></span>
                                                     </div>
 
                                                     <div>
                                                         <label for="APTT">APTT</label>
-                                                        <input type="range" id="APTT" name="APTT" 
+                                                        <input class="range_input" type="range" id="APTT" name="APTT" 
                                                                 min="0" max="100" value="50" step="1" list="tickmarks_7">
                                                                 <datalist id="tickmarks_7">
                                                                     <option value="0"></option>
@@ -487,11 +493,12 @@
                                                                     <option value="90"></option>
                                                                     <option value="100"></option>
                                                                 </datalist>
+                                                        <span id="APTT_value"></span>
                                                     </div>
 
                                                     <div>
                                                         <label for="CCI">Total CCI</label>
-                                                        <input type="range" id="CCI" name="CCI" 
+                                                        <input class="range_input" type="range" id="CCI" name="CCI" 
                                                                 min="0" max="10" value="5" step="1" list="tickmarks_8">
                                                                 <datalist id="tickmarks_8">
                                                                     <option value="0"></option>
@@ -506,11 +513,12 @@
                                                                     <option value="9"></option>
                                                                     <option value="10"></option>
                                                                 </datalist>
+                                                        <span id="CCI_value"></span>
                                                     </div>
 
                                                     <div>
                                                         <label for="Elixhauser">Elixhauser</label>
-                                                        <input type="range" id="Elixhauser" name="Elixhauser" 
+                                                        <input class="range_input" type="range" id="Elixhauser" name="Elixhauser" 
                                                                 min="0" max="6" value="3" step="1" list="tickmarks_9">
                                                                 <datalist id="tickmarks_9">
                                                                     <option value="0"></option>
@@ -521,10 +529,11 @@
                                                                     <option value="5"></option>
                                                                     <option value="6"></option>
                                                                 </datalist>
+                                                        <span id="Elixhauser_value"></span>
                                                     </div>
 
                                                     <div>
-                                                        <!-- <input type="range" id="Rivision" name="Rivision" 
+                                                        <!-- <input class="range_input" type="range" id="Rivision" name="Rivision" 
                                                                 min="0" max="1" value="0" step="1"> -->
                                                         <label for="Rivision">Rivision</label>
                                                         <input type="radio" id="Rivision_0" name="Rivision" value="0"
@@ -536,7 +545,7 @@
 
                                                     <div>
                                                         <label for="ASA_2">ASA_2</label>
-                                                        <!-- <input type="range" id="ASA_2" name="ASA_2" 
+                                                        <!-- <input class="range_input" type="range" id="ASA_2" name="ASA_2" 
                                                                 min="0" max="1" value="0" step="1"> -->
                                                         <input type="radio" id="ASA_2_0" name="ASA_2" value="0"
                                                                 checked>
@@ -546,7 +555,7 @@
                                                     </div>
 
                                                     <div>
-                                                        <!-- <input type="range" id="positive_culture" name="positive_culture" 
+                                                        <!-- <input class="range_input" type="range" id="positive_culture" name="positive_culture" 
                                                                 min="0" max="1" value="0" step="1"> -->
                                                         <label for="positive_culture">positive culture</label>
                                                         <input type="radio" id="positive_culture_0" name="positive_culture" value="0"
@@ -558,7 +567,7 @@
 
                                                     <div>
                                                         <label for="Serum_CRP">Serum CRP</label>
-                                                        <input type="range" id="Serum_CRP" name="Serum_CRP" 
+                                                        <input class="range_input" type="range" id="Serum_CRP" name="Serum_CRP" 
                                                                 min="0" max="500" value="250" step="1" list="tickmarks_10">
                                                                 <datalist id="tickmarks_10">
                                                                     <option value="0"></option>
@@ -573,11 +582,12 @@
                                                                     <option value="450"></option>
                                                                     <option value="500"></option>
                                                                 </datalist>
+                                                        <span id="Serum_CRP_value"></span>
                                                     </div>
 
                                                     <div>
                                                         <label for="Serum_ESR">Serum ESR</label>
-                                                        <input type="range" id="Serum_ESR" name="Serum_ESR" 
+                                                        <input class="range_input" type="range" id="Serum_ESR" name="Serum_ESR" 
                                                                 min="0" max="200" value="100" step="1" list="tickmarks_11">
                                                                 <datalist id="tickmarks_11">
                                                                     <option value="0"></option>
@@ -592,11 +602,12 @@
                                                                     <option value="180"></option>
                                                                     <option value="200"></option>
                                                                 </datalist>
+                                                        <span id="Serum_ESR_value"></span>
                                                     </div>
 
                                                     <div>
                                                         <label for="Synovial_WBC">Synovial WBC</label>
-                                                        <input type="range" id="Synovial_WBC" name="Synovial_WBC" 
+                                                        <input class="range_input" type="range" id="Synovial_WBC" name="Synovial_WBC" 
                                                                 min="0" max="1000000" value="500000" step="1" list="tickmarks_12">
                                                                 <datalist id="tickmarks_12">
                                                                     <option value="0"></option>
@@ -611,9 +622,10 @@
                                                                     <option value="900000"></option>
                                                                     <option value="1000000"></option>
                                                                 </datalist>
+                                                        <span id="Synovial_WBC_value"></span>
                                                     </div>
                                                     <div>
-                                                        <!-- <input type="range" id="Single_Positive_culture" name="Single_Positive_culture" 
+                                                        <!-- <input class="range_input" type="range" id="Single_Positive_culture" name="Single_Positive_culture" 
                                                                 min="0" max="1" value="0" step="1"> -->
                                                         <label for="Single_Positive_culture">Single Positive culture</label>
                                                         <input type="radio" id="Single_Positive_culture_0" name="Single_Positive_culture" value="0"
@@ -624,11 +636,25 @@
                                                     </div>
                                                     <div>
                                                         <label for="Synovial_PMN">Synovial PMN</label>
-                                                        <input type="range" id="Synovial_PMN" name="Synovial_PMN" 
-                                                                min="0" max="100" value="50" step="1" list="tickmarks">
+                                                        <input class="range_input" type="range" id="Synovial_PMN" name="Synovial_PMN" 
+                                                                min="0" max="100" value="50" step="1" list="tickmarks_13">
+                                                                <datalist id="tickmarks_13">
+                                                                    <option value="0"></option>
+                                                                    <option value="10"></option>
+                                                                    <option value="20"></option>
+                                                                    <option value="30"></option>
+                                                                    <option value="40"></option>
+                                                                    <option value="50"></option>
+                                                                    <option value="60"></option>
+                                                                    <option value="70"></option>
+                                                                    <option value="80"></option>
+                                                                    <option value="90"></option>
+                                                                    <option value="100"></option>
+                                                                </datalist>
+                                                        <span id="Synovial_PMN_value"></span>
                                                     </div>
                                                     <div>
-                                                        <!-- <input type="range" id="Positive_Histology" name="Positive_Histology" 
+                                                        <!-- <input class="range_input" type="range" id="Positive_Histology" name="Positive_Histology" 
                                                                 min="0" max="1" value="0" step="1"> -->
                                                         <label for="Positive_Histology">Positive Histology</label>
                                                         <input type="radio" id="Positive_Histology_0" name="Positive_Histology" value="0"
@@ -638,7 +664,7 @@
                                                         <label for="Positive_Histology_1">1</label>
                                                     </div>
                                                     <div>
-                                                        <!-- <input type="range" id="Purulence" name="Purulence" 
+                                                        <!-- <input class="range_input" type="range" id="Purulence" name="Purulence" 
                                                                 min="0" max="1" value="0" step="1"> -->
                                                         <label for="Purulence">Purulence</label>
                                                         <input type="radio" id="Purulence_0" name="Purulence" value="0"
@@ -659,11 +685,11 @@
                                             <!-- Dashboard Tab Pane 2-->
                                             <div class="tab-pane fade" id="activities" role="tabpanel" aria-labelledby="activities-pill">
                                                 <img src="static/assets/img/feature_importances.png" 
-                                                    width="600"
-                                                    height="600">
-                                                <img src="static/assets/img/force_plot.png" 
+                                                    width="800"
+                                                    height="640">
+                                                <!-- <img src="static/assets/img/force_plot.png" 
                                                     width="900"
-                                                    height="135">
+                                                    height="135"> -->
                                                 <img src="static/assets/img/summary_plot.png" 
                                                     width="600"
                                                     height="600">
@@ -1139,5 +1165,6 @@
         <script src="/static/assets/demo/chart-pie-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/static/js/datatables/datatables-simple-demo.js"></script>
+        <script src="/static/js/reactive_diagram.js"></script>
     </body>
 </html>

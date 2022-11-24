@@ -51,18 +51,19 @@ joblib.dump(forest, 'RF_model')
 
 def tran_df(arr):
     predict_data = pd.DataFrame(
-        np.array([arr]), columns=['Age', 'Segment', 'HGB', 'PLATELET', 'Serum ', 'P.T', 'APTT', 'Total CCI', 'Total Elixhauser Groups per record', 'Primary,Revision,native hip', 'ASA_2',
+        np.array([arr]), columns=['Age', 'Segment (%)', 'HGB', 'PLATELET', 'Serum WBC ', 'P.T', 'APTT', 'Total CCI', 'Total Elixhauser Groups per record', 'Primary, Revision\nnative hip', 'ASA_2',
                                   '2X positive culture', 'Serum CRP', 'Serum ESR', 'Synovial WBC', 'Single Positive culture', 'Synovial_PMN', 'Positive Histology', 'Purulence'
                                   ])
-    print(predict_data)
     return predict_data
 
 
 # predict_data = tran_df(arr)
 
 
-def rf_predict(df):
-    loaded_model = joblib.load('RF_model')
+def stacking_predict(df):
+    print(type(df))
+    print(df)
+    loaded_model = joblib.load('Stacking_model')
     result = loaded_model.predict(df)
     print(result)
     return result
@@ -70,7 +71,7 @@ def rf_predict(df):
 
 def plt_con():
     y_true = test_y
-    y_pred = rf_predict(test_X)
+    y_pred = stacking_predict(test_X)
     mat_con = (confusion_matrix(y_true, y_pred, labels=[0, 1]))
 
     # Setting the attributes

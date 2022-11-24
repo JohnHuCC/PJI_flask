@@ -16,6 +16,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre-d3/0.6.4/dagre-d3.min.js" integrity="sha512-fdYLm4hXxJ/tPMptvdDDwuJme6jTgvoZ0g6pflEkyG9MqPejLspnCjkwX3bD69GFT2N/refZGjPr6b9RdoCyxQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <!-- <script defer src="/static/js/decisionpath.js"></script> -->
         <script defer src="/static/js/decisionpath2.js"></script>
+        <script defer src="/static/js/model_diagnosis.js"></script>
     </head>
     <body class="nav-fixed">
         <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
@@ -322,7 +323,7 @@
                                 <div class="ms-3"><h2 class="my-3">Decision path example</h2></div>
                             </div>
 
-                            <div class="card-body">
+                            <div id="diagnosis_result" class="card-body">
                                 <!-- <p class="lead">Explanation for the diagnosis prediction of Case 1. In the if-then rule, the symbol “&” means logic AND, whereas the symbol “|” means logic OR. Three plausible conjunctions
                                     of different patient features were identified to explain the diagnosis prediction of Case 1. Likewise, each path from Start to the right end via certain patient features indicates a
                                     plausible decision support for the prediction in the pictorial decision diagram. APTT, activated partial thromboplastin time; PT, prothrombin time.</p> -->

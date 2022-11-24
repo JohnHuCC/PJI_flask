@@ -559,8 +559,6 @@ svc_pipe = Pipeline([
 ])
 
 model_xgb = xgb.fit(X_tr.values, y_tr.values)
-joblib.dump(model_xgb, 'XGB_model')
-xgb_predict = model_xgb.predict(X_val)
 
 # 8.2 Stacking Model from 80% dataset   ?
 stacking_model = StackingClassifier(
@@ -584,10 +582,9 @@ stacking_model.fit(X_train.values, y_train.values)
 joblib.dump(stacking_model, 'Stacking_model')
 
 loaded_model = joblib.load('Stacking_model')
-
 print(loaded_model.predict(X_test))
-
-target = ['0', '1']
+print(X_test)
+print(type(X_test))
 # 8.4 Explainer Modeling from 100% dataset   ?
 explainer = RandomForestClassifier(
     max_depth=Explainer_depth, n_estimators=100, random_state=123)
@@ -650,9 +647,8 @@ if (debug_model == 1):
         X_test_val[['Total Score']].values[0][0]))
 
 # In[11]: Randomly generate random forest and candidate tree
-stacking_model2 = joblib.load('stacking_model.pkl')
 explainers, tree_candidates = getCandidate(X_train, y_train,
-                                           X_test, stacking_model2,
+                                           X_test, loaded_model,
                                            Explainer_depth, explainers_counter)
 # explainers, tree_candidates = getCandidate(X_train, y_train,
 #                                            X_test, stacking_model,
