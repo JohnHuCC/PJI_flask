@@ -142,7 +142,8 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]                                        :node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]
+        :node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -1238,6 +1239,20 @@ decision_rule = {}
 for i in range(len(rule_str_sp)):
     temp = regex.findall(rule_str_sp[i])
     decision_rule.setdefault(i, temp)
+
+nodeCounter = {}
+for k, v in decision_rule.items():
+    for node in v:
+        if node not in nodeCounter:
+            nodeCounter[node] = 1
+        else:
+            nodeCounter[node] += 1
+
+nodeCounter = dict(
+    sorted(nodeCounter.items(), key=lambda x: x[1], reverse=True))
+nodeOrder = list(nodeCounter.keys())
+for k, v in decision_rule.items():
+    decision_rule[k] = list(sorted(v, key=lambda x: nodeOrder.index(x)))
 
 with open("decision_rule.json", "w") as decision_rule_file:
     json.dump(decision_rule, decision_rule_file, indent=4)
