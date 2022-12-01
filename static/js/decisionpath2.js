@@ -5,6 +5,7 @@ var g = new dagreD3.graphlib.Graph().setGraph({});
 
 
 g.setNode("start", { label: "start" });
+<<<<<<< HEAD
 g.setNode("infected", { label: "infected" });
 
 Object.keys(decision_list_json).forEach(k => {
@@ -74,6 +75,26 @@ Object.keys(decision_list_json).forEach(k => {
                         break;
                 }
             }
+=======
+// g.setNode("infected", { label: "infected" });
+
+Object.keys(decision_list_json).forEach(k => {
+    path = decision_list_json[k]
+    path.forEach((node, index) => {
+        // node == path[index]
+        g.setNode([k, path[index]], { label: rule_map_json[node] });
+        switch (index) {
+            case 0: // 開始
+                g.setEdge("start", [k, path[index]], {});
+                break;
+            case path.length - 1: // 最後
+                g.setEdge([k, path[index - 1]], [k, path[index]], {});
+                // g.setEdge([k, path[index]], "infected", {});
+                break;
+            default: // 中間
+                g.setEdge([k, path[index - 1]], [k, path[index]], {});
+                break;
+>>>>>>> ad4353bfddcf676e309812c8b59ac07431344064
         }
     })
 })
