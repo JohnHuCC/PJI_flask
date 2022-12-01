@@ -582,10 +582,6 @@ df_y_train.to_csv(r"C:\Users\JohnnyHu\Desktop\PJI_y_train.csv",
 stacking_model.fit(X_train.values, y_train.values)
 joblib.dump(stacking_model, 'Stacking_model')
 
-loaded_model = joblib.load('Stacking_model')
-print(loaded_model.predict(X_test))
-print(X_test)
-print(type(X_test))
 # 8.4 Explainer Modeling from 100% dataset   ?
 explainer = RandomForestClassifier(
     max_depth=Explainer_depth, n_estimators=100, random_state=123)
@@ -646,7 +642,7 @@ if (debug_model == 1):
         X_test_val[['2X positive culture']].values[0][0] | X_test_val[['Sinus Tract']].values[0][0]))
     print("2018 ICM Minor Criteria:{}".format(
         X_test_val[['Total Score']].values[0][0]))
-
+loaded_model = joblib.load('Stacking_model')
 # In[11]: Randomly generate random forest and candidate tree
 explainers, tree_candidates = getCandidate(X_train, y_train,
                                            X_test, loaded_model,
@@ -775,6 +771,7 @@ for explain_i in list(explainers.keys()):
     #         n=explain_i))
     print("Enumerate the decision path of the explain[{n}]".format(
         n=explain_i))
+    # print(rules_)
     for condition in rules_:
         fidelity = []
         for val_df in VAL_DATASET:
@@ -786,6 +783,8 @@ for explain_i in list(explainers.keys()):
             for tree_idx in tree_candidates[explain_i]:
                 fidelity.append(accuracy_score(stack_pred, merge_pred))
         AVG_FIDELITYS.append(round(np.mean(fidelity), 3))
+    print(AVG_FIDELITYS)
+    # validate fidelity
     CONDITIOS_AvgFidelity[explain_i, 'rules'] = CONDITIOS
     CONDITIOS_AvgFidelity[explain_i, 'fidelity'] = AVG_FIDELITYS
     # print(CONDITIOS)
@@ -793,7 +792,7 @@ end_c = time.time()
 # In[14]: Concatenate multi lists for CONDITIOS_AvgFidelity
 rules_list = getTopN_Fidelity(
     CONDITIOS_AvgFidelity, list(explainers.keys()), 13)
-# print(rules_list)
+# print(CONDITIOS_AvgFidelity)
 
 #!/usr/bin/env python
 ###
@@ -1208,7 +1207,6 @@ minterms_ = []
 for i in list(lst_all_):
     minterms_.append(list(np.asarray(i).data))
 
-
 # In[29]: POS_minterm process
 sym = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x"
 a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x = symbols(
@@ -1264,13 +1262,31 @@ for i in range(len(final_singleton)):
 
 with open("decision_rule_map.json", "w") as decision_rule_file:
     json.dump(decision_rule_map, decision_rule_file, indent=4)
-print(rule_str)
-print(decision_rule)
+
+rule_str_sp = Simplify_DecisionRules
+rule_str_sp = rule_str_sp.split('|')
+for i in range(len(rule_str_sp)):
+    rule_str_sp[i] = rule_str_sp[i].replace('&', 'and').replace(
+        ' (', '').replace('(', '').replace(') ', '').replace(')', '')
+# print(rule_str_sp)
+
+AV_FIDELITYS = []
+for condition in rule_str_sp:
+    fidelity = []
+    for val_df in VAL_DATASET:
+        stack_pred = stacking_model.predict(val_df)
+        val_df = val_df.rename(columns=d_path)
+        merge_pred = np.where(val_df.eval(condition), rule_1, rule_2)
+        for tree_idx in tree_candidates[explain_i]:
+            fidelity.append(accuracy_score(stack_pred, merge_pred))
+    AV_FIDELITYS.append(round(np.mean(fidelity), 3))
+print(AV_FIDELITYS)
+# print(rule_str)
+# print(decision_rule)
 # print(ns_all)
 # print(minterms_)
 # print(SOPform(ns_all, minterms_))
 # print(simplify_logic(SOPform(ns_all, minterms_), 'dnf'))
-print(Simplify_DecisionRules)
 cytime = end_c - start_c
 print("Start time = {}".format(start_c))
 print("End time = {}".format(end_c))

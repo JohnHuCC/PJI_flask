@@ -194,17 +194,20 @@ def reactive_diagram():
         Synovial_PMN = request.form["Synovial_PMN"]
         Positive_Histology = request.form["Positive_Histology"]
         Purulence = request.form["Purulence"]
-        print(type(age))
         arr = [age, segment, HGB, PLATELET, Serum, P_T, APTT, CCI, Elixhauser,
                Rivision, ASA_2, positive_culture, Serum_CRP, Serum_ESR, Synovial_WBC,
                Single_Positive_culture, Synovial_PMN, Positive_Histology, Purulence]
         arr[:] = [int(x) for x in arr]
         predict_data = Vision_compare.tran_df(arr)
         result1 = Vision_compare.stacking_predict(predict_data)
+        if (result1[0] == 1):
+            result_text = "You got infected!"
+        else:
+            result_text = "You are safe!"
         print("running start")
         Vision_compare.plt_con()
         print("running end")
-        return render_template('reactive_diagram.html', result=result1)
+        return render_template('reactive_diagram.html', result=result_text)
 
     return render_template('reactive_diagram.html')
 
