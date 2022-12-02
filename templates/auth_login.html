@@ -44,8 +44,11 @@
                                     <hr class="my-0" />
                                     <div class="card-body p-5">
                                         <!-- Login form-->
-                                        <!-- {{ wtf.quick_form(form) }}  -->
-                                        {{ render_form(form) }}
+                                        <form action="/auth_login" method="post">
+                                            <input type="text" name="username" placeholder="username"/>
+                                            <input type="password" name="password" placeholder="password"/>
+                                            <input type="submit" name="Login"/>
+                                        </form>
                                     </div>
                                     <hr class="my-0" />
                                     <div class="card-body px-5 py-4">

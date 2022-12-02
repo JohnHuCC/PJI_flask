@@ -1,25 +1,23 @@
-from form import FormLogin, FormChangePWD, FormResetPasswordMail
-from model import UserRegister
-from sklearn.metrics import recall_score
-from sklearn.metrics import precision_score
+from form import FormChangePWD, FormResetPasswordMail
 from sklearn.model_selection import train_test_split
 from sklearn import ensemble
 import joblib
 import pandas as pd
 import numpy as np
-from sklearn.metrics import confusion_matrix
 import Vision_compare
-from flask import Flask, render_template, request, url_for, redirect, flash
-import pymysql
+from flask import Flask, render_template, request, url_for, redirect, flash, session
 import json
-from flask_login import LoginManager, logout_user, login_user, current_user, login_required
+from flask_login import logout_user,  current_user, login_required
 from db import db
 from flask_bootstrap import Bootstrap5
 from flask_migrate import Migrate
-
+from model import User
+import os
+from datetime import timedelta
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'Your Key'
+app.config['SECRET_KEY'] = os.urandom(24)
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=31)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:love29338615@127.0.0.1:3306/PJI"
 
@@ -84,6 +82,12 @@ def rf_predict(df):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    session.permanent = True
+    uid = session.get['user-id']
+    if uid != None:
+        User.get_by_uid(uid)
+        pass
+
     name = 1
     conn = pymysql.connect(host='127.0.0.1', user='root',
                            password='love29338615', port=3306, db='PJI')
@@ -119,36 +123,25 @@ if __name__ == "__main__":
 
 @app.route("/auth_login", methods=['GET', 'POST'])
 def auth_login():
-    form = FormLogin()
-    if form.validate_on_submit():
-        #  當使用者按下login之後，先檢核帳號是否存在系統內。
-        user = UserRegister.query.filter_by(email=form.email.data).first()
-        if user:
-            #  當使用者存在資料庫內再核對密碼是否正確。
-            if user.check_password(form.password.data):
-                #  加入參數『記得我』
-                login_user(user, form.remember_me.data)
-                #  使用者登入之後，將使用者導回來源url。
-                #  利用request來取得參數next
-                next = request.args.get('next')
-                #  自定義一個驗證的function來確認使用者是否確實有該url的權限
-                if not next_is_valid(next):
-                    #  如果使用者沒有該url權限，那就reject掉。
-                    return 'Bad Boy!!'
-                return redirect(next or url_for('index'))
-            else:
-                #  如果密碼驗證錯誤，就顯示錯誤訊息。
-                flash('Wrong Email or Password, inner')
+    if request.method == 'GET':
+        return render_template('auth_login.html')
+    elif request.method == 'POST':
+        username = request.form['username']
+        user = User.get_by_name(username)
+        if user.check_password(request.form['password']):
+            session_hash = username + os.urandom(30)
+            user.session_hash = session_hash
+            db.session.commit()
+            session['user-id'] = session_hash
+            return redirect('/')
         else:
-            #  如果資料庫無此帳號，就顯示錯誤訊息。
-            flash('Wrong Email or Password, outer')
-    return render_template('auth_login.html', form=form)
+            return redirect('/auth_login')
 
 
 def next_is_valid(url):
     """
-    為了避免被重新定向的url攻擊，必需先確認該名使用者是否有相關的權限，
-    舉例來說，如果使用者調用了一個刪除所有資料的uri，那就GG了，是吧 。
+    為了避免被重新定向的url攻擊，必需先確認該名使用者是否有相關的權限。
+    舉例來說，如果使用者調用了一個刪除所有資料的uri，那就GG了是吧。
     :param url: 重新定向的網址
     :return: boolean
     """
@@ -173,7 +166,7 @@ def logout():
 #     :return:
 #     """
 #     app.secret_key = 'xxxxyyyyyzzzzz'
-
+#
 #     login_manager = LoginManager()
 #     login_manager.init_app(app)
 #     login_manager.login_view = 'login'
@@ -292,7 +285,7 @@ def reset_password_recive(token):
                 flash('No such user, i am so sorry')
                 return redirect(url_for('login'))
         else:
-            flash('Worng token, maybe it is over 24 hour, please apply again')
+            flash('Wrong token, maybe it is over 24 hour, please apply again')
             return redirect(url_for('login'))
     return render_template('author/resetpassword.html', form=form)
 
