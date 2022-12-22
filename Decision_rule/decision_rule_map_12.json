@@ -1,0 +1,13 @@
+{
+    "A": "Synovial PMNS <= 89.5",
+    "B": "Age > 51.5",
+    "C": "Serum_WBC_ <= 11.5",
+    "D": "Positive_Histology == False",
+    "E": "Segment <= 69.5",
+    "F": "Serum_CRP <= 25.0",
+    "G": "Purulence == False",
+    "H": "Synovial_WBC <= 7286.0",
+    "I": "Serum_ESR <= 38.5",
+    "J": "two_positive_culture == False",
+    "K": "APTT <= 31.5"
+}
