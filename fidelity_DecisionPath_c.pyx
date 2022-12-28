@@ -142,8 +142,7 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]
-        :node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]                                        :node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -214,6 +213,7 @@ else:
 # 6.1 讀檔與前處理作業
 df = pd.read_excel(
     '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
+# df = pd.read_excel('/Users/johnnyhu/Desktop/Revision_PJI_main.xlsx')
 df.drop(columns=['Name', 'CTNO', 'CSN', 'Turbidity', 'Color'], inplace=True)
 df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
 df['Joint'].replace(['H', 'K'], [0, 1], inplace=True)
@@ -304,6 +304,7 @@ temp_col = [
     'Minor MSIS Criteria Total', 'MSIS final classification'
 ]
 
+
 # 6.10 補值前處理：
 # a. 把可能造成overfitting 的 outcome (temp_col) 先移除，再補值
 # b. 補值後再行合併
@@ -314,7 +315,6 @@ internal.drop(columns=['Date of first surgery ',
               'Date of last surgery '] + temp_col, inplace=True)
 if (debug_model == 1):
     print(internal.shape)
-internal.tail()
 
 # d. MICE 補值，based estimator 為 BayesianRidge
 imputer_bayes = IterativeImputer(estimator=BayesianRidge(),
@@ -489,64 +489,19 @@ feature_selection2 = [
 # iloc，即index locate 用index索引進行定位，所以引數是整型，如：df.iloc[10:20, 3:5]
 # loc，則可以使用column名和index名進行定位，如：df.loc[‘image1’:‘image10’, ‘age’:‘score’]
 internal_X = internal_X.loc[:, feature_selection2].copy()
+
 if (debug_model == 1):
     print(internal_X.shape)
-internal_X.tail()
-internal_X.columns
 
 # 7.1 Get the specific patient profile by PID
 X_train, y_train = internal_X.drop(index=PID), internal_y.drop(index=PID)
 
 X_test, y_test = internal_X.iloc[PID:PID + 1], internal_y.iloc[PID:PID + 1]
 
-if (debug_model == 1):
-    print("Tr shape: {}, Ts shape: {}".format(X_train.shape, X_test.shape))
-
-
 # 7.2 Split dataset to tr (80%) and val (20%)
 X_tr, X_val, y_tr, y_val = train_test_split(
     X_train, y_train, test_size=0.2, random_state=666, shuffle=True)
 
-df_x_train_sp = pd.DataFrame(X_tr)
-df_x_validation_sp = pd.DataFrame(X_val)
-df_y_train_sp = pd.DataFrame(y_tr)
-df_y_validation_sp = pd.DataFrame(y_val)
-
-df_x_train_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_x_train_sp.csv", index=False, sep=',')
-df_x_validation_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_x_val_sp.csv", index=False, sep=',')
-df_y_train_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_y_train_sp.csv", index=False, sep=',')
-df_y_validation_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_y_validation_sp.csv", index=False, sep=',')
-
-if (debug_model == 1):
-    print("Val shape: {}".format(X_val.shape))
-
-# ### 7.3 Plot the Decision tree grpah
-##
-# from sklearn import tree
-# from sklearn.externals.six import StringIO
-# from sklearn.tree import DecisionTreeClassifier
-# import os
-# import pydotplus
-
-# clf = DecisionTreeClassifier(random_state=123, max_depth=5)
-# dt = clf.fit(X_tr, y_tr)
-# os.environ["PATH"] += os.pathsep + 'C:/Graphviz/bin'
-# dot_data = StringIO()
-# tree.export_graphviz(dt #模型
-#                     ,feature_names=X_tr.columns  #tez
-#                     ,class_names=["Infection","Not infected"] #類別名
-#                     ,filled=True    #由顏色標識不純度
-#                     ,rounded=True   #樹節點為圓角矩形
-#                     ,out_file=dot_data
-#                 )
-# graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
-# graph.write_pdf("./output/case" + str(pID_idx+1) + "_dt.pdf")
-
-# In[9]: Stacking Modeling
 # 8.1 Construct Base Classifier
 xgb = xgboost.XGBClassifier(learning_rate=0.01, max_depth=3, n_estimators=50, scale_pos_weight=0.85,
                             enable_experimental_json_serialization=True, tree_method='hist', random_state=0)
@@ -559,8 +514,6 @@ svc_pipe = Pipeline([
     ("svc", SVC(probability=True, random_state=123, C=10, gamma=0.01))
 ])
 
-model_xgb = xgb.fit(X_tr.values, y_tr.values)
-
 # 8.2 Stacking Model from 80% dataset   ?
 stacking_model = StackingClassifier(
     classifiers=[xgb, rf, lr_pipe, nb_pipe],
@@ -570,89 +523,42 @@ stacking_model = StackingClassifier(
     meta_classifier=svc_pipe
 )
 
-df_x_train = pd.DataFrame(X_train)
-df_y_train = pd.DataFrame(y_train)
-# print(df_x_train.columns.values.tolist())
-df_x_train.to_csv(r"C:\Users\JohnnyHu\Desktop\PJI_x_train.csv",
-                  index=False, sep=',')
-# print(df_y_train)
-df_y_train.to_csv(r"C:\Users\JohnnyHu\Desktop\PJI_y_train.csv",
-                  index=False, sep=',')
 # 8.3 Stacking Model from 100% dataset
 stacking_model.fit(X_train.values, y_train.values)
 joblib.dump(stacking_model, 'Stacking_model')
 
-# 8.4 Explainer Modeling from 100% dataset   ?
+# 8.4 Explainer Modeling from 100% dataset
 explainer = RandomForestClassifier(
     max_depth=Explainer_depth, n_estimators=100, random_state=123)
 explainer.fit(X_train.values, y_train.values)
 estimator = explainer.estimators_[5]
-# export_graphviz(estimator, out_file='tree.dot',
-#                 feature_names=df_x_train.columns.tolist(),
-#                 class_names=target,
-#                 rounded=True, proportion=False,
-#                 precision=2, filled=True)
-# Convert to png using system command (requires Graphviz)
-# call(['dot', '-Tpng', 'tree.dot', '-o', 'tree.png', '-Gdpi=600'])
 
-# Display in jupyter notebook
-# Image(filename='tree.png')
-
-# joblib.dump(explainer, 'explainer_rf.pkl')
-# 8.5 Check whether the prediction result of RandomForest of ts case is equal to Stacking Modeling
-# 檢查 ts case 的 RF 預測是否等同 Stacking 預測
-#
-# Print the accuracy with stacking model
-# For Linux
-# print("rf vs. stacking compare 結果: {}".format(accuracy_score( y_test.values,stacking_model.predict(X_test.values))))
-# For windows
 if (debug_model == 1):
     print("GroundTruth vs. stacking compare 結果: {}".format(
         accuracy_score(y_test, stacking_model.predict(X_test))))
     print("GroundTruth vs. RF compare 結果: {}".format(
         accuracy_score(y_test, explainer.predict(X_test))))
-#
-# Print the Prediction & Infection Probability with Stacking model
-# For Linux
-# print("Stacking Prediction : {}".format(stacking_model.predict(X_test.values)[0]))
-# print("Stacking Infection Proba : {}".format(stacking_model.predict_proba(X_test.values)[:, 1][0]))
-# For Windows
+
 if (debug_model == 1):
     print("Stacking Prediction : {}".format(stacking_model.predict(X_test)[0]))
     print("Stacking Infection Proba : {}".format(
         stacking_model.predict_proba(X_test)[:, 1][0]))
-
 
 # In[10]: PID_Trace
 impute_internal_ = impute_internal.copy()
 X_test_val = impute_internal_.iloc[PID:PID + 1]
 X_test_val[['2nd ICM', '2X positive culture',
             'Sinus Tract', 'Minor ICM Criteria Total']].T
-if (debug_model == 1):
-    print('PID:{}'.format(PID))
-    print('2X positive culture:{}'.format(
-        X_test_val[['2X positive culture']].values[0][0]))
-    print('Sinus Tract:{}'.format(X_test_val[['Sinus Tract']].values[0][0]))
-    print("True Class:{}".format(y_test.values[0]))
-    print("Diagnosis of Meta Learner:{}".format(
-        stacking_model.predict(X_test)[0]))
-    print("Diagnosis of 2018 ICM:{}".format(
-        X_test_val[['2nd ICM']].values[0][0]))
-    print("2018 ICM Major Criteria:{}".format(
-        X_test_val[['2X positive culture']].values[0][0] | X_test_val[['Sinus Tract']].values[0][0]))
-    print("2018 ICM Minor Criteria:{}".format(
-        X_test_val[['Total Score']].values[0][0]))
+
 loaded_model = joblib.load('Stacking_model')
 # In[11]: Randomly generate random forest and candidate tree
 explainers, tree_candidates = getCandidate(X_train, y_train,
                                            X_test, loaded_model,
                                            Explainer_depth, explainers_counter)
-# explainers, tree_candidates = getCandidate(X_train, y_train,
-#                                            X_test, stacking_model,
-#                                            Explainer_depth, explainers_counter)
+
 start_c = time.time()
 # 10.1 Prepare the val_df (size = 10) for calculate fidelity scores
-VAL_SIZE = 10
+VAL_SIZE = 1
 VAL_DATASET = []
 Y_VAL_DATASET = []
 for i in range(VAL_SIZE):
@@ -694,9 +600,6 @@ for explain_i in list(explainers.keys()):
         rules.append(rule)
         res_combined = res_combined + \
             [" ".join([str(w_) for w_ in r_]) for r_ in res['info']]
-        # if (debug_model == 1):
-        #     print("  {}".format(rule))
-        #     print("  Fidelity of decision path to prediction : {:.4f}\n".format(score))
 
     # 10.4 Fixed the decision path (rules) with condition
     rules_ = rules
@@ -732,8 +635,8 @@ for explain_i in list(explainers.keys()):
                          'Total_Elixhauser_Groups_per_record') for w_ in rules_]
     rules_ = [w_.replace('Total CCI', 'Total_CCI') for w_ in rules_]
     rules_ = [w_.replace('HGB', 'Hb') for w_ in rules_]
-    # rules_
 
+    # rules_
     # In[12]: d_path by feature importance from PJI-PI-01-02-2021.docx (Table 4)
     # Modify to suitable names for the parser
     d_path = {
@@ -758,11 +661,7 @@ for explain_i in list(explainers.keys()):
         'Total CCI': 'Total_CCI',
         'Total Elixhauser Groups per record': 'Total_Elixhauser_Groups_per_record',
     }
-    # VAL_DATASET = pd.DataFrame(VAL_DATASET)
-    # VAL_DATASET.rename(columns=d_path)
-    # VAL_DATASET = VAL_DATASET.reset_index()
-    # print(type(VAL_DATASET))
-    # In[13]: Enumerate the mean_fidelitys of decision path and decision tree
+
     condition_i = 0
     AVG_FIDELITYS = []
     CONDITIOS = rules_
@@ -771,7 +670,7 @@ for explain_i in list(explainers.keys()):
     #         n=explain_i))
     print("Enumerate the decision path of the explain[{n}]".format(
         n=explain_i))
-    # print(rules_)
+
     for condition in rules_:
         fidelity = []
         for val_df in VAL_DATASET:
@@ -787,21 +686,11 @@ for explain_i in list(explainers.keys()):
     # validate fidelity
     CONDITIOS_AvgFidelity[explain_i, 'rules'] = CONDITIOS
     CONDITIOS_AvgFidelity[explain_i, 'fidelity'] = AVG_FIDELITYS
-    # print(CONDITIOS)
+
 end_c = time.time()
 # In[14]: Concatenate multi lists for CONDITIOS_AvgFidelity
 rules_list = getTopN_Fidelity(
     CONDITIOS_AvgFidelity, list(explainers.keys()), 13)
-# print(CONDITIOS_AvgFidelity)
-
-#!/usr/bin/env python
-###
-# @1 原始資料來源: dnf_case4_2.py
-# features: 將 fidelity_DecisionPath 產生的候選 decision path 轉換成 POS Form
-###
-# input: Candidate Decision Path
-# outpu: POS form rules
-#
 
 # In[15]: Import Library
 # 引用適當的 Library
@@ -974,9 +863,8 @@ def singleton_opt(X_test):
                 decision_list[val] = [
                     variable, operator, lower_bound, upper_bound]
 
-            # print(val, decision_list[val])
             decision_list_file.write(str(val)+" "+str(decision_list[val])+"\n")
-            # decision_list_file.write(str(val)+"\n")
+
         except Exception as e:
             print("You got an Exception.", str(e))
 
@@ -1174,7 +1062,6 @@ for i in range(len(POS_Form)):
 
 ###
 # Init the truth table
-
 init_data = np.array([], dtype=np.int64).reshape(0, len(final_singleton))
 lst_all = pd.DataFrame(init_data, columns=final_singleton)
 for index_rule in rule_i_:
@@ -1218,8 +1105,6 @@ ns_all = list()
 for s_, singleton_ in zip(sym_array, final_singleton):
     ns_all.append(Symbol(singleton_))
 
-# print(sym_array)
-# print(final_singleton)
 # In[30]: call the simplify_logic and get the Simplify_decisionRules
 Simplify_DecisionRules = "{}".format(
     simplify_logic(SOPform(ns_all, minterms_), 'dnf'))
@@ -1268,7 +1153,6 @@ rule_str_sp = rule_str_sp.split('|')
 for i in range(len(rule_str_sp)):
     rule_str_sp[i] = rule_str_sp[i].replace('&', 'and').replace(
         ' (', '').replace('(', '').replace(') ', '').replace(')', '')
-# print(rule_str_sp)
 
 AV_FIDELITYS = []
 for condition in rule_str_sp:
@@ -1281,12 +1165,7 @@ for condition in rule_str_sp:
             fidelity.append(accuracy_score(stack_pred, merge_pred))
     AV_FIDELITYS.append(round(np.mean(fidelity), 3))
 print(AV_FIDELITYS)
-# print(rule_str)
-# print(decision_rule)
-# print(ns_all)
-# print(minterms_)
-# print(SOPform(ns_all, minterms_))
-# print(simplify_logic(SOPform(ns_all, minterms_), 'dnf'))
+
 cytime = end_c - start_c
 print("Start time = {}".format(start_c))
 print("End time = {}".format(end_c))

@@ -1,0 +1,16 @@
+{
+    "A": "Purulence == False",
+    "B": "Segment <= 69.5",
+    "C": "Serum_WBC_ <= 11.5",
+    "D": "PLATELET > 164.0",
+    "E": "Serum_CRP <= 13.5",
+    "F": "APTT <= 31.5",
+    "G": "two_positive_culture == False",
+    "H": "Positive_Histology == False",
+    "I": "Serum_ESR <= 38.0",
+    "J": "Single_Positive_culture <= 0.5",
+    "K": "Synovial_PMN <= 83.0",
+    "L": "Hb > 8.5",
+    "M": "Synovial_WBC <= 14587.5",
+    "N": "Age > 51.5"
+}

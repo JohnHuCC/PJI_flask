@@ -4,38 +4,43 @@ var g = new dagreD3.graphlib.Graph().setGraph({});
 g.setNode("start", { label: "start" });
 g.setNode("infected", { label: "infected" });
 
-function insertEdge(g, na, nb, label) {
+function insertEdge(g, na, nb) {
     if (!g.hasEdge(na, nb)) {
-        g.setEdge(na, nb, label)
+        g.setEdge(na, nb, {})
     }
 }
 function insertNode(g, name) {
     if (!g.hasNode(name)) {
-        g.setNode(name, { label: name })
+        g.setNode(name, { label: rule_map_json[name] })
     }
 }
 
 function processL(g, ns) {
   ns.forEach((n) => insertNode(g, n));
+  insertEdge(g, "start", ns[0])
   for (let i = 0; i < (ns.length-1); i += 1) {
-    insertEdge(g, ns[i], ns[i+1], decision_list_json[i][i+1])
+        insertEdge(g, ns[i], ns[i+1])
   }
+  insertEdge(g, ns[ns.length-1], "infected")
 }
 
 function processLL(g, nss) {
-    nss.forEach(ns => processL(g, ns))
+    Object.keys(nss).forEach(k => { 
+        let ns = nss[k]
+        processL(g, ns)
+    })
 }
 
-console.log(decision_list_json[1][1])
-console.log(processLL(g, decision_list_json))
+
+processLL(g, decision_list_json)
 
 var svg = d3.select("#diagnosis_box").append("svg").attr("width", 1000).attr("height", 50);
 var inner = svg.append("g");
 
 
 // Set the rankdir
-// g.graph().rankdir = "LR";
-// g.graph().nodesep = 60;
+g.graph().rankdir = "LR";
+g.graph().nodesep = 60;
 
 // Set up zoom support
 var zoom = d3.behavior.zoom().on("zoom", function () {
@@ -44,11 +49,11 @@ var zoom = d3.behavior.zoom().on("zoom", function () {
 });
 svg.call(zoom);
 
-// // Create the renderer
-// var render = new dagreD3.render();
+// Create the renderer
+var render = new dagreD3.render();
 
-// // Run the renderer. This is what draws the final graph.
-// render(inner, g);
+// Run the renderer. This is what draws the final graph.
+render(inner, g);
 
 // // Create the renderer
 // let render = new dagreD3.render();
@@ -62,3 +67,22 @@ zoom
     .scale(initialScale)
     .event(svg);
 svg.attr('height', g.graph().height * initialScale + 40);
+
+
+
+/*
+
+json:
+    nss = { "key": [ "value1", "value2",  ], "key": [ "value1", "value2",  ] }
+    Object.keys(decision_list_json).forEach(k => { 
+        ns = decision_list_json[k]
+    })
+
+array:
+    nss = [ [ "value1", "value2",  ], [ "value1", "value2",  ] ]
+    nss.forEach(ns => {
+        
+    })
+
+
+*/
