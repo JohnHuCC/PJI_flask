@@ -191,7 +191,7 @@ else:
 # In[7]: File reading and pre-processing
 # 6.1 讀檔與前處理作業
 df = pd.read_excel(
-    '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
+    'Revision PJI For交大 V9(6月信Validation).xlsx')
 df.drop(columns=['Name', 'CTNO', 'CSN', 'Turbidity', 'Color'], inplace=True)
 df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
 df['Joint'].replace(['H', 'K'], [0, 1], inplace=True)
@@ -491,13 +491,13 @@ df_y_train_sp = pd.DataFrame(y_tr)
 df_y_validation_sp = pd.DataFrame(y_val)
 
 df_x_train_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_x_train_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_x_train_sp.csv", index=False, sep=',')
 df_x_validation_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_x_val_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_x_val_sp.csv", index=False, sep=',')
 df_y_train_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_y_train_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_y_train_sp.csv", index=False, sep=',')
 df_y_validation_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_y_validation_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_y_validation_sp.csv", index=False, sep=',')
 
 if (debug_model == 1):
     print("Val shape: {}".format(X_val.shape))

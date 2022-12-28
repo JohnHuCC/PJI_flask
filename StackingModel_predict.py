@@ -54,7 +54,7 @@ else:
 # In[7]: File reading and pre-processing
 # 6.1 讀檔與前處理作業
 df = pd.read_excel(
-    '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
+    'Revision PJI For交大 V9(6月信Validation).xlsx')
 df.drop(columns=['Name', 'CTNO', 'CSN', 'Turbidity', 'Color'], inplace=True)
 df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
 df['Joint'].replace(['H', 'K'], [0, 1], inplace=True)
@@ -336,44 +336,8 @@ if (debug_model == 1):
 X_tr, X_val, y_tr, y_val = train_test_split(
     X_train, y_train, test_size=0.2, random_state=666, shuffle=True)
 
-# df_x_train_sp = pd.DataFrame(X_tr)
-# df_x_validation_sp = pd.DataFrame(X_val)
-# df_y_train_sp = pd.DataFrame(y_tr)
-# df_y_validation_sp = pd.DataFrame(y_val)
-
-# df_x_train_sp.to_csv(
-#     r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_x_train_sp.csv", index=False, sep=',')
-# df_x_validation_sp.to_csv(
-#     r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_x_val_sp.csv", index=False, sep=',')
-# df_y_train_sp.to_csv(
-#     r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_y_train_sp.csv", index=False, sep=',')
-# df_y_validation_sp.to_csv(
-#     r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_y_validation_sp.csv", index=False, sep=',')
-
 if (debug_model == 1):
     print("Val shape: {}".format(X_val.shape))
-
-# ### 7.3 Plot the Decision tree grpah
-##
-# from sklearn import tree
-# from sklearn.externals.six import StringIO
-# from sklearn.tree import DecisionTreeClassifier
-# import os
-# import pydotplus
-
-# clf = DecisionTreeClassifier(random_state=123, max_depth=5)
-# dt = clf.fit(X_tr, y_tr)
-# os.environ["PATH"] += os.pathsep + 'C:/Graphviz/bin'
-# dot_data = StringIO()
-# tree.export_graphviz(dt #模型
-#                     ,feature_names=X_tr.columns  #tez
-#                     ,class_names=["Infection","Not infected"] #類別名
-#                     ,filled=True    #由顏色標識不純度
-#                     ,rounded=True   #樹節點為圓角矩形
-#                     ,out_file=dot_data
-#                 )
-# graph = pydotplus.graph_from_dot_data(dot_data.getvalue())
-# graph.write_pdf("./output/case" + str(pID_idx+1) + "_dt.pdf")
 
 # In[9]: Stacking Modeling
 # 8.1 Construct Base Classifier

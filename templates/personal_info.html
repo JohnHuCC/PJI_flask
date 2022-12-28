@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
     <link href="/static/css/styles.css" rel="stylesheet" />
     <link href="/static/css/style.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="/static/assets/img/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png"  />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script data-search-pseudo-elements defer
@@ -23,21 +22,21 @@
 </head>
 
 <body class="sb-nav-fixed">
-    <h1>Welcome {{ name }}</h1>
+    <!-- <h1>Welcome {{ name }}</h1> -->
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="/">Start</a>
+        <!-- <a class="navbar-brand ps-3" href="/">Start</a> -->
         <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
         <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
+            <!-- <div class="input-group">
                 <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
                     aria-describedby="btnNavbarSearch" />
                 <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
                         class="fas fa-search"></i></button>
-            </div>
+            </div> -->
         </form>
         <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -45,12 +44,12 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
+                    <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="#!">Activity Log</a></li> -->
+                    <!-- <li>
                         <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    </li> -->
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -99,10 +98,10 @@
                                     <nav class="sb-sidenav-menu-nested nav">
                                         <a class="nav-link" href="login.html">Login</a>
                                         <a class="nav-link" href="register.html">Register</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>
+                                        <!-- <a class="nav-link" href="password.html">Forgot Password</a> -->
                                     </nav>
                                 </div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                                     data-bs-target="#pagesCollapseError" aria-expanded="false"
                                     aria-controls="pagesCollapseError">
                                     Error
@@ -115,7 +114,7 @@
                                         <a class="nav-link" href="404.html">404 Page</a>
                                         <a class="nav-link" href="500.html">500 Page</a>
                                     </nav>
-                                </div>
+                                </div> -->
                             </nav>
                         </div>
                         <!-- <div class="sb-sidenav-menu-heading">Addons</div>
@@ -131,7 +130,7 @@
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    Johnny Hu
+                    {{ username }}
                 </div>
             </nav>
         </div>
@@ -187,115 +186,30 @@
                                         <!-- <button class="btn btn-primary" type="button">Upload new image</button> -->
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
-                        <!-- <div class="col-xxl-4 col-xl-6 mb-4">
+                        <div class="col-xxl-4 col-xl-6 mb-4">
                             <div class="card card-header-actions h-100">
-                                <div class="card-header">
-                                    Recent Record
-                                    <div class="dropdown no-caret">
-                                        <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                            id="dropdownMenuButton" type="button" data-bs-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false"><i class="text-gray-500"
-                                                data-feather="more-vertical"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                            aria-labelledby="dropdownMenuButton">
-                                            <h6 class="dropdown-header">Filter Activity:</h6>
-                                            <a class="dropdown-item" href="#!"><span
-                                                    class="badge bg-green-soft text-green my-1">Commerce</span></a>
-                                            <a class="dropdown-item" href="#!"><span
-                                                    class="badge bg-blue-soft text-blue my-1">Reporting</span></a>
-                                            <a class="dropdown-item" href="#!"><span
-                                                    class="badge bg-yellow-soft text-yellow my-1">Server</span></a>
-                                            <a class="dropdown-item" href="#!"><span
-                                                    class="badge bg-purple-soft text-purple my-1">Users</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="timeline timeline-xs">
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">3 Days</div>
-                                                <div class="timeline-item-marker-indicator bg-green"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                New case placed!
-                                                <a class="fw-bold text-dark" href="#!">Case #2912</a>
-                                                has been successfully placed.
+                                <div class="card mb-4 mb-xl-0 h-100">
+                                    <div class="card-header">Model Result</div>
+                                    <div class="card-body" style="display: flex; flex-direction: column; height: max-content;">
+                                        <div style="flex: 3; display: flex; justify-content: center; align-items: center; font-weight: 600; font-size: 2rem;">
+                                            <div>Result: {{ result }}
                                             </div>
                                         </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">10 Days</div>
-                                                <div class="timeline-item-marker-indicator bg-blue"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                Your
-                                                <a class="fw-bold text-dark" href="#!">weekly report</a>
-                                                has been generated and is ready to view.
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">1 month</div>
-                                                <div class="timeline-item-marker-indicator bg-purple"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                New patient
-                                                <a class="fw-bold text-dark" href="#!">Valerie Luna</a>
-                                                has registered
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">3 months</div>
-                                                <div class="timeline-item-marker-indicator bg-yellow"></div>
-                                            </div>
-                                            <div class="timeline-item-content">Server activity monitor alert
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">6 months</div>
-                                                <div class="timeline-item-marker-indicator bg-green"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                New symptom placed!
-                                                <a class="fw-bold text-dark" href="#!">Symptom #1581</a>
-                                                has been successfully placed.
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">1 year</div>
-                                                <div class="timeline-item-marker-indicator bg-purple"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                Details for
-                                                <a class="fw-bold text-dark" href="#!">diagnosis and treatment</a>
-                                                have been updated.
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">2 years</div>
-                                                <div class="timeline-item-marker-indicator bg-green"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                New symptom placed!
-                                                <a class="fw-bold text-dark" href="#!">Symptom #1580</a>
-                                                has been successfully placed.
-                                            </div>
+                                        <div style="flex: 1; display:flex; justify-content: center;">
+                                            <button type="button" class="btn btn-info btn-sm editbtn" style="display: block; height: 3rem;"
+                                            data-btn="1" data-itemId="{{ name }}">模型診斷</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
-                        <!-- <div class="col-xxl-4 col-xl-6 mb-4">
+                        </div>
+                        <div class="col-xxl-4 col-xl-6 mb-4">
                             <div class="card card-header-actions h-100">
                                 <div class="card-header">
-                                    Treatment Tracker
+                                    Feature Importance
                                     <div class="dropdown no-caret">
                                         <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
                                             id="dropdownMenuButton" type="button" data-bs-toggle="dropdown"
@@ -323,57 +237,77 @@
                                 </div>
                                 <div class="card-body">
                                     <h4 class="small">
-                                        Cold and Heat Therapy
-                                        <span class="float-end fw-bold">48%</span>
+                                        Positive Histology
+                                        <span class="float-end fw-bold">1st</span>
                                     </h4>
-                                    <div class="progress mb-4">
+                                    <!-- <div class="progress mb-4">
                                         <div class="progress-bar bg-danger" role="progressbar" style="width: 48%"
                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    </div> -->
                                     <h4 class="small">
-                                        Vector Interference Wave
-                                        <span class="float-end fw-bold">25%</span>
+                                        Synovial WBC
+                                        <span class="float-end fw-bold">2nd</span>
                                     </h4>
-                                    <div class="progress mb-4">
+                                    <!-- <div class="progress mb-4">
                                         <div class="progress-bar bg-warning" role="progressbar" style="width: 25%"
                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    </div> -->
                                     <h4 class="small">
-                                        Electrical Nerve Stimulation
-                                        <span class="float-end fw-bold">60%</span>
+                                        Serum ESR
+                                        <span class="float-end fw-bold">3rd</span>
                                     </h4>
-                                    <div class="progress mb-4">
+                                    <!-- <div class="progress mb-4">
                                         <div class="progress-bar" role="progressbar" style="width: 60%"
                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    </div> -->
                                     <h4 class="small">
-                                        Ultrasound
-                                        <span class="float-end fw-bold">35%</span>
+                                        Synovial PMN
+                                        <span class="float-end fw-bold">4th</span>
                                     </h4>
-                                    <div class="progress mb-4">
+                                    <!-- <div class="progress mb-4">
                                         <div class="progress-bar bg-info" role="progressbar" style="width: 35%"
                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    </div> -->
                                     <h4 class="small">
-                                        Treatment Setup
-                                        <span class="float-end fw-bold">Complete!</span>
+                                        Serum CRP
+                                        <span class="float-end fw-bold">5th</span>
                                     </h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
+                                    <h4 class="small">
+                                        APTT
+                                        <span class="float-end fw-bold">6th</span>
+                                    </h4>
+                                    <h4 class="small">
+                                        2X positive culture
+                                        <span class="float-end fw-bold">7th</span>
+                                    </h4>
+                                    <h4 class="small">
+                                        HGB
+                                        <span class="float-end fw-bold">8th</span>
+                                    </h4>
+                                    <h4 class="small">
+                                        Serum
+                                        <span class="float-end fw-bold">9th</span>
+                                    </h4>
+                                    <h4 class="small">
+                                        PLATELET
+                                        <span class="float-end fw-bold">10th</span>
+                                    </h4>
+                                    <!-- <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 20%"
                                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                    </div> -->
                                 </div>
-                                <div class="card-footer position-relative">
+                                <!-- <div class="card-footer position-relative">
                                     <div class="d-flex align-items-center justify-content-between small text-body">
                                         <a class="stretched-link text-body" href="#!">Visit Task Center</a>
                                         <i class="fas fa-angle-right"></i>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-xl-6">
                         <div class="card mb-4">
                             <div class="card-header">
@@ -392,47 +326,282 @@
                             <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
                         PJI personal Data
                     </div>
+                    <!-- <style>
+                        #datatablesSimple {
+                            overflow-x: scroll;
+                        }
+                    </style> -->
                     <div class="card-body">
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
-                                    <th>No.</th>
+                                    <th>No_Group</th>
+                                    <th>No</th>
                                     <th>Group</th>
                                     <th>Name</th>
-                                    <th>Serum ESR</th>
+                                    <th>CTNO</th>
+                                    <th>CSN</th>
+                                    <th>PJI_Revision_Date</th>
+                                    <th>Date_of_first_surgery</th>
+                                    <th>Date_of_last_surgery</th>
+                                    <th>Primary_Revision_Native_Hip</th>
+                                    <th>Acute_Chronic</th>
+                                    <th>ASA</th>
+                                    <th>Laterality</th>
+                                    <th>Joint</th>
+                                    <th>Gender</th>
+                                    <th>Age</th>
+                                    <th>Height</th>
+                                    <th>Weight</th>
+                                    <th>Bmi</th>
+                                    <th>Serum_ESR</th>
+                                    <th>Serum_WBC</th>
+                                    <th>Segment</th>
+                                    <th>HGB</th>
+                                    <th>Platelet</th>
+                                    <th>P_T</th>
+                                    <th>APTT</th>
+                                    <th>Fibrinogen</th>
+                                    <th>D_Dimer</th>
+                                    <th>Serum_CRP</th>
+                                    <th>CR</th>
+                                    <th>AST</th>
+                                    <th>ALT</th>
                                     <th>Positive Histology</th>
                                     <th>Synovial WBC</th>
-                                    <th>Serum CRP</th>
-
+                                    <th>Synovial_Neutrophil</th>
+                                    <th>Turbidity</th>
+                                    <th>Color</th>
+                                    <th>Lymphocyte</th>
+                                    <th>Monocyte</th>
+                                    <th>Eosinophil</th>
+                                    <th>Synovial_Leukocyte_Esterase</th>
+                                    <th>Total_Score</th>
+                                    <th>ICM_2</th>
+                                    <th>Minor_ICM_Criteria_Total</th>
+                                    <th>ICM_1</th>
+                                    <th>Minor_MSIS_Criteria_Total</th>
+                                    <th>MSIS_Final_Classification</th>
+                                    <th>Positive_Culture</th>
+                                    <th>Sinus_Tract</th>
+                                    <th>Pulurence</th>
+                                    <th>Single_Positive_Culture</th>
+                                    <th>Total_CCI</th>
+                                    <th>Congestive_Heart_Failure</th>
+                                    <th>Cardiac_Arrhythmia</th>
+                                    <th>Valvular_Disease</th>
+                                    <th>Pulmonary_Circulation_Disorders</th>
+                                    <th>Peripheral_Vascular_Disorders</th>
+                                    <th>Hypertension_uncomplicated</th>
+                                    <th>Hypertension_complicated</th>
+                                    <th>Paralysis</th>
+                                    <th>Other_Neurological_Disorders</th>
+                                    <th>Chronic_Pulmonary_Disease</th>
+                                    <th>Diabetes_uncomplicated</th>
+                                    <th>Diabetes_complicated</th>
+                                    <th>Hypothyroidism</th>
+                                    <th>Renal_failure</th>
+                                    <th>Liver_disease</th>
+                                    <th>Peptic_ulcer_disease_excluding_bleeding</th>
+                                    <th>AIDS_HIV</th>
+                                    <th>Lymphoma</th>
+                                    <th>Metastatic_cancer</th>
+                                    <th>Solid_tumor_without_metastasis</th>
+                                    <th>Rheumatoid_arthritis_collagen</th>
+                                    <th>Coagulopathy</th>
+                                    <th>Obesity</th>
+                                    <th>Weight_loss</th>
+                                    <th>Fluid_electrolyte_disorders</th>
+                                    <th>Blood_loss_anemia</th>
+                                    <th>Deficiency_anemia</th>
+                                    <th>Alcohol_abuse</th>
+                                    <th>Drug_abuse</th>
+                                    <th>Psychoses</th>
+                                    <th>Depression</th>
+                                    <th>Total_elixhauser_groups_per_record</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th>No.</th>
+                                    <th>No_Group</th>
+                                    <th>No</th>
                                     <th>Group</th>
                                     <th>Name</th>
-                                    <th>Serum ESR</th>
+                                    <th>CTNO</th>
+                                    <th>CSN</th>
+                                    <th>PJI_Revision_Date</th>
+                                    <th>Date_of_first_surgery</th>
+                                    <th>Date_of_last_surgery</th>
+                                    <th>Primary_Revision_Native_Hip</th>
+                                    <th>Acute_Chronic</th>
+                                    <th>ASA</th>
+                                    <th>Laterality</th>
+                                    <th>Joint</th>
+                                    <th>Gender</th>
+                                    <th>Age</th>
+                                    <th>Height</th>
+                                    <th>Weight</th>
+                                    <th>Bmi</th>
+                                    <th>Serum_ESR</th>
+                                    <th>Serum_WBC</th>
+                                    <th>Segment</th>
+                                    <th>HGB</th>
+                                    <th>Platelet</th>
+                                    <th>P_T</th>
+                                    <th>APTT</th>
+                                    <th>Fibrinogen</th>
+                                    <th>D_Dimer</th>
+                                    <th>Serum_CRP</th>
+                                    <th>CR</th>
+                                    <th>AST</th>
+                                    <th>ALT</th>
                                     <th>Positive Histology</th>
                                     <th>Synovial WBC</th>
-                                    <th>Serum CRP</th>
+                                    <th>Synovial_Neutrophil</th>
+                                    <th>Turbidity</th>
+                                    <th>Color</th>
+                                    <th>Lymphocyte</th>
+                                    <th>Monocyte</th>
+                                    <th>Eosinophil</th>
+                                    <th>Synovial_Leukocyte_Esterase</th>
+                                    <th>Total_Score</th>
+                                    <th>ICM_2</th>
+                                    <th>Minor_ICM_Criteria_Total</th>
+                                    <th>ICM_1</th>
+                                    <th>Minor_MSIS_Criteria_Total</th>
+                                    <th>MSIS_Final_Classification</th>
+                                    <th>Positive_Culture</th>
+                                    <th>Sinus_Tract</th>
+                                    <th>Pulurence</th>
+                                    <th>Single_Positive_Culture</th>
+                                    <th>Total_CCI</th>
+                                    <th>Congestive_Heart_Failure</th>
+                                    <th>Cardiac_Arrhythmia</th>
+                                    <th>Valvular_Disease</th>
+                                    <th>Pulmonary_Circulation_Disorders</th>
+                                    <th>Peripheral_Vascular_Disorders</th>
+                                    <th>Hypertension_uncomplicated</th>
+                                    <th>Hypertension_complicated</th>
+                                    <th>Paralysis</th>
+                                    <th>Other_Neurological_Disorders</th>
+                                    <th>Chronic_Pulmonary_Disease</th>
+                                    <th>Diabetes_uncomplicated</th>
+                                    <th>Diabetes_complicated</th>
+                                    <th>Hypothyroidism</th>
+                                    <th>Renal_failure</th>
+                                    <th>Liver_disease</th>
+                                    <th>Peptic_ulcer_disease_excluding_bleeding</th>
+                                    <th>AIDS_HIV</th>
+                                    <th>Lymphoma</th>
+                                    <th>Metastatic_cancer</th>
+                                    <th>Solid_tumor_without_metastasis</th>
+                                    <th>Rheumatoid_arthritis_collagen</th>
+                                    <th>Coagulopathy</th>
+                                    <th>Obesity</th>
+                                    <th>Weight_loss</th>
+                                    <th>Fluid_electrolyte_disorders</th>
+                                    <th>Blood_loss_anemia</th>
+                                    <th>Deficiency_anemia</th>
+                                    <th>Alcohol_abuse</th>
+                                    <th>Drug_abuse</th>
+                                    <th>Psychoses</th>
+                                    <th>Depression</th>
+                                    <th>Total_elixhauser_groups_per_record</th>
                                 </tr>
                             </tfoot>
                             <tbody>
                                 {% for i in u %}
                                 <tr>
                                     <td>{{ i[0] }}</td>
+                                    <td>{{ i[1] }}</td>
                                     <td>{{ i[2] }}</td>
                                     <td>{{ i[3] }}</td>
+                                    <td>{{ i[4] }}</td>
+                                    <td>{{ i[5] }}</td>
+                                    <td>{{ i[6] }}</td>
+                                    <td>{{ i[7] }}</td>
+                                    <td>{{ i[8] }}</td>
+                                    <td>{{ i[9] }}</td>
+                                    <td>{{ i[10] }}</td>
+                                    <td>{{ i[11] }}</td>
+                                    <td>{{ i[12] }}</td>
+                                    <td>{{ i[13] }}</td>
+                                    <td>{{ i[14] }}</td>
+                                    <td>{{ i[15] }}</td>
+                                    <td>{{ i[16] }}</td>
+                                    <td>{{ i[17] }}</td>
+                                    <td>{{ i[18] }}</td>
                                     <td>{{ i[19] }}</td>
+                                    <td>{{ i[20] }}</td>
+                                    <td>{{ i[21] }}</td>
+                                    <td>{{ i[22] }}</td>
+                                    <td>{{ i[23] }}</td>
+                                    <td>{{ i[24] }}</td>
+                                    <td>{{ i[25] }}</td>
+                                    <td>{{ i[26] }}</td>
+                                    <td>{{ i[27] }}</td>
+                                    <td>{{ i[28] }}</td>
+                                    <td>{{ i[29] }}</td>
+                                    <td>{{ i[30] }}</td>
+                                    <td>{{ i[31] }}</td>
                                     <td>{{ i[32] }}</td>
                                     <td>{{ i[33] }}</td>
-                                    <td>{{ i[28] }}</td>
+                                    <td>{{ i[34] }}</td>
+                                    <td>{{ i[35] }}</td>
+                                    <td>{{ i[36] }}</td>
+                                    <td>{{ i[37] }}</td>
+                                    <td>{{ i[38] }}</td>
+                                    <td>{{ i[39] }}</td>
+                                    <td>{{ i[40] }}</td>
+                                    <td>{{ i[41] }}</td>
+                                    <td>{{ i[42] }}</td>
+                                    <td>{{ i[43] }}</td>
+                                    <td>{{ i[44] }}</td>
+                                    <td>{{ i[45] }}</td>
+                                    <td>{{ i[46] }}</td>
+                                    <td>{{ i[47] }}</td>
+                                    <td>{{ i[48] }}</td>
+                                    <td>{{ i[49] }}</td>
+                                    <td>{{ i[50] }}</td>
+                                    <td>{{ i[51] }}</td>
+                                    <td>{{ i[52] }}</td>
+                                    <td>{{ i[53] }}</td>
+                                    <td>{{ i[54] }}</td>
+                                    <td>{{ i[55] }}</td>
+                                    <td>{{ i[56] }}</td>
+                                    <td>{{ i[57] }}</td>
+                                    <td>{{ i[58] }}</td>
+                                    <td>{{ i[59] }}</td>
+                                    <td>{{ i[60] }}</td>
+                                    <td>{{ i[61] }}</td>
+                                    <td>{{ i[62] }}</td>
+                                    <td>{{ i[63] }}</td>
+                                    <td>{{ i[64] }}</td>
+                                    <td>{{ i[65] }}</td>
+                                    <td>{{ i[66] }}</td>
+                                    <td>{{ i[67] }}</td>
+                                    <td>{{ i[68] }}</td>
+                                    <td>{{ i[69] }}</td>
+                                    <td>{{ i[70] }}</td>
+                                    <td>{{ i[71] }}</td>
+                                    <td>{{ i[72] }}</td>
+                                    <td>{{ i[73] }}</td>
+                                    <td>{{ i[74] }}</td>
+                                    <td>{{ i[75] }}</td>
+                                    <td>{{ i[76] }}</td>
+                                    <td>{{ i[77] }}</td>
+                                    <td>{{ i[78] }}</td>
+                                    <td>{{ i[79] }}</td>
+                                    <td>{{ i[80] }}</td>
+                                    <td>{{ i[81] }}</td>
+                                    <td>{{ i[82] }}</td>
+                                    <td>{{ i[83] }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>
@@ -467,6 +636,7 @@
                     type: "POST",
                     url: "/", //localhost Flask
                     data: JSON.stringify({
+                        btnID: this.getAttribute("data-btn"),
                         patientID: this.getAttribute("data-itemId")
                     }),
                     contentType: "application/json",

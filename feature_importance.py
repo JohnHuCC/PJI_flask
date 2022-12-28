@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import joblib
 
 df_data = pd.read_csv(
-    '/Users/johnnyhu/Desktop/PJI_Dataset/PJI_train.csv')
+    'PJI_Dataset/PJI_train.csv')
 PJI_X = df_data[["Age", "Segment", "HGB", "PLATELET", "Serum ", "P.T", "APTT", "Total CCI", "Total Elixhauser Groups per record",
                 "Primary,Revision,native hip", "ASA_2", "2X positive culture", "Serum CRP", "Serum ESR", "Synovial WBC",
                  "Single Positive culture", "Synovial_PMN", "Positive Histology", "Purulence"]]
@@ -29,4 +29,4 @@ plt.barh(range(len(indices)), importances[indices], color='b', align='center')
 plt.yticks(range(len(indices)), [features[i] for i in indices])
 plt.xlabel('Relative Importance')
 plt.savefig(
-    "/Users/johnnyhu/Desktop/PJI_flask/static/assets/img/feature_importances.png")
+    "static/assets/img/feature_importances.png")

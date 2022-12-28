@@ -12,6 +12,7 @@ Object.keys(decision_list_json).forEach(k => {
     let hasCommon = true;
     path.forEach((node, index) => {
         // node == path[index]
+        console.log("index:"+index)
         if (k == 0) {
             g.setNode([k, path[index]], { label: rule_map_json[node] });
             switch (index) {
@@ -26,12 +27,16 @@ Object.keys(decision_list_json).forEach(k => {
                     g.setEdge([k, path[index - 1]], [k, path[index]], {});
                     break;
             }
-        } else {
+        } 
+        else {
             let lastCommon = null;
             let currCommon = null;
             if (hasCommon) {
-                for (let i = k - 1; i >= 0; i--) { // all previous path
+                for (let i = k-1; i >= 0; i--) { // all previous path
                     for (let j = 0; j <= index; j++) { // all previous node
+                        console.log("i:"+i)
+                        console.log("j:"+j)
+                        console.log("decision_list_json[i][j]:"+decision_list_json[i][j])
                         if (decision_list_json[i][j] == path[j]) {
                             currCommon = [i, path[j]];
                         }
@@ -59,7 +64,8 @@ Object.keys(decision_list_json).forEach(k => {
                         g.setEdge(lastCommon, [k, path[index]], {});
                         break;
                 }
-            } else if (currCommon == null) {
+            } 
+            else if (currCommon == null) {
                 g.setNode([k, path[index]], { label: rule_map_json[node] });
                 switch (index) {
                     case 0: // 開始
@@ -99,9 +105,9 @@ var render = new dagreD3.render();
 render(inner, g);
 
 // Center the graph
-var initialScale = 0.75;
+var initialScale = 0.6;
 zoom
-    .translate([(svg.attr("width") - g.graph().width * initialScale) / 2, 20])
+    .translate([(svg.attr("width") - g.graph().width * initialScale) , 20])
     .scale(initialScale)
     .event(svg);
 svg.attr('height', g.graph().height * initialScale + 40);

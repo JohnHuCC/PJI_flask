@@ -43,11 +43,6 @@ PJI_y = df_data["Group"]
 train_X, test_X, train_y, test_y = train_test_split(
     PJI_X, PJI_y, test_size=0.3)
 
-# 建立 random forest 模型
-forest = ensemble.RandomForestClassifier(n_estimators=50, max_depth=5)
-forest_fit = forest.fit(train_X, train_y)
-joblib.dump(forest, 'RF_model')
-
 
 def tran_df(arr):
     predict_data = pd.DataFrame(
@@ -57,12 +52,7 @@ def tran_df(arr):
     return predict_data
 
 
-# predict_data = tran_df(arr)
-
-
 def stacking_predict(df):
-    print(type(df))
-    print(df)
     loaded_model = joblib.load('Stacking_model')
     result = loaded_model.predict(df)
     print(result)
@@ -88,6 +78,3 @@ def plt_con():
     plt.ylabel('Actuals', fontsize=16)
     plt.title('Confusion Matrix', fontsize=15)
     plt.savefig('static/assets/img/confusion_matrix.jpg')
-
-# plt_con(test_y, rf_predict(test_X))
-# rf_predict(predict_data)
