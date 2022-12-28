@@ -213,7 +213,11 @@ else:
 # 6.1 讀檔與前處理作業
 # df = pd.read_excel(
 #     '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
+<<<<<<< HEAD
 df = pd.read_excel('Revision_PJI_main.xlsx')
+=======
+df = pd.read_excel('/Users/johnnyhu/Desktop/Revision_PJI_main.xlsx')
+>>>>>>> d063e73d2b8afb8a1d8812e3936613ba6458b720
 df.drop(columns=['Name', 'CTNO', 'CSN', 'Turbidity', 'Color'], inplace=True)
 df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
 df['Joint'].replace(['H', 'K'], [0, 1], inplace=True)

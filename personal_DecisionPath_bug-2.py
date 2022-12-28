@@ -214,7 +214,11 @@ else:
 # 6.1 讀檔與前處理作業
 # df = pd.read_excel(
 #     './PJI/Revision_PJI_main.xlsx')
+<<<<<<< HEAD
 df = pd.read_excel('Revision_PJI_main.xlsx')
+=======
+df = pd.read_excel('/Users/johnnyhu/Desktop/Revision_PJI_main.xlsx')
+>>>>>>> d063e73d2b8afb8a1d8812e3936613ba6458b720
 df.drop(columns=['Name', 'CTNO', 'CSN', 'Turbidity', 'Color'], inplace=True)
 df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
 df['Joint'].replace(['H', 'K'], [0, 1], inplace=True)
@@ -779,9 +783,15 @@ def ICM_0(x):
 # 注意：此處須匯入兩個檔案: Non2018ICM.xlsx, 2018ICM.xlsx
 def singleton_opt(X_test):
     non2018ICM = pd.read_excel(
+<<<<<<< HEAD
         "PJI_20210428_InterpretableML/Non2018ICM.xlsx")
     _2018ICM = pd.read_excel(
         "PJI_20210428_InterpretableML/2018ICM.xlsx")
+=======
+        "/Users/johnnyhu/Desktop/PJI_20210428_InterpretableML/Non2018ICM.xlsx")
+    _2018ICM = pd.read_excel(
+        "/Users/johnnyhu/Desktop/PJI_20210428_InterpretableML/2018ICM.xlsx")
+>>>>>>> d063e73d2b8afb8a1d8812e3936613ba6458b720
 
     _2018ICM_ = _2018ICM[['variable', 'threshold']]
     non2018ICM_ = non2018ICM[['variable', 'mu(N)', 'mu(I)']]
