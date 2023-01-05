@@ -12847,3 +12847,10 @@ body {
   font-size: 0.75rem;
   border-radius: 0.25rem !important;
 }
+
+#example{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 999;
+}

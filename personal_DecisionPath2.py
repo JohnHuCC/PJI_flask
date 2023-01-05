@@ -163,8 +163,7 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]
-        :node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]:node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -275,15 +274,9 @@ def ICM_0(x):
 # 注意：此處須匯入兩個檔案: Non2018ICM.xlsx, 2018ICM.xlsx
 def singleton_opt(X_test):
     non2018ICM = pd.read_excel(
-<<<<<<< HEAD
-        "PJI_20210428_InterpretableML/Non2018ICM.xlsx")
-    _2018ICM = pd.read_excel(
-        "PJI_20210428_InterpretableML/2018ICM.xlsx")
-=======
         "/Users/johnnyhu/Desktop/PJI_20210428_InterpretableML/Non2018ICM.xlsx")
     _2018ICM = pd.read_excel(
         "/Users/johnnyhu/Desktop/PJI_20210428_InterpretableML/2018ICM.xlsx")
->>>>>>> d063e73d2b8afb8a1d8812e3936613ba6458b720
 
     _2018ICM_ = _2018ICM[['variable', 'threshold']]
     non2018ICM_ = non2018ICM[['variable', 'mu(N)', 'mu(I)']]
@@ -338,7 +331,7 @@ def singleton_opt(X_test):
                 delta = float(X_test_[variable])
 
                 nonICM = {"mu(N)": mu_N, "mu(I)": mu_I, "delta": delta}
-                #nonICM_Sorting = (sorted(nonICM.items(), key=lambda x:x[1]))
+                # nonICM_Sorting = (sorted(nonICM.items(), key=lambda x:x[1]))
                 nonICM_Sorting = sorted(nonICM, key=nonICM.get)
                 concate_nonICM_Sorting = '_'.join(nonICM_Sorting)
 
@@ -413,8 +406,8 @@ def transPOSForm(Candidate_DecisionPath):
     data = Candidate_DecisionPath
     res_combined = []
     # In[20] 拆解所有的 decision path 元素
-    ## input: all_path
-    ## output: all_singleton
+    # input: all_path
+    # output: all_singleton
     for element in data:
         element = element.replace(') | (', ' and ')
         element = element.replace('(', '')
@@ -639,13 +632,9 @@ def personalDP(PID):
     # In[7]: File reading and pre-processing
     # 6.1 讀檔與前處理作業
     df = pd.read_excel(
-<<<<<<< HEAD
-        'Revision PJI For交大 V9(6月信Validation).xlsx')
-    # df = pd.read_excel('Revision_PJI_main.xlsx')
-=======
         '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
     # df = pd.read_excel('/Users/johnnyhu/Desktop/Revision_PJI_main.xlsx')
->>>>>>> d063e73d2b8afb8a1d8812e3936613ba6458b720
+
     no_group = list(df['No.Group'])
     df.drop(columns=['Name', 'CTNO', 'CSN',
             'Turbidity', 'Color'], inplace=True)
@@ -1247,8 +1236,4 @@ def personalDP(PID):
 
 
 # if __name__ == "__main__":
-<<<<<<< HEAD
-#     personalDP(121)
-=======
 #     personalDP(12)
->>>>>>> d063e73d2b8afb8a1d8812e3936613ba6458b720
