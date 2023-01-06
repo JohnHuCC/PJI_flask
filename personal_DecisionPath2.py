@@ -24,6 +24,11 @@
 # 引用適當的 Library
 ##
 
+from func_timeout import func_set_timeout
+import func_timeout
+import subprocess
+from threading import Timer
+import threading
 import os
 import re
 import json
@@ -58,6 +63,7 @@ import six
 import sys
 from sklearn.tree import export_graphviz
 import time
+import eventlet
 sys.modules['sklearn.externals.six'] = six
 ##
 warnings.filterwarnings("ignore")
@@ -163,7 +169,8 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]:node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]
+        :node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -1147,8 +1154,8 @@ def personalDP(PID):
         minterms_ = []
         for i in list(lst_all_):
             minterms_.append(list(np.asarray(i).data))
-        print('minterms:')
-        print(minterms_)
+        # print('minterms:')
+        # print(minterms_)
 
         # In[29]: POS_minterm process
         sym = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x"
@@ -1235,5 +1242,22 @@ def personalDP(PID):
     return (personal_result)
 
 
-# if __name__ == "__main__":
-#     personalDP(12)
+if __name__ == "__main__":
+    run_id = int(sys.argv[1])
+    # run_list = [212, 232, 242, 252, 262, 272, 282, 292, 302, 322, 332, 342]
+    # for i in range(len(run_list)):
+    #     try:
+    #         personalDP(run_list[i])
+    #         print('over:'+str(i))
+    #     except func_timeout.exceptions.FunctionTimedOut:
+    #         print('timeout:' + str(run_list[i]))
+    personalDP(run_id)
+    # my_timer = Timer(5, kill, [ping])#這裏設定時間，和命令
+    # try:
+    #     my_timer.start()#啟用
+    #     stdout, stderr = ping.communicate()#獲得輸出
+    #     #print stderr
+    #     print time.ctime()
+    # finally:
+    #     print time.ctime()
+    #     my_timer.cancel()

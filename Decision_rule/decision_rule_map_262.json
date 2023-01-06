@@ -1,0 +1,14 @@
+{
+    "A": "Serum_CRP <= 54.0",
+    "B": "two_positive_culture == False",
+    "C": "PLATELET <= 384.0",
+    "D": "Positive_Histology == False",
+    "E": "Purulence == False",
+    "F": "Age > 45.5",
+    "G": "Hb > 8.5",
+    "H": "Segment <= 71.5",
+    "I": "Synovial_PMN <= 83.0",
+    "J": "P_T <= 12.5",
+    "K": "Serum_ESR <= 28.5",
+    "L": "Synovial_WBC <= 3650.0"
+}

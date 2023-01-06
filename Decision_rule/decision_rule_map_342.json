@@ -1,0 +1,14 @@
+{
+    "A": "PLATELET <= 384.0",
+    "B": "Age > 38.5",
+    "C": "Synovial_PMN <= 84.0",
+    "D": "two_positive_culture == False",
+    "E": "Segment <= 71.5",
+    "F": "Hb > 8.5",
+    "G": "Purulence == False",
+    "H": "Positive_Histology == False",
+    "I": "Synovial_WBC <= 3650.0",
+    "J": "APTT <= 31.5",
+    "K": "Serum_CRP <= 13.5",
+    "L": "Serum_ESR <= 38.0"
+}
