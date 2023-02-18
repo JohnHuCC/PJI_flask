@@ -17,12 +17,12 @@ import personal_DecisionPath2
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=31)
+# app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=31)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:love29338615@127.0.0.1:3306/PJI"
 
 app.config['WTF_CSRF_ENABLED'] = False
-
+app.permanent_session_lifetime = timedelta(minutes=10)
 bootstrap = Bootstrap5(app)
 db.init_app(app)
 migrate = Migrate(app, db)
@@ -39,12 +39,21 @@ def tran_df(arr):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     session.permanent = True
-    uid = session['user-id']
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
+
     if uid != None:
         user = User.get_by_uid(uid)
+        print(user)
         if user == None:
             # no such user
             redirect('/auth_login')
+    else:
+        redirect('/auth_login')
 
     conn = pymysql.connect(host='127.0.0.1', user='root',
                            password='love29338615', port=3306, db='PJI')
@@ -53,7 +62,6 @@ def index():
     cur.execute(sql)
     u = cur.fetchall()
     conn.close()
-    # u = RevisionPJI.query.all()
 
     if request.method == 'POST':
         dict_p = request.get_json()
@@ -67,7 +75,7 @@ def index():
             p_id = dict_p["patientID"]
             return url_for('reactive_diagram', p_id=p_id)
 
-    return render_template('index.html', u=u, name="")
+    return render_template('index.html', u=u, name=user)
 
 
 if __name__ == "__main__":
@@ -136,7 +144,15 @@ def chart3():
 
 @app.route('/model_diagnosis')
 def model_diagnosis():
+    session.permanent = True
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
     name = request.args.get('p_id')
+    user = User.get_by_uid(uid)
     decision_list_file = open("decision_list_file.txt", "r")
     decision_list_file_content = decision_list_file.read().strip()
     decision_list = decision_list_file_content.split("\n")
@@ -145,22 +161,32 @@ def model_diagnosis():
         open("Decision_rule/decision_rule_"+name+".json"))
     rule_map_json = json.load(
         open("Decision_rule/decision_rule_map_"+name+".json"))
-    return render_template('model_diagnosis.html', decision_list=decision_list, decision_list_json=decision_list_json, rule_map_json=rule_map_json)
+    return render_template('model_diagnosis.html', decision_list=decision_list, decision_list_json=decision_list_json, rule_map_json=rule_map_json, user=user)
 
 
 @app.route('/reactive_diagram', methods=['GET', 'POST'])
 def reactive_diagram():
+    session.permanent = True
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
+    user = User.get_by_uid(uid)
+    global reactive_rule_json
+    global result_text
     if request.method == 'POST':
         age = request.form["age"]
         segment = request.form["segment"]
         HGB = request.form["HGB"]
         PLATELET = request.form["PLATELET"]
-        Serum = request.form["Serum"]
+        Serum_WBC = request.form["Serum_WBC"]
         P_T = request.form["P.T"]
         APTT = request.form["APTT"]
         CCI = request.form["CCI"]
         Elixhauser = request.form["Elixhauser"]
-        Rivision = request.form["Rivision"]
+        Revision = request.form["Revision"]
         ASA_2 = request.form["ASA_2"]
         positive_culture = request.form["positive_culture"]
         Serum_CRP = request.form["Serum_CRP"]
@@ -170,28 +196,44 @@ def reactive_diagram():
         Synovial_PMN = request.form["Synovial_PMN"]
         Positive_Histology = request.form["Positive_Histology"]
         Purulence = request.form["Purulence"]
-        arr = [age, segment, HGB, PLATELET, Serum, P_T, APTT, CCI, Elixhauser,
-               Rivision, ASA_2, positive_culture, Serum_CRP, Serum_ESR, Synovial_WBC,
+        arr = [age, segment, HGB, PLATELET, Serum_WBC, P_T, APTT, CCI, Elixhauser,
+               Revision, ASA_2, positive_culture, Serum_CRP, Serum_ESR, Synovial_WBC,
                Single_Positive_culture, Synovial_PMN, Positive_Histology, Purulence]
         arr[:] = [float(x) for x in arr]
         predict_data = Vision_compare.tran_df(arr)
         result1 = Vision_compare.stacking_predict(predict_data)
+        result_xgb = Vision_compare.xgboost_predict(predict_data)
+        result_rf = Vision_compare.rf_predict(predict_data)
+        result_nb = Vision_compare.nb_predict(predict_data)
+        result_lr = Vision_compare.lr_predict(predict_data)
+
         if (result1[0] == 1):
-            result_text = "You got infected!"
+            result_text = "Infected!"
         else:
             result_text = "You are safe!"
+        reactive_rule_json = json.load(
+            open("Decision_rule/reactive_rule.json"))
+
+        reactive_rule_map_json = json.load(
+            open("Decision_rule/reactive_rule_map.json"))
         print("running start")
         Vision_compare.plt_con()
         print("running end")
-        return render_template('reactive_diagram.html', result=result_text)
-
-    return render_template('reactive_diagram.html')
+        return render_template('reactive_diagram.html', result=result_text, reactive_rule_json=reactive_rule_json, reactive_rule_map_json=reactive_rule_map_json,
+                               result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user)
+    return render_template('reactive_diagram.html', user=user)
 
 
 @app.route('/personal_info')
 def personal_info():
     session.permanent = True
-    uid = session['user-id']
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
+    # uid = session['user-id']
     if uid != None:
         user = User.get_by_uid(uid)
         if user == None:
@@ -204,7 +246,7 @@ def personal_info():
     if (personal_result == 1):
         result_text = "Infected!"
     else:
-        result_text = "Safe!"
+        result_text = "Not Infected!"
     conn = pymysql.connect(host='127.0.0.1', user='root',
                            password='love29338615', port=3306, db='PJI')
     cur = conn.cursor()
@@ -213,3 +255,10 @@ def personal_info():
     user = cur.fetchall()
     conn.close()
     return render_template('personal_info.html', name=name, u=user, result=result_text, username=username)
+
+
+@app.route('/progress')
+def progress():
+    tempfile = open("progress.tmp", "r").read()
+    tempfile.close()
+    return tempfile

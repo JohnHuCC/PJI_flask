@@ -100,7 +100,7 @@ title = ["no_group", "no", "group", "name", "ctno", "csn", "PJI_revision_date", 
          "total_cci", "congestive_heart_failure", "cardiac_arrhythmia", "valvular_disease", "pulmonary_circulation_disorders", "peripheral_vascular_disorders", "hypertension_uncomplicated", "hypertension_complicated", "paralysis", "other_neurological_disorders", "chronic_pulmonary_disease", "diabetes_uncomplicated", "diabetes_complicated", "hypothyroidism", "renal_failure", "liver_disease", "peptic_ulcer_disease_excluding_bleeding", "aids_hiv", "lymphoma", "metastatic_cancer", "solid_tumor_without_metastasis", "rheumatoid_arthritis_collagen", "coagulopathy", "obesity", "weight_loss", "fluid_electrolyte_disorders", "blood_loss_anemia", "deficiency_anemia", "alcohol_abuse", "drug_abuse", "psychoses", "depression", "total_elixhauser_groups_per_record"]
 
 
-pji_csv = open('/Users/johnnyhu/Desktop/Revision_PJI_test.csv', 'r')
+pji_csv = open('/Users/johnnyhu/Desktop/Revision_PJI_test_2.csv', 'r')
 pji_csv_content = pji_csv.read().replace('\r\n', '\n')
 pji_csv_row = pji_csv_content.split('\n')
 for row in pji_csv_row[1:]:

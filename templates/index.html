@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 
 <head>
@@ -9,8 +9,10 @@
     <meta name="author" content="" />
     <title>PJI Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
+    <link href="/static/css/style.css" rel="stylesheet" />
     <link href="/static/css/styles.css" rel="stylesheet" />
-    <link href="/static/css/jquery.shCircleLoader.css" rel="stylesheet" />
+
     <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png"  />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -20,20 +22,11 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="index.html">Start</a>
-        <!-- Sidebar Toggle-->
-        <!-- <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button> -->
-        <!-- Navbar Search-->
+        <a class="navbar-brand ps-3" href="">Start</a>
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <!-- <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
-                        class="fas fa-search"></i></button>
-            </div> -->
         </form>
         <!-- Navbar-->
+
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
@@ -49,79 +42,133 @@
             </li>
         </ul>
     </nav>
-        <div id="layoutSidenav_content">
-            <main>
-                <div id="example"></div>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                        PJI Data Example
-                    </div>
-                    <div class="card-body">
-                        <table id="datatablesSimple">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Group</th>
-                                    <th>Name</th>
-                                    <th>Serum ESR</th>
-                                    <th>Positive Histology</th>
-                                    <th>Synovial WBC</th>
-                                    <th>Serum CRP</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Group</th>
-                                    <th>Name</th>
-                                    <th>Serum ESR</th>
-                                    <th>Positive Histology</th>
-                                    <th>Synovial WBC</th>
-                                    <th>Serum CRP</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                {% for i in u %}
-                                <tr>
-                                    <td>{{ i[0] }}</td>
-                                    <td>{{ i[2] }}</td>
-                                    <td>{{ i[3] }}</td>
-                                    <td>{{ i[19] }}</td>
-                                    <td>{{ i[32] }}</td>
-                                    <td>{{ i[33] }}</td>
-                                    <td>{{ i[28] }}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-info btn-sm editbtn"
-                                        data-btn="0" data-id="{{ i[0] }}">個人資料</button>
-                                        <!-- <button type="button" class="btn btn-info btn-sm editbtn"
-                                        data-btn="1" data-id="{{ i[0] }}">模型診斷</button> -->
-                                        <button type="button" class="btn btn-info btn-sm editbtn"
-                                        data-btn="2" data-id="{{ i[0] }}">互動圖表</button>
-                                        <!-- <script>
-                                            // $('.editbtn').on('click', function () {
-                                            //     var Id = $(event.target).data("{{ i[0] }}");
-                                            // });
-                                        </script> -->
-                                        <!-- {% if name == "" %}
-                                        <form method="post">
-                                            <input type="submit" name="send" value="個人資料">
-                                        </form>
-                                        {% else %}
-                                        <p>Hello,{{name}}</p>
-                                        {% endif %} -->
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" href="reactive_diagram">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Reactive Diagram
+                        </a>
 
+                        <!-- <div class="sb-sidenav-menu-heading">Interface</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
+                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                            Functions
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="model_diagnosis">Decision Path</a>
+                                <a class="nav-link" href="reactive_diagram">Reactive Diagram</a>
+                            </nav>
+                        </div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
+                            aria-expanded="false" aria-controls="collapsePages">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                            Pages
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
+                            data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
+                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
+                                    aria-controls="pagesCollapseAuth">
+                                    Authentication
+                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                </a>
+                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
+                                    data-bs-parent="#sidenavAccordionPages">
+                                    <nav class="sb-sidenav-menu-nested nav">
+                                        <a class="nav-link" href="auth_login.html">Login</a>
+                                        <a class="nav-link" href="auth_register.html">Register</a>
+                                    </nav>
+                                </div>
+                            </nav>
+                        </div> -->
                     </div>
                 </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    {{ name }}
+                </div>
+            </nav>
         </div>
-        </main>
-    </div>
-    </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <!--<div class="col-xxl-8"> -->
+                    <div id="example"></div>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                PJI Data Example
+                            </div>
+                            <div class="card-body">
+                                <table id="datatablesSimple">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Group</th>
+                                            <!-- <th>Name</th> -->
+                                            <th>Serum ESR</th>
+                                            <th>Positive Histology</th>
+                                            <th>Synovial WBC</th>
+                                            <th>Serum CRP</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Group</th>
+                                            <!-- <th>Name</th> -->
+                                            <th>Serum ESR</th>
+                                            <th>Positive Histology</th>
+                                            <th>Synovial WBC</th>
+                                            <th>Serum CRP</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        {% for i in u %}
+                                        <tr>
+                                            <td>{{ i[0] }}</td>
+                                            <td>{{ i[2] }}</td>
+                                            <!-- <td>{{ i[3] }}</td> -->
+                                            <td>{{ i[19] }}</td>
+                                            <td>{{ i[32] }}</td>
+                                            <td>{{ i[33] }}</td>
+                                            <td>{{ i[28] }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-info btn-sm editbtn"
+                                                data-btn="0" data-id="{{ i[0] }}">個人資料</button>
+                                                <!-- <button type="button" class="btn btn-info btn-sm editbtn"
+                                                data-btn="2" data-id="{{ i[0] }}">互動圖表</button>                                   -->
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                <!--</div>-->
+            </main>
+        </div>
+    </div> <!--layoutSidenav-->
+    </div> <!--?-->
+    <style>
+        .datatable-table tr:nth-child(odd){
+            background-color: #f8f9fa;
+        }
+        .datatable-table tr:nth-child(even){
+            background-color: #e2e6ea;
+        }
+    </style>
     <script defer src="/static/js/index_btn.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>

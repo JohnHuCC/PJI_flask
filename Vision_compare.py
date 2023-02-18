@@ -41,7 +41,7 @@ PJI_X = pd.DataFrame([df_data["Age"],
 PJI_y = df_data["Group"]
 
 train_X, test_X, train_y, test_y = train_test_split(
-    PJI_X, PJI_y, test_size=0.3)
+    PJI_X, PJI_y, test_size=0.2)
 
 
 def tran_df(arr):
@@ -54,6 +54,34 @@ def tran_df(arr):
 
 def stacking_predict(df):
     loaded_model = joblib.load('Stacking_model')
+    result = loaded_model.predict(df)
+    print(result)
+    return result
+
+
+def xgboost_predict(df):
+    loaded_model = joblib.load('Xgboost_model')
+    result = loaded_model.predict(df)
+    print(result)
+    return result
+
+
+def rf_predict(df):
+    loaded_model = joblib.load('RandomForest_model')
+    result = loaded_model.predict(df)
+    print(result)
+    return result
+
+
+def nb_predict(df):
+    loaded_model = joblib.load('NaiveBayes_model')
+    result = loaded_model.predict(df)
+    print(result)
+    return result
+
+
+def lr_predict(df):
+    loaded_model = joblib.load('LogisticRegression_model')
     result = loaded_model.predict(df)
     print(result)
     return result

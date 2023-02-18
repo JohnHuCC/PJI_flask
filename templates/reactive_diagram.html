@@ -13,58 +13,17 @@
         <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png"/>
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/d3js/3.5.17/d3.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre-d3/0.6.4/dagre-d3.min.js" integrity="sha512-fdYLm4hXxJ/tPMptvdDDwuJme6jTgvoZ0g6pflEkyG9MqPejLspnCjkwX3bD69GFT2N/refZGjPr6b9RdoCyxQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body class="nav-fixed">
-        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-light" id="sidenavAccordion">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" id="sidenavAccordion">
             <!-- Sidenav Toggle Button-->
             <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
-            <!-- Navbar Brand-->
-            <!-- * * Tip * * You can use text or an image for your navbar brand.-->
-            <!-- * * * * * * When using an image, we recommend the SVG format.-->
-            <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-            <!-- <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html">SB Admin Pro</a> -->
-            <!-- <a class="navbar-brand ps-3" href="/">Start</a> -->
-            <!-- Navbar Search Input-->
-            <!-- * * Note: * * Visible only on and above the lg breakpoint-->
-            <!-- <form class="form-inline me-auto d-none d-lg-block me-3">
-                <div class="input-group input-group-joined input-group-solid">
-                    <input class="form-control pe-0" type="search" placeholder="Search" aria-label="Search" />
-                    <div class="input-group-text"><i data-feather="search"></i></div>
-                </div>
-            </form> -->
             <!-- Navbar Items-->
             <ul class="navbar-nav align-items-center ms-auto">
                 <!-- Documentation Dropdown-->
                 <li class="nav-item dropdown no-caret d-none d-md-block me-3">
-                    <!-- <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="fw-500">Documentation</div>
-                        <i class="fas fa-chevron-right dropdown-arrow"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-end py-0 me-sm-n15 me-lg-0 o-hidden animated--fade-in-up" aria-labelledby="navbarDropdownDocs">
-                        <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro" target="_blank">
-                            <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="book"></i></div>
-                            <div>
-                                <div class="small text-gray-500">Documentation</div>
-                                Usage instructions and reference
-                            </div>
-                        </a>
-                        <div class="dropdown-divider m-0"></div>
-                        <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/components" target="_blank">
-                            <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="code"></i></div>
-                            <div>
-                                <div class="small text-gray-500">Components</div>
-                                Code snippets and reference
-                            </div>
-                        </a>
-                        <div class="dropdown-divider m-0"></div>
-                        <a class="dropdown-item py-3" href="https://docs.startbootstrap.com/sb-admin-pro/changelog" target="_blank">
-                            <div class="icon-stack bg-primary-soft text-primary me-4"><i data-feather="file-text"></i></div>
-                            <div>
-                                <div class="small text-gray-500">Changelog</div>
-                                Updates and changes
-                            </div>
-                        </a>
-                    </div> -->
                 </li>
                 <!-- Navbar Search Dropdown-->
                 <!-- * * Note: * * Visible only below the lg breakpoint-->
@@ -80,84 +39,6 @@
                         </form>
                     </div>
                 </li>
-                <!-- Alerts Dropdown-->
-                <!-- <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="bell"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownAlerts">
-                        <h6 class="dropdown-header dropdown-notifications-header">
-                            <i class="me-2" data-feather="bell"></i>
-                            Alerts Center
-                        </h6>
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-warning"><i data-feather="activity"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 29, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">This is an alert message. It's nothing serious, but it requires your attention.</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-info"><i data-feather="bar-chart"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 22, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">A new monthly report is ready. Click here to view!</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-danger"><i class="fas fa-exclamation-triangle"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 8, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">Critical system failure, systems shutting down.</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-success"><i data-feather="user-plus"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 2, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">New user request. Woody has requested access to the organization.</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>
-                    </div>
-                </li> -->
-                <!-- Messages Dropdown-->
-                <!-- <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="mail"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
-                        <h6 class="dropdown-header dropdown-notifications-header">
-                            <i class="me-2" data-feather="mail"></i>
-                            Message Center
-                        </h6>
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="static/assets/img/illustrations/profiles/profile-2.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Thomas Wilcox · 58m</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="static/assets/img/illustrations/profiles/profile-3.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Emily Fowler · 2d</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="static/assets/img/illustrations/profiles/profile-4.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Marshall Rosencrantz · 3d</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="static/assets/img/illustrations/profiles/profile-5.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Colby Newton · 3d</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
-                    </div>
-                </li> -->
                 <!-- User Dropdown-->
                 <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
                     <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="static/assets/img/illustrations/profiles/profile-1.png" /></a>
@@ -170,12 +51,7 @@
                             </div>
                         </h6>
                         <div class="dropdown-divider"></div>
-                        <!-- <a class="dropdown-item" href="#!">
-                            <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                            Account
-                        </a> -->
                         <a class="dropdown-item" href="/logout">
-                            <!-- <div class="dropdown-item-icon"><i data-feather="log-out"></i></div> -->
                             Logout
                         </a>
                     </div>
@@ -192,72 +68,15 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Patient Table
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Functions
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            <a class="nav-link" href="reactive_diagram">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Reactive Diagram
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="model_diagnosis">Decision Path</a>
-                                    <a class="nav-link" href="reactive_diagram">Reactive Diagram</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                                aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                        data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                        aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                        data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                        </nav>
-                                    </div>
-                                    <!-- <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                        data-bs-target="#pagesCollapseError" aria-expanded="false"
-                                        aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                        data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div> -->
-                                </nav>
-                            </div>
-                            <!-- <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a> -->
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Johnny Hu
+                        {{user}}
                     </div>
                 </nav>
             </div>
@@ -282,706 +101,389 @@
                     <!-- Main page content-->
                     <div class="container-xl px-4 mt-n10">
                         <div class="row">
-                            <!-- <div class="col-xl-4 mb-4">
-                                <a class="card lift h-100" href="#!">
-                                    <div class="card-body d-flex justify-content-center flex-column">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="me-3">
-                                                <i class="feather-xl text-primary mb-3" data-feather="package"></i>
-                                                <h5>Powerful Components</h5>
-                                                <div class="text-muted small">To create informative visual elements on your pages</div>
-                                            </div>
-                                            <img src="static/assets/img/illustrations/browser-stats.svg" alt="..." style="width: 8rem" />
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-xl-4 mb-4">
-                                <a class="card lift h-100" href="#!">
-                                    <div class="card-body d-flex justify-content-center flex-column">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="me-3">
-                                                <i class="feather-xl text-secondary mb-3" data-feather="book"></i>
-                                                <h5>Documentation</h5>
-                                                <div class="text-muted small">To keep you on track when working with our toolkit</div>
-                                            </div>
-                                            <img src="static/assets/img/illustrations/processing.svg" alt="..." style="width: 8rem" />
-                                        </div>
-                                    </div>
-                                </a>
-                            </div> -->
-                            <!-- <div class="col-xl-4 mb-4">
-                                <a class="card lift h-100" href="#!">
-                                    <div class="card-body d-flex justify-content-center flex-column">
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <div class="me-3">
-                                                <i class="feather-xl text-green mb-3" data-feather="layout"></i>
-                                                <h5>Pages &amp; Layouts</h5>
-                                                <div class="text-muted small">To help get you started when building your new UI</div>
-                                            </div>
-                                            <img src="static/assets/img/illustrations/windows.svg" alt="..." style="width: 8rem" />
-                                        </div>
-                                    </div>
-                                </a>
-                            </div> -->
-                        </div>
-                        <div class="row">
-                            <div class="col-xxl-8">
-                                <!-- Tabbed dashboard card example-->
-                                <div class="card mb-4">
-                                    <div class="card-header border-bottom">
-                                        <!-- Dashboard card navigation-->
-                                        <ul class="nav nav-tabs card-header-tabs" id="dashboardNav" role="tablist">
-                                            <li class="nav-item me-1"><a class="nav-link active" id="overview-pill" href="#overview" data-bs-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">Interactive Bar</a></li>
-                                            <li class="nav-item"><a class="nav-link" id="activities-pill" href="#activities" data-bs-toggle="tab" role="tab" aria-controls="activities" aria-selected="false">SHAP</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="tab-content" id="dashboardNavContent">
-                                            <!-- Dashboard Tab Pane 1-->
-                                            <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-pill">
-                                                <img src="static/assets/img/confusion_matrix.jpg" width="400" height="400">
-                                                <div style="display: flex; flex-direction: row;">
-                                                    <div style="flex: 1;">
-                                                        <p>Input parameters:</p>
-                                                        <form id="myForm" action="#" method="post">
-                                                            <div>
-                                                                <label for="age">Age (y)</label>
-                                                                <input class="range_input" type="range" id="age" name="age" 
-                                                                        min="0" max="100" value="50" step="1" list="tickmarks_1">
-                                                                        <datalist id="tickmarks_1">
-                                                                            <option value="0" label="0%"></option>
-                                                                            <option value="10"></option>
-                                                                            <option value="20"></option>
-                                                                            <option value="30"></option>
-                                                                            <option value="40"></option>
-                                                                            <option value="50" label="100%"></option>
-                                                                            <option value="60"></option>
-                                                                            <option value="70"></option>
-                                                                            <option value="80"></option>
-                                                                            <option value="90"></option>
-                                                                            <option value="100" label="200%"></option>
-                                                                        </datalist>
-                                                                <span id="age_value"></span>
-                                                            </div>
-                                                            <div>
-                                                                <label for="segment">Neutrophil segment (%)</label>
-                                                                <input class="range_input" type="range" id="segment" name="segment"
-                                                                        min="53" max="85" value="69" step="0.1" list="tickmarks_2">
-                                                                        <datalist id="tickmarks_2">
-                                                                            <option value="53"></option>
-                                                                            <option value="56.2"></option>
-                                                                            <option value="59.4"></option>
-                                                                            <option value="62.6"></option>
-                                                                            <option value="65.8"></option>
-                                                                            <option value="69"></option>
-                                                                            <option value="72.2"></option>
-                                                                            <option value="75.4"></option>
-                                                                            <option value="78.6"></option>
-                                                                            <option value="81.8"></option>
-                                                                            <option value="85"></option>
-                                                                        </datalist>
-                                                                <span id="segment_value"></span>
-                                                            </div>
-                                                            <div>
-                                                                <label for="HGB">Hb (g/dL)</label>
-                                                                <input class="range_input" type="range" id="HGB" name="HGB" 
-                                                                        min="8" max="16" value="12" step="0.1" list="tickmarks_3">
-                                                                        <datalist id="tickmarks_3">
-                                                                            <option value="8"></option>
-                                                                            <option value="8.8"></option>
-                                                                            <option value="9.6"></option>
-                                                                            <option value="10.4"></option>
-                                                                            <option value="11.2"></option>
-                                                                            <option value="12"></option>
-                                                                            <option value="12.8"></option>
-                                                                            <option value="13.6"></option>
-                                                                            <option value="14.4"></option>
-                                                                            <option value="15.2"></option>
-                                                                            <option value="16"></option>
-                                                                        </datalist>
-                                                                <span id="HGB_value"></span>
-                                                            </div>
-
-                                                            <div>
-                                                                <label for="PLATELET">PLATELET(1000/mL)</label>
-                                                                <input class="range_input" type="range" id="PLATELET" name="PLATELET" 
-                                                                        min="150" max="450" value="300" step="1" list="tickmarks_4">
-                                                                        <datalist id="tickmarks_4">
-                                                                            <option value="150"></option>
-                                                                            <option value="180"></option>
-                                                                            <option value="210"></option>
-                                                                            <option value="240"></option>
-                                                                            <option value="270"></option>
-                                                                            <option value="300"></option>
-                                                                            <option value="330"></option>
-                                                                            <option value="360"></option>
-                                                                            <option value="390"></option>
-                                                                            <option value="420"></option>
-                                                                            <option value="450"></option>
-                                                                        </datalist>
-                                                                <span id="PLATELET_value"></span>
-                                                            </div>
-
-                                                            <div>
-                                                                <label for="Serum">Serum WBC (1000/mL)</label>
-                                                                <input class="range_input" type="range" id="Serum" name="Serum" 
-                                                                        min="4" max="16" value="10" step="0.1" list="tickmarks_5">
-                                                                        <datalist id="tickmarks_5">
-                                                                            <option value="4"></option>
-                                                                            <option value="5.2"></option>
-                                                                            <option value="6.4"></option>
-                                                                            <option value="7.6"></option>
-                                                                            <option value="8.8"></option>
-                                                                            <option value="10"></option>
-                                                                            <option value="11.2"></option>
-                                                                            <option value="12.4"></option>
-                                                                            <option value="13.6"></option>
-                                                                            <option value="14.8"></option>
-                                                                            <option value="16"></option>
-                                                                        </datalist>
-                                                                <span id="Serum_value"></span>
-                                                            </div>
-
-                                                            <div>
-                                                                <label for="P.T">PT (s)</label>
-                                                                <input class="range_input" type="range" id="P_T" name="P.T" 
-                                                                        min="8" max="16" value="12" step="0.1" list="tickmarks_6">
-                                                                        <datalist id="tickmarks_6">
-                                                                            <option value="8"></option>
-                                                                            <option value="8.8"></option>
-                                                                            <option value="9.6"></option>
-                                                                            <option value="10.4"></option>
-                                                                            <option value="11.2"></option>
-                                                                            <option value="12"></option>
-                                                                            <option value="12.8"></option>
-                                                                            <option value="13.6"></option>
-                                                                            <option value="14.4"></option>
-                                                                            <option value="15.2"></option>
-                                                                            <option value="16"></option>
-                                                                        </datalist>
-                                                                <span id="P_T_value"></span>
-                                                            </div>
-
-                                                            <div>
-                                                                <label for="APTT">APTT (s)</label>
-                                                                <input class="range_input" type="range" id="APTT" name="APTT" 
-                                                                        min="20" max="40" value="30" step="1" list="tickmarks_7">
-                                                                        <datalist id="tickmarks_7">
-                                                                            <option value="20"></option>
-                                                                            <option value="22"></option>
-                                                                            <option value="24"></option>
-                                                                            <option value="26"></option>
-                                                                            <option value="28"></option>
-                                                                            <option value="30"></option>
-                                                                            <option value="32"></option>
-                                                                            <option value="34"></option>
-                                                                            <option value="36"></option>
-                                                                            <option value="38"></option>
-                                                                            <option value="40"></option>
-                                                                        </datalist>
-                                                                <span id="APTT_value"></span>
-                                                            </div>
-
-                                                            <div>
-                                                                <label for="CCI">Charlson Comorbidity Index</label>
-                                                                <input class="range_input" type="range" id="CCI" name="CCI" 
-                                                                        min="0" max="1.6" value="0.8" step="0.01" list="tickmarks_8">
-                                                                        <datalist id="tickmarks_8">
-                                                                            <option value="0"></option>
-                                                                            <option value="0.16"></option>
-                                                                            <option value="0.32"></option>
-                                                                            <option value="0.48"></option>
-                                                                            <option value="0.64"></option>
-                                                                            <option value="0.8"></option>
-                                                                            <option value="0.96"></option>
-                                                                            <option value="1.12"></option>
-                                                                            <option value="1.28"></option>
-                                                                            <option value="1.44"></option>
-                                                                            <option value="1.6"></option>
-                                                                        </datalist>
-                                                                <span id="CCI_value"></span>
-                                                            </div>
-
-                                                            <div>
-                                                                <label for="Elixhauser">Elixhauser Comorbidity Index</label>
-                                                                <input class="range_input" type="range" id="Elixhauser" name="Elixhauser" 
-                                                                        min="0" max="2" value="1" step="0.1" list="tickmarks_9">
-                                                                        <datalist id="tickmarks_9">
-                                                                            <option value="0"></option>
-                                                                            <option value="0.2"></option>
-                                                                            <option value="0.4"></option>
-                                                                            <option value="0.6"></option>
-                                                                            <option value="0.8"></option>
-                                                                            <option value="1"></option>
-                                                                            <option value="1.2"></option>
-                                                                            <option value="1.4"></option>
-                                                                            <option value="1.6"></option>
-                                                                            <option value="1.8"></option>
-                                                                            <option value="2"></option>
-                                                                        </datalist>
-                                                                <span id="Elixhauser_value"></span>
-                                                            </div>
-
-                                                            <div>
-                                                                <!-- <input class="range_input" type="range" id="Rivision" name="Rivision" 
-                                                                        min="0" max="1" value="0" step="1"> -->
-                                                                <label for="Rivision">Rivision</label>
-                                                                <input type="radio" id="Rivision_0" name="Rivision" value="0"
-                                                                        checked>
-                                                                <label for="Rivision_0">0</label>
-                                                                <input type="radio" id="Rivision_1" name="Rivision" value="1">                                        
-                                                                <label for="Rivision_1">1</label>
-                                                            </div>
-
-                                                            <div>
-                                                                <label for="ASA_2">ASA</label>
-                                                                <!-- <input class="range_input" type="range" id="ASA_2" name="ASA_2" 
-                                                                        min="0" max="1" value="0" step="1"> -->
-                                                                <input type="radio" id="ASA_2_0" name="ASA_2" value="0"
-                                                                        checked>
-                                                                <label for="ASA_2_0">0</label>
-                                                                <input type="radio" id="ASA_2_1" name="ASA_2" value="1">                                        
-                                                                <label for="ASA_2_1">1</label>
-                                                            </div>
-
-                                                            <div>
-                                                                <!-- <input class="range_input" type="range" id="positive_culture" name="positive_culture" 
-                                                                        min="0" max="1" value="0" step="1"> -->
-                                                                <label for="positive_culture">Single positive culture</label>
-                                                                <input type="radio" id="positive_culture_0" name="positive_culture" value="0"
-                                                                        checked>
-                                                                <label for="positive_culture_0">0</label>
-                                                                <input type="radio" id="positive_culture_1" name="positive_culture" value="1">                                        
-                                                                <label for="positive_culture_1">1</label>
-                                                            </div>
-
-                                                            <div>
-                                                                <label for="Serum_CRP">Serum CRP (mg/L)</label>
-                                                                <input class="range_input" type="range" id="Serum_CRP" name="Serum_CRP" 
-                                                                        min="0" max="320" value="160" step="1" list="tickmarks_10">
-                                                                        <datalist id="tickmarks_10">
-                                                                            <option value="0"></option>
-                                                                            <option value="32"></option>
-                                                                            <option value="64"></option>
-                                                                            <option value="96"></option>
-                                                                            <option value="128"></option>
-                                                                            <option value="160"></option>
-                                                                            <option value="192"></option>
-                                                                            <option value="224"></option>
-                                                                            <option value="256"></option>
-                                                                            <option value="288"></option>
-                                                                            <option value="320"></option>
-                                                                        </datalist>
-                                                                <span id="Serum_CRP_value"></span>
-                                                            </div>
-
-                                                            <div>
-                                                                <label for="Serum_ESR">Serum ESR (mm/h)</label>
-                                                                <input class="range_input" type="range" id="Serum_ESR" name="Serum_ESR" 
-                                                                        min="0" max="110" value="55" step="1" list="tickmarks_11">
-                                                                        <datalist id="tickmarks_11">
-                                                                            <option value="0"></option>
-                                                                            <option value="11"></option>
-                                                                            <option value="22"></option>
-                                                                            <option value="33"></option>
-                                                                            <option value="44"></option>
-                                                                            <option value="55"></option>
-                                                                            <option value="66"></option>
-                                                                            <option value="77"></option>
-                                                                            <option value="88"></option>
-                                                                            <option value="99"></option>
-                                                                            <option value="110"></option>
-                                                                        </datalist>
-                                                                <span id="Serum_ESR_value"></span>
-                                                            </div>
-
-                                                            <div>
-                                                                <label for="Synovial_WBC">Synovial WBC (mL)</label>
-                                                                <input class="range_input" type="range" id="Synovial_WBC" name="Synovial_WBC" 
-                                                                        min="0" max="170000" value="85000" step="1" list="tickmarks_12">
-                                                                        <datalist id="tickmarks_12">
-                                                                            <option value="0"></option>
-                                                                            <option value="17000"></option>
-                                                                            <option value="34000"></option>
-                                                                            <option value="51000"></option>
-                                                                            <option value="68000"></option>
-                                                                            <option value="85000"></option>
-                                                                            <option value="102000"></option>
-                                                                            <option value="119000"></option>
-                                                                            <option value="136000"></option>
-                                                                            <option value="153000"></option>
-                                                                            <option value="170000"></option>
-                                                                        </datalist>
-                                                                <span id="Synovial_WBC_value"></span>
-                                                            </div>
-                                                            <div>
-                                                                <!-- <input class="range_input" type="range" id="Single_Positive_culture" name="Single_Positive_culture" 
-                                                                        min="0" max="1" value="0" step="1"> -->
-                                                                <label for="Single_Positive_culture">Single positive culture</label>
-                                                                <input type="radio" id="Single_Positive_culture_0" name="Single_Positive_culture" value="0"
-                                                                        checked>
-                                                                <label for="Single_Positive_culture_0">0</label>
-                                                                <input type="radio" id="Single_Positive_culture_1" name="Single_Positive_culture" value="1">                                        
-                                                                <label for="Single_Positive_culture_1">1</label>
-                                                            </div>
-                                                            <div>
-                                                                <label for="Synovial_PMN">Synovial PMN (%)</label>
-                                                                <input class="range_input" type="range" id="Synovial_PMN" name="Synovial_PMN" 
-                                                                        min="0" max="100" value="50" step="1" list="tickmarks_13">
-                                                                        <datalist id="tickmarks_13">
-                                                                            <option value="0"></option>
-                                                                            <option value="10"></option>
-                                                                            <option value="20"></option>
-                                                                            <option value="30"></option>
-                                                                            <option value="40"></option>
-                                                                            <option value="50"></option>
-                                                                            <option value="60"></option>
-                                                                            <option value="70"></option>
-                                                                            <option value="80"></option>
-                                                                            <option value="90"></option>
-                                                                            <option value="100"></option>
-                                                                        </datalist>
-                                                                <span id="Synovial_PMN_value"></span>
-                                                            </div>
-                                                            <div>
-                                                                <!-- <input class="range_input" type="range" id="Positive_Histology" name="Positive_Histology" 
-                                                                        min="0" max="1" value="0" step="1"> -->
-                                                                <label for="Positive_Histology">Positive histology </label>
-                                                                <input type="radio" id="Positive_Histology_0" name="Positive_Histology" value="0"
-                                                                        checked>
-                                                                <label for="Positive_Histology_0">0</label>
-                                                                <input type="radio" id="Positive_Histology_1" name="Positive_Histology" value="1">                                        
-                                                                <label for="Positive_Histology_1">1</label>
-                                                            </div>
-                                                            <div>
-                                                                <!-- <input class="range_input" type="range" id="Purulence" name="Purulence" 
-                                                                        min="0" max="1" value="0" step="1"> -->
-                                                                <label for="Purulence">Intraoperative purulence</label>
-                                                                <input type="radio" id="Purulence_0" name="Purulence" value="0"
-                                                                        checked>
-                                                                <label for="Purulence_0">0</label>
-                                                                <input type="radio" id="Purulence_1" name="Purulence" value="1">                                        
-                                                                <label for="Purulence_1">1</label>
-                                                            </div>
-                                                            
-                                                            <div>
-                                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div style="flex: 1; font-size: 2rem; font-weight: 600;">{{ result }}</div>
-                                                </div>
-                                            </div>
-                                            <!-- Dashboard Tab Pane 2-->
-                                            <div class="tab-pane fade" id="activities" role="tabpanel" aria-labelledby="activities-pill">
-                                                <img src="static/assets/img/feature_importances.png" 
-                                                    width="800"
-                                                    height="640">
-                                                <!-- <img src="static/assets/img/force_plot.png" 
-                                                    width="900"
-                                                    height="135"> -->
-                                                <img src="static/assets/img/summary_plot.png" 
-                                                    width="600"
-                                                    height="600">
-                                            </div>
-                                        </div>
-                                    </div>
+                            <!-- Tabbed dashboard card example-->
+                            <div class="card mb-4">
+                                <div class="card-header border-bottom">
+                                    <!-- Dashboard card navigation-->
+                                    <ul class="nav nav-tabs card-header-tabs" id="dashboardNav" role="tablist">
+                                        <li class="nav-item me-1"><a class="nav-link active" id="overview-pill" href="#overview" data-bs-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">Interactive Bar</a></li>
+                                        <!-- <li class="nav-item"><a class="nav-link" id="activities-pill" href="#activities" data-bs-toggle="tab" role="tab" aria-controls="activities" aria-selected="false">SHAP</a></li> -->
+                                    </ul>
                                 </div>
-                                <!-- Illustration dashboard card example-->
-                                <!-- <div class="card mb-4">
-                                    <div class="card-body py-5">
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <img class="img-fluid mb-4" src="static/assets/img/illustrations/data-report.svg" alt="" style="height: 10rem" />
-                                            <div class="text-center px-0 px-lg-5">
-                                                <h5>New reports are here! Generate custom reports now!</h5>
-                                                <p class="mb-4">Our new report generation system is now online. You can start creating custom reporting for any documents available on your account.</p>
-                                                <a class="btn btn-primary p-3" href="#!">Get Started</a>
+                                <div class="card-body">
+                                    <div class="tab-content" id="dashboardNavContent">
+                                        <!-- Dashboard Tab Pane 1-->
+                                        <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-pill">
+                                            <img src="static/assets/img/confusion_matrix.jpg" width="400" height="400">
+                                            <div style="display: flex; flex-direction: row;">
+                                                <div style="flex: 1;">
+                                                    <p>Input parameters:</p>
+                                                    <form id="myForm" action="#" method="post">
+                                                        <div>
+                                                            <label for="age">Age (y)</label>
+                                                            <input class="range_input input_arg" type="range" id="age" name="age" 
+                                                                    min="0" max="100" value="50" step="1" list="tickmarks_1">
+                                                                    <datalist id="tickmarks_1">
+                                                                        <option value="0" label="0%"></option>
+                                                                        <option value="10"></option>
+                                                                        <option value="20"></option>
+                                                                        <option value="30"></option>
+                                                                        <option value="40"></option>
+                                                                        <option value="50" label="100%"></option>
+                                                                        <option value="60"></option>
+                                                                        <option value="70"></option>
+                                                                        <option value="80"></option>
+                                                                        <option value="90"></option>
+                                                                        <option value="100" label="200%"></option>
+                                                                    </datalist>
+                                                            <span id="age_value"></span>
+                                                        </div>
+                                                        <div>
+                                                            <label for="segment">Neutrophil segment (%)</label>
+                                                            <input class="range_input input_arg" type="range" id="segment" name="segment"
+                                                                    min="53" max="85" value="69" step="0.1" list="tickmarks_2">
+                                                                    <datalist id="tickmarks_2">
+                                                                        <option value="53"></option>
+                                                                        <option value="56.2"></option>
+                                                                        <option value="59.4"></option>
+                                                                        <option value="62.6"></option>
+                                                                        <option value="65.8"></option>
+                                                                        <option value="69"></option>
+                                                                        <option value="72.2"></option>
+                                                                        <option value="75.4"></option>
+                                                                        <option value="78.6"></option>
+                                                                        <option value="81.8"></option>
+                                                                        <option value="85"></option>
+                                                                    </datalist>
+                                                            <span id="segment_value"></span>
+                                                        </div>
+                                                        <div>
+                                                            <label for="HGB">Hb (g/dL)</label>
+                                                            <input class="range_input input_arg" type="range" id="HGB" name="HGB" 
+                                                                    min="8" max="16" value="12" step="0.1" list="tickmarks_3">
+                                                                    <datalist id="tickmarks_3">
+                                                                        <option value="8"></option>
+                                                                        <option value="8.8"></option>
+                                                                        <option value="9.6"></option>
+                                                                        <option value="10.4"></option>
+                                                                        <option value="11.2"></option>
+                                                                        <option value="12"></option>
+                                                                        <option value="12.8"></option>
+                                                                        <option value="13.6"></option>
+                                                                        <option value="14.4"></option>
+                                                                        <option value="15.2"></option>
+                                                                        <option value="16"></option>
+                                                                    </datalist>
+                                                            <span id="HGB_value"></span>
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="PLATELET">PLATELET(1000/mL)</label>
+                                                            <input class="range_input input_arg" type="range" id="PLATELET" name="PLATELET" 
+                                                                    min="150" max="450" value="300" step="1" list="tickmarks_4">
+                                                                    <datalist id="tickmarks_4">
+                                                                        <option value="150"></option>
+                                                                        <option value="180"></option>
+                                                                        <option value="210"></option>
+                                                                        <option value="240"></option>
+                                                                        <option value="270"></option>
+                                                                        <option value="300"></option>
+                                                                        <option value="330"></option>
+                                                                        <option value="360"></option>
+                                                                        <option value="390"></option>
+                                                                        <option value="420"></option>
+                                                                        <option value="450"></option>
+                                                                    </datalist>
+                                                            <span id="PLATELET_value"></span>
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="Serum_WBC">Serum WBC (1000/mL)</label>
+                                                            <input class="range_input input_arg" type="range" id="Serum_WBC" name="Serum_WBC" 
+                                                                    min="4" max="16" value="10" step="0.1" list="tickmarks_5">
+                                                                    <datalist id="tickmarks_5">
+                                                                        <option value="4"></option>
+                                                                        <option value="5.2"></option>
+                                                                        <option value="6.4"></option>
+                                                                        <option value="7.6"></option>
+                                                                        <option value="8.8"></option>
+                                                                        <option value="10"></option>
+                                                                        <option value="11.2"></option>
+                                                                        <option value="12.4"></option>
+                                                                        <option value="13.6"></option>
+                                                                        <option value="14.8"></option>
+                                                                        <option value="16"></option>
+                                                                    </datalist>
+                                                            <span id="Serum_WBC_value"></span>
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="P.T">PT (s)</label>
+                                                            <input class="range_input input_arg" type="range" id="P_T" name="P.T" 
+                                                                    min="8" max="16" value="12" step="0.1" list="tickmarks_6">
+                                                                    <datalist id="tickmarks_6">
+                                                                        <option value="8"></option>
+                                                                        <option value="8.8"></option>
+                                                                        <option value="9.6"></option>
+                                                                        <option value="10.4"></option>
+                                                                        <option value="11.2"></option>
+                                                                        <option value="12"></option>
+                                                                        <option value="12.8"></option>
+                                                                        <option value="13.6"></option>
+                                                                        <option value="14.4"></option>
+                                                                        <option value="15.2"></option>
+                                                                        <option value="16"></option>
+                                                                    </datalist>
+                                                            <span id="P_T_value"></span>
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="APTT">APTT (s)</label>
+                                                            <input class="range_input input_arg" type="range" id="APTT" name="APTT" 
+                                                                    min="20" max="40" value="30" step="1" list="tickmarks_7">
+                                                                    <datalist id="tickmarks_7">
+                                                                        <option value="20"></option>
+                                                                        <option value="22"></option>
+                                                                        <option value="24"></option>
+                                                                        <option value="26"></option>
+                                                                        <option value="28"></option>
+                                                                        <option value="30"></option>
+                                                                        <option value="32"></option>
+                                                                        <option value="34"></option>
+                                                                        <option value="36"></option>
+                                                                        <option value="38"></option>
+                                                                        <option value="40"></option>
+                                                                    </datalist>
+                                                            <span id="APTT_value"></span>
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="CCI">Charlson Comorbidity Index</label>
+                                                            <input class="range_input input_arg" type="range" id="CCI" name="CCI" 
+                                                                    min="0" max="1.6" value="0.8" step="0.01" list="tickmarks_8">
+                                                                    <datalist id="tickmarks_8">
+                                                                        <option value="0"></option>
+                                                                        <option value="0.16"></option>
+                                                                        <option value="0.32"></option>
+                                                                        <option value="0.48"></option>
+                                                                        <option value="0.64"></option>
+                                                                        <option value="0.8"></option>
+                                                                        <option value="0.96"></option>
+                                                                        <option value="1.12"></option>
+                                                                        <option value="1.28"></option>
+                                                                        <option value="1.44"></option>
+                                                                        <option value="1.6"></option>
+                                                                    </datalist>
+                                                            <span id="CCI_value"></span>
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="Elixhauser">Elixhauser Comorbidity Index</label>
+                                                            <input class="range_input input_arg" type="range" id="Elixhauser" name="Elixhauser" 
+                                                                    min="0" max="2" value="1" step="0.1" list="tickmarks_9">
+                                                                    <datalist id="tickmarks_9">
+                                                                        <option value="0"></option>
+                                                                        <option value="0.2"></option>
+                                                                        <option value="0.4"></option>
+                                                                        <option value="0.6"></option>
+                                                                        <option value="0.8"></option>
+                                                                        <option value="1"></option>
+                                                                        <option value="1.2"></option>
+                                                                        <option value="1.4"></option>
+                                                                        <option value="1.6"></option>
+                                                                        <option value="1.8"></option>
+                                                                        <option value="2"></option>
+                                                                    </datalist>
+                                                            <span id="Elixhauser_value"></span>
+                                                        </div>
+
+                                                        <div>
+                                                            <!-- <input class="range_input input_arg" type="range" id="Rivision" name="Rivision" 
+                                                                    min="0" max="1" value="0" step="1"> -->
+                                                            <label for="Revision">Revision</label>
+                                                            <input class="input_arg" type="radio" id="Revision_0" name="Revision" value="0"
+                                                                    checked>
+                                                            <label for="Revision_0">0</label>
+                                                            <input class="input_arg" type="radio" id="Revision_1" name="Revision" value="1">                                        
+                                                            <label for="Revision_1">1</label>
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="ASA_2">ASA</label>
+                                                            <!-- <input class="range_input input_arg" type="range" id="ASA_2" name="ASA_2" 
+                                                                    min="0" max="1" value="0" step="1"> -->
+                                                            <input class="input_arg" type="radio" id="ASA_2_0" name="ASA_2" value="0"
+                                                                    checked>
+                                                            <label for="ASA_2_0">0</label>
+                                                            <input class="input_arg" type="radio" id="ASA_2_1" name="ASA_2" value="1">                                        
+                                                            <label for="ASA_2_1">1</label>
+                                                        </div>
+
+                                                        <div>
+                                                            <!-- <input class="range_input input_arg" type="range" id="positive_culture" name="positive_culture" 
+                                                                    min="0" max="1" value="0" step="1"> -->
+                                                            <label for="positive_culture">Single positive culture</label>
+                                                            <input class="input_arg" type="radio" id="positive_culture_0" name="positive_culture" value="0"
+                                                                    checked>
+                                                            <label for="positive_culture_0">0</label>
+                                                            <input class="input_arg" type="radio" id="positive_culture_1" name="positive_culture" value="1">                                        
+                                                            <label for="positive_culture_1">1</label>
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="Serum_CRP">Serum CRP (mg/L)</label>
+                                                            <input class="range_input input_arg" type="range" id="Serum_CRP" name="Serum_CRP" 
+                                                                    min="0" max="320" value="160" step="1" list="tickmarks_10">
+                                                                    <datalist id="tickmarks_10">
+                                                                        <option value="0"></option>
+                                                                        <option value="32"></option>
+                                                                        <option value="64"></option>
+                                                                        <option value="96"></option>
+                                                                        <option value="128"></option>
+                                                                        <option value="160"></option>
+                                                                        <option value="192"></option>
+                                                                        <option value="224"></option>
+                                                                        <option value="256"></option>
+                                                                        <option value="288"></option>
+                                                                        <option value="320"></option>
+                                                                    </datalist>
+                                                            <span id="Serum_CRP_value"></span>
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="Serum_ESR">Serum ESR (mm/h)</label>
+                                                            <input class="range_input input_arg" type="range" id="Serum_ESR" name="Serum_ESR" 
+                                                                    min="0" max="110" value="55" step="1" list="tickmarks_11">
+                                                                    <datalist id="tickmarks_11">
+                                                                        <option value="0"></option>
+                                                                        <option value="11"></option>
+                                                                        <option value="22"></option>
+                                                                        <option value="33"></option>
+                                                                        <option value="44"></option>
+                                                                        <option value="55"></option>
+                                                                        <option value="66"></option>
+                                                                        <option value="77"></option>
+                                                                        <option value="88"></option>
+                                                                        <option value="99"></option>
+                                                                        <option value="110"></option>
+                                                                    </datalist>
+                                                            <span id="Serum_ESR_value"></span>
+                                                        </div>
+
+                                                        <div>
+                                                            <label for="Synovial_WBC">Synovial WBC (mL)</label>
+                                                            <input class="range_input input_arg" type="range" id="Synovial_WBC" name="Synovial_WBC" 
+                                                                    min="0" max="170000" value="85000" step="1" list="tickmarks_12">
+                                                                    <datalist id="tickmarks_12">
+                                                                        <option value="0"></option>
+                                                                        <option value="17000"></option>
+                                                                        <option value="34000"></option>
+                                                                        <option value="51000"></option>
+                                                                        <option value="68000"></option>
+                                                                        <option value="85000"></option>
+                                                                        <option value="102000"></option>
+                                                                        <option value="119000"></option>
+                                                                        <option value="136000"></option>
+                                                                        <option value="153000"></option>
+                                                                        <option value="170000"></option>
+                                                                    </datalist>
+                                                            <span id="Synovial_WBC_value"></span>
+                                                        </div>
+                                                        <div>
+                                                            <!-- <input class="range_input input_arg" type="range" id="Single_Positive_culture" name="Single_Positive_culture" 
+                                                                    min="0" max="1" value="0" step="1"> -->
+                                                            <label for="Single_Positive_culture">Single positive culture</label>
+                                                            <input class="input_arg" type="radio" id="Single_Positive_culture_0" name="Single_Positive_culture" value="0"
+                                                                    checked>
+                                                            <label for="Single_Positive_culture_0">0</label>
+                                                            <input class="input_arg" type="radio" id="Single_Positive_culture_1" name="Single_Positive_culture" value="1">                                        
+                                                            <label for="Single_Positive_culture_1">1</label>
+                                                        </div>
+                                                        <div>
+                                                            <label for="Synovial_PMN">Synovial PMN (%)</label>
+                                                            <input class="range_input input_arg" type="range" id="Synovial_PMN" name="Synovial_PMN" 
+                                                                    min="0" max="100" value="50" step="1" list="tickmarks_13">
+                                                                    <datalist id="tickmarks_13">
+                                                                        <option value="0"></option>
+                                                                        <option value="10"></option>
+                                                                        <option value="20"></option>
+                                                                        <option value="30"></option>
+                                                                        <option value="40"></option>
+                                                                        <option value="50"></option>
+                                                                        <option value="60"></option>
+                                                                        <option value="70"></option>
+                                                                        <option value="80"></option>
+                                                                        <option value="90"></option>
+                                                                        <option value="100"></option>
+                                                                    </datalist>
+                                                            <span id="Synovial_PMN_value"></span>
+                                                        </div>
+                                                        <div>
+                                                            <!-- <input class="range_input input_arg" type="range" id="Positive_Histology" name="Positive_Histology" 
+                                                                    min="0" max="1" value="0" step="1"> -->
+                                                            <label for="Positive_Histology">Positive histology </label>
+                                                            <input class="input_arg" type="radio" id="Positive_Histology_0" name="Positive_Histology" value="0"
+                                                                    checked>
+                                                            <label for="Positive_Histology_0">0</label>
+                                                            <input class="input_arg" type="radio" id="Positive_Histology_1" name="Positive_Histology" value="1">                                        
+                                                            <label for="Positive_Histology_1">1</label>
+                                                        </div>
+                                                        <div>
+                                                            <!-- <input class="range_input input_arg" type="range" id="Purulence" name="Purulence" 
+                                                                    min="0" max="1" value="0" step="1"> -->
+                                                            <label for="Purulence">Intraoperative purulence</label>
+                                                            <input class="input_arg" type="radio" id="Purulence_0" name="Purulence" value="0"
+                                                                    checked>
+                                                            <label for="Purulence_0">0</label>
+                                                            <input class="input_arg" type="radio" id="Purulence_1" name="Purulence" value="1">                                        
+                                                            <label for="Purulence_1">1</label>
+                                                        </div>
+                                                        
+                                                        <div>
+                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                        </div>
+                                                        <div style="flex: 1; font-size: 2rem; font-weight: 600;">
+                                                            <label for="Result" style="flex: 1; font-size: 2rem; font-weight: 800;">Result: </label>
+                                                            {{ result }}
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="card-body" id="reactive_diagram_box"></div>
+                                                
                                             </div>
                                         </div>
-                                    </div>
-                                </div> -->
-                                <div class="row">
-                                    <div class="col-xl-6 mb-4">
-                                        <!-- <div class="card card-header-actions h-100">
-                                            <div class="card-header">
-                                                Recent Activity
-                                                <div class="dropdown no-caret">
-                                                    <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownMenuButton" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="text-gray-500" data-feather="more-vertical"></i></button>
-                                                    <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownMenuButton">
-                                                        <h6 class="dropdown-header">Filter Activity:</h6>
-                                                        <a class="dropdown-item" href="#!"><span class="badge bg-green-soft text-green my-1">Commerce</span></a>
-                                                        <a class="dropdown-item" href="#!"><span class="badge bg-blue-soft text-blue my-1">Reporting</span></a>
-                                                        <a class="dropdown-item" href="#!"><span class="badge bg-yellow-soft text-yellow my-1">Server</span></a>
-                                                        <a class="dropdown-item" href="#!"><span class="badge bg-purple-soft text-purple my-1">Users</span></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="timeline timeline-xs">
-                                                    <div class="timeline-item">
-                                                        <div class="timeline-item-marker">
-                                                            <div class="timeline-item-marker-text">27 min</div>
-                                                            <div class="timeline-item-marker-indicator bg-green"></div>
-                                                        </div>
-                                                        <div class="timeline-item-content">
-                                                            New order placed!
-                                                            <a class="fw-bold text-dark" href="#!">Order #2912</a>
-                                                            has been successfully placed.
-                                                        </div>
-                                                    </div>
-                                                    <div class="timeline-item">
-                                                        <div class="timeline-item-marker">
-                                                            <div class="timeline-item-marker-text">58 min</div>
-                                                            <div class="timeline-item-marker-indicator bg-blue"></div>
-                                                        </div>
-                                                        <div class="timeline-item-content">
-                                                            Your
-                                                            <a class="fw-bold text-dark" href="#!">weekly report</a>
-                                                            has been generated and is ready to view.
-                                                        </div>
-                                                    </div>
-                                                    <div class="timeline-item">
-                                                        <div class="timeline-item-marker">
-                                                            <div class="timeline-item-marker-text">2 hrs</div>
-                                                            <div class="timeline-item-marker-indicator bg-purple"></div>
-                                                        </div>
-                                                        <div class="timeline-item-content">
-                                                            New user
-                                                            <a class="fw-bold text-dark" href="#!">Valerie Luna</a>
-                                                            has registered
-                                                        </div>
-                                                    </div>
-                                                    <div class="timeline-item">
-                                                        <div class="timeline-item-marker">
-                                                            <div class="timeline-item-marker-text">1 day</div>
-                                                            <div class="timeline-item-marker-indicator bg-yellow"></div>
-                                                        </div>
-                                                        <div class="timeline-item-content">Server activity monitor alert</div>
-                                                    </div>
-                                                    <div class="timeline-item">
-                                                        <div class="timeline-item-marker">
-                                                            <div class="timeline-item-marker-text">1 day</div>
-                                                            <div class="timeline-item-marker-indicator bg-green"></div>
-                                                        </div>
-                                                        <div class="timeline-item-content">
-                                                            New order placed!
-                                                            <a class="fw-bold text-dark" href="#!">Order #2911</a>
-                                                            has been successfully placed.
-                                                        </div>
-                                                    </div>
-                                                    <div class="timeline-item">
-                                                        <div class="timeline-item-marker">
-                                                            <div class="timeline-item-marker-text">1 day</div>
-                                                            <div class="timeline-item-marker-indicator bg-purple"></div>
-                                                        </div>
-                                                        <div class="timeline-item-content">
-                                                            Details for
-                                                            <a class="fw-bold text-dark" href="#!">Marketing and Planning Meeting</a>
-                                                            have been updated.
-                                                        </div>
-                                                    </div>
-                                                    <div class="timeline-item">
-                                                        <div class="timeline-item-marker">
-                                                            <div class="timeline-item-marker-text">2 days</div>
-                                                            <div class="timeline-item-marker-indicator bg-green"></div>
-                                                        </div>
-                                                        <div class="timeline-item-content">
-                                                            New order placed!
-                                                            <a class="fw-bold text-dark" href="#!">Order #2910</a>
-                                                            has been successfully placed.
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <!-- Dashboard Tab Pane 2-->
+                                        <!-- <div class="tab-pane fade" id="activities" role="tabpanel" aria-labelledby="activities-pill">
+                                            <img src="static/assets/img/feature_importances.png" 
+                                                width="800"
+                                                height="640">
+                                            <img src="static/assets/img/force_plot.png" 
+                                                width="900"
+                                                height="135">
+                                            <img src="static/assets/img/summary_plot.png" 
+                                                width="600"
+                                                height="600">
                                         </div> -->
-                                    </div>
-                                    <div class="col-xl-6 mb-4">
-                                        <!-- <div class="card h-100">
-                                            <div class="card-header">Traffic Sources</div>
-                                            <div class="card-body">
-                                                <div class="chart-pie mb-4"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-                                                <div class="list-group list-group-flush">
-                                                    <div class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
-                                                        <div class="me-3">
-                                                            <i class="fas fa-circle fa-sm me-1 text-blue"></i>
-                                                            Direct
-                                                        </div>
-                                                        <div class="fw-500 text-dark">55%</div>
-                                                    </div>
-                                                    <div class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
-                                                        <div class="me-3">
-                                                            <i class="fas fa-circle fa-sm me-1 text-purple"></i>
-                                                            Social
-                                                        </div>
-                                                        <div class="fw-500 text-dark">15%</div>
-                                                    </div>
-                                                    <div class="list-group-item d-flex align-items-center justify-content-between small px-0 py-2">
-                                                        <div class="me-3">
-                                                            <i class="fas fa-circle fa-sm me-1 text-green"></i>
-                                                            Referral
-                                                        </div>
-                                                        <div class="fw-500 text-dark">30%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                    </div>
+                                    </div>    
                                 </div>
                             </div>
+                            <!-- Illustration dashboard card example-->
+                            <div class="row">
+                                <div class="col-xl-6 mb-4">
+                                </div>
+                                <div class="col-xl-6 mb-4">
+                                </div>
+                            </div>
+                            
                             <div class="col-xxl-4">
                                 <div class="row">
                                     <div class="col-xl-6 col-xxl-12">
-                                        <!-- Team members / people dashboard card example-->
-                                        <!-- <div class="card mb-4">
-                                            <div class="card-header">People</div>
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                                    <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                        <div class="avatar avatar-xl me-3 bg-gray-200"><img class="avatar-img img-fluid" src="static/assets/img/illustrations/profiles/profile-1.png" alt="" /></div>
-                                                        <div class="d-flex flex-column fw-bold">
-                                                            <a class="text-dark line-height-normal mb-1" href="#!">Sid Rooney</a>
-                                                            <div class="small text-muted line-height-normal">Position</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="dropdown no-caret">
-                                                        <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownPeople1" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="more-vertical"></i></button>
-                                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownPeople1">
-                                                            <a class="dropdown-item" href="#!">Action</a>
-                                                            <a class="dropdown-item" href="#!">Another action</a>
-                                                            <a class="dropdown-item" href="#!">Something else here</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                                    <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                        <div class="avatar avatar-xl me-3 bg-gray-200"><img class="avatar-img img-fluid" src="static/assets/img/illustrations/profiles/profile-2.png" alt="" /></div>
-                                                        <div class="d-flex flex-column fw-bold">
-                                                            <a class="text-dark line-height-normal mb-1" href="#!">Keelan Garza</a>
-                                                            <div class="small text-muted line-height-normal">Position</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="dropdown no-caret">
-                                                        <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownPeople2" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="more-vertical"></i></button>
-                                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownPeople2">
-                                                            <a class="dropdown-item" href="#!">Action</a>
-                                                            <a class="dropdown-item" href="#!">Another action</a>
-                                                            <a class="dropdown-item" href="#!">Something else here</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                                    <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                        <div class="avatar avatar-xl me-3 bg-gray-200"><img class="avatar-img img-fluid" src="static/assets/img/illustrations/profiles/profile-3.png" alt="" /></div>
-                                                        <div class="d-flex flex-column fw-bold">
-                                                            <a class="text-dark line-height-normal mb-1" href="#!">Kaia Smyth</a>
-                                                            <div class="small text-muted line-height-normal">Position</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="dropdown no-caret">
-                                                        <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownPeople3" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="more-vertical"></i></button>
-                                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownPeople3">
-                                                            <a class="dropdown-item" href="#!">Action</a>
-                                                            <a class="dropdown-item" href="#!">Another action</a>
-                                                            <a class="dropdown-item" href="#!">Something else here</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                                    <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                        <div class="avatar avatar-xl me-3 bg-gray-200"><img class="avatar-img img-fluid" src="static/assets/img/illustrations/profiles/profile-4.png" alt="" /></div>
-                                                        <div class="d-flex flex-column fw-bold">
-                                                            <a class="text-dark line-height-normal mb-1" href="#!">Kerri Kearney</a>
-                                                            <div class="small text-muted line-height-normal">Position</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="dropdown no-caret">
-                                                        <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownPeople4" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="more-vertical"></i></button>
-                                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownPeople4">
-                                                            <a class="dropdown-item" href="#!">Action</a>
-                                                            <a class="dropdown-item" href="#!">Another action</a>
-                                                            <a class="dropdown-item" href="#!">Something else here</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                                    <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                        <div class="avatar avatar-xl me-3 bg-gray-200"><img class="avatar-img img-fluid" src="static/assets/img/illustrations/profiles/profile-5.png" alt="" /></div>
-                                                        <div class="d-flex flex-column fw-bold">
-                                                            <a class="text-dark line-height-normal mb-1" href="#!">Georgina Findlay</a>
-                                                            <div class="small text-muted line-height-normal">Position</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="dropdown no-caret">
-                                                        <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownPeople5" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="more-vertical"></i></button>
-                                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownPeople5">
-                                                            <a class="dropdown-item" href="#!">Action</a>
-                                                            <a class="dropdown-item" href="#!">Another action</a>
-                                                            <a class="dropdown-item" href="#!">Something else here</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="d-flex align-items-center justify-content-between">
-                                                    <div class="d-flex align-items-center flex-shrink-0 me-3">
-                                                        <div class="avatar avatar-xl me-3 bg-gray-200"><img class="avatar-img img-fluid" src="static/assets/img/illustrations/profiles/profile-6.png" alt="" /></div>
-                                                        <div class="d-flex flex-column fw-bold">
-                                                            <a class="text-dark line-height-normal mb-1" href="#!">Wilf Ingram</a>
-                                                            <div class="small text-muted line-height-normal">Position</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="dropdown no-caret">
-                                                        <button class="btn btn-transparent-dark btn-icon dropdown-toggle" id="dropdownPeople6" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="more-vertical"></i></button>
-                                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up" aria-labelledby="dropdownPeople6">
-                                                            <a class="dropdown-item" href="#!">Action</a>
-                                                            <a class="dropdown-item" href="#!">Another action</a>
-                                                            <a class="dropdown-item" href="#!">Something else here</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> -->
                                     </div>
                                     <div class="col-xl-6 col-xxl-12">
                                         <!-- Project tracker card example-->
-                                        <!-- <div class="card card-header-actions mb-4">
-                                            <div class="card-header">
-                                                Projects
-                                                <a class="btn btn-sm btn-primary-soft text-primary" href="#!">Create New</a>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="d-flex align-items-center justify-content-between small mb-1">
-                                                    <div class="fw-bold">Server Setup</div>
-                                                    <div class="small">25%</div>
-                                                </div>
-                                                <div class="progress mb-3"><div class="progress-bar bg-danger" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div></div>
-                                                <div class="d-flex align-items-center justify-content-between small mb-1">
-                                                    <div class="fw-bold">Database Migration</div>
-                                                    <div class="small">50%</div>
-                                                </div>
-                                                <div class="progress mb-3"><div class="progress-bar bg-warning" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div></div>
-                                                <div class="d-flex align-items-center justify-content-between small mb-1">
-                                                    <div class="fw-bold">Version Release</div>
-                                                    <div class="small">75%</div>
-                                                </div>
-                                                <div class="progress mb-3"><div class="progress-bar bg-primary" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div></div>
-                                                <div class="d-flex align-items-center justify-content-between small mb-1">
-                                                    <div class="fw-bold">Product Listings</div>
-                                                    <div class="small">100%</div>
-                                                </div>
-                                                <div class="progress"><div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div></div>
-                                            </div>
-                                        </div> -->
                                     </div>
                                 </div>
                                 <!-- Illustration dashboard card example-->
-                                <!-- <div class="card">
-                                    <div class="card-body text-center p-5">
-                                        <img class="img-fluid mb-4" src="static/assets/img/illustrations/team-spirit.svg" alt="" style="max-width: 16.25rem" />
-                                        <h5>Team Access</h5>
-                                        <p class="mb-4">Upgrade your plan to get access to team collaboration tools.</p>
-                                        <a class="btn btn-primary p-3" href="#!">Upgrade</a>
-                                    </div>
-                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -1000,6 +502,18 @@
                 </footer>
             </div>
         </div>
+        {% if reactive_rule_json is defined %}
+        <script>
+            console.log("running");
+            const reactive_rule_json = JSON.parse('{{ reactive_rule_json | tojson }}');
+            const reactive_rule_map_json = JSON.parse('{{ reactive_rule_map_json | tojson }}');
+            const result = '{{ result }}'
+            const result_xgb = '{{ result_xgb }}'
+            const result_rf = '{{ result_rf }}'
+            const result_nb = '{{ result_nb }}'
+            const result_lr = '{{ result_lr }}'
+        </script>
+        {% endif %}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/static/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" crossorigin="anonymous"></script>
@@ -1007,6 +521,6 @@
         <script src="/static/assets/demo/chart-pie-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/static/js/datatables/datatables-simple-demo.js"></script>
-        <script src="/static/js/reactive_diagram.js"></script>
+        <script defer src="/static/js/reactive_diagram.js"></script>
     </body>
 </html>

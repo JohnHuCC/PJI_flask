@@ -1,0 +1,21 @@
+{
+    "A": "Age",
+    "B": "Segment (%)",
+    "C": "HGB",
+    "D": "PLATELET",
+    "E": "Serum WBC",
+    "F": "P.T",
+    "G": "APTT",
+    "H": "Total CCI",
+    "I": "Total Elixhauser",
+    "J": "Revision",
+    "K": "ASA_2",
+    "L": "positive culture",
+    "M": "Serum CRP",
+    "N": "Serum ESR",
+    "O": "Synovial WBC" ,
+    "P": "Single Positive culture",
+    "Q": "Synovial_PMN" ,
+    "R": "Positive Histology" ,
+    "S": "Purulence"
+}

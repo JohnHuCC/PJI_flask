@@ -630,11 +630,6 @@ def personalDP(PID):
 
     explainers_counter = 5  # 找出 n 組候選 explainers
     CONDITIOS_AvgFidelity = {}
-    # 根據ground_truth & Meta Learner 調節
-    if pID_idx >= 3:
-        rule_1, rule_2 = 0, 1  # ground_truth: N, Meta: N
-    else:
-        rule_1, rule_2 = 1, 0  # ground_truth: I, Meta: I
 
     # In[7]: File reading and pre-processing
     # 6.1 讀檔與前處理作業
@@ -642,7 +637,6 @@ def personalDP(PID):
         '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
     # df = pd.read_excel('/Users/johnnyhu/Desktop/Revision_PJI_main.xlsx')
 
-    no_group = list(df['No.Group'])
     df.drop(columns=['Name', 'CTNO', 'CSN',
             'Turbidity', 'Color'], inplace=True)
     df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
@@ -725,6 +719,7 @@ def personalDP(PID):
     # a. 把可能造成overfitting 的 outcome (temp_col) 先移除，再補值
     # b. 補值後再行合併
     # c. df.copy(), 複製此對象的索引和數據, 同時 reset_index, 重組index,避免產生莫名的邏輯錯誤
+    no_group = list(df['No.Group'])
     internal = df.copy().reset_index(drop=True)
     internal_temp_df = internal[temp_col].copy()
     internal.drop(columns=['Date of first surgery ',
@@ -844,7 +839,6 @@ def personalDP(PID):
     # 6.16 修正 columns name
     internal_X = internal_X.rename(columns={"Synovial Neutrophil": "Synovial_PMN",
                                             "Pulurence": "Purulence"})
-
     # In[8]: feature_selection2 by feature importance from PJI-PI-01-02-2021.docx (Table 4)
     feature_selection2 = [
         'Age',
@@ -924,7 +918,19 @@ def personalDP(PID):
         stacking_model.fit(X_train.values, y_train.values)
         joblib.dump(stacking_model, 'PJI_model/Stacking_model_'+str(PID))
     personal_result = stacking_model.predict(X_test.values)[0]
+    # 根據ground_truth & Meta Learner 調節
+    if personal_result == 0:
+        rule_1, rule_2 = 0, 1  # ground_truth: N, Meta: N
+    else:
+        rule_1, rule_2 = 1, 0  # ground_truth: I, Meta: I
+
     print("Stacking Prediction : {}".format(personal_result))
+
+    # '''test for export the progress'''
+    # tempfile = open("progress.tmp", "w")
+    # tempfile.write(personal_result)
+    # tempfile.close()
+    # '''end test'''
 
     if os.path.exists('PJI_model/Stacking_model_'+str(PID)) & os.path.exists("Decision_rule/decision_rule_"+str(PID)+".json"):
         print("model exists, skip pruning...")
@@ -1168,8 +1174,8 @@ def personalDP(PID):
         for s_, singleton_ in zip(sym_array, final_singleton):
             ns_all.append(Symbol(singleton_))
 
-        print('ns_all:')
-        print(ns_all)
+        # print('ns_all:')
+        # print(ns_all)
         # In[30]: call the simplify_logic and get the Simplify_decisionRules
         Simplify_DecisionRules = "{}".format(
             simplify_logic(SOPform(ns_all, minterms_), 'dnf'))
@@ -1244,20 +1250,4 @@ def personalDP(PID):
 
 if __name__ == "__main__":
     run_id = int(sys.argv[1])
-    # run_list = [212, 232, 242, 252, 262, 272, 282, 292, 302, 322, 332, 342]
-    # for i in range(len(run_list)):
-    #     try:
-    #         personalDP(run_list[i])
-    #         print('over:'+str(i))
-    #     except func_timeout.exceptions.FunctionTimedOut:
-    #         print('timeout:' + str(run_list[i]))
     personalDP(run_id)
-    # my_timer = Timer(5, kill, [ping])#這裏設定時間，和命令
-    # try:
-    #     my_timer.start()#啟用
-    #     stdout, stderr = ping.communicate()#獲得輸出
-    #     #print stderr
-    #     print time.ctime()
-    # finally:
-    #     print time.ctime()
-    #     my_timer.cancel()

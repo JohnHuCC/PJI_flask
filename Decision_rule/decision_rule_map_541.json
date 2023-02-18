@@ -1,0 +1,11 @@
+{
+    "A": "APTT > 28.5",
+    "B": "Segment > 65.5",
+    "C": "Hb <= 13.5",
+    "D": "Synovial_WBC > 8883.5",
+    "E": "Synovial_PMN > 60.5",
+    "F": "Serum_ESR > 41.0",
+    "G": "P_T > 5.0",
+    "H": "Positive_Histology == True",
+    "I": "Serum_CRP > 10.5"
+}

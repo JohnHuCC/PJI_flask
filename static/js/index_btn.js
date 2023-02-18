@@ -1,5 +1,6 @@
 $(() => {
     function load_circle(){
+        // console.log("circle clicked")
         $('#example').shCircleLoader({
             // border radius
             // "auto" - calculate from selector's width and height
@@ -24,7 +25,20 @@ $(() => {
 
             // customize the animation
             keyframes: '0%{{prefix}transform:scale(1)}80%{{prefix}transform:scale(.3)}100%{{prefix}transform:scale(1)}',
-        });    
+        });
+        let i = 0;
+        setInterval(function(){
+            if (++i > 100) $('#example').shCircleLoader('destroy');
+            // if (++i > 50) $.ajax({
+            //     type: "GET",
+            //     url: "/progress", //localhost Flask
+            //     success: function (data) {
+            //         if (data == "1") {
+            //             $('#example').shCircleLoader('progress', i + '%');
+            //         }
+            //     }
+            // });
+        }, 200)
     }
     $(document).on("click", ".editbtn", function () {
         console.log(this.getAttribute("data-id"));

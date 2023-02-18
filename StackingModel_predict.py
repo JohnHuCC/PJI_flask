@@ -51,6 +51,22 @@ if pID_idx >= 3:
 else:
     rule_1, rule_2 = 1, 0  # ground_truth: I, Meta: I
 
+
+def Comorbidity(df):
+    # drop 不相關的病症
+    # 針對共病症再整併處理
+    df.drop(columns=uncorr_diseases, inplace=True)
+    df['Hypertension'] = df['Hypertension Uncomplicated'] + \
+        df['Hypertension Complicated']
+    df['Paralysis or neurological disorders'] = df['Paralysis'] + \
+        df['Other Neurological Disorders']
+    df['Diabetes mellitus'] = df['Diabetes Uncomplicated'] + \
+        df['Diabetes Complicated']
+    df['Anemia'] = df['Blood Loss Anemia'] + df['Deficiency Anemia']
+    df.drop(columns=combine_disease, inplace=True)
+    return df
+
+
 # In[7]: File reading and pre-processing
 # 6.1 讀檔與前處理作業
 df = pd.read_excel(
@@ -352,9 +368,18 @@ svc_pipe = Pipeline([
     ("svc", SVC(probability=True, random_state=123, C=10, gamma=0.01))
 ])
 
-model_xgb = xgb.fit(X_tr.values, y_tr.values)
+model_xgb = xgb.fit(X_train.values, y_train.values)
+model_rf = rf.fit(X_train.values, y_train.values)
+model_nb = nb_pipe.fit(X_train.values, y_train.values)
+model_lr = lr_pipe.fit(X_train.values, y_train.values)
 xgb_predict = model_xgb.predict(X_val)
-
+rf_predict = model_rf.predict(X_val)
+nb_predict = model_nb.predict(X_val)
+lr_predict = model_lr.predict(X_val)
+print('xgb_predict:'+str(xgb_predict))
+print('rf_predict:'+str(rf_predict))
+print('nb_predict:'+str(nb_predict))
+print('lr_predict:'+str(lr_predict))
 # 8.2 Stacking Model from 80% dataset   ?
 stacking_model = StackingClassifier(
     classifiers=[xgb, rf, lr_pipe, nb_pipe],
@@ -364,21 +389,12 @@ stacking_model = StackingClassifier(
     meta_classifier=svc_pipe
 )
 
-# df_x_train = pd.DataFrame(X_train)
-# df_y_train = pd.DataFrame(y_train)
-# # print(df_x_train.columns.values.tolist())
-# df_x_train.to_csv(r"C:\Users\JohnnyHu\Desktop\PJI_x_train.csv",
-#                   index=False, sep=',')
-# # print(df_y_train)
-# df_y_train.to_csv(r"C:\Users\JohnnyHu\Desktop\PJI_y_train.csv",
-#                   index=False, sep=',')
-
 # 8.3 Stacking Model from 100% dataset
 stacking_model.fit(X_train.values, y_train.values)
 joblib.dump(stacking_model, 'Stacking_model')
-
-loaded_model = joblib.load('Stacking_model')
-
-print(loaded_model.predict(X_test))
+joblib.dump(model_xgb, 'Xgboost_model')
+joblib.dump(model_rf, 'RandomForest_model')
+joblib.dump(model_nb, 'NaiveBayes_model')
+joblib.dump(model_lr, 'LogisticRegression_model')
 
 target = ['0', '1']
