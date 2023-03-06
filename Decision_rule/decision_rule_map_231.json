@@ -1,0 +1,15 @@
+{
+    "A": "Segment <= 64.5",
+    "B": "Purulence == False",
+    "C": "PLATELET <= 447.0",
+    "D": "Positive_Histology == True",
+    "E": "Serum_ESR > 49.5",
+    "F": "APTT > 28.5",
+    "G": "P_T > 10.5",
+    "H": "Age > 58.5",
+    "I": "two_positive_culture == True",
+    "J": "Hb > 4.5",
+    "K": "Synovial_PMN > 41.5",
+    "L": "Total_Elixhauser_Groups_per_record > 0.5",
+    "M": "Serum_CRP > 146.5"
+}

@@ -169,8 +169,7 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]
-        :node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]                                        :node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -862,7 +861,7 @@ def personalDP(PID):
         'Positive Histology',  # category
         'Purulence',    # 'Pulurence' , category
     ]
-
+    start_c = time.time()
     ### 補充:  iloc vs loc 功能說明 ###
     # iloc，即index locate 用index索引進行定位，所以引數是整型，如：df.iloc[10:20, 3:5]
     # loc，則可以使用column名和index名進行定位，如：df.loc[‘image1’:‘image10’, ‘age’:‘score’]
@@ -964,7 +963,6 @@ def personalDP(PID):
                                                    X_test, loaded_model,
                                                    Explainer_depth, explainers_counter)
 
-        start_c = time.time()
         # 10.1 Prepare the val_df (size = 10) for calculate fidelity scores
         VAL_SIZE = 1
         VAL_DATASET = []
@@ -1249,5 +1247,8 @@ def personalDP(PID):
 
 
 if __name__ == "__main__":
-    run_id = int(sys.argv[1])
-    personalDP(run_id)
+    # run_id = int(sys.argv[1])
+    # personalDP(run_id)
+    run_id = [62, 121, 151, 171, 231, 271, 331, 491, 531]
+    for i in range(len(run_id)):
+        personalDP(run_id[i])

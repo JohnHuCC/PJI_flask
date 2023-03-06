@@ -1,0 +1,13 @@
+{
+    "A": "Segment > 65.5",
+    "B": "Hb > 7.5",
+    "C": "Synovial_WBC > 55979.5",
+    "D": "Serum_CRP > 3.5",
+    "E": "Purulence == False",
+    "F": "Positive_Histology == True",
+    "G": "Synovial_PMN > 63.0",
+    "H": "APTT > 28.5",
+    "I": "P_T > 10.5",
+    "J": "two_positive_culture == True",
+    "K": "Age > 33.0"
+}

@@ -67,15 +67,54 @@ def index():
         dict_p = request.get_json()
         if dict_p["btnID"] == "0":
             p_id = dict_p["patientID"]
-            return url_for('personal_info', p_id=p_id)
+            return url_for('pick_new_data', p_id=p_id)
         elif dict_p["btnID"] == "1":
             p_id = dict_p["patientID"]
             return url_for('model_diagnosis', p_id=p_id)
         elif dict_p["btnID"] == "2":
             p_id = dict_p["patientID"]
             return url_for('reactive_diagram', p_id=p_id)
+        elif dict_p["btnID"] == "3":
+            p_id = dict_p["patientID"]
+            return url_for('upload_new_data', p_id=p_id)
 
     return render_template('index.html', u=u, name=user)
+
+
+@app.route('/train_new_data', methods=['GET', 'POST'])
+def train_new_data():
+    session.permanent = True
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
+
+    if uid != None:
+        user = User.get_by_uid(uid)
+        print(user)
+        if user == None:
+            # no such user
+            redirect('/auth_login')
+    else:
+        redirect('/auth_login')
+
+    conn = pymysql.connect(host='127.0.0.1', user='root',
+                           password='love29338615', port=3306, db='PJI')
+    cur = conn.cursor()
+    sql = "SELECT * FROM PJI.pji_new_data ORDER BY CAST(pji_new_data.no_group AS unsigned);"
+    cur.execute(sql)
+    u = cur.fetchall()
+    conn.close()
+
+    if request.method == 'POST':
+        dict_p = request.get_json()
+        if dict_p["btnID"] == "0":
+            p_id = dict_p["patientID"]
+            return url_for('pick_new_data', p_id=p_id)
+
+    return render_template('train_new_data.html', u=u, name=user)
 
 
 if __name__ == "__main__":
@@ -127,14 +166,76 @@ def auth_password():
     return render_template('auth_password.html')
 
 
-@app.route("/dashboard")
-def dashboard():
-    return render_template('dashboard.html')
+@app.route("/pick_new_data")
+def pick_new_data():
+    session.permanent = True
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
+    # uid = session['user-id']
+    if uid != None:
+        user = User.get_by_uid(uid)
+        if user == None:
+            redirect('/auth_login')
+        else:
+            username = user
+    name = request.args.get('p_id')
+    personal_result = personal_DecisionPath2.personalDP(int(name))
+    if (personal_result == 1):
+        result_text = "Infected"
+    else:
+        result_text = "Aseptic"
+    conn = pymysql.connect(host='127.0.0.1', user='root',
+                           password='love29338615', port=3306, db='PJI')
+    cur = conn.cursor()
+    sql = "SELECT * FROM PJI.pji_new_data WHERE no_group =" + str(name)
+    cur.execute(sql)
+    new_data = cur.fetchall()
+    conn.close()
+
+    decision_list_file = open("decision_list_file.txt", "r")
+    decision_list_file_content = decision_list_file.read().strip()
+    decision_list = decision_list_file_content.split("\n")
+    decision_list_file.close()
+    decision_list_json = json.load(
+        open("Decision_rule/decision_rule_"+name+".json"))
+    rule_map_json = json.load(
+        open("Decision_rule/decision_rule_map_"+name+".json"))
+    return render_template('pick_new_data.html', name=name, u=new_data, result=result_text, username=username, decision_list=decision_list, decision_list_json=decision_list_json, rule_map_json=rule_map_json)
 
 
-@app.route("/chart2")
-def chart2():
-    return render_template('chart2.html')
+@app.route("/upload_new_data", methods=['GET', 'POST'])
+def upload_new_data():
+    session.permanent = True
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
+
+    if uid != None:
+        user = User.get_by_uid(uid)
+        print(user)
+        if user == None:
+            # no such user
+            redirect('/auth_login')
+    else:
+        redirect('/auth_login')
+    name = request.args.get('p_id')
+    conn = pymysql.connect(host='127.0.0.1', user='root',
+                           password='love29338615', port=3306, db='PJI')
+    cur = conn.cursor()
+    sql_delete = f"DELETE FROM PJI.pji_new_data WHERE no_group = {str(name)};"
+    sql_insert = f"INSERT INTO PJI.revision_pji SELECT * FROM PJI.pji_new_data WHERE no_group = {str(name)};"
+    cur.execute(sql_insert)
+    cur.execute(sql_delete)
+    conn.commit()
+    conn.close()
+    return url_for('train_new_data')
 
 
 @app.route("/chart3")
@@ -208,9 +309,9 @@ def reactive_diagram():
         result_lr = Vision_compare.lr_predict(predict_data)
 
         if (result1[0] == 1):
-            result_text = "Infected!"
+            result_text = "Infected"
         else:
-            result_text = "You are safe!"
+            result_text = "Aseptic"
         reactive_rule_json = json.load(
             open("Decision_rule/reactive_rule.json"))
 
@@ -220,11 +321,13 @@ def reactive_diagram():
         Vision_compare.plt_con()
         print("running end")
         return render_template('reactive_diagram.html', result=result_text, reactive_rule_json=reactive_rule_json, reactive_rule_map_json=reactive_rule_map_json,
-                               result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user)
+                               result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user, predict_data=arr)
+        # return render_template('reactive_diagram.html', result=result_text, reactive_rule_json=reactive_rule_json, reactive_rule_map_json=reactive_rule_map_json,
+        #                        result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user)
     return render_template('reactive_diagram.html', user=user)
 
 
-@app.route('/personal_info')
+@ app.route('/personal_info')
 def personal_info():
     session.permanent = True
     uid = None
@@ -237,7 +340,6 @@ def personal_info():
     if uid != None:
         user = User.get_by_uid(uid)
         if user == None:
-            # no such user
             redirect('/auth_login')
         else:
             username = user
@@ -246,7 +348,7 @@ def personal_info():
     if (personal_result == 1):
         result_text = "Infected!"
     else:
-        result_text = "Not Infected!"
+        result_text = "Aseptic!"
     conn = pymysql.connect(host='127.0.0.1', user='root',
                            password='love29338615', port=3306, db='PJI')
     cur = conn.cursor()

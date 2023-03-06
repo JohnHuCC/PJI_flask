@@ -52,49 +52,10 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Reactive Diagram
                         </a>
-                        <a class="nav-link" href="train_new_data">
+                        <a class="nav-link" href="pick_new_data">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            New Data
+                            Pick New Data
                         </a>
-
-                        <!-- <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Functions
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="model_diagnosis">Decision Path</a>
-                                <a class="nav-link" href="reactive_diagram">Reactive Diagram</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
-                                    Authentication
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="auth_login.html">Login</a>
-                                        <a class="nav-link" href="auth_register.html">Register</a>
-                                    </nav>
-                                </div>
-                            </nav>
-                        </div> -->
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -110,7 +71,7 @@
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
-                                PJI Data Example
+                                New Data Input
                             </div>
                             <div class="card-body">
                                 <table id="datatablesSimple">
@@ -118,7 +79,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Group</th>
-                                            <!-- <th>Name</th> -->
+                                            <th>Name</th>
                                             <th>Serum ESR</th>
                                             <th>Positive Histology</th>
                                             <th>Synovial WBC</th>
@@ -130,7 +91,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Group</th>
-                                            <!-- <th>Name</th> -->
+                                            <th>Name</th>
                                             <th>Serum ESR</th>
                                             <th>Positive Histology</th>
                                             <th>Synovial WBC</th>
@@ -143,14 +104,14 @@
                                         <tr>
                                             <td>{{ i[0] }}</td>
                                             <td>{{ i[2] }}</td>
-                                            <!-- <td>{{ i[3] }}</td> -->
+                                            <td>{{ i[3] }}</td>
                                             <td>{{ i[19] }}</td>
                                             <td>{{ i[32] }}</td>
                                             <td>{{ i[33] }}</td>
                                             <td>{{ i[28] }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm editbtn"
-                                                data-btn="0" data-id="{{ i[0] }}">個人資料</button>
+                                                data-btn="0" data-id="{{ i[0] }}">訓練資料</button>
                                                 <!-- <button type="button" class="btn btn-info btn-sm editbtn"
                                                 data-btn="2" data-id="{{ i[0] }}">互動圖表</button>                                   -->
                                             </td>
@@ -167,10 +128,10 @@
     </div> <!--?-->
     <style>
         .datatable-table tr:nth-child(odd){
-            background-color: #f8f9fa;
+            background-color: #ffffff;
         }
         .datatable-table tr:nth-child(even){
-            background-color: #e2e6ea;
+            background-color: #aab6fb;
         }
     </style>
     <script defer src="/static/js/index_btn.js"></script>

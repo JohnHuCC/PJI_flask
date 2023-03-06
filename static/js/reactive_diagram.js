@@ -2,7 +2,12 @@ console.log("Reactive Diagram js loaded");
 
 let range_inputs = document.querySelectorAll(".range_input");
 let inputs_args = document.querySelectorAll(".input_arg");
-
+let _predict_data = predict_data.replace("[", "").replace("]", "")
+let predict_data_arr = _predict_data.split(",")
+predict_data_arr.forEach((e, i) =>{
+    predict_data_arr[i] = parseFloat(e)
+})
+console.log(predict_data_arr)
 
 range_inputs.forEach(element => {
     let range_value = document.querySelector(`#${element.id}_value`);
@@ -34,13 +39,13 @@ color_arr = ["#ece4e2", "#fcd3d1", "#fcd3d1", "#fcd3d1", "#fcd3d1", "#fcd3d1", "
 "#fe7773", "#fe7773", "#fe7773", "#fe7773", ]
 function insertNode(g, name) {
     if (!g.hasNode(name)) {
-        inputs_args.forEach(element => {
+        inputs_args.forEach((element, index) => {
             let comp_A = element.name.toLowerCase().replace('_', ' ')
             let comp_B = reactive_rule_map_json[name].toLowerCase().replace('_', ' ')
             if (element.type == "radio" && element.checked) {
                 if (comp_B.includes(comp_A)) {
                     console.log(comp_B, comp_A, element.value)
-                    g.setNode(name, { label: `${reactive_rule_map_json[name]}: ${element.value}`, style: "fill:" + color_arr[count] , labelStyle: "font-weight: bold", width: 200, height:40})
+                    g.setNode(name, { label: `${reactive_rule_map_json[name]}: ${predict_data_arr[index]}`, style: "fill:" + color_arr[count] , labelStyle: "font-weight: bold", width: 200, height:40})
                     // g.setNode(name, { label: reactive_rule_map_json[name], style: "fill: #afa" , labelStyle: "font-weight: bold"})
                     count += 1
                 }
@@ -48,7 +53,7 @@ function insertNode(g, name) {
             }
             else if (element.type != "radio" && comp_B.includes(comp_A)) {
                 console.log(comp_B, comp_A, element.value)
-                g.setNode(name, { label: `${reactive_rule_map_json[name]}: ${element.value}`, style: "fill:" + color_arr[count] , labelStyle: "font-weight: bold", width: 200, height:40})
+                g.setNode(name, { label: `${reactive_rule_map_json[name]}: ${predict_data_arr[index]}`, style: "fill:" + color_arr[count] , labelStyle: "font-weight: bold", width: 200, height:40})
                 // g.setNode(name, { label: reactive_rule_map_json[name], style: "fill: #afa" , labelStyle: "font-weight: bold"})
                 count += 1
                 g.setParent(name, 'FeatureGroups');

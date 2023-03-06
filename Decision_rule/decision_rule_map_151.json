@@ -1,0 +1,14 @@
+{
+    "A": "Synovial_WBC > 535.0",
+    "B": "Purulence == False",
+    "C": "Age <= 89.0",
+    "D": "APTT <= 33.5",
+    "E": "Synovial_PMN > 63.0",
+    "F": "Positive_Histology == True",
+    "G": "Segment > 57.0",
+    "H": "Serum_ESR > 55.5",
+    "I": "P_T > 10.5",
+    "J": "Total_Elixhauser_Groups_per_record <= 1.5",
+    "K": "Hb <= 13.5",
+    "L": "Serum_CRP > 24.5"
+}
