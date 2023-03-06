@@ -14,6 +14,7 @@ import os
 from datetime import timedelta
 import pymysql
 import personal_DecisionPath2
+import smote
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
@@ -183,7 +184,7 @@ def pick_new_data():
         else:
             username = user
     name = request.args.get('p_id')
-    personal_result = personal_DecisionPath2.personalDP(int(name))
+    personal_result = smote.personalDP(int(name))
     if (personal_result == 1):
         result_text = "Infected"
     else:
@@ -201,9 +202,9 @@ def pick_new_data():
     decision_list = decision_list_file_content.split("\n")
     decision_list_file.close()
     decision_list_json = json.load(
-        open("Decision_rule/decision_rule_"+name+".json"))
+        open("decision_rule_"+name+".json"))
     rule_map_json = json.load(
-        open("Decision_rule/decision_rule_map_"+name+".json"))
+        open("decision_rule_map_"+name+".json"))
     return render_template('pick_new_data.html', name=name, u=new_data, result=result_text, username=username, decision_list=decision_list, decision_list_json=decision_list_json, rule_map_json=rule_map_json)
 
 

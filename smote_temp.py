@@ -253,8 +253,12 @@ impute_internal.loc[impute_internal['Synovial Neutrophil']
                     > 100, 'Synovial Neutrophil'] = 100
 
 # 6.14 補值後 drop 'outcome' 以外的其他cols 做為建模的基礎
-internal_X, internal_y = impute_internal[impute_internal.columns[0, 10:]
+internal_X, internal_y = impute_internal[impute_internal.columns[9:]
                                          ], impute_internal['Group']
+print('impute_intermal:')
+print(internal_X)
+# print(
+#     pd.Index(list(impute_internal.columns[0])+list(impute_internal.columns[10:])))
 # internal_y.value_counts().sort_index().plot(
 #     kind='bar', color=['r', 'b'], title="Training dataset", rot=0)
 # plt.show()
@@ -325,7 +329,7 @@ sm = SMOTE(random_state=42)
 X_res, y_res = sm.fit_resample(frames_x, y)
 counter = Counter(y_res)
 print(X_res)
-# X_res.to_csv('New_data_x_test.csv', encoding='utf-8', index=False)
-# y_res.to_csv('New_data_y.csv', encoding='utf-8', index=False)
-# internal_X.to_csv('internal_x.csv', encoding='utf-8', index=False)
-# internal_y.to_csv('internal_y.csv', encoding='utf-8', index=False)
+X_res.to_csv('New_data_x_test.csv', encoding='utf-8', index=False)
+y_res.to_csv('New_data_y_test.csv', encoding='utf-8', index=False)
+internal_X.to_csv('internal_x_test.csv', encoding='utf-8', index=False)
+internal_y.to_csv('internal_y_test.csv', encoding='utf-8', index=False)
