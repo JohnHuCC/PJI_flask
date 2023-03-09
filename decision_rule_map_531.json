@@ -1,0 +1,12 @@
+{
+    "A": "APTT > 26.5",
+    "B": "Age > 31.5",
+    "C": "ASA_2 <= 0.5",
+    "D": "Serum_ESR > 56.0",
+    "E": "Hb <= 13.5",
+    "F": "Segment <= 85.5",
+    "G": "Serum_CRP > 25.0",
+    "H": "Serum_WBC_ <= 9.5",
+    "I": "Synovial_PMN > 35.5",
+    "J": "Synovial_WBC <= 70143.0"
+}

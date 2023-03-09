@@ -217,7 +217,7 @@ def getTopN_Fidelity(fidelity_list, top_N_indices, top_N):
 
     top_n_fidelity_i = sorted(
         range(len(fidelity_list_)), key=lambda k: fidelity_list_[k])[-top_N:]
-
+    print(sorted(fidelity_list_))
     return list(itemgetter(*top_n_fidelity_i)(rules_list_))
 
 

@@ -98,8 +98,8 @@ def personalDP(PID):
         internal_X, internal_y, test_size=0.2, random_state=666, shuffle=True)
 
     # Stacking model
-    stacking_model = joblib.load('Stacking_model')
-    personal_result = stacking_model.predict(X_res)[0]
+    stacking_model = joblib.load('Stacking_model_new_data')
+    personal_result = stacking_model.predict(X_res)[PID_index]
 
     if personal_result == 0:
         rule_1, rule_2 = 0, 1  # ground_truth: N, Meta: N
@@ -119,9 +119,9 @@ def personalDP(PID):
     VAL_DATASET = []
     Y_VAL_DATASET = []
     for i in range(VAL_SIZE):
-        VAL_DATASET.append(resample(X_val, n_samples=55,
+        VAL_DATASET.append(resample(X_val, n_samples=10,
                                     replace=False, random_state=i))
-        Y_VAL_DATASET.append(resample(y_val, n_samples=55,
+        Y_VAL_DATASET.append(resample(y_val, n_samples=10,
                                       replace=False, random_state=i))
 
     # 10.2 Calculate the fidelity by explain_i
@@ -243,10 +243,12 @@ def personalDP(PID):
     trtime = end_b - start_b
     print("train model time = {}".format(trtime))
     start_c = time.time()
+    # print(CONDITIOS_AvgFidelity)
+    # print(explainers.keys())
     # In[14]: Concatenate multi lists for CONDITIOS_AvgFidelity
     rules_list = personal_DecisionPath2.getTopN_Fidelity(
         CONDITIOS_AvgFidelity, list(explainers.keys()), 13)
-    # print(rules_list)
+
     # In[26]: Call the transPOSForm func.
     POS_Form, final_singleton = personal_DecisionPath2.transPOSForm(rules_list)
     # print('POS_Form:')
@@ -313,7 +315,8 @@ def personalDP(PID):
     minterms_ = []
     for i in list(lst_all_):
         minterms_.append(list(np.asarray(i).data))
-
+    # print('minterm:')
+    # print(minterms_)
     # In[29]: POS_minterm process
     sym = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x"
     a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x = symbols(
@@ -325,20 +328,29 @@ def personalDP(PID):
     for s_, singleton_ in zip(sym_array, final_singleton):
         ns_all.append(Symbol(singleton_))
 
-    # print('ns_all:')
-    # print(ns_all)
-
-    # print('minterms:')
-    # print(minterms_)
-    # In[30]: call the simplify_logic and get the Simplify_decisionRules
     Simplify_DecisionRules = "{}".format(
         simplify_logic(SOPform(ns_all, minterms_), 'dnf'))
 
     rule_str = Simplify_DecisionRules
-    # rule_str = rules_list
 
-    # rule_str = ''.join(str(i)+' | ' for i in rules_list)
+    rule_str_sp = rule_str
+    rule_str_sp = rule_str_sp.split('|')
+    for i in range(len(rule_str_sp)):
+        rule_str_sp[i] = rule_str_sp[i].replace('&', 'and').replace(
+            ' (', '').replace('(', '').replace(') ', '').replace(')', '')
 
+    print(rule_str_sp)
+    AV_FIDELITYS = []
+    for condition in rule_str_sp:
+        fidelity = []
+        for val_df in VAL_DATASET:
+            stack_pred = stacking_model.predict(val_df)
+            val_df = val_df.rename(columns=d_path)
+            merge_pred = np.where(val_df.eval(condition), rule_1, rule_2)
+            for tree_idx in tree_candidates[explain_i]:
+                fidelity.append(accuracy_score(stack_pred, merge_pred))
+        AV_FIDELITYS.append(round(np.mean(fidelity), 3))
+    print(AV_FIDELITYS)
     end_d = time.time()
     simplifytime = end_d - start_d
     print("simplify rule time = {}".format(simplifytime))
@@ -348,8 +360,6 @@ def personalDP(PID):
         a = j + i
         rule_str = rule_str.replace(final_singleton[i], str(chr(a)))
 
-    # print('rule_str:')
-    # print(rule_str)
     regex = re.compile('[A-Z]')
     rule_str_sp = rule_str.split('|')
 
@@ -382,27 +392,13 @@ def personalDP(PID):
     with open("decision_rule_map_"+str(PID)+".json", "w") as decision_rule_file:
         json.dump(decision_rule_map, decision_rule_file, indent=4)
 
-    rule_str_sp = rule_str
-    rule_str_sp = rule_str_sp.split('|')
-    for i in range(len(rule_str_sp)):
-        rule_str_sp[i] = rule_str_sp[i].replace('&', 'and').replace(
-            ' (', '').replace('(', '').replace(') ', '').replace(')', '')
-    print(rule_str_sp)
-    # AV_FIDELITYS = []
-    # for condition in rule_str_sp:
-    #     fidelity = []
-    #     for val_df in VAL_DATASET:
-    #         stack_pred = stacking_model.predict(val_df)
-    #         val_df = val_df.rename(columns=d_path)
-    #         merge_pred = np.where(val_df.eval(condition), rule_1, rule_2)
-    #         for tree_idx in tree_candidates[explain_i]:
-    #             fidelity.append(accuracy_score(stack_pred, merge_pred))
-    #     AV_FIDELITYS.append(round(np.mean(fidelity), 3))
     end_e = time.time()
     translatetime = end_e - start_e
     print("translate rule time = {}".format(translatetime))
     return (personal_result)
 
 
-# if __name__ == "__main__":
-#     personalDP(1101)
+if __name__ == "__main__":
+    run_id = [42, 62, 106, 121, 135]
+    for i in range(len(run_id)):
+        personalDP(run_id[i])

@@ -68,7 +68,7 @@ def index():
         dict_p = request.get_json()
         if dict_p["btnID"] == "0":
             p_id = dict_p["patientID"]
-            return url_for('pick_new_data', p_id=p_id)
+            return url_for('personal_info', p_id=p_id)
         elif dict_p["btnID"] == "1":
             p_id = dict_p["patientID"]
             return url_for('model_diagnosis', p_id=p_id)
@@ -78,6 +78,9 @@ def index():
         elif dict_p["btnID"] == "3":
             p_id = dict_p["patientID"]
             return url_for('upload_new_data', p_id=p_id)
+        elif dict_p["btnID"] == "5":
+            p_id = dict_p["patientID"]
+            return url_for('pick_new_data', p_id=p_id)
 
     return render_template('index.html', u=u, name=user)
 
@@ -111,7 +114,7 @@ def train_new_data():
 
     if request.method == 'POST':
         dict_p = request.get_json()
-        if dict_p["btnID"] == "0":
+        if dict_p["btnID"] == "5":
             p_id = dict_p["patientID"]
             return url_for('pick_new_data', p_id=p_id)
 

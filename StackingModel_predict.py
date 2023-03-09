@@ -336,24 +336,22 @@ feature_selection2 = [
 internal_X = internal_X.loc[:, feature_selection2].copy()
 if (debug_model == 1):
     print(internal_X.shape)
-internal_X.tail()
-internal_X.columns
+
+df_X = internal_X[50:]
+df_X = df_X.drop(index=[79, 80, 81, 82, 83, 84, 85, 86, 87, 88])
+df_y = internal_y[50:]
+df_y = df_y.drop(index=[79, 80, 81, 82, 83, 84, 85, 86, 87, 88])
+
+df_X = df_X.reset_index().drop("index", axis=1)
 
 # 7.1 Get the specific patient profile by PID
-X_train, y_train = internal_X.drop(index=PID), internal_y.drop(index=PID)
+X_train, y_train = df_X, df_y
 
-X_test, y_test = internal_X.iloc[PID:PID + 1], internal_y.iloc[PID:PID + 1]
-
-if (debug_model == 1):
-    print("Tr shape: {}, Ts shape: {}".format(X_train.shape, X_test.shape))
-
-
+X_train.to_csv('internal_x.csv', encoding='utf-8', index=False)
+y_train.to_csv('internal_y.csv', encoding='utf-8', index=False)
 # 7.2 Split dataset to tr (80%) and val (20%)
 X_tr, X_val, y_tr, y_val = train_test_split(
     X_train, y_train, test_size=0.2, random_state=666, shuffle=True)
-
-if (debug_model == 1):
-    print("Val shape: {}".format(X_val.shape))
 
 # In[9]: Stacking Modeling
 # 8.1 Construct Base Classifier
@@ -368,18 +366,18 @@ svc_pipe = Pipeline([
     ("svc", SVC(probability=True, random_state=123, C=10, gamma=0.01))
 ])
 
-model_xgb = xgb.fit(X_train.values, y_train.values)
-model_rf = rf.fit(X_train.values, y_train.values)
-model_nb = nb_pipe.fit(X_train.values, y_train.values)
-model_lr = lr_pipe.fit(X_train.values, y_train.values)
-xgb_predict = model_xgb.predict(X_val)
-rf_predict = model_rf.predict(X_val)
-nb_predict = model_nb.predict(X_val)
-lr_predict = model_lr.predict(X_val)
-print('xgb_predict:'+str(xgb_predict))
-print('rf_predict:'+str(rf_predict))
-print('nb_predict:'+str(nb_predict))
-print('lr_predict:'+str(lr_predict))
+# model_xgb = xgb.fit(X_train.values, y_train.values)
+# model_rf = rf.fit(X_train.values, y_train.values)
+# model_nb = nb_pipe.fit(X_train.values, y_train.values)
+# model_lr = lr_pipe.fit(X_train.values, y_train.values)
+# xgb_predict = model_xgb.predict(X_val)
+# rf_predict = model_rf.predict(X_val)
+# nb_predict = model_nb.predict(X_val)
+# lr_predict = model_lr.predict(X_val)
+# print('xgb_predict:'+str(xgb_predict))
+# print('rf_predict:'+str(rf_predict))
+# print('nb_predict:'+str(nb_predict))
+# print('lr_predict:'+str(lr_predict))
 # 8.2 Stacking Model from 80% dataset   ?
 stacking_model = StackingClassifier(
     classifiers=[xgb, rf, lr_pipe, nb_pipe],
@@ -389,12 +387,7 @@ stacking_model = StackingClassifier(
     meta_classifier=svc_pipe
 )
 
-# 8.3 Stacking Model from 100% dataset
-stacking_model.fit(X_train.values, y_train.values)
-joblib.dump(stacking_model, 'Stacking_model')
-joblib.dump(model_xgb, 'Xgboost_model')
-joblib.dump(model_rf, 'RandomForest_model')
-joblib.dump(model_nb, 'NaiveBayes_model')
-joblib.dump(model_lr, 'LogisticRegression_model')
-
-target = ['0', '1']
+# # 8.3 Stacking Model from 100% dataset
+stacking_model.fit(X_train, y_train)
+joblib.dump(stacking_model, 'Stacking_model_new_data')
+# joblib.dump(model_rf, 'RandomForest_model_new_data')

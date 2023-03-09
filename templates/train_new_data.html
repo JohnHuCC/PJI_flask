@@ -22,7 +22,7 @@
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
         <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="">Start</a>
+        <a class="navbar-brand ps-3" href="/">Start</a>
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
         </form>
         <!-- Navbar-->
@@ -52,10 +52,6 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Reactive Diagram
                         </a>
-                        <a class="nav-link" href="pick_new_data">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Pick New Data
-                        </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -77,25 +73,25 @@
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
-                                            <th>No.Group</th>
-                                            <th>Group</th>
-                                            <th>Name</th>
-                                            <th>Serum ESR</th>
+                                            <th>ID</th>
+                                            <th>Age</th>
                                             <th>Positive Histology</th>
-                                            <th>Synovial WBC</th>
+                                            <th>Serum ESR</th>
                                             <th>Serum CRP</th>
+                                            <th>Synovial WBC</th>
+                                            <th>Synovial PMN</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>No.</th>
-                                            <th>Group</th>
-                                            <th>Name</th>
-                                            <th>Serum ESR</th>
+                                            <th>ID</th>
+                                            <th>Age</th>
                                             <th>Positive Histology</th>
-                                            <th>Synovial WBC</th>
+                                            <th>Serum ESR</th>
                                             <th>Serum CRP</th>
+                                            <th>Synovial WBC</th>
+                                            <th>Synovial PMN</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
@@ -104,16 +100,14 @@
                                         <tr>
                                             <td>{{ i[0] }}</td>
                                             <td>{{ i[1] }}</td>
-                                            <td>{{ i[2] }}</td>
-                                            <td>{{ i[3] }}</td>
-                                            <td>{{ i[4] }}</td>
-                                            <td>{{ i[5] }}</td>
-                                            <td>{{ i[6] }}</td>
+                                            <td>{{ i[18] }}</td>
+                                            <td>{{ i[14] }}</td>
+                                            <td>{{ i[13] }}</td>
+                                            <td>{{ i[15] }}</td>
+                                            <td>{{ i[17] }}</td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-sm editbtn"
-                                                data-btn="0" data-id="{{ i[0] }}">訓練資料</button>
-                                                <!-- <button type="button" class="btn btn-info btn-sm editbtn"
-                                                data-btn="2" data-id="{{ i[0] }}">互動圖表</button>                                   -->
+                                                data-btn="5" data-id="{{ i[0] }}">產生模型</button>
                                             </td>
                                         </tr>
                                         {% endfor %}

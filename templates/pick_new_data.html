@@ -23,7 +23,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/d3js/3.5.17/d3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre-d3/0.6.4/dagre-d3.min.js" integrity="sha512-fdYLm4hXxJ/tPMptvdDDwuJme6jTgvoZ0g6pflEkyG9MqPejLspnCjkwX3bD69GFT2N/refZGjPr6b9RdoCyxQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
-        <script type="text/javascript" defer src="/static/js/decisionpath.js"></script>
+        <script type="text/javascript" defer src="/static/js/decisionpath_new_data.js"></script>
         <script type="text/javascript" defer src="/static/js/model_diagnosis.js"></script>
     </head>
     <body class="nav-fixed">
@@ -34,7 +34,9 @@
             <!-- * * Tip * * You can use text or an image for your navbar brand.-->
             <!-- * * * * * * When using an image, we recommend the SVG format.-->
             <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="">Index</a>
+            <a class="navbar-brand ps-3" href="/">Start</a>
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+            </form>
             <!-- Navbar Items-->
             <ul class="navbar-nav align-items-center ms-auto">
                 <!-- Navbar Search Dropdown-->
@@ -80,13 +82,9 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="/">
+                            <a class="nav-link" href="/train_new_data">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Patient Table
-                            </a>
-                            <a class="nav-link" href="personal_info?p_id={{name}}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Personal Information
+                                New Patient Table
                             </a>
                             <a class="nav-link" href="reactive_diagram">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
@@ -134,42 +132,35 @@
                                         {% for i in u %}
                                         <h4 class="small" >
                                             <p class="lh-lg">
-                                                <div class="fs-2 text-body">Name: {{ i[1] }}
+                                                <div class="fs-2 text-body">ID: {{ i[0] }}
                                                 </div>
-                                                <div class="fs-2 text-body">Age: {{ i[2] }}
+                                                <div class="fs-2 text-body">Age: {{ i[1] }}
                                                 </div>
-                                                <div class="fs-2 text-body">Height(m): {{ i[3] }}
-                                                </div>
-                                                <div class="fs-2 text-body">Weight(kg): {{ i[4] }}
-                                                </div>
-                                                <div class="fs-2 text-body">ID: {{ i[5] }}
-                                                </div>
-                                            </p>
                                         </h4>
-                                        <!-- <h4 class="small">
+                                        <h4 class="small">
                                             <div class="fs-3 text-body fw-bolder">------------------------------------
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Serum_WBC: {{ i[20] }}
+                                            <div class="fs-3 text-body fw-bolder">Serum_WBC: {{ i[5] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Segment: {{ i[21] }}
+                                            <div class="fs-3 text-body fw-bolder">Segment (%): {{ i[2] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">HGB: {{ i[22] }}
+                                            <div class="fs-3 text-body fw-bolder">HGB: {{ i[3] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Platelet: {{ i[23] }}
+                                            <div class="fs-3 text-body fw-bolder">Platelet: {{ i[4] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">P_T: {{ i[24] }}
+                                            <div class="fs-3 text-body fw-bolder">P_T: {{ i[6] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">APTT: {{ i[25] }}
+                                            <div class="fs-3 text-body fw-bolder">APTT: {{ i[7] }}
                                             </div>
                                         </h4>
                                         <h4 class="small">
                                             <div class="fs-3 text-body fw-bolder">------------------------------------
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Total_CCI: {{ i[51] }}
+                                            <div class="fs-3 text-body fw-bolder">Total_CCI: {{ i[8] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Total_elixhauser_groups_per_record: {{ i[83] }}
+                                            <div class="fs-3 text-body fw-bolder">Total_elixhauser_groups_per_record: {{ i[9] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Primary_Revision_Native_Hip: {{ i[9] }}
+                                            <div class="fs-3 text-body fw-bolder">Primary_Revision_Native_Hip: {{ i[10] }}
                                             </div>
                                             <div class="fs-3 text-body fw-bolder">ASA: {{ i[11] }}
                                             </div>
@@ -177,21 +168,19 @@
                                         <h4 class="small">
                                             <div class="fs-3 text-body fw-bolder">------------------------------------
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Serum_CRP: {{ i[28] }}
+                                            <div class="fs-3 text-body fw-bolder">Serum_CRP: {{ i[13] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Positive Histology: {{ i[32] }}
+                                            <div class="fs-3 text-body fw-bolder">Positive Histology: {{ i[18] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Synovial WBC: {{ i[33] }}
+                                            <div class="fs-3 text-body fw-bolder">Synovial WBC: {{ i[15] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Synovial_Neutrophil: {{ i[34] }}
+                                            <div class="fs-3 text-body fw-bolder">2X Positive_Culture: {{ i[12] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Positive_Culture: {{ i[47] }}
+                                            <div class="fs-3 text-body fw-bolder">Pulurence: {{ i[19] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Pulurence: {{ i[49] }}
+                                            <div class="fs-3 text-body fw-bolder">Single_Positive_Culture: {{ i[16] }}
                                             </div>
-                                            <div class="fs-3 text-body fw-bolder">Single_Positive_Culture: {{ i[50] }}
-                                            </div>
-                                        </h4>                       -->
+                                        </h4>                      
                                         {% endfor %}
                                         <!-- Profile picture upload button-->
                                         <!-- <button class="btn btn-primary" type="button">Update model</button> -->
@@ -216,7 +205,7 @@
                                 <!-- Area chart example-->
                                 <div class="card mb-4">
                                     <div class="card-header d-flex align-items-center">
-                                        <div class="card-body" id="diagnosis_box"></div>                          
+                                        <div class="card-body" id="diagnosis_box_new_data"></div>                          
                                     </div>
                                 </div>
                                 <div class="card mb-4">
