@@ -10,11 +10,17 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/static/css/styles.css" rel="stylesheet" />
         <link href="/static/css/style.css" rel="stylesheet" />
+        <link href="/static/css/progress_bar.css" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png"/>
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/d3js/3.5.17/d3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre-d3/0.6.4/dagre-d3.min.js" integrity="sha512-fdYLm4hXxJ/tPMptvdDDwuJme6jTgvoZ0g6pflEkyG9MqPejLspnCjkwX3bD69GFT2N/refZGjPr6b9RdoCyxQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript" defer src="/static/js/reactive_diagram_dp_draw.js"></script>
+        <script type="text/javascript" defer src="/static/js/reactive_diagram_sim_rule.js"></script>
+        <script type="text/javascript" defer src="/static/js/reactive_diagram_ini_val.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+        <script type="text/javascript" defer src="/static/js/progress_bar.js"></script>
     </head>
     <body class="nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark" id="sidenavAccordion">
@@ -68,9 +74,9 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Patient Table
                             </a>
-                            <a class="nav-link" href="reactive_diagram">
+                            <a class="nav-link" href="model_diagnosis?p_id={{name}}" id="model_diagnosis_link" data-my-value={{name}}>
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Reactive Diagram
+                                Decision Path
                             </a>
                         </div>
                     </div>
@@ -99,7 +105,9 @@
                         </div>
                     </header>
                     <!-- Main page content-->
-                    <div class="container-xl px-4 mt-n10">
+                    <!-- <div class="container-xl px-4 mt-n10"> -->
+                    
+                    <div class="container-fluid px-4 mt-n10">
                         <div class="row">
                             <!-- Tabbed dashboard card example-->
                             <div class="card mb-4">
@@ -107,14 +115,14 @@
                                     <!-- Dashboard card navigation-->
                                     <ul class="nav nav-tabs card-header-tabs" id="dashboardNav" role="tablist">
                                         <li class="nav-item me-1"><a class="nav-link active" id="overview-pill" href="#overview" data-bs-toggle="tab" role="tab" aria-controls="overview" aria-selected="true">Interactive Bar</a></li>
-                                        <!-- <li class="nav-item"><a class="nav-link" id="activities-pill" href="#activities" data-bs-toggle="tab" role="tab" aria-controls="activities" aria-selected="false">SHAP</a></li> -->
+                                        <!-- <li class="nav-item"><a class="nav-link" id="activities-pill" href="#activities" data-bs-toggle="tab" role="tab" aria-controls="activities" aria-selected="false">Flow Chart</a></li> -->
                                     </ul>
                                 </div>
                                 <div class="card-body">
                                     <div class="tab-content" id="dashboardNavContent">
                                         <!-- Dashboard Tab Pane 1-->
                                         <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-pill">
-                                            <img src="static/assets/img/confusion_matrix.jpg" width="400" height="400">
+                                            <!-- <img src="static/assets/img/confusion_matrix.jpg" width="400" height="400"> -->
                                             <div style="display: flex; flex-direction: row;">
                                                 <div style="flex: 1;">
                                                     <p>Input parameters:</p>
@@ -122,7 +130,7 @@
                                                         <div>
                                                             <label for="age">Age (y)</label>
                                                             <input class="range_input input_arg" type="range" id="age" name="age" 
-                                                                    min="0" max="100" value="50" step="1" list="tickmarks_1">
+                                                                    min="0" max="100" value="50" step="1" list="tickmarks_1" style="width: 100%;">
                                                                     <datalist id="tickmarks_1">
                                                                         <option value="0" label="0%"></option>
                                                                         <option value="10"></option>
@@ -141,7 +149,7 @@
                                                         <div>
                                                             <label for="segment">Neutrophil segment (%)</label>
                                                             <input class="range_input input_arg" type="range" id="segment" name="segment"
-                                                                    min="53" max="85" value="69" step="0.1" list="tickmarks_2">
+                                                                    min="53" max="85" value="69" step="0.1" list="tickmarks_2" style="width: 100%;">
                                                                     <datalist id="tickmarks_2">
                                                                         <option value="53"></option>
                                                                         <option value="56.2"></option>
@@ -160,7 +168,7 @@
                                                         <div>
                                                             <label for="HGB">Hb (g/dL)</label>
                                                             <input class="range_input input_arg" type="range" id="HGB" name="HGB" 
-                                                                    min="8" max="16" value="12" step="0.1" list="tickmarks_3">
+                                                                    min="8" max="16" value="12" step="0.1" list="tickmarks_3" style="width: 100%;">
                                                                     <datalist id="tickmarks_3">
                                                                         <option value="8"></option>
                                                                         <option value="8.8"></option>
@@ -180,7 +188,7 @@
                                                         <div>
                                                             <label for="PLATELET">PLATELET(1000/mL)</label>
                                                             <input class="range_input input_arg" type="range" id="PLATELET" name="PLATELET" 
-                                                                    min="150" max="450" value="300" step="1" list="tickmarks_4">
+                                                                    min="150" max="450" value="300" step="1" list="tickmarks_4" style="width: 100%;">
                                                                     <datalist id="tickmarks_4">
                                                                         <option value="150"></option>
                                                                         <option value="180"></option>
@@ -200,7 +208,7 @@
                                                         <div>
                                                             <label for="Serum_WBC">Serum WBC (1000/mL)</label>
                                                             <input class="range_input input_arg" type="range" id="Serum_WBC" name="Serum_WBC" 
-                                                                    min="4" max="16" value="10" step="0.1" list="tickmarks_5">
+                                                                    min="4" max="16" value="10" step="0.1" list="tickmarks_5" style="width: 100%;">
                                                                     <datalist id="tickmarks_5">
                                                                         <option value="4"></option>
                                                                         <option value="5.2"></option>
@@ -220,7 +228,7 @@
                                                         <div>
                                                             <label for="P.T">PT (s)</label>
                                                             <input class="range_input input_arg" type="range" id="P_T" name="P.T" 
-                                                                    min="8" max="16" value="12" step="0.1" list="tickmarks_6">
+                                                                    min="8" max="16" value="12" step="0.1" list="tickmarks_6" style="width: 100%;">
                                                                     <datalist id="tickmarks_6">
                                                                         <option value="8"></option>
                                                                         <option value="8.8"></option>
@@ -240,7 +248,7 @@
                                                         <div>
                                                             <label for="APTT">APTT (s)</label>
                                                             <input class="range_input input_arg" type="range" id="APTT" name="APTT" 
-                                                                    min="20" max="40" value="30" step="1" list="tickmarks_7">
+                                                                    min="20" max="40" value="30" step="1" list="tickmarks_7" style="width: 100%;">
                                                                     <datalist id="tickmarks_7">
                                                                         <option value="20"></option>
                                                                         <option value="22"></option>
@@ -260,7 +268,7 @@
                                                         <div>
                                                             <label for="CCI">Charlson Comorbidity Index</label>
                                                             <input class="range_input input_arg" type="range" id="CCI" name="CCI" 
-                                                                    min="0" max="1.6" value="0.8" step="0.01" list="tickmarks_8">
+                                                                    min="0" max="1.6" value="0.8" step="0.01" list="tickmarks_8" style="width: 100%;">
                                                                     <datalist id="tickmarks_8">
                                                                         <option value="0"></option>
                                                                         <option value="0.16"></option>
@@ -280,7 +288,7 @@
                                                         <div>
                                                             <label for="Elixhauser">Elixhauser Comorbidity Index</label>
                                                             <input class="range_input input_arg" type="range" id="Elixhauser" name="Elixhauser" 
-                                                                    min="0" max="2" value="1" step="0.1" list="tickmarks_9">
+                                                                    min="0" max="2" value="1" step="0.1" list="tickmarks_9" style="width: 100%;">
                                                                     <datalist id="tickmarks_9">
                                                                         <option value="0"></option>
                                                                         <option value="0.2"></option>
@@ -322,7 +330,7 @@
                                                         <div>
                                                             <!-- <input class="range_input input_arg" type="range" id="positive_culture" name="positive_culture" 
                                                                     min="0" max="1" value="0" step="1"> -->
-                                                            <label for="positive_culture">Single positive culture</label>
+                                                            <label for="positive_culture">Two positive culture</label>
                                                             <input class="input_arg" type="radio" id="positive_culture_0" name="positive_culture" value="0"
                                                                     checked>
                                                             <label for="positive_culture_0">0</label>
@@ -333,7 +341,7 @@
                                                         <div>
                                                             <label for="Serum_CRP">Serum CRP (mg/L)</label>
                                                             <input class="range_input input_arg" type="range" id="Serum_CRP" name="Serum_CRP" 
-                                                                    min="0" max="320" value="160" step="1" list="tickmarks_10">
+                                                                    min="0" max="320" value="160" step="1" list="tickmarks_10" style="width: 100%;">
                                                                     <datalist id="tickmarks_10">
                                                                         <option value="0"></option>
                                                                         <option value="32"></option>
@@ -353,7 +361,7 @@
                                                         <div>
                                                             <label for="Serum_ESR">Serum ESR (mm/h)</label>
                                                             <input class="range_input input_arg" type="range" id="Serum_ESR" name="Serum_ESR" 
-                                                                    min="0" max="110" value="55" step="1" list="tickmarks_11">
+                                                                    min="0" max="110" value="55" step="1" list="tickmarks_11" style="width: 100%;">
                                                                     <datalist id="tickmarks_11">
                                                                         <option value="0"></option>
                                                                         <option value="11"></option>
@@ -373,7 +381,7 @@
                                                         <div>
                                                             <label for="Synovial_WBC">Synovial WBC (mL)</label>
                                                             <input class="range_input input_arg" type="range" id="Synovial_WBC" name="Synovial_WBC" 
-                                                                    min="0" max="170000" value="85000" step="1" list="tickmarks_12">
+                                                                    min="0" max="170000" value="85000" step="1" list="tickmarks_12" style="width: 100%;">
                                                                     <datalist id="tickmarks_12">
                                                                         <option value="0"></option>
                                                                         <option value="17000"></option>
@@ -402,7 +410,7 @@
                                                         <div>
                                                             <label for="Synovial_PMN">Synovial PMN (%)</label>
                                                             <input class="range_input input_arg" type="range" id="Synovial_PMN" name="Synovial_PMN" 
-                                                                    min="0" max="100" value="50" step="1" list="tickmarks_13">
+                                                                    min="0" max="100" value="100" step="1" list="tickmarks_13" style="width: 100%;">
                                                                     <datalist id="tickmarks_13">
                                                                         <option value="0"></option>
                                                                         <option value="10"></option>
@@ -433,40 +441,83 @@
                                                                     min="0" max="1" value="0" step="1"> -->
                                                             <label for="Purulence">Intraoperative purulence</label>
                                                             <input class="input_arg" type="radio" id="Purulence_0" name="Purulence" value="0"
-                                                                    checked>
+                                                                checked>
                                                             <label for="Purulence_0">0</label>
-                                                            <input class="input_arg" type="radio" id="Purulence_1" name="Purulence" value="1">                                        
+                                                            <input class="input_arg" type="radio" id="Purulence_1" name="Purulence" value="1" >                                        
                                                             <label for="Purulence_1">1</label>
                                                         </div>
                                                         
                                                         <div>
-                                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                                            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                                                            <button type="button" class="btn btn-primary" id="reactived_submit">Submit</button>
+                                                            
                                                         </div>
-                                                        <div style="flex: 1; font-size: 2rem; font-weight: 600;">
-                                                            <label for="Result" style="flex: 1; font-size: 2rem; font-weight: 800;">Result: </label>
-                                                            {{ result }}
-                                                        </div>
+                                                        
                                                     </form>
                                                 </div>
-                                                <div class="card-body" id="reactive_diagram_box"></div>
                                                 
+                                                <div class="container-xl px-4">
+                                                    <!-- <div class="card-body" id="reactive_diagram_box"></div> -->
+                                                    <!-- Knowledge base article-->
+                                                    <div class="card mb-4">
+                                                        <div style="flex: 1; font-size: 2rem; font-weight: 600;" class="card-body">
+                                                            <div >
+                                                                <label for="progress-bar" style="flex: 1; font-size: 1.5rem; font-weight: 800;">Task Progress:</label>
+                                                                <progress id="progress-bar" value="0" max="100"></progress>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card mb-4">
+                                                        <div style="flex: 1; font-size: 2rem; font-weight: 600;" class="card-body">
+                                                            <label for="Result" style="flex: 1; font-size: 2rem; font-weight: 600;" id="result_text">Result: </label>
+                                                            {{ result }}
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    <div class="card mb-4">
+                                                        <div class="card-header d-flex align-items-center">
+                                                            <!-- <a class="btn btn-transparent-dark btn-icon" href="knowledge-base-category.html"><i data-feather="arrow-left"></i></a> -->
+                                                            <div class="ms-3"><h2 class="my-3">Diagnosis result</h2></div>
+                                                        </div>
+                                                        <div class="card-header d-flex align-items-center">
+                                                            <div class="card-body" id="diagnosis_box_reactive"></div>                          
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="card mb-4">
+                                                        
+                                                        <div class="card-header d-flex align-items-center">
+                                                            <!-- <a class="btn btn-transparent-dark btn-icon" href="knowledge-base-category.html"><i data-feather="arrow-left"></i></a> -->
+                                                            <div class="ms-3"><h2 class="my-3">Simplified decision path</h2></div>
+                                                        </div>
+                            
+                                                        <div id="diagnosis_simplified_result" class="card-body">
+                                                            <!-- <p>(Age <= 89.0 & Positive_Histology == True) | (Positive_Histology == True & Segment <= 70.0 & Serum_ESR <= 70.5 & Total_Elixhauser_Groups_per_record > 0.5)</p> -->
+                                                        </div>  
+
+                                                    </div>
+                                                    <div class="card mb-4">
+                                                        <div class="card-body" id="reactive_diagram_box">
+                                                            <div class="ms-3"><h2 class="my-3">Flow Chart:</h2></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
                                             </div>
                                         </div>
-                                        <!-- Dashboard Tab Pane 2-->
+                                        <!-- Dashboard Tab Pane 2 -->
                                         <!-- <div class="tab-pane fade" id="activities" role="tabpanel" aria-labelledby="activities-pill">
-                                            <img src="static/assets/img/feature_importances.png" 
-                                                width="800"
-                                                height="640">
-                                            <img src="static/assets/img/force_plot.png" 
-                                                width="900"
-                                                height="135">
-                                            <img src="static/assets/img/summary_plot.png" 
-                                                width="600"
-                                                height="600">
+                                            <div class="container-xl px-4">
+                                                <div class="card mb-4">
+                                                    <div class="card-body" id="reactive_diagram_box"></div>
+                                                </div>
+                                            </div>
                                         </div> -->
                                     </div>    
                                 </div>
                             </div>
+                        </div>
+                            
                             <!-- Illustration dashboard card example-->
                             <div class="row">
                                 <div class="col-xl-6 mb-4">
@@ -502,6 +553,9 @@
                 </footer>
             </div>
         </div>
+        <script>
+            const user_data_json = JSON.parse('{{ user_data_json | tojson }}');
+        </script>
         {% if reactive_rule_json is defined %}
         <script>
             console.log("running");
@@ -513,8 +567,13 @@
             const result_nb = '{{ result_nb }}'
             const result_lr = '{{ result_lr }}'
             const predict_data = '{{ predict_data }}'
+            console.log("running2");
+            const reactive_decision_list_json = JSON.parse('{{ reactive_decision_list_json | tojson }}');
+            const reactive_decision_list_map_json = JSON.parse('{{ reactive_decision_list_map_json | tojson }}');
+            const reactived_data_json = JSON.parse('{{ reactived_data_json | tojson }}');
         </script>
         {% endif %}
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="/static/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" crossorigin="anonymous"></script>
@@ -523,5 +582,6 @@
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/static/js/datatables/datatables-simple-demo.js"></script>
         <script defer src="/static/js/reactive_diagram.js"></script>
+
     </body>
 </html>

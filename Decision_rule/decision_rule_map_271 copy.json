@@ -1,0 +1,11 @@
+{
+    "A": "Positive_Histology == True",
+    "B": "Synovial_PMN > 41.0",
+    "C": "Synovial_WBC > 5416.0",
+    "D": "Age <= 89.0",
+    "E": "two_positive_culture == False",
+    "F": "Hb <= 13.5",
+    "G": "P_T > 5.0",
+    "H": "Serum_CRP > 2.5",
+    "I": "APTT > 23.5"
+}

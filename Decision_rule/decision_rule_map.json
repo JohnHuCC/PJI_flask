@@ -1,0 +1,11 @@
+{
+    "A": "Positive_Histology == True",
+    "B": "Serum_CRP > 4.0",
+    "C": "APTT > 31.5",
+    "D": "Segment <= 70.5",
+    "E": "two_positive_culture == False",
+    "F": "Synovial_PMN <= 63.0",
+    "G": "P_T > 5.0",
+    "H": "Hb <= 11.5",
+    "I": "Serum_ESR > 41.0"
+}

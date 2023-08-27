@@ -1,0 +1,13 @@
+{
+    "A": "Purulence == False",
+    "B": "two_positive_culture == False",
+    "C": "Positive_Histology == False",
+    "D": "Age > 45.0",
+    "E": "Serum_WBC_ <= 10.5",
+    "F": "Serum_CRP <= 13.5",
+    "G": "APTT <= 32.5",
+    "H": "Synovial_PMN <= 90.5",
+    "I": "Synovial_WBC <= 34005.0",
+    "J": "Single_Positive_culture <= 0.5",
+    "K": "Total_Elixhauser_Groups_per_record <= 2.5"
+}

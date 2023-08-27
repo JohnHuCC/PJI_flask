@@ -1,13 +1,12 @@
 {
-    "A": "Serum_CRP <= 13.5",
-    "B": "Purulence == False",
-    "C": "Age > 51.5",
-    "D": "Synovial_WBC <= 3650.0",
-    "E": "two_positive_culture == False",
-    "F": "Segment <= 69.5",
-    "G": "Serum_WBC_ <= 11.5",
-    "H": "PLATELET <= 384.0",
-    "I": "Synovial_PMN <= 89.5",
-    "J": "Positive_Histology == False",
-    "K": "Serum_ESR <= 38.5"
+    "A": "Segment > 58.5",
+    "B": "Hb > 5.0",
+    "C": "Serum_ESR > 49.0",
+    "D": "Serum_WBC_ <= 9.5",
+    "E": "Synovial_WBC > 470.0",
+    "F": "APTT > 28.5",
+    "G": "Age <= 71.5",
+    "H": "PLATELET > 271.0",
+    "I": "Serum_CRP > 62.0",
+    "J": "Synovial_PMN > 66.5"
 }

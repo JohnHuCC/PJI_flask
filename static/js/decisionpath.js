@@ -1,8 +1,43 @@
 // Create a new directed graph
 console.log('from decisionpath.js')
 var g = new dagreD3.graphlib.Graph().setGraph({});
+let range_inputs = document.querySelectorAll(".range_input");
 g.setNode("start", { label: "start" });
 g.setNode("infected", { label: "infected" });
+
+range_inputs.forEach(element => {
+    let range_value = document.querySelector(`#${element.id}_value`);
+    range_value.innerHTML = element.value;
+    element.addEventListener("change", event => {
+        console.log(`${element.id}: ${event.target.value}`);
+        document.getElementById("diagnosis_box").innerHTML = "";
+        range_value.innerHTML = element.value;
+        var svg = d3.select("#diagnosis_box").append("svg").attr("width", 1300).attr("height", 500);
+        var inner = svg.append("g");
+        var g = new dagreD3.graphlib.Graph().setGraph({});
+        g.setNode("start", { label: "start" });
+        g.setNode("infected", { label: "infected" });
+        g.graph().rankdir = "LR";
+        g.graph().nodesep = 60;
+        processLL(g, decision_list_json, event.target.value);
+        // Set up zoom support
+        var zoom = d3.behavior.zoom().on("zoom", function () {
+            inner.attr("transform", "translate(" + d3.event.translate + ")" +
+                "scale(" + d3.event.scale + ")");
+        });
+        svg.call(zoom);
+        var render = new dagreD3.render();
+        render(inner, g);
+        // var initialScale = 0.95;
+        var initialScale = 0.1;
+        zoom
+            .translate([(svg_rd_dp.attr("width") - g_rd_dp.graph().width * initialScale_rd_dp) , 20])
+            // .translate([(svg.attr("width") - g.graph().width * initialScale) , 20])
+            .scale(initialScale)
+            .event(svg);
+        svg.attr('height', g.graph().height * initialScale + 40);
+            });
+});
 
 function insertEdge(g, na, nb) {
     if (!g.hasEdge(na, nb)) {
@@ -24,23 +59,24 @@ function processL(g, ns) {
   insertEdge(g, ns[ns.length-1], "infected")
 }
 
-function processLL(g, nss) {
-    Object.keys(nss).forEach(k => { 
-        let ns = nss[k]
-        processL(g, ns)
+function processLL(g, nss, max_num) {
+    Object.keys(nss).forEach(k => {
+        if (Number(k) < max_num || max_num == -1) {
+            let ns = nss[k]
+            processL(g, ns)
+        }
     })
 }
 
+processLL(g, decision_list_json, 5)
 
-processLL(g, decision_list_json)
-
-var svg = d3.select("#diagnosis_box").append("svg").attr("width", 1000).attr("height", 50);
+var svg = d3.select("#diagnosis_box").append("svg").attr("width", 1300).attr("height", 700);
 var inner = svg.append("g");
 
 
 // Set the rankdir
 g.graph().rankdir = "LR";
-g.graph().nodesep = 60;
+g.graph().nodesep = 30;
 
 // Set up zoom support
 var zoom = d3.behavior.zoom().on("zoom", function () {
@@ -61,12 +97,13 @@ render(inner, g);
 // render(inner, g);
 
 // Center the graph
-var initialScale = 0.6;
-zoom
-    .translate([(svg.attr("width") - g.graph().width * initialScale) , 20])
+var initialScale = 0.95;
+// var initialScale = 2;
+zoom     
+    .translate([(svg.attr("width")/1.2 - g.graph().width * initialScale) , 100])
     .scale(initialScale)
     .event(svg);
-svg.attr('height', g.graph().height * initialScale + 40);
+svg.attr('height', g.graph().height * initialScale + 200);
 
 
 

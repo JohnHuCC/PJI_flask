@@ -53,35 +53,35 @@ def tran_df(arr):
 
 
 def stacking_predict(df):
-    loaded_model = joblib.load('Stacking_model')
+    loaded_model = joblib.load('Stacking_model/stacking_model.pkl')
     result = loaded_model.predict(df)
     print(result)
     return result
 
 
 def xgboost_predict(df):
-    loaded_model = joblib.load('Xgboost_model')
+    loaded_model = joblib.load('model_xgb')
     result = loaded_model.predict(df)
     print(result)
     return result
 
 
 def rf_predict(df):
-    loaded_model = joblib.load('RandomForest_model')
+    loaded_model = joblib.load('model_rf')
     result = loaded_model.predict(df)
     print(result)
     return result
 
 
 def nb_predict(df):
-    loaded_model = joblib.load('NaiveBayes_model')
+    loaded_model = joblib.load('model_nb')
     result = loaded_model.predict(df)
     print(result)
     return result
 
 
 def lr_predict(df):
-    loaded_model = joblib.load('LogisticRegression_model')
+    loaded_model = joblib.load('model_lr')
     result = loaded_model.predict(df)
     print(result)
     return result

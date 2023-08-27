@@ -1,0 +1,13 @@
+{
+    "A": "Total_Elixhauser_Groups_per_record <= 2.5",
+    "B": "Positive_Histology == False",
+    "C": "Surgery == True",
+    "D": "two_positive_culture == False",
+    "E": "Serum_CRP <= 38.5",
+    "F": "Purulence == False",
+    "G": "Synovial_PMN <= 87.5",
+    "H": "Synovial_WBC <= 97850.0",
+    "I": "Serum_ESR <= 101.0",
+    "J": "Age > 40.5",
+    "K": "Single_Positive_culture <= 0.5"
+}

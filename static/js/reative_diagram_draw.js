@@ -15,7 +15,7 @@ function insertNode(g, name) {
 function processL(g, ns) {
   ns.forEach((n) => insertNode(g, n));
 //   insertEdge(g, "start", ns[0])
-  for (let i = 0; i < (ns.length-1); i += 1) {
+  for (var i = 0; i < (ns.length-1); i += 1) {
         insertEdge(g, ns[i], ns[i+1])
   }
   insertEdge(g, ns[ns.length-1], "Output")
@@ -23,7 +23,7 @@ function processL(g, ns) {
 
 function processLL(g, nss) {
     Object.keys(nss).forEach(k => { 
-        let ns = nss[k]
+        var ns = nss[k]
         processL(g, ns)
     })
 }
@@ -53,7 +53,7 @@ var render = new dagreD3.render();
 render(inner, g);
 
 // // Create the renderer
-// let render = new dagreD3.render();
+// var render = new dagreD3.render();
 // // Draw graph
 // render(inner, g);
 

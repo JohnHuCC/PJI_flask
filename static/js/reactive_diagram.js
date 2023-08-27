@@ -1,16 +1,18 @@
 console.log("Reactive Diagram js loaded");
 
-let range_inputs = document.querySelectorAll(".range_input");
-let inputs_args = document.querySelectorAll(".input_arg");
-let _predict_data = predict_data.replace("[", "").replace("]", "")
-let predict_data_arr = _predict_data.split(",")
-predict_data_arr.forEach((e, i) =>{
-    predict_data_arr[i] = parseFloat(e)
-})
-console.log(predict_data_arr)
+var range_inputs = document.querySelectorAll(".range_input");
+var inputs_args = document.querySelectorAll(".input_arg");
+// var _predict_data = predict_data.replace("[", "").replace("]", "")
+// var predict_data_arr = _predict_data.split(",")
+// predict_data_arr.forEach((e, i) =>{
+//     predict_data_arr[i] = parseFloat(e)
+// })
+// console.log('predict_data_arr:')
+// console.log(predict_data_arr)
+
 
 range_inputs.forEach(element => {
-    let range_value = document.querySelector(`#${element.id}_value`);
+    var range_value = document.querySelector(`#${element.id}_value`);
     range_value.innerHTML = element.value;
     element.addEventListener("change", event => {
         console.log(`${element.id}: ${event.target.value}`);
@@ -35,17 +37,29 @@ function insertEdge(g, na, nb) {
     }
 }
 var count = 0
-color_arr = ["#ece4e2", "#fcd3d1", "#fcd3d1", "#fcd3d1", "#fcd3d1", "#fcd3d1", "#fcd3d1", "#fcdff3", "#fcdff3", "#fe929f", "#fe929f", "#fe7773", "#fe7773", "#fe7773", "#fe7773",
-"#fe7773", "#fe7773", "#fe7773", "#fe7773", ]
+// color_arr = ["#ece4e2", "#fcd3d1", "#fcd3d1", "#fcd3d1", "#fcd3d1", "#fcd3d1", "#fcd3d1", "#fcdff3", "#fcdff3", "#fe929f", "#fe929f", "#fe7773", "#fe7773", "#fe7773", "#fe7773",
+// "#fe7773", "#fe7773", "#fe7773", "#fe7773", ]
+color_arr = ["#ece4e2", "#ece4e2", "#ece4e2", "#ece4e2", "#ece4e2", "#ece4e2", "#ece4e2", "#ece4e2", "#ece4e2", "#ece4e2", "#ece4e2", "#e68ab8", "#e68ab8", "#e68ab8", "#e68ab8",
+"#e68ab8", "#e68ab8", "#e68ab8", "#e68ab8", ]
 function insertNode(g, name) {
     if (!g.hasNode(name)) {
         inputs_args.forEach((element, index) => {
-            let comp_A = element.name.toLowerCase().replace('_', ' ')
-            let comp_B = reactive_rule_map_json[name].toLowerCase().replace('_', ' ')
+            var comp_A = element.name.toLowerCase().replace('_', ' ')
+            var comp_B = reactive_rule_map_json[name].toLowerCase().replace('_', ' ')
             if (element.type == "radio" && element.checked) {
+                if ((name == "L" && reactived_data_json[name]>= 1)){
+                    color_arr[count] = "#fe7773"
+                }else if (name == "P" && reactived_data_json[name]>= 1){
+                    color_arr[count] = "#fe7773"
+                }else if (name == "R" && reactived_data_json[name]>= 1){
+                    color_arr[count] = "#fe7773"
+                }else if (name == "S" && reactived_data_json[name]>= 1){
+                    color_arr[count] = "#fe7773"
+                }
                 if (comp_B.includes(comp_A)) {
                     console.log(comp_B, comp_A, element.value)
-                    g.setNode(name, { label: `${reactive_rule_map_json[name]}: ${predict_data_arr[index]}`, style: "fill:" + color_arr[count] , labelStyle: "font-weight: bold", width: 200, height:40})
+                    g.setNode(name, { label: `${reactive_rule_map_json[name]}: ${reactived_data_json[name]}`, style: "fill:" + color_arr[count] , labelStyle: "font-weight: bold", width: 200, height:40})
+                    // g.setNode(name, { label: `${reactive_rule_map_json[name]}: ${element.value}`, style: "fill:" + color_arr[count] , labelStyle: "font-weight: bold", width: 200, height:40})
                     // g.setNode(name, { label: reactive_rule_map_json[name], style: "fill: #afa" , labelStyle: "font-weight: bold"})
                     count += 1
                 }
@@ -53,19 +67,29 @@ function insertNode(g, name) {
             }
             else if (element.type != "radio" && comp_B.includes(comp_A)) {
                 console.log(comp_B, comp_A, element.value)
-                g.setNode(name, { label: `${reactive_rule_map_json[name]}: ${predict_data_arr[index]}`, style: "fill:" + color_arr[count] , labelStyle: "font-weight: bold", width: 200, height:40})
+                if (name == "O" && reactived_data_json[name]>3000){
+                    color_arr[count] = "#fe7773"
+                }else if (name == "M" && reactived_data_json[name]>= 10){
+                    color_arr[count] = "#fe7773"
+                }else if (name == "N" && reactived_data_json[name]>= 30){
+                    color_arr[count] = "#fe7773"
+                }else if (name == "Q" && reactived_data_json[name]>= 70){
+                    color_arr[count] = "#fe7773"
+                }
+                g.setNode(name, { label: `${reactive_rule_map_json[name]}: ${reactived_data_json[name]}`, style: "fill:" + color_arr[count] , labelStyle: "font-weight: bold", width: 200, height:40})
                 // g.setNode(name, { label: reactive_rule_map_json[name], style: "fill: #afa" , labelStyle: "font-weight: bold"})
                 count += 1
                 g.setParent(name, 'FeatureGroups');
             }
         })
         // g.setNode(name, { label: reactive_rule_map_json[name], style: "fill: #afa" , labelStyle: "font-weight: bold"})
+        console.log(count)
     }
 }
 
 function processL(g, ns) {
   ns.forEach((n) => insertNode(g, n));
-  for (let i = 0; i < (ns.length-1); i += 1) {
+  for (var i = 0; i < (ns.length-1); i += 1) {
         insertEdge(g, ns[i], ns[i+1])
   }
   insertEdge(g, ns[ns.length-1], "DataInput")
@@ -77,7 +101,7 @@ insertEdge(g, "DataInput", "LogisticRegression")
 
 function processLL(g, nss) {
     Object.keys(nss).forEach(k => { 
-        let ns = nss[k]
+        var ns = nss[k]
         processL(g, ns)
     })
 }
@@ -105,10 +129,13 @@ g.graph().rankdir = "LR";
 g.graph().nodesep = 60;
 g.graph().ranksep = 150;
 // Set up zoom support
-var zoom = d3.behavior.zoom().on("zoom", function () {
+var zoom = d3.behavior.zoom().scaleExtent([0.4, 1])
+.on("zoom", function () {
     inner.attr("transform", "translate(" + d3.event.translate + ")" +
         "scale(" + d3.event.scale + ")");
+        
 });
+
 svg.call(zoom);
 
 // Create the renderer
@@ -118,7 +145,7 @@ var render = new dagreD3.render();
 render(inner, g);
 
 // // Create the renderer
-// let render = new dagreD3.render();
+// var render = new dagreD3.render();
 // // Draw graph
 // render(inner, g);
 

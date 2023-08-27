@@ -142,8 +142,7 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]
-        :node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]                                        :node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -199,7 +198,7 @@ def getTopN_Fidelity(fidelity_list, top_N_indices, top_N):
 # 主體參數設定
 debug_model = 0
 Explainer_depth = 12  # The depth of Explainer Model
-pID_idx = 5
+pID_idx = 1
 pID = [11, 212, 51, 210, 79, 159]
 
 PID = pID[pID_idx]
@@ -529,7 +528,7 @@ stacking_model = StackingClassifier(
 )
 
 # 8.3 Stacking Model from 100% dataset
-stacking_model.fit(X_train.values, y_train.values)
+stacking_model.fit(X_train.values, y_train.values.flatten())
 joblib.dump(stacking_model, 'Stacking_model')
 
 # 8.4 Explainer Modeling from 100% dataset   ?
@@ -695,8 +694,9 @@ for explain_i in list(explainers.keys()):
 end_c = time.time()
 # In[14]: Concatenate multi lists for CONDITIOS_AvgFidelity
 rules_list = getTopN_Fidelity(
-    CONDITIOS_AvgFidelity, list(explainers.keys()), 13)
-
+    CONDITIOS_AvgFidelity, list(explainers.keys()), 10)
+print('rule list ini:')
+print(rules_list)
 # In[15]: Import Library
 # 引用適當的 Library
 # from sympy.logic import simplify_logic
@@ -813,7 +813,7 @@ def singleton_opt(X_test):
                 delta = float(X_test_[variable])
 
                 nonICM = {"mu(N)": mu_N, "mu(I)": mu_I, "delta": delta}
-                #nonICM_Sorting = (sorted(nonICM.items(), key=lambda x:x[1]))
+                # nonICM_Sorting = (sorted(nonICM.items(), key=lambda x:x[1]))
                 nonICM_Sorting = sorted(nonICM, key=nonICM.get)
                 concate_nonICM_Sorting = '_'.join(nonICM_Sorting)
 
@@ -888,8 +888,8 @@ def transPOSForm(Candidate_DecisionPath):
     data = Candidate_DecisionPath
     res_combined = []
     # In[20] 拆解所有的 decision path 元素
-    ## input: all_path
-    ## output: all_singleton
+    # input: all_path
+    # output: all_singleton
     for element in data:
         element = element.replace(') | (', ' and ')
         element = element.replace('(', '')
@@ -1042,11 +1042,15 @@ def transPOSForm(Candidate_DecisionPath):
 
 # In[26]: Call the transPOSForm func.
 POS_Form, final_singleton = transPOSForm(rules_list)
+print('POS_Form:')
+print(POS_Form)
+print('')
+
 
 ## 20210531 ##
 # 套用演算法分類 ICM & non_ICM 分類
 # 原始推導資料請參閱文件
-## singleton_opt == parser.py
+# singleton_opt == parser.py
 # In[27]: Call the singleton_opt function
 opt_decision_list = singleton_opt(X_test)
 
@@ -1115,6 +1119,9 @@ Simplify_DecisionRules = "{}".format(
     simplify_logic(SOPform(ns_all, minterms_), 'dnf'))
 
 rule_str = Simplify_DecisionRules
+print('simplified_rule:')
+print(rule_str)
+print('')
 j = 65
 for i in range(len(final_singleton)):
     a = j + i
@@ -1159,6 +1166,8 @@ for i in range(len(rule_str_sp)):
     rule_str_sp[i] = rule_str_sp[i].replace('&', 'and').replace(
         ' (', '').replace('(', '').replace(') ', '').replace(')', '')
 
+print('rule_str_sp:')
+print(rule_str_sp)
 AV_FIDELITYS = []
 for condition in rule_str_sp:
     fidelity = []
@@ -1169,6 +1178,7 @@ for condition in rule_str_sp:
         for tree_idx in tree_candidates[explain_i]:
             fidelity.append(accuracy_score(stack_pred, merge_pred))
     AV_FIDELITYS.append(round(np.mean(fidelity), 3))
+print('Avg_fid:')
 print(AV_FIDELITYS)
 
 cytime = end_c - start_c

@@ -14,8 +14,12 @@ import os
 from datetime import timedelta
 import pymysql
 import personal_DecisionPath2
-import smote
-
+import personal_DecisionPath_for_reactive
+from flask import jsonify, request
+from celery import Celery
+from flask_socketio import SocketIO
+import time
+from celery.exceptions import SoftTimeLimitExceeded
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 # app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=31)
@@ -28,6 +32,164 @@ bootstrap = Bootstrap5(app)
 db.init_app(app)
 migrate = Migrate(app, db)
 
+reactived_data_key = ["A", "B", "C", "D", "E", "F", "G",
+                      "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"]
+
+
+def make_celery(app):
+    celery = Celery(
+        app.import_name,
+        backend=app.config['CELERY_RESULT_BACKEND'],
+        broker=app.config['CELERY_BROKER_URL']
+    )
+    celery.conf.update(app.config)
+    return celery
+
+
+app.config.update(
+    CELERY_BROKER_URL='redis://localhost:6379/0',
+    CELERY_RESULT_BACKEND='redis://localhost:6379/0'
+)
+
+celery = make_celery(app)
+
+
+@app.route('/start')
+def start():
+    return render_template('start.html')
+
+
+# @celery.task(bind=True, time_limit=200, soft_time_limit=195, CELERYD_FORCE=True, CELERYD_MAX_TASKS_PER_CHILD=5)
+# def reactived_data_task(self, arr, name):
+#     try:
+#         print("calling reactived_data_task")
+#         global result1
+#         reactived_data_key = ["A", "B", "C", "D", "E", "F", "G",
+#                               "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"]
+#         print('success reactived_data_key:', reactived_data_key)
+#         reactived_data_dict = {k: v for k, v in zip(reactived_data_key, arr)}
+
+#         with open("Decision_rule/reactived_data.json", "w") as file:
+#             json.dump(reactived_data_dict, file)
+#         for i in range(1, 21):
+#             time.sleep(1)
+#             self.update_state(state='PROGRESS', meta={'progress': i*1})
+#         for i in range(21, 26):
+#             time.sleep(1)
+#             self.update_state(state='PROGRESS', meta={'progress': i*1})
+#         predict_data = Vision_compare.tran_df(arr)
+#         reactive_diagram_dp = personal_DecisionPath_for_reactive.run_test(
+#             int(name), predict_data)
+#         for i in range(26, 101):
+#             time.sleep(1)
+#             self.update_state(state='PROGRESS', meta={'progress': i*1})
+#         return 'Task completed'
+#     except SoftTimeLimitExceeded:
+    # print('Error Time Exceed')
+
+def reactived_data_task(self, arr, name):
+    print("calling reactived_data_task")
+    global result1
+    reactived_data_key = ["A", "B", "C", "D", "E", "F", "G",
+                          "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"]
+    print('success reactived_data_key:', reactived_data_key)
+    reactived_data_dict = {k: v for k, v in zip(reactived_data_key, arr)}
+
+    with open("Decision_rule/reactived_data.json", "w") as file:
+        json.dump(reactived_data_dict, file)
+    for i in range(1, 21):
+        time.sleep(1)
+        self.update_state(state='PROGRESS', meta={'progress': i*1})
+    for i in range(21, 26):
+        time.sleep(1)
+        self.update_state(state='PROGRESS', meta={'progress': i*1})
+    predict_data = Vision_compare.tran_df(arr)
+    reactive_diagram_dp = personal_DecisionPath_for_reactive.run_test(
+        int(name), predict_data)
+    for i in range(26, 101):
+        time.sleep(1)
+        self.update_state(state='PROGRESS', meta={'progress': i*1})
+    return 'Task completed'
+
+
+socketio = SocketIO(app)
+
+
+@socketio.on('run_task')
+def run_task(message):
+    arr = message.get('arr', [])
+    arr[:] = [float(x) for x in arr]
+    with open("Decision_rule/reactived_data_onlyvalue.json", "w") as file:
+        json.dump(arr, file)
+    name = message.get('name', "")
+    # task = reactived_data_task.apply_async(
+    #     args=[arr, name])
+    print("calling reactived_data_task")
+    global result1
+    reactived_data_key = ["A", "B", "C", "D", "E", "F", "G",
+                          "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"]
+    print('success reactived_data_key:', reactived_data_key)
+    reactived_data_dict = {k: v for k, v in zip(reactived_data_key, arr)}
+
+    with open("Decision_rule/reactived_data.json", "w") as file:
+        json.dump(reactived_data_dict, file)
+    for i in range(1, 21):
+        time.sleep(0.5)
+        progress = i
+        socketio.emit('task_progress', {'progress': progress})
+    for i in range(21, 26):
+        time.sleep(1)
+        progress = i
+        socketio.emit('task_progress', {'progress': progress})
+    predict_data = Vision_compare.tran_df(arr)
+    reactive_diagram_dp = personal_DecisionPath_for_reactive.run_test(
+        int(name), predict_data)
+    for i in range(26, 100):
+        time.sleep(0.1)
+        progress = i
+        socketio.emit('task_progress', {'progress': progress})
+    global result_text
+    result1 = Vision_compare.stacking_predict(predict_data)
+    if (result1[0] == 1):
+        result_text = "Infected"
+    else:
+        result_text = "Aseptic"
+    result_xgb = Vision_compare.xgboost_predict(predict_data)
+    result_rf = Vision_compare.rf_predict(predict_data)
+    result_nb = Vision_compare.nb_predict(predict_data)
+    result_lr = Vision_compare.lr_predict(predict_data)
+    reactive_rule_json = json.load(
+        open("Decision_rule/reactive_rule.json"))
+
+    reactive_rule_map_json = json.load(
+        open("Decision_rule/reactive_rule_map.json"))
+
+    reactive_decision_list_json = json.load(
+        open("Decision_rule/decision_rule_reactive_diagram.json"))
+
+    reactive_decision_list_map_json = json.load(
+        open("Decision_rule/decision_rule_reactive_diagram_map.json"))
+
+    reactived_data_json = json.load(
+        open("Decision_rule/reactived_data.json"))
+
+    frontend_combined_data = {
+        'reactive_rule_json': reactive_rule_json,
+        'reactive_rule_map_json': reactive_rule_map_json,
+        'reactive_decision_list_json': reactive_decision_list_json,
+        'reactive_decision_list_map_json': reactive_decision_list_map_json,
+        'reactived_data_json': reactived_data_json
+    }
+    socketio.emit('task_progress', {'progress': 100})
+    socketio.emit('update_frontend', {'result_text': result_text, 'result_xgb': int(result_xgb[0]),
+                                      'result_rf': int(result_rf[0]), 'result_nb': int(result_nb[0]), 'result_lr': int(result_lr[0])})
+    socketio.emit('update_frontend_data', frontend_combined_data)
+    # self.update_state(state='PROGRESS', meta={'progress': i*1})
+    # while not task.ready():
+    #     progress = task.info.get('progress', 0) if task.info else 0
+    #     socketio.emit('task_progress', {'progress': progress})
+    #     time.sleep(1)
+
 
 def tran_df(arr):
     predict_data = pd.DataFrame(
@@ -37,7 +199,7 @@ def tran_df(arr):
     return predict_data
 
 
-@app.route('/', methods=['GET', 'POST'])
+@ app.route('/', methods=['GET', 'POST'])
 def index():
     session.permanent = True
     uid = None
@@ -81,11 +243,53 @@ def index():
         elif dict_p["btnID"] == "5":
             p_id = dict_p["patientID"]
             return url_for('pick_new_data', p_id=p_id)
+        elif dict_p["btnID"] == "6":
+            p_id = dict_p["patientID"]
+            return url_for('pick_new_data_view', p_id=p_id)
+        elif dict_p["btnID"] == "7":
+            p_id = dict_p["patientID"]
+            return url_for('back_new_data', p_id=p_id)
 
     return render_template('index.html', u=u, name=user)
 
 
-@app.route('/train_new_data', methods=['GET', 'POST'])
+@ app.route('/new_data_buffer', methods=['GET', 'POST'])
+def new_data_buffer():
+    session.permanent = True
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
+
+    if uid != None:
+        user = User.get_by_uid(uid)
+        print(user)
+        if user == None:
+            # no such user
+            redirect('/auth_login')
+    else:
+        redirect('/auth_login')
+
+    conn = pymysql.connect(host='127.0.0.1', user='root',
+                           password='love29338615', port=3306, db='PJI')
+    cur = conn.cursor()
+    sql = "SELECT * FROM PJI.pji_new_data_buffer ORDER BY CAST(pji_new_data_buffer.no_group AS unsigned);"
+    cur.execute(sql)
+    u = cur.fetchall()
+    conn.close()
+
+    # if request.method == 'POST':
+    #     dict_p = request.get_json()
+    #     if dict_p["btnID"] == "7":
+    #         p_id = dict_p["patientID"]
+    #         return url_for('train_new_data', p_id=p_id)
+
+    return render_template('new_data_buffer.html', u=u, name=user)
+
+
+@ app.route('/train_new_data', methods=['GET', 'POST'])
 def train_new_data():
     session.permanent = True
     uid = None
@@ -125,7 +329,7 @@ if __name__ == "__main__":
     app.run()
 
 
-@app.route("/auth_login", methods=['GET', 'POST'])
+@ app.route("/auth_login", methods=['GET', 'POST'])
 def auth_login():
     if request.method == 'GET':
         return render_template('auth_login.html')
@@ -142,7 +346,7 @@ def auth_login():
             return redirect('/auth_login')
 
 
-@app.route("/auth_register", methods=['GET', 'POST'])
+@ app.route("/auth_register", methods=['GET', 'POST'])
 def auth_register():
     if request.method == 'GET':
         return render_template('auth_register.html')
@@ -158,19 +362,66 @@ def auth_register():
             return redirect('/auth_register')
 
 
-@app.route('/logout')
+@ app.route('/logout')
 def logout():
     session['user-id'] = False
     # flash('Log Out See You.')
     return redirect('/auth_login')
 
 
-@app.route("/auth_password")
+@ app.route("/auth_password")
 def auth_password():
     return render_template('auth_password.html')
 
 
-@app.route("/pick_new_data")
+personal_result_view = None
+
+
+@ app.route("/pick_new_data_view")
+def pick_new_data_view():
+    session.permanent = True
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
+    # uid = session['user-id']
+    if uid != None:
+        user = User.get_by_uid(uid)
+        if user == None:
+            redirect('/auth_login')
+        else:
+            username = user
+    name = request.args.get('p_id')
+    decision_result_json = json.load(
+        open("decision_result_"+name+".json"))
+    if (decision_result_json["result"] == "1"):
+        result_text = "Infected"
+    elif (decision_result_json["result"] == "0"):
+        result_text = "Aseptic"
+    else:
+        result_text = "None"
+    conn = pymysql.connect(host='127.0.0.1', user='root',
+                           password='love29338615', port=3306, db='PJI')
+    cur = conn.cursor()
+    sql = "SELECT * FROM PJI.pji_new_data_buffer WHERE no_group =" + str(name)
+    cur.execute(sql)
+    new_data = cur.fetchall()
+    conn.close()
+
+    decision_list_file = open("decision_list_file.txt", "r")
+    decision_list_file_content = decision_list_file.read().strip()
+    decision_list = decision_list_file_content.split("\n")
+    decision_list_file.close()
+    decision_list_json = json.load(
+        open("decision_rule_"+name+".json"))
+    rule_map_json = json.load(
+        open("decision_rule_map_"+name+".json"))
+    return render_template('pick_new_data_view.html', name=name, u=new_data, result=result_text, username=username, decision_list=decision_list, decision_list_json=decision_list_json, rule_map_json=rule_map_json)
+
+
+@ app.route("/pick_new_data")
 def pick_new_data():
     session.permanent = True
     uid = None
@@ -187,7 +438,8 @@ def pick_new_data():
         else:
             username = user
     name = request.args.get('p_id')
-    personal_result = smote.personalDP(int(name))
+    personal_result = smote.personalDP(int(name), 7)
+    personal_result_view = personal_result
     if (personal_result == 1):
         result_text = "Infected"
     else:
@@ -205,13 +457,13 @@ def pick_new_data():
     decision_list = decision_list_file_content.split("\n")
     decision_list_file.close()
     decision_list_json = json.load(
-        open("decision_rule_"+name+".json"))
+        open("Decision_rule/decision_rule_"+name+".json"))
     rule_map_json = json.load(
-        open("decision_rule_map_"+name+".json"))
+        open("Decision_rule/decision_rule_map_"+name+".json"))
     return render_template('pick_new_data.html', name=name, u=new_data, result=result_text, username=username, decision_list=decision_list, decision_list_json=decision_list_json, rule_map_json=rule_map_json)
 
 
-@app.route("/upload_new_data", methods=['GET', 'POST'])
+@ app.route("/upload_new_data", methods=['GET', 'POST'])
 def upload_new_data():
     session.permanent = True
     uid = None
@@ -234,20 +486,51 @@ def upload_new_data():
                            password='love29338615', port=3306, db='PJI')
     cur = conn.cursor()
     sql_delete = f"DELETE FROM PJI.pji_new_data WHERE no_group = {str(name)};"
-    sql_insert = f"INSERT INTO PJI.revision_pji SELECT * FROM PJI.pji_new_data WHERE no_group = {str(name)};"
+    sql_insert = f"INSERT INTO PJI.pji_new_data_buffer SELECT * FROM PJI.pji_new_data WHERE no_group = {str(name)};"
     cur.execute(sql_insert)
     cur.execute(sql_delete)
     conn.commit()
     conn.close()
-    return url_for('train_new_data')
+    return url_for('new_data_buffer')
 
 
-@app.route("/chart3")
+@ app.route("/back_new_data", methods=['GET', 'POST'])
+def back_new_data():
+    session.permanent = True
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
+
+    if uid != None:
+        user = User.get_by_uid(uid)
+        print(user)
+        if user == None:
+            # no such user
+            redirect('/auth_login')
+    else:
+        redirect('/auth_login')
+    name = request.args.get('p_id')
+    conn = pymysql.connect(host='127.0.0.1', user='root',
+                           password='love29338615', port=3306, db='PJI')
+    cur = conn.cursor()
+    sql_insert = f"INSERT INTO PJI.pji_new_data SELECT * FROM PJI.pji_new_data_buffer WHERE no_group = {str(name)};"
+    sql_delete = f"DELETE FROM PJI.pji_new_data_buffer WHERE no_group = {str(name)};"
+    cur.execute(sql_insert)
+    cur.execute(sql_delete)
+    conn.commit()
+    conn.close()
+    return redirect('train_new_data')
+
+
+@ app.route("/chart3")
 def chart3():
     return render_template('chart3.html')
 
 
-@app.route('/model_diagnosis')
+@ app.route('/model_diagnosis', methods=['GET', 'POST'])
 def model_diagnosis():
     session.permanent = True
     uid = None
@@ -258,15 +541,82 @@ def model_diagnosis():
         return redirect('/auth_login')
     name = request.args.get('p_id')
     user = User.get_by_uid(uid)
-    decision_list_file = open("decision_list_file.txt", "r")
-    decision_list_file_content = decision_list_file.read().strip()
-    decision_list = decision_list_file_content.split("\n")
-    decision_list_file.close()
+    # decision_list_file = open("decision_list_file.txt", "r")
+    # decision_list_file_content = decision_list_file.read().strip()
+    # decision_list = decision_list_file_content.split("\n")
+    # decision_list_file.close()
     decision_list_json = json.load(
         open("Decision_rule/decision_rule_"+name+".json"))
+    simplified_rule_json = json.load(
+        open("Decision_rule/simplified_decision_rule_"+name+".json"))
     rule_map_json = json.load(
         open("Decision_rule/decision_rule_map_"+name+".json"))
-    return render_template('model_diagnosis.html', decision_list=decision_list, decision_list_json=decision_list_json, rule_map_json=rule_map_json, user=user)
+    simplified_rule_map_json = json.load(
+        open("Decision_rule/simplified_decision_rule_map_"+name+".json"))
+    return render_template('model_diagnosis.html', decision_list_json=decision_list_json, rule_map_json=rule_map_json, simplified_rule_json=simplified_rule_json, simplified_rule_map_json=simplified_rule_map_json, user=user, name=name)
+
+
+def get_reactive_bar_data(request):
+    age = request.form["age"]
+    segment = request.form["segment"]
+    HGB = request.form["HGB"]
+    PLATELET = request.form["PLATELET"]
+    Serum_WBC = request.form["Serum_WBC"]
+    P_T = request.form["P.T"]
+    APTT = request.form["APTT"]
+    CCI = request.form["CCI"]
+    Elixhauser = request.form["Elixhauser"]
+    Revision = request.form["Revision"]
+    ASA_2 = request.form["ASA_2"]
+    positive_culture = request.form["positive_culture"]
+    Serum_CRP = request.form["Serum_CRP"]
+    Serum_ESR = request.form["Serum_ESR"]
+    Synovial_WBC = request.form["Synovial_WBC"]
+    Single_Positive_culture = request.form["Single_Positive_culture"]
+    Synovial_PMN = request.form["Synovial_PMN"]
+    Positive_Histology = request.form["Positive_Histology"]
+    Purulence = request.form["Purulence"]
+    arr = [age, segment, HGB, PLATELET, Serum_WBC, P_T, APTT, CCI, Elixhauser,
+           Revision, ASA_2, positive_culture, Serum_CRP, Serum_ESR, Synovial_WBC,
+           Single_Positive_culture, Synovial_PMN, Positive_Histology, Purulence]
+    arr[:] = [float(x) for x in arr]
+    return arr
+
+
+def reactive_diagram_fix(arr):
+    user = 'shit'
+    user_data_json = json.load(open("Decision_rule/user_data.json"))
+    predict_data = Vision_compare.tran_df(arr)
+    result1 = Vision_compare.stacking_predict(predict_data)
+    result_xgb = Vision_compare.xgboost_predict(predict_data)
+    result_rf = Vision_compare.rf_predict(predict_data)
+    result_nb = Vision_compare.nb_predict(predict_data)
+    result_lr = Vision_compare.lr_predict(predict_data)
+    print("running start")
+    if (result1[0] == 1):
+        result_text = "Infected"
+    else:
+        result_text = "Aseptic"
+
+    reactive_rule_json = json.load(
+        open("Decision_rule/reactive_rule.json"))
+
+    reactive_rule_map_json = json.load(
+        open("Decision_rule/reactive_rule_map.json"))
+
+    reactive_decision_list_json = json.load(
+        open("Decision_rule/decision_rule_reactive_diagram.json"))
+
+    reactive_decision_list_map_json = json.load(
+        open("Decision_rule/decision_rule_reactive_diagram_map.json"))
+
+    reactived_data_json = json.load(
+        open("Decision_rule/reactived_data.json"))
+
+    Vision_compare.plt_con()
+    print("running end")
+    return render_template('reactive_diagram.html', result=result_text, reactive_rule_json=reactive_rule_json, reactive_rule_map_json=reactive_rule_map_json,
+                           result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user, predict_data=arr, reactive_decision_list_json=reactive_decision_list_json, reactive_decision_list_map_json=reactive_decision_list_map_json, user_data_json=user_data_json, reactived_data_json=reactived_data_json, name=name)
 
 
 @app.route('/reactive_diagram', methods=['GET', 'POST'])
@@ -278,57 +628,59 @@ def reactive_diagram():
     except KeyError:
         print("Session timeout!")
         return redirect('/auth_login')
+
     user = User.get_by_uid(uid)
+    name = request.args.get('p_id')
+    conn = pymysql.connect(host='127.0.0.1', user='root',
+                           password='love29338615', port=3306, db='PJI')
+    cur = conn.cursor()
+    sql = "SELECT * FROM PJI.revision_pji WHERE no_group =" + str(name)
+    cur.execute(sql)
+    user_data = cur.fetchall()
+    conn.close()
+
+    with open("Decision_rule/user_data.json", "w") as file:
+        json.dump(user_data, file)
+    user_data_json = json.load(open("Decision_rule/user_data.json"))
+
     global reactive_rule_json
     global result_text
-    if request.method == 'POST':
-        age = request.form["age"]
-        segment = request.form["segment"]
-        HGB = request.form["HGB"]
-        PLATELET = request.form["PLATELET"]
-        Serum_WBC = request.form["Serum_WBC"]
-        P_T = request.form["P.T"]
-        APTT = request.form["APTT"]
-        CCI = request.form["CCI"]
-        Elixhauser = request.form["Elixhauser"]
-        Revision = request.form["Revision"]
-        ASA_2 = request.form["ASA_2"]
-        positive_culture = request.form["positive_culture"]
-        Serum_CRP = request.form["Serum_CRP"]
-        Serum_ESR = request.form["Serum_ESR"]
-        Synovial_WBC = request.form["Synovial_WBC"]
-        Single_Positive_culture = request.form["Single_Positive_culture"]
-        Synovial_PMN = request.form["Synovial_PMN"]
-        Positive_Histology = request.form["Positive_Histology"]
-        Purulence = request.form["Purulence"]
-        arr = [age, segment, HGB, PLATELET, Serum_WBC, P_T, APTT, CCI, Elixhauser,
-               Revision, ASA_2, positive_culture, Serum_CRP, Serum_ESR, Synovial_WBC,
-               Single_Positive_culture, Synovial_PMN, Positive_Histology, Purulence]
-        arr[:] = [float(x) for x in arr]
+    if request.method == 'GET':
+        arr = json.load(open("Decision_rule/reactived_data_onlyvalue.json"))
         predict_data = Vision_compare.tran_df(arr)
         result1 = Vision_compare.stacking_predict(predict_data)
         result_xgb = Vision_compare.xgboost_predict(predict_data)
         result_rf = Vision_compare.rf_predict(predict_data)
         result_nb = Vision_compare.nb_predict(predict_data)
         result_lr = Vision_compare.lr_predict(predict_data)
-
+        print("running start")
         if (result1[0] == 1):
             result_text = "Infected"
         else:
             result_text = "Aseptic"
+
         reactive_rule_json = json.load(
             open("Decision_rule/reactive_rule.json"))
 
         reactive_rule_map_json = json.load(
             open("Decision_rule/reactive_rule_map.json"))
-        print("running start")
+
+        reactive_decision_list_json = json.load(
+            open("Decision_rule/decision_rule_reactive_diagram.json"))
+
+        reactive_decision_list_map_json = json.load(
+            open("Decision_rule/decision_rule_reactive_diagram_map.json"))
+
+        reactived_data_json = json.load(
+            open("Decision_rule/reactived_data.json"))
+
         Vision_compare.plt_con()
         print("running end")
         return render_template('reactive_diagram.html', result=result_text, reactive_rule_json=reactive_rule_json, reactive_rule_map_json=reactive_rule_map_json,
-                               result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user, predict_data=arr)
+                               result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user, predict_data=arr, reactive_decision_list_json=reactive_decision_list_json, reactive_decision_list_map_json=reactive_decision_list_map_json, user_data_json=user_data_json, reactived_data_json=reactived_data_json, name=name)
         # return render_template('reactive_diagram.html', result=result_text, reactive_rule_json=reactive_rule_json, reactive_rule_map_json=reactive_rule_map_json,
         #                        result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user)
-    return render_template('reactive_diagram.html', user=user)
+    return render_template('reactive_diagram.html', user=user, user_data_json=user_data_json, name=name)
 
 
 @ app.route('/personal_info')
@@ -363,8 +715,8 @@ def personal_info():
     return render_template('personal_info.html', name=name, u=user, result=result_text, username=username)
 
 
-@app.route('/progress')
-def progress():
-    tempfile = open("progress.tmp", "r").read()
-    tempfile.close()
-    return tempfile
+# @app.route('/progress')
+# def progress():
+#     tempfile = open("progress.tmp", "r").read()
+#     tempfile.close()
+#     return tempfile

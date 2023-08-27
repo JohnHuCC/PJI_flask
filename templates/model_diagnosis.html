@@ -17,7 +17,7 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
         <script type="text/javascript" defer src="/static/js/decisionpath.js"></script>
         <script type="text/javascript" defer src="/static/js/model_diagnosis.js"></script>
-        
+        <script type="text/javascript" defer src="/static/js/model_diagnosis_sp_rule.js"></script>
     </head>
     <html>
     <head>
@@ -147,7 +147,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Personal Information
                             </a>
-                            <a class="nav-link" href="reactive_diagram">
+                            <a class="nav-link" href="reactive_diagram?p_id={{name}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Reactive Diagram
                             </a>
@@ -155,7 +155,7 @@
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Johnny Hu
+                        {{ username }}
                     </div>
                 </nav>
             </div>
@@ -203,46 +203,43 @@
                             </div>
 
                             <div id="diagnosis_result" class="card-body">
-                                <!-- <p class="lead">Explanation for the diagnosis prediction of Case 1. In the if-then rule, the symbol “&” means logic AND, whereas the symbol “|” means logic OR. Three plausible conjunctions
-                                    of different patient features were identified to explain the diagnosis prediction of Case 1. Likewise, each path from Start to the right end via certain patient features indicates a
-                                    plausible decision support for the prediction in the pictorial decision diagram. APTT, activated partial thromboplastin time; PT, prothrombin time.</p> -->
-                                <h4>If (Histology = positive & Serum CRP ≥ 16.0)</h4>
-                                <!-- <p class="lead mb-4">Here is some example text of a longer version of a first step. This format is great when you need to explain things more, not just using a ordered list.</p> -->
-                                <h4>| (Histology = positive & PT ≥ 9.8 & Neutrophil Segment ≥ 62.0)</h4>
-                                <!-- <p class="lead mb-4">We're using built-in elements and text utilities to make this list more legible and understandable. This is a great starting point for a step by step guide within your knowledge base article.</p> -->
-                                <h4>| (APTT ≥ 28.0 & Serum ESR ≥ 38.0 & Synovial WBC ≥ 3780.0)</h4>
-                                <h4>then infected</h4>
-                                <!-- <p class="lead mb-5">We've used spacing utilities, text utilities, and other components within this article example. This is just an example layout of a few things you can do within an article page. Thanks for reading!</p> -->
-                                <!-- <div class="alert alert-primary alert-icon mb-0" role="alert">
-                                    <div class="alert-icon-aside"><i data-feather="alert-triangle"></i></div>
-                                    <div class="alert-icon-content">
-                                        <h5 class="alert-heading">Article Alert</h5>
-                                        If there is something in your article that you really want to emphasize, use the alert component, or our custom icon alert component like this one here!
-                                    </div>
-                                </div> -->
-                                <!-- <div>
-                                    {% for path in decision_list %}
-                                        {{path}}<br>
-                                    {% endfor %}
-                                </div> -->
+                            </div>
+                            <div class="card-header d-flex align-items-center">
+                                <a class="btn btn-transparent-dark btn-icon" href="knowledge-base-category.html"><i data-feather="arrow-left"></i></a>
                             </div>
                         </div>
-                        <!-- Knowledge base rating-->
-                        <!-- <div class="text-center mt-5">
-                            <h4 class="mb-3">Was this diagnosis helpful?</h4>
-                            <div class="mb-3">
-                                <button class="btn btn-primary mx-2 px-3" role="button">
-                                    <i class="me-2" data-feather="thumbs-up"></i>
-                                    Yes
-                                </button>
-                                <button class="btn btn-primary mx-2 px-3" role="button">
-                                    <i class="me-2" data-feather="thumbs-down"></i>
-                                    No
-                                </button>
+                        <div class="card mb-4">
+                            
+                            <div class="card-header d-flex align-items-center">
+                                <a class="btn btn-transparent-dark btn-icon" href="knowledge-base-category.html"><i data-feather="arrow-left"></i></a>
+                                <div class="ms-3"><h2 class="my-3">Simplified decision path example</h2></div>
                             </div>
-                            <div class="text-small text-muted"><em>29 people found this page helpful so far!</em></div>
-                        </div> -->
+
+                            <div id="diagnosis_simplified_result" class="card-body">
+                                <p>(Age <= 89.0 & Positive_Histology == True) | (Positive_Histology == True & Segment <= 70.0 & Serum_ESR <= 70.5 & Total_Elixhauser_Groups_per_record > 0.5)</p>
+                            </div>  
+                            
+                        </div>
+                        <div>
+                            <label for="Decision_Path_num">Decision_Path_num</label>
+                            <input class="range_input input_arg" type="range" id="Decision_Path_num" name="Decision_Path_num" 
+                                    min="1" max="10" value="7" step="1" list="tickmarks_14">
+                                    <datalist id="tickmarks_14">
+                                        <option value="1"></option>
+                                        <option value="2"></option>
+                                        <option value="3"></option>
+                                        <option value="4"></option>
+                                        <option value="5"></option>
+                                        <option value="6"></option>
+                                        <option value="7"></option>
+                                        <option value="8"></option>
+                                        <option value="9"></option>
+                                        <option value="10"></option>
+                                    </datalist>
+                            <span id="Decision_Path_num_value"></span>
+                        </div>
                     </div>
+                    
                 </main>
                 <footer class="footer-admin mt-auto footer-light">
                     <div class="container-xl px-4">
@@ -262,9 +259,11 @@
         <script src="/static/js/scripts.js"></script>
         <script>
             console.log("running");
-            //const decision_list = JSON.parse('{{ decision_list | tojson }}');
             const decision_list_json = JSON.parse('{{ decision_list_json | tojson }}');
             const rule_map_json = JSON.parse('{{ rule_map_json | tojson }}');
+            const simplified_rule_json = JSON.parse('{{ simplified_rule_json | tojson }}');
+            const simplified_rule_map_json = JSON.parse('{{ simplified_rule_map_json | tojson }}');
+            const decision_path_num = '{{ decision_path_num }}'
         </script>
     </body>
 </html>

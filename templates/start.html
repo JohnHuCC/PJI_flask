@@ -1,0 +1,28 @@
+<!-- templates/index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+
+<h1>Progress:</h1>
+<div id="progress">0%</div>
+
+<button onclick="startTask()">Start Task</button>
+
+<script type="text/javascript">
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+    socket.on('task_progress', function(data) {
+        document.getElementById('progress').innerHTML = data.progress + '%';
+    });
+
+    function startTask() {
+        socket.emit('run_task', {data: 'Task started'});
+    }
+</script>
+
+</body>
+</html>

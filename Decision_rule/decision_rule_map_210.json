@@ -1,0 +1,9 @@
+{
+    "A": "Positive_Histology == False",
+    "B": "Synovial_WBC <= 14485.0",
+    "C": "Segment <= 75.5",
+    "D": "two_positive_culture == False",
+    "E": "PLATELET <= 415.0",
+    "F": "Purulence == False",
+    "G": "Serum_ESR <= 29.5"
+}

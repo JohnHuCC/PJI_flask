@@ -36,7 +36,7 @@ title = ["no_group", "age", "segment", "hgb", "platelet", "serum_WBC", "p_t", "a
          "primary_revision_native_hip", "asa", "positive_culture", "Serum_CRP", "serum_ESR", "synovial_WBC", "single_positive_culture", "synovial_PMN", "positive_histology", "pulurence"]
 
 
-pji_csv = open('New_data_x_test.csv', 'r')
+pji_csv = open('PJI_Dataset/New_data_x_test.csv', 'r')
 pji_csv_content = pji_csv.read().replace('\r\n', '\n')
 pji_csv_row = pji_csv_content.split('\n')
 for row in pji_csv_row[1:]:

@@ -1,11 +1,9 @@
 {
-    "A": "Hb <= 13.5",
-    "B": "APTT > 28.5",
-    "C": "Synovial_WBC > 4013.0",
-    "D": "Synovial_PMN > 58.5",
-    "E": "Segment > 65.5",
-    "F": "Serum_CRP > 23.5",
-    "G": "P_T > 5.0",
-    "H": "Serum_ESR > 39.5",
-    "I": "Positive_Histology == True"
+    "A": "Hb > 7.5",
+    "B": "Serum_ESR > 9.5",
+    "C": "Synovial_WBC > 7003.0",
+    "D": "Age <= 89.0",
+    "E": "Positive_Histology == True",
+    "F": "Synovial_PMN > 64.0",
+    "G": "APTT > 26.5"
 }

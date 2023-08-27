@@ -1,0 +1,36 @@
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.3  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.3
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:270.0  Q:275.0
+situation_num:nonICM_1_lessthan_s1
+Singleton relax: PLATELET < 275.0
+Singleton strict: PLATELET < 275.0
+

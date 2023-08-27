@@ -18,22 +18,41 @@ import time
 #             2591, 3601, 4451, 6741, 6941, 7911, 9041, 9051, 12331, 12721, 551, 1071, 1261, 1471, 1741, 1941, 2731, 5281, 5331, 5811, 6071, 6291, 6391,
 #             7751, 8701, 8861, 9771, 11281, 1371, 1551, 1931, 2081, 2211, 2511, 2601, 2931, 3001, 3081, 3551, 4441, 4681, 4941, 4981, 5021, 5481, 5921,
 #             6001, 6021, 6131, 6261, 11291, 2401]
-run_list = [151]
-for run in run_list:
-    print('run: ', run)
-    proc = subprocess.Popen(
-        ['python3', 'personal_DecisionPath2.py', str(run)])
-    start = time.time()
-    while True:
-        curr = time.time()
-        if curr - start > 2 * 60:
-            if not os.path.exists('Decision_rule/decision_rule_'+str(run)+'.json'):
-                proc.kill()
-                break
-            else:
-                print('ok')
-                try:
+from random import sample
+import pandas as pd
+X_res_test = pd.read_csv('PJI_Dataset/New_data_x_test.csv', encoding='utf-8')
+no_group = list(X_res_test['No.Group'])
+print('Get 20 random samples:')
+run_id = sample(no_group, 20)
+print(run_id)
+print('\n-------------------------\n')
+with open('test_out.txt', 'a') as f:
+    f.write('Get 20 random samples:\n')
+    f.write(str(run_id))
+    f.write('\n-------------------------\n')
+tree_nums = [7, 10, 13]
+for tree in tree_nums:
+    with open('test_out.txt', 'a') as f:
+        f.write('top '+str(tree)+':\n')
+    for run in run_id:
+        print('run: ', run)
+        with open('test_out.txt', 'a') as f:
+            f.write('run: '+str(run)+':\n')
+        proc = subprocess.Popen(
+            ['python3', 'smote.py', str(run), str(tree)])
+        start = time.time()
+        while True:
+            curr = time.time()
+            if curr - start > tree * tree:
+                if not os.path.exists('decision_rule_'+str(run)+'.json'):
+                    with open('test_out.txt', 'a') as f:
+                        f.write('overtime:'+str(tree*tree)+':\n')
                     proc.kill()
-                except:
-                    continue
-                break
+                    break
+                else:
+                    print('ok')
+                    try:
+                        proc.kill()
+                    except:
+                        continue
+                    break

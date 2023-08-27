@@ -64,6 +64,7 @@ import sys
 from sklearn.tree import export_graphviz
 import time
 import eventlet
+import auto_pick_boundary_v1
 sys.modules['sklearn.externals.six'] = six
 ##
 warnings.filterwarnings("ignore")
@@ -169,7 +170,8 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]                                        :node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]
+        :node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -217,7 +219,9 @@ def getTopN_Fidelity(fidelity_list, top_N_indices, top_N):
 
     top_n_fidelity_i = sorted(
         range(len(fidelity_list_)), key=lambda k: fidelity_list_[k])[-top_N:]
-    print(sorted(fidelity_list_))
+    # print(len(fidelity_list_))
+    # print(len(rules_list_))
+    # print(sorted(fidelity_list_))
     return list(itemgetter(*top_n_fidelity_i)(rules_list_))
 
 
@@ -619,260 +623,278 @@ def transPOSForm(Candidate_DecisionPath):
     return list(set(transPOSForm)), list(final_singleton)
 
 
+# In[6]: Main parameter setting
+# 主體參數設定
+debug_model = 0
+pID_idx = 5
+# pID = [11, 212, 51, 210, 79, 159]
+# PID = pID[pID_idx]
+
+explainers_counter = 5  # 找出 n 組候選 explainers
+CONDITIOS_AvgFidelity = {}
+
+# In[7]: File reading and pre-processing
+# 6.1 讀檔與前處理作業
+df = pd.read_excel(
+    '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
+# df = pd.read_excel('/Users/johnnyhu/Desktop/Revision_PJI_main.xlsx')
+
+df.drop(columns=['Name', 'CTNO', 'CSN',
+        'Turbidity', 'Color'], inplace=True)
+df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
+df['Joint'].replace(['H', 'K'], [0, 1], inplace=True)
+# 將'group', 'gender' 資料分為 0, 1 兩類
+df.Group.replace(2, 0, inplace=True)
+df.Gender.replace(2, 0, inplace=True)
+
+# 6.2 滑膜白細胞酯酶，將內容 "Negative, 1+, 2+, 3+ 及Trace" 轉碼
+df['synovial Leukocyte Esterase'].replace(
+    ['Negative', '1+', '2+', '3+', 'Trace'], [0, 1, 2, 3, np.nan], inplace=True)
+
+# 6.3 將 {1, 2} 轉碼為 {0, 1}, {3} 與 {na} 後續將因為處理空值 'Total Score', '2nd ICM' 會被刪除
+# df['Primary, Revision\nnative hip'].value_counts(), 可顯示資料統計
+# Primary, Revision\nnative hip {1, 2}
+df['Primary, Revision\nnative hip'].replace(2, 0, inplace=True)
+if (debug_model == 1):
+    print(df.shape)
+
+# 6.4 刪除['Total Score', '2nd ICM']空值記錄後,剩餘的感染與非感染的病患比例
+# MM = df[feature_selection2]
+# 將有空值的記錄刪除
+df = df.dropna(subset=['Total Score', '2nd ICM']).reset_index(drop=True)
+if (debug_model == 1):
+    print(df.shape)
+
+pd.set_option('display.max_columns', None)
+# plt.style.use('ggplot')
+
+t_ = df['Group'].value_counts().sort_index()
+# t_.plot.bar(rot=0, color=['r', 'b'], alpha=0.7, fontsize=14)
+# for idx, v_ in enumerate(t_):
+#     plt.text(idx - 0.07, v_ - 35, "{}".format(v_), fontsize=14)
+
+# plt.xticks([0, 1], ['Non infection', 'infection'], fontsize=14)
+# plt.xlabel("Group", fontsize=14)
+# plt.ylabel("Patient", fontsize=14)
+# plt.show()
+
+# 6.5 重新修訂 '2nd ICM' 數值
+# np.where(condition, x, y) # 滿足條件(condition)，輸出x，不滿足輸出y。
+# 計算 'total score'
+df['Total Score'] = np.where((df['Serum CRP'] >= 10) | (df['D_dimer'] >= 860), 2, 0) + \
+    np.where(df['Serum ESR'] >= 30, 1, 0) + \
+    np.where((df['Synovial WBC'] >= 3000) | (df['synovial Leukocyte Esterase'] >= 2), 3, 0) + \
+    np.where(df['Synovial Neutrophil'] >= 70, 2, 0) + \
+    np.where(df['Single Positive culture'] == 1, 2, 0) + \
+    np.where(df['Positive Histology'] == 1, 3, 0) + \
+    np.where(df['Pulurence'] == 1, 3, 0)
+
+# 6.6 重新修訂 2018 ICM: (1) >= 6 Infected, (2) 2-5 Possibly Infected, (3) 0-1 Not Infected
+df['2nd ICM'] = np.where(df['Total Score'] >= 6, 1, 0)
+
+# 6.7 修訂 2018 ICM 欄位, '2X positive cultures' =1 or Sinus Tract = 1 的患者 '2nd ICM'  = 1
+df.loc[(df['2X positive culture'] == 1) | (
+    df['Sinus Tract'] == 1), '2nd ICM'] = 1
+
+# 6.8 刪除 missing rate < 0.619的 cols, 並 繪製圖表與列出 drop.cols_list
+THRESHOLD = 200  # for missing rate: 200 / 323 = 0.619
+
+# 6.9 忽略 df['cols'] 索引:32 以後的 cols，同時統計每一個 col 'notnull' 的個數
+# 並列表為 table
+table = df.notnull().sum()[:-32]  # 不看綜合病症
+
+if (debug_model == 1):
+    print("Columns should be drop out: \n{}".format(
+        table[table.values < THRESHOLD].index.tolist()))
+df.drop(columns=table[table.values <
+        THRESHOLD].index.tolist(), inplace=True)
+
+temp_col = [
+    'No.Group', 'No. ', 'Group',
+    'PJI/Revision Date',
+    'Total Score', '2nd ICM',
+    'Minor ICM Criteria Total', '1st ICM',
+    'Minor MSIS Criteria Total', 'MSIS final classification'
+]
+
+# 6.10 補值前處理：
+# a. 把可能造成overfitting 的 outcome (temp_col) 先移除，再補值
+# b. 補值後再行合併
+# c. df.copy(), 複製此對象的索引和數據, 同時 reset_index, 重組index,避免產生莫名的邏輯錯誤
+no_group = list(df['No.Group'])
+internal = df.copy().reset_index(drop=True)
+internal_temp_df = internal[temp_col].copy()
+internal.drop(columns=['Date of first surgery ',
+                       'Date of last surgery '] + temp_col, inplace=True)
+if (debug_model == 1):
+    print(internal.shape)
+internal.tail()
+
+# d. MICE 補值，based estimator 為 BayesianRidge
+imputer_bayes = IterativeImputer(estimator=BayesianRidge(),
+                                 max_iter=50,
+                                 random_state=0)
+
+# imputation by bayes
+imputer_bayes.fit(internal)
+impute_internal = pd.DataFrame(
+    data=imputer_bayes.transform(internal),
+    columns=internal.columns
+)
+
+float_col = [
+    'Height (m)', 'BW (kg)',
+    'BMI', 'Serum WBC  (10¬3/uL)',
+    'HGB (g/dL)', 'Serum CRP (mg/L)',
+    'CR(B)  (mg/dL)'
+]
+
+# 6.11 補值後之資料修補
+# a: 負數轉正
+# b: 將"float" cols 轉換為 int
+# c: 修正 BMI
+# d: 修正'Total Elixhauser Groups per record',  往前推31個欄位加總
+# e: concat程序: 補值後再與 'temp_col' cols 合併
+###
+# Review for profiles
+#
+# 目前送交論文的版本為插補後四捨五入的版本 (未還原原始資料)。
+# 若分析時需比對插補資料與四捨五入前後的差異，可將必要欄位進行備份，待四捨五入後再行回復
+# [Line: 321-329, Line: 332-340]
+impute_internal = impute_internal.abs()
+impute_internal[impute_internal.columns[~np.isin(impute_internal.columns, float_col)]] = impute_internal[
+    impute_internal.columns[~np.isin(impute_internal.columns, float_col)]].round(0).astype(int)
+
+impute_internal['BMI'] = impute_internal['BW (kg)'] / (
+    impute_internal['Height (m)'] * impute_internal['Height (m)'])
+impute_internal['Total Elixhauser Groups per record'] = impute_internal[impute_internal.columns[-32:-1]
+                                                                        ].sum(axis=1)
+impute_internal = pd.concat(
+    [internal_temp_df, impute_internal], sort=False, ignore_index=False, axis=1)
+impute_internal.tail()
+
+# 6.12 將各項資料屬性，按cols進行分類
+s1 = {
+    # [0, 1]
+    'check_Primary': ['Primary, Revision\nnative hip'],
+
+    # [1, 2, 3, 4, 5]   #ps. 只有[1, 2, 3, 4]
+    'check_ASA': ['ASA'],
+
+    # [0, 1] : Outlier > 1 or Outlier < 0
+    'check_label': [
+        'Laterality ', 'Joint', 'Gender', 'Positive Histology',
+        '2X positive culture', 'Sinus Tract', 'Pulurence', 'Single Positive culture',
+        'Congestive Heart Failure', 'Cardiac Arrhythmia', 'Valvular Disease',
+        'Pulmonary Circulation Disorders', 'Peripheral Vascular Disorders',
+        'Hypertension Uncomplicated', 'Hypertension Complicated', 'Paralysis',
+        'Other Neurological Disorders', 'Chronic Pulmonary Disease',
+        'Diabetes Uncomplicated', 'Diabetes Complicated', 'Hypothyroidism',
+        'Renal Failure', 'Liver Disease',
+        'Peptic Ulcer Disease excluding bleeding', 'AIDS/HIV', 'Lymphoma',
+        'Metastatic Cancer', 'Solid Tumor without Metastasis',
+        'Rheumatoid Arthritis/collagen', 'Coagulopathy', 'Obesity',
+        'Weight Loss', 'Fluid and Electrolyte Disorders', 'Blood Loss Anemia',
+        'Deficiency Anemia', 'Alcohol Abuse', 'Drug Abuse', 'Psychoses',
+        'Depression'
+    ],
+
+    # [numeric data] : Outlier > Q3 + 1.5(IQR) or Outlier < Q1 - 1.5(IQR)
+    'check_numeric': [
+        'Age', 'Height (m)', 'BW (kg)', 'BMI', 'Serum ESR',
+        'Serum WBC ', 'HGB', 'PLATELET', 'P.T', 'APTT',
+        'Serum CRP', 'CR(B)', 'AST', 'ALT', 'Synovial WBC',
+        'Total CCI'
+    ],
+
+    # [percentage data] : Outlier > 100
+    'percentage_data': ['Segment (%)', 'Synovial Neutrophil']
+}
+
+# 6.13 修正
+# a. 將ASA儲存為 str, for OneHotEncoder
+# b. 將 'Synovial Neutrophil' 上限設100
+impute_internal['ASA'] = impute_internal['ASA'].astype(str)
+impute_internal.loc[impute_internal['Synovial Neutrophil']
+                    > 100, 'Synovial Neutrophil'] = 100
+
+# 6.14 補值後 drop 'outcome' 以外的其他cols 做為建模的基礎
+internal_X, internal_y = impute_internal[impute_internal.columns[10:]
+                                         ], impute_internal['Group']
+internal_y.value_counts().sort_index().plot(
+    kind='bar', color=['r', 'b'], title="Training dataset", rot=0)
+# plt.show()
+
+# 6.15 Comorbidity 程序處理
+# 先副本處理再寫回原變數
+internal_X = Comorbidity(internal_X.copy())
+
+# 5.16 將ASA 轉為 OneHotEncoder格式, 並整合至 internal_X
+ohe = OneHotEncoder(handle_unknown='ignore')
+ohe.fit(internal_X[['ASA']].values)
+ASA_data = ohe.transform(internal_X[['ASA']].values).toarray().astype(int)
+for idx, class_name in enumerate(ohe.categories_[0]):
+    internal_X['ASA_{}'.format(class_name)] = ASA_data[:, idx]
+internal_X.drop(columns=['ASA'], inplace=True)
+internal_X.tail()
+
+# 6.16 修正 columns name
+internal_X = internal_X.rename(columns={"Synovial Neutrophil": "Synovial_PMN",
+                                        "Pulurence": "Purulence"})
+# In[8]: feature_selection2 by feature importance from PJI-PI-01-02-2021.docx (Table 4)
+feature_selection2 = [
+    'Age',
+    'Segment (%)',  # Neutrophil Segment'
+    'HGB',          # Hemoglobin
+    'PLATELET',
+    'Serum WBC ',
+    'P.T',          # Prothrombin Time
+    'APTT',         # Activated Partial Thromboplastin Time
+    'Total CCI',    # Charlson Comorbidity Index
+    'Total Elixhauser Groups per record',  # Elixhauser Comorbidity Index
+    # Surgery (primary/revision), category
+    'Primary, Revision\nnative hip',
+    'ASA_2',        # American Society of Anesthesiologists, category
+    '2X positive culture',
+    'Serum CRP',
+    'Serum ESR',
+    'Synovial WBC',
+    'Single Positive culture',  # category
+    'Synovial_PMN',  # 'Synovial Neutrophil',
+    'Positive Histology',  # category
+    'Purulence',    # 'Pulurence' , category
+]
+
+### 補充:  iloc vs loc 功能說明 ###
+# iloc，即index locate 用index索引進行定位，所以引數是整型，如：df.iloc[10:20, 3:5]
+# loc，則可以使用column名和index名進行定位，如：df.loc[‘image1’:‘image10’, ‘age’:‘score’]
+internal_X = internal_X.loc[:, feature_selection2].copy()
+
+if (debug_model == 1):
+    print(internal_X.shape)
+internal_X.tail()
+internal_X.columns
+
+internal_X.to_csv('PJI_Dataset/internal_x_all.csv',
+                  encoding='utf-8', index=False)
+internal_y.to_csv('PJI_Dataset/internal_y_all.csv',
+                  encoding='utf-8', index=False)
+
+
 def personalDP(PID):
-    # In[6]: Main parameter setting
-    # 主體參數設定
-    debug_model = 0
-    pID_idx = 5
-    # pID = [11, 212, 51, 210, 79, 159]
-    # PID = pID[pID_idx]
-
-    explainers_counter = 5  # 找出 n 組候選 explainers
-    CONDITIOS_AvgFidelity = {}
-
-    # In[7]: File reading and pre-processing
-    # 6.1 讀檔與前處理作業
-    df = pd.read_excel(
-        '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
-    # df = pd.read_excel('/Users/johnnyhu/Desktop/Revision_PJI_main.xlsx')
-
-    df.drop(columns=['Name', 'CTNO', 'CSN',
-            'Turbidity', 'Color'], inplace=True)
-    df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
-    df['Joint'].replace(['H', 'K'], [0, 1], inplace=True)
-    # 將'group', 'gender' 資料分為 0, 1 兩類
-    df.Group.replace(2, 0, inplace=True)
-    df.Gender.replace(2, 0, inplace=True)
-
-    # 6.2 滑膜白細胞酯酶，將內容 "Negative, 1+, 2+, 3+ 及Trace" 轉碼
-    df['synovial Leukocyte Esterase'].replace(
-        ['Negative', '1+', '2+', '3+', 'Trace'], [0, 1, 2, 3, np.nan], inplace=True)
-
-    # 6.3 將 {1, 2} 轉碼為 {0, 1}, {3} 與 {na} 後續將因為處理空值 'Total Score', '2nd ICM' 會被刪除
-    # df['Primary, Revision\nnative hip'].value_counts(), 可顯示資料統計
-    # Primary, Revision\nnative hip {1, 2}
-    df['Primary, Revision\nnative hip'].replace(2, 0, inplace=True)
-    if (debug_model == 1):
-        print(df.shape)
-
-    # 6.4 刪除['Total Score', '2nd ICM']空值記錄後,剩餘的感染與非感染的病患比例
-    # MM = df[feature_selection2]
-    # 將有空值的記錄刪除
-    df = df.dropna(subset=['Total Score', '2nd ICM']).reset_index(drop=True)
-    if (debug_model == 1):
-        print(df.shape)
-
-    pd.set_option('display.max_columns', None)
-    # plt.style.use('ggplot')
-
-    t_ = df['Group'].value_counts().sort_index()
-    # t_.plot.bar(rot=0, color=['r', 'b'], alpha=0.7, fontsize=14)
-    # for idx, v_ in enumerate(t_):
-    #     plt.text(idx - 0.07, v_ - 35, "{}".format(v_), fontsize=14)
-
-    # plt.xticks([0, 1], ['Non infection', 'infection'], fontsize=14)
-    # plt.xlabel("Group", fontsize=14)
-    # plt.ylabel("Patient", fontsize=14)
-    # plt.show()
-
-    # 6.5 重新修訂 '2nd ICM' 數值
-    # np.where(condition, x, y) # 滿足條件(condition)，輸出x，不滿足輸出y。
-    # 計算 'total score'
-    df['Total Score'] = np.where((df['Serum CRP'] >= 10) | (df['D_dimer'] >= 860), 2, 0) + \
-        np.where(df['Serum ESR'] >= 30, 1, 0) + \
-        np.where((df['Synovial WBC'] >= 3000) | (df['synovial Leukocyte Esterase'] >= 2), 3, 0) + \
-        np.where(df['Synovial Neutrophil'] >= 70, 2, 0) + \
-        np.where(df['Single Positive culture'] == 1, 2, 0) + \
-        np.where(df['Positive Histology'] == 1, 3, 0) + \
-        np.where(df['Pulurence'] == 1, 3, 0)
-
-    # 6.6 重新修訂 2018 ICM: (1) >= 6 Infected, (2) 2-5 Possibly Infected, (3) 0-1 Not Infected
-    df['2nd ICM'] = np.where(df['Total Score'] >= 6, 1, 0)
-
-    # 6.7 修訂 2018 ICM 欄位, '2X positive cultures' =1 or Sinus Tract = 1 的患者 '2nd ICM'  = 1
-    df.loc[(df['2X positive culture'] == 1) | (
-        df['Sinus Tract'] == 1), '2nd ICM'] = 1
-
-    # 6.8 刪除 missing rate < 0.619的 cols, 並 繪製圖表與列出 drop.cols_list
-    THRESHOLD = 200  # for missing rate: 200 / 323 = 0.619
-
-    # 6.9 忽略 df['cols'] 索引:32 以後的 cols，同時統計每一個 col 'notnull' 的個數
-    # 並列表為 table
-    table = df.notnull().sum()[:-32]  # 不看綜合病症
-
-    if (debug_model == 1):
-        print("Columns should be drop out: \n{}".format(
-            table[table.values < THRESHOLD].index.tolist()))
-    df.drop(columns=table[table.values <
-            THRESHOLD].index.tolist(), inplace=True)
-
-    temp_col = [
-        'No.Group', 'No. ', 'Group',
-        'PJI/Revision Date',
-        'Total Score', '2nd ICM',
-        'Minor ICM Criteria Total', '1st ICM',
-        'Minor MSIS Criteria Total', 'MSIS final classification'
-    ]
-
-    # 6.10 補值前處理：
-    # a. 把可能造成overfitting 的 outcome (temp_col) 先移除，再補值
-    # b. 補值後再行合併
-    # c. df.copy(), 複製此對象的索引和數據, 同時 reset_index, 重組index,避免產生莫名的邏輯錯誤
-    no_group = list(df['No.Group'])
-    internal = df.copy().reset_index(drop=True)
-    internal_temp_df = internal[temp_col].copy()
-    internal.drop(columns=['Date of first surgery ',
-                           'Date of last surgery '] + temp_col, inplace=True)
-    if (debug_model == 1):
-        print(internal.shape)
-    internal.tail()
-
-    # d. MICE 補值，based estimator 為 BayesianRidge
-    imputer_bayes = IterativeImputer(estimator=BayesianRidge(),
-                                     max_iter=50,
-                                     random_state=0)
-
-    # imputation by bayes
-    imputer_bayes.fit(internal)
-    impute_internal = pd.DataFrame(
-        data=imputer_bayes.transform(internal),
-        columns=internal.columns
-    )
-
-    float_col = [
-        'Height (m)', 'BW (kg)',
-        'BMI', 'Serum WBC  (10¬3/uL)',
-        'HGB (g/dL)', 'Serum CRP (mg/L)',
-        'CR(B)  (mg/dL)'
-    ]
-
-    # 6.11 補值後之資料修補
-    # a: 負數轉正
-    # b: 將"float" cols 轉換為 int
-    # c: 修正 BMI
-    # d: 修正'Total Elixhauser Groups per record',  往前推31個欄位加總
-    # e: concat程序: 補值後再與 'temp_col' cols 合併
-    ###
-    # Review for profiles
-    #
-    # 目前送交論文的版本為插補後四捨五入的版本 (未還原原始資料)。
-    # 若分析時需比對插補資料與四捨五入前後的差異，可將必要欄位進行備份，待四捨五入後再行回復
-    # [Line: 321-329, Line: 332-340]
-    impute_internal = impute_internal.abs()
-    impute_internal[impute_internal.columns[~np.isin(impute_internal.columns, float_col)]] = impute_internal[
-        impute_internal.columns[~np.isin(impute_internal.columns, float_col)]].round(0).astype(int)
-
-    impute_internal['BMI'] = impute_internal['BW (kg)'] / (
-        impute_internal['Height (m)'] * impute_internal['Height (m)'])
-    impute_internal['Total Elixhauser Groups per record'] = impute_internal[impute_internal.columns[-32:-1]
-                                                                            ].sum(axis=1)
-    impute_internal = pd.concat(
-        [internal_temp_df, impute_internal], sort=False, ignore_index=False, axis=1)
-    impute_internal.tail()
-
-    # 6.12 將各項資料屬性，按cols進行分類
-    s1 = {
-        # [0, 1]
-        'check_Primary': ['Primary, Revision\nnative hip'],
-
-        # [1, 2, 3, 4, 5]   #ps. 只有[1, 2, 3, 4]
-        'check_ASA': ['ASA'],
-
-        # [0, 1] : Outlier > 1 or Outlier < 0
-        'check_label': [
-            'Laterality ', 'Joint', 'Gender', 'Positive Histology',
-            '2X positive culture', 'Sinus Tract', 'Pulurence', 'Single Positive culture',
-            'Congestive Heart Failure', 'Cardiac Arrhythmia', 'Valvular Disease',
-            'Pulmonary Circulation Disorders', 'Peripheral Vascular Disorders',
-            'Hypertension Uncomplicated', 'Hypertension Complicated', 'Paralysis',
-            'Other Neurological Disorders', 'Chronic Pulmonary Disease',
-            'Diabetes Uncomplicated', 'Diabetes Complicated', 'Hypothyroidism',
-            'Renal Failure', 'Liver Disease',
-            'Peptic Ulcer Disease excluding bleeding', 'AIDS/HIV', 'Lymphoma',
-            'Metastatic Cancer', 'Solid Tumor without Metastasis',
-            'Rheumatoid Arthritis/collagen', 'Coagulopathy', 'Obesity',
-            'Weight Loss', 'Fluid and Electrolyte Disorders', 'Blood Loss Anemia',
-            'Deficiency Anemia', 'Alcohol Abuse', 'Drug Abuse', 'Psychoses',
-            'Depression'
-        ],
-
-        # [numeric data] : Outlier > Q3 + 1.5(IQR) or Outlier < Q1 - 1.5(IQR)
-        'check_numeric': [
-            'Age', 'Height (m)', 'BW (kg)', 'BMI', 'Serum ESR',
-            'Serum WBC ', 'HGB', 'PLATELET', 'P.T', 'APTT',
-            'Serum CRP', 'CR(B)', 'AST', 'ALT', 'Synovial WBC',
-            'Total CCI'
-        ],
-
-        # [percentage data] : Outlier > 100
-        'percentage_data': ['Segment (%)', 'Synovial Neutrophil']
-    }
-
-    # 6.13 修正
-    # a. 將ASA儲存為 str, for OneHotEncoder
-    # b. 將 'Synovial Neutrophil' 上限設100
-    impute_internal['ASA'] = impute_internal['ASA'].astype(str)
-    impute_internal.loc[impute_internal['Synovial Neutrophil']
-                        > 100, 'Synovial Neutrophil'] = 100
-
-    # 6.14 補值後 drop 'outcome' 以外的其他cols 做為建模的基礎
-    internal_X, internal_y = impute_internal[impute_internal.columns[10:]
-                                             ], impute_internal['Group']
-    internal_y.value_counts().sort_index().plot(
-        kind='bar', color=['r', 'b'], title="Training dataset", rot=0)
-    # plt.show()
-
-    # 6.15 Comorbidity 程序處理
-    # 先副本處理再寫回原變數
-    internal_X = Comorbidity(internal_X.copy())
-
-    # 5.16 將ASA 轉為 OneHotEncoder格式, 並整合至 internal_X
-    ohe = OneHotEncoder(handle_unknown='ignore')
-    ohe.fit(internal_X[['ASA']].values)
-    ASA_data = ohe.transform(internal_X[['ASA']].values).toarray().astype(int)
-    for idx, class_name in enumerate(ohe.categories_[0]):
-        internal_X['ASA_{}'.format(class_name)] = ASA_data[:, idx]
-    internal_X.drop(columns=['ASA'], inplace=True)
-    internal_X.tail()
-
-    # 6.16 修正 columns name
-    internal_X = internal_X.rename(columns={"Synovial Neutrophil": "Synovial_PMN",
-                                            "Pulurence": "Purulence"})
-    # In[8]: feature_selection2 by feature importance from PJI-PI-01-02-2021.docx (Table 4)
-    feature_selection2 = [
-        'Age',
-        'Segment (%)',  # Neutrophil Segment'
-        'HGB',          # Hemoglobin
-        'PLATELET',
-        'Serum WBC ',
-        'P.T',          # Prothrombin Time
-        'APTT',         # Activated Partial Thromboplastin Time
-        'Total CCI',    # Charlson Comorbidity Index
-        'Total Elixhauser Groups per record',  # Elixhauser Comorbidity Index
-        # Surgery (primary/revision), category
-        'Primary, Revision\nnative hip',
-        'ASA_2',        # American Society of Anesthesiologists, category
-        '2X positive culture',
-        'Serum CRP',
-        'Serum ESR',
-        'Synovial WBC',
-        'Single Positive culture',  # category
-        'Synovial_PMN',  # 'Synovial Neutrophil',
-        'Positive Histology',  # category
-        'Purulence',    # 'Pulurence' , category
-    ]
     start_c = time.time()
-    ### 補充:  iloc vs loc 功能說明 ###
-    # iloc，即index locate 用index索引進行定位，所以引數是整型，如：df.iloc[10:20, 3:5]
-    # loc，則可以使用column名和index名進行定位，如：df.loc[‘image1’:‘image10’, ‘age’:‘score’]
-    internal_X = internal_X.loc[:, feature_selection2].copy()
+    # New data use SMOTE
+    X_res = pd.read_csv('PJI_Dataset/New_data_x.csv', encoding='utf-8')
+    y_res = pd.read_csv('PJI_Dataset/New_data_y.csv', encoding='utf-8')
+    X_res_test = pd.read_csv(
+        'PJI_Dataset/internal_x_test.csv', encoding='utf-8')
+    y_res = pd.read_csv('PJI_Dataset/New_data_y.csv', encoding='utf-8')
+    internal_X = pd.read_csv('PJI_Dataset/internal_x.csv', encoding='utf-8')
+    internal_y = pd.read_csv('PJI_Dataset/internal_y.csv', encoding='utf-8')
 
-    if (debug_model == 1):
-        print(internal_X.shape)
-    internal_X.tail()
-    internal_X.columns
-
+    no_group = list(X_res_test['No.Group'])
     PID_index = 2 + no_group.index(PID)
+
     # 7.1 Get the specific patient profile by PID
     X_train, y_train = internal_X.drop(
         index=PID_index), internal_y.drop(index=PID_index)
@@ -901,7 +923,7 @@ def personalDP(PID):
 
     # 8.2 Stacking Model from 80% dataset   ?
     stacking_model = StackingClassifier(
-        classifiers=[xgb, rf, lr_pipe, nb_pipe],
+        classifiers=[xgb, rf, lr_pipe],
         use_probas=True,
         average_probas=True,
         use_features_in_secondary=True,
@@ -914,7 +936,7 @@ def personalDP(PID):
         stacking_model = joblib.load('PJI_model/Stacking_model_'+str(PID))
     else:
         print("model missing, training...")
-        stacking_model.fit(X_train.values, y_train.values)
+        stacking_model.fit(X_train, y_train)
         joblib.dump(stacking_model, 'PJI_model/Stacking_model_'+str(PID))
     personal_result = stacking_model.predict(X_test.values)[0]
     # 根據ground_truth & Meta Learner 調節
@@ -957,7 +979,7 @@ def personalDP(PID):
         X_test_val[['2nd ICM', '2X positive culture',
                     'Sinus Tract', 'Minor ICM Criteria Total']].T
 
-        loaded_model = joblib.load('Stacking_model')
+        loaded_model = joblib.load('Stacking_model/stacking_model.pkl')
         # In[11]: Randomly generate random forest and candidate tree
         explainers, tree_candidates = getCandidate(X_train, y_train,
                                                    X_test, loaded_model,
@@ -968,9 +990,9 @@ def personalDP(PID):
         VAL_DATASET = []
         Y_VAL_DATASET = []
         for i in range(VAL_SIZE):
-            VAL_DATASET.append(resample(X_val, n_samples=55,
+            VAL_DATASET.append(resample(X_val, n_samples=33,
                                         replace=False, random_state=i))
-            Y_VAL_DATASET.append(resample(y_val, n_samples=55,
+            Y_VAL_DATASET.append(resample(y_val, n_samples=33,
                                           replace=False, random_state=i))
 
         # 10.2 Calculate the fidelity by explain_i
@@ -1099,8 +1121,9 @@ def personalDP(PID):
         end_c = time.time()
         # In[14]: Concatenate multi lists for CONDITIOS_AvgFidelity
         rules_list = getTopN_Fidelity(
-            CONDITIOS_AvgFidelity, list(explainers.keys()), 13)
-
+            CONDITIOS_AvgFidelity, list(explainers.keys()), 7)
+        print('TOP7 rule list:')
+        print(rules_list)
         # In[26]: Call the transPOSForm func.
         POS_Form, final_singleton = transPOSForm(rules_list)
 
@@ -1109,8 +1132,11 @@ def personalDP(PID):
         # 原始推導資料請參閱文件
         ## singleton_opt == parser.py
         # In[27]: Call the singleton_opt function
-        opt_decision_list = singleton_opt(X_test)
-
+        rules_list = auto_pick_boundary_v1.singleton_opt(PID, final_singleton)
+        print('rules list after auto bound:'+str(PID))
+        print(rules_list)
+        # print('opt_decision_list:')
+        # print(opt_decision_list)
         # In[28]: return the indices of the each rule with in truth table
         rule_i_ = []
         for i in range(len(POS_Form)):
@@ -1123,7 +1149,7 @@ def personalDP(PID):
             if (debug_model == 1):
                 print(rule, rule_i)
             rule_i_.append(rule_i)
-        print(rule_i_)
+        # print(rule_i_)
         ###
         # Init the truth table
         init_data = np.array([], dtype=np.int64).reshape(
@@ -1158,8 +1184,8 @@ def personalDP(PID):
         minterms_ = []
         for i in list(lst_all_):
             minterms_.append(list(np.asarray(i).data))
-        # print('minterms:')
-        # print(minterms_)
+        print('minterms:')
+        print(minterms_)
 
         # In[29]: POS_minterm process
         sym = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x"
@@ -1248,6 +1274,7 @@ def personalDP(PID):
 
 if __name__ == "__main__":
     # run_id = int(sys.argv[1])
+    # run_id = 62
     # personalDP(run_id)
     run_id = [62, 121, 151, 171, 231, 271, 331, 491, 531]
     for i in range(len(run_id)):

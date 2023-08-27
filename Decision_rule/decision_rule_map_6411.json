@@ -1,0 +1,13 @@
+{
+    "A": "Synovial_PMN > 46.5",
+    "B": "Age <= 62.5",
+    "C": "two_positive_culture == False",
+    "D": "Hb <= 13.5",
+    "E": "Serum_ESR <= 21.5",
+    "F": "Segment <= 74.5",
+    "G": "Serum_CRP <= 49.5",
+    "H": "Positive_Histology == True",
+    "I": "Synovial_WBC <= 3320.0",
+    "J": "P_T <= 10.5",
+    "K": "APTT > 23.5"
+}

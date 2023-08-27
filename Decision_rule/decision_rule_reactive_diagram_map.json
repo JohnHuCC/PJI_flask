@@ -1,0 +1,14 @@
+{
+    "A": "Segment <= 74.0",
+    "B": "PLATELET <= 275.0",
+    "C": "Serum_CRP >= 20.0",
+    "D": "Synovial_WBC >= 66633.0",
+    "E": "APTT >= 29.0",
+    "F": "Serum_ESR >= 52.0",
+    "G": "Surgery == True",
+    "H": "Positive_Histology == True",
+    "I": "Serum_WBC_ <= 7.5",
+    "J": "ASA_2 <= 0.0",
+    "K": "two_positive_culture == True",
+    "L": "Hb > 4.5"
+}

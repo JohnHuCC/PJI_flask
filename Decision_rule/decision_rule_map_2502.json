@@ -1,0 +1,17 @@
+{
+    "A": "Serum_ESR <= 29.5 and Positive_Histology == False and Synovial_WBC <= 155300.0 and Synovial_PMN <= 89.5",
+    "B": "APTT <= 28.5 and Serum_ESR <= 30.5 and Single_Positive_culture <= 0.5 and Hb > 8.0 and Synovial_WBC <= 8870.0",
+    "C": "two_positive_culture == False and Serum_ESR <= 41.0 and Positive_Histology == False and Segment <= 78.5",
+    "D": "Total_Elixhauser_Groups_per_record > 0.5 and Segment <= 70.0 and Positive_Histology == False and Single_Positive_culture <= 0.5 and Age > 75.5 and Serum_WBC_ > 5.0",
+    "E": "Segment <= 73.5 and APTT <= 31.5 and Purulence == False and Positive_Histology == False and Total_CCI <= 1.5 and Synovial_WBC <= 2885.0 and Age > 60.5",
+    "F": "Segment <= 69.5 and Synovial_WBC <= 13681.5 and Serum_ESR <= 41.5 and Synovial_PMN <= 73.0",
+    "G": "Positive_Histology == False and APTT <= 31.5 and Synovial_WBC <= 29205.0 and Purulence == False and Segment <= 75.0 and Total_CCI <= 0.5 and Surgery == True",
+    "H": "Synovial_PMN <= 57.5 and Positive_Histology == False and Serum_WBC_ > 4.5 and two_positive_culture == False",
+    "I": "Purulence == False and Synovial_PMN <= 56.5 and Serum_CRP <= 24.0",
+    "J": "Synovial_PMN <= 56.5 and two_positive_culture == False and Positive_Histology == False and Age > 39.0",
+    "K": "Synovial_WBC <= 18232.5 and Serum_WBC_ <= 13.5 and Serum_ESR <= 51.5 and Segment <= 85.0 and Purulence == False and Synovial_WBC <= 7350.0 and Positive_Histology == False",
+    "L": "Synovial_WBC <= 3522.5 and Positive_Histology == False and Serum_ESR <= 49.5 and Synovial_PMN <= 87.5",
+    "M": "Positive_Histology == False and two_positive_culture == False and Synovial_PMN <= 83.0 and Serum_ESR <= 49.0",
+    "N": "Synovial_WBC <= 3650.0 and Synovial_PMN <= 91.0 and Positive_Histology == False and Serum_ESR <= 41.5",
+    "O": "Synovial_WBC <= 3522.5 and Positive_Histology == False and Serum_CRP <= 35.5 and Single_Positive_culture <= 0.5 and Age > 75.5 and APTT <= 32.5"
+}

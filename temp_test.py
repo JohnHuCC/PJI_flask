@@ -1,30 +1,243 @@
+import ast
+from pyeda.boolalg.expr import exprvar
+from pyeda.boolalg import boolfunc
+from pyeda.boolalg.minimization import espresso_exprs
+from sympy.logic.boolalg import to_dnf
+# from rule_no_tune import transPOSForm
+import re
 import pandas as pd
+from sympy import symbols
+from sympy import Symbol
+from pyeda.boolalg.expr import OrOp, AndOp, exprvar
+import rule_parser
+from sklearn.model_selection import StratifiedKFold
+from rule_parser import *
 
-df = pd.read_excel(
-    '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
 
-run_list = [121, 271, 331, 531, 541, 581, 631, 671, 1101, 1121, 1291, 1311, 1331, 1721, 1861, 2351, 2441, 2951, 3211, 3621, 3661, 3671, 3971,
-            4111, 4621, 5221, 5291, 5391, 5541, 5631, 5761, 5841, 5991, 6091, 6101, 6121, 6181, 6411, 6751, 6971, 7011, 7031, 7331, 7361, 7451,
-            7551, 7611, 7831, 8021, 8061, 8131, 8201, 8381, 8491, 8511, 8601, 8631, 8641, 8691, 8841, 8901, 9011, 9031, 9131, 9201, 9301, 9341,
-            9391, 9481, 9991, 10161, 10191, 10221, 11121, 11301, 12401, 12601, 12691, 12701, 42, 62, 1302, 1312, 1882, 1912, 2102, 2502, 2892,
-            4562, 5082, 6012, 6142, 6182, 6512, 6582, 6672, 6852, 6912, 7312, 7332, 7482, 8232, 8782, 8792, 8872, 8942, 11732, 12242, 12632, 12712,
-            12752, 12942, 13402, 13702, 13862, 14042, 14512, 14722, 16172, 16532, 16962, 17512, 17702, 17722, 17762, 18112, 18502, 18722, 18782,
-            18832, 18912, 18932, 19122, 19162, 19242, 19282, 19262, 19322, 19332, 19342, 19352, 19392, 20022, 20142, 20152, 20172, 20182, 20532,
-            20652, 20692, 20732, 20992, 21242, 21312, 21612, 21882, 22472, 22642, 22702, 23012, 23132, 23142, 23152, 23172, 23182, 23202, 23212,
-            23222, 23242, 23292, 23362, 23372, 23452, 23512, 23522, 23602, 23632, 23642, 23672, 23392, 23682, 23742, 23812, 23852, 23892, 23952,
-            23982, 24002, 24032, 24042, 24082, 24092, 24102, 24112, 24162, 24182, 23802, 23862, 24302, 24352, 24362, 24392, 24402, 24422, 24062,
-            24462, 24472, 24152, 21802, 24372, 23752, 24122, 151, 171, 231, 491, 591, 681, 1041, 1081, 1091, 1181, 1191, 1201, 1301, 1411, 1851,
-            2001, 2151, 2321, 2841, 2851, 2971, 3141, 3391, 3431, 3501, 3521, 3871, 3881, 4481, 4631, 4701, 5071, 5251, 5461, 5521, 5911, 6031,
-            6141, 6171, 6381, 6641, 6661, 6711, 6721, 6731, 6771, 6781, 6811, 6871, 6951, 7171, 7261, 9421, 9451, 10381, 12271, 12501, 12751, 12781,
-            2591, 3601, 4451, 6741, 6941, 7911, 9041, 9051, 12331, 12721, 551, 1071, 1261, 1471, 1741, 1941, 2731, 5281, 5331, 5811, 6071, 6291, 6391,
-            7751, 8701, 8861, 9771, 11281, 1371, 1551, 1931, 2081, 2211, 2511, 2601, 2931, 3001, 3081, 3551, 4441, 4681, 4941, 4981, 5021, 5481, 5921,
-            6001, 6021, 6131, 6261, 11291, 2401]
-data_all = pd.DataFrame()
-for i in range(len(run_list)):
-    data = (df['No.Group'] == run_list[i])
-    data = df.loc[data]
-    data_all = data_all.append(data)
-data_all = data_all.reset_index(drop=True)
-data_all.to_csv("/Users/johnnyhu/Desktop/Revision_PJI_test_2.csv",
-                index=False, encoding='utf_8_sig')
-print(data_all)
+def transPOSForm(Candidate_DecisionPath):
+
+    # In[19]: 讀取 rules_list, data
+    # data = [
+    # # '(Serum_ESR > 48.5 and Segment > 64.5) | (Serum_ESR > 49.0 and Serum_CRP > 13.5 and APTT > 29.5 and Synovial_PMN > 52.0) | (Serum_ESR > 39.5 and Synovial_PMN > 69.0 and Age > 32.5 and Synovial_WBC > 367.5) | (Serum_ESR > 55.0 and P_T > 5.0 and Age > 33.0 and Hb > 8.5) | (Serum_ESR > 41.0 and Synovial_PMN > 41.5 and P_T > 5.0 and APTT > 23.5 and Age > 31.5 and Segment > 64.5)',
+    # '(Positive_Histology == True and Serum_CRP > 3.0 and Hb <= 13.5) | (Positive_Histology == True and Serum_CRP > 2.5 and APTT > 23.5 and Hb <= 13.5) | (Serum_ESR > 39.5 and APTT > 23.5 and Serum_CRP > 4.0 and Positive_Histology == True) | (Positive_Histology == True and Serum_CRP > 3.0) | (Positive_Histology == True and P_T > 5.0 and Segment > 65.5) | (Serum_ESR > 28.5 and Synovial_WBC > 2483.5 and APTT > 26.5)'
+    # ]
+    data = Candidate_DecisionPath
+    res_combined = []
+    # In[20] 拆解所有的 decision path 元素
+    # input: all_path
+    # output: all_singleton
+    for element in data:
+        element = element.replace(') | (', ' and ')
+        element = element.replace('(', '')
+        element = element.replace(')', '')
+        element = element.replace('&', 'and')
+
+        res_combined = res_combined + \
+            [x.strip(' ') for x in element.split('and')]
+
+    _singleton_set = set()
+    for atom in res_combined:
+        _singleton_set.add(atom)
+
+    _singleton_list = list()
+    for atom in _singleton_set:
+        _singleton_list.append(atom)
+
+    # In[21]: 列舉 all_singleton 的 features by Set()
+    singleton_f = set()
+    for i, (val) in enumerate(_singleton_list):
+
+        if val.find("<=") > 0:
+            singleton_f.add(val[:val.find("<=")-1])
+
+        elif val.find("<") > 0:
+            singleton_f.add(val[:val.find("<")-1])
+
+        elif val.find("==") > 0:
+            singleton_f.add(val[:val.find("==")-1])
+
+        elif val.find(">=") > 0:
+            singleton_f.add(val[:val.find(">=")-1])
+
+        elif val.find(">") > 0:
+            singleton_f.add(val[:val.find(">")-1])
+
+    # In[22]: 列舉 all_singleton 的 features by List()
+    _singleton_list_f = list()
+    for i, (val) in enumerate(_singleton_list):
+        if val.find("<=") > 0:
+            _singleton_list_f.append(val[:val.find("<=")-1])
+        elif val.find("<") > 0:
+            _singleton_list_f.append(val[:val.find("<")-1])
+        elif val.find("==") > 0:
+            _singleton_list_f.append(val[:val.find("==")-1])
+        elif val.find(">=") > 0:
+            _singleton_list_f.append(val[:val.find(">=")-1])
+        elif val.find(">") > 0:
+            _singleton_list_f.append(val[:val.find(">")-1])
+
+    # In[23]: 列舉所有 decision path的 singleton constraints
+    _singleton_list_ = {}
+    final_singleton = set()
+    for i, (val) in enumerate(singleton_f):
+        index = [n for n, x in enumerate(_singleton_list_f) if x == val]
+        group_list, val_list = [], []
+        if len(index) == 1:
+            # print(_singleton_list[index[0]])
+            final_singleton.add(_singleton_list[index[0]])
+        else:
+            for i in index:
+
+                if (_singleton_list[i].find('<=') > 0 or _singleton_list[i].find('<') > 0):
+                    for val2 in index:  # index):
+                        singleton_temp = _singleton_list[val2].split(' ')
+                        if (singleton_temp[1] == '<=' or singleton_temp[1] == '<'):
+                            val_list.append(float(singleton_temp[2]))
+                        else:
+                            val_list.append(float('-inf'))
+                        # val_list.append(
+                        #     float(_singleton_list[val2][_singleton_list[val2].find("<=")+3:]))
+                    # min_value = min(val_list)
+                    # min_index = val_list.index(min_value)
+                    max_value = max(val_list)
+                    max_index = val_list.index(max_value)
+                    val_list = []
+                    # final_singleton.add(_singleton_list[index[min_index]])
+                    final_singleton.add(_singleton_list[index[max_index]])
+                    for i in index:
+                        _singleton_list_[_singleton_list[i]
+                                         ] = _singleton_list[index[max_index]]
+
+                elif (_singleton_list[i].find('>=') > 0 or _singleton_list[i].find('>') > 0):
+                    for val2 in index:
+                        singleton_temp = _singleton_list[val2].split(' ')
+                        if (singleton_temp[1] == '>=' or singleton_temp[1] == '>'):
+                            val_list.append(float(singleton_temp[2]))
+                        else:
+                            val_list.append(float('inf'))
+                        # val_list.append(
+                        #     float(_singleton_list[val2][_singleton_list[val2].find(">=")+3:]))
+                    # max_value = max(val_list)
+                    # max_index = val_list.index(max_value)
+                    min_value = min(val_list)
+                    min_index = val_list.index(min_value)
+                    val_list = []
+                    final_singleton.add(_singleton_list[index[min_index]])
+                    for i in index:
+                        _singleton_list_[_singleton_list[i]
+                                         ] = _singleton_list[index[min_index]]
+
+    # In[24]: 宣告 Symbols by ns[] for symbols
+    sym = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x"
+    a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x = symbols(
+        sym)
+    sym_array = [a, b, c, d, e, f, g, h, i, j,
+                 k, l, m, n, o, p, q, r, s, t, u, v, w, x]
+    ns = {}
+    for s_, singleton_ in zip(sym_array, final_singleton):
+        ns[s_] = Symbol(singleton_)
+
+    # In[25]: decision path 同質性簡化
+    data_ = data
+    for val in list(_singleton_list_.keys()):
+        data_ = [w_.replace(val, _singleton_list_[val]) for w_ in data_]
+
+    ironmen_dict = {"featureSet": data_}
+    # 建立 data frame
+    df = pd.DataFrame(ironmen_dict)
+    # logic_path = set()
+    transPOSForm = []
+    transPOSForm_ini = []
+    for line in df['featureSet']:
+        string = line
+        for s_, singleton_ in zip(list(['ns[a]', 'ns[b]', 'ns[c]', 'ns[d]', 'ns[e]',
+                                        'ns[f]', 'ns[g]', 'ns[h]', 'ns[i]', 'ns[j]',
+                                        'ns[k]', 'ns[l]', 'ns[m]', 'ns[n]', 'ns[o]',
+                                        'ns[p]', 'ns[q]', 'ns[r]', 'ns[s]', 'ns[t]',
+                                        'ns[u]', 'ns[v]', 'ns[w]', 'ns[x]'
+                                        ]), list(final_singleton)):
+
+            string = string.replace(singleton_, s_)
+        string = string.replace('and', '&')
+        string = string.replace('or', '|')
+        out = to_dnf(eval(string))
+        transPOSForm.append(out)
+        # transPOSForm_ini.append(eval(string))
+    # print('transPOSForm_ini:', transPOSForm_ini)
+    # return list(set(transPOSForm)), list(final_singleton)
+    return list(set(transPOSForm)), list(set(final_singleton))
+
+
+singleton_map = dict()
+
+
+def map_to_var(final_singleton, rule_str):
+    # j = 65
+    for i in range(len(final_singleton)):
+        if i < 26:
+            j = 65
+            a = j + i
+            singleton_map[str(chr(a))] = final_singleton[i]
+            rule_str = rule_str.replace(final_singleton[i], str(chr(a)))
+        else:
+            j = 90
+            a = j + i
+            singleton_map[str(chr(a))] = final_singleton[i]
+            rule_str = rule_str.replace(final_singleton[i], str(chr(a)))
+    return (rule_str)
+
+
+def decode_expression(expr):
+    if isinstance(expr, expr.Or):
+        decoded_terms = [decode_expression(term) for term in expr.args]
+        return ' | '.join(decoded_terms)
+    elif isinstance(expr, expr.And):
+        decoded_literals = []
+        for literal in expr.args:
+            if isinstance(literal, exprvar):
+                decoded_literals.append(str(literal))
+            else:
+                decoded_literals.append(decode_expression(literal))
+        return ' & '.join(decoded_literals)
+    else:
+        return str(expr)
+
+
+A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z = map(
+    exprvar, ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'])
+a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z = map(
+    exprvar, ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
+# test_expr = (a & b) | (b & c)
+rules_list = ['Serum_CRP > 13.5 and Positive_Histology == True', 'Synovial_WBC <= 13850.0 and Positive_Histology == True and Serum_WBC_ <= 7.5',
+              'Serum_CRP > 14.0 and Synovial_WBC <= 25532.0 and two_positive_culture == False and Synovial_PMN > 78.5 and Total_Elixhauser_Groups_per_record <= 1.5 and Segment > 64.5']
+POS_Form_fix, final_singleton_fix = transPOSForm(rules_list)
+# print('POS_Form_fix:', POS_Form_fix)
+# _POS_Form_fix = POS_Form_fix.copy()
+# for i, rules in enumerate(POS_Form_fix):
+#     # _POS_Form_fix[i] = '(' + str(rules) + ')'
+#     _POS_Form_fix[i] = str(rules)
+# _POS_Form_fix = ' | '.join(_POS_Form_fix)
+
+
+def pp(e):
+    if isinstance(e, OrOp):
+        return "{} | {}".format(pp(e.xs[0]), pp(e.xs[1]))
+    elif isinstance(e, AndOp):
+        return "{} & {}".format(pp(e.xs[0]), pp(e.xs[1]))
+    else:
+        return "{}".format(e)
+
+
+f1 = C & D | C & I & G | C & H & I | C & H & B & A | C & E & F & J | C & H & G & E
+f2 = A & B & C | A & B | A & C & D | A & E | B & C & F & G | A & E & H | C & E & G
+f3 = a & b | a & c
+f1m, f2m, f3m = espresso_exprs(f1.to_dnf(), f2.to_dnf(), f3.to_dnf())
+# print(f1m)
+print(f2m)
+# f2m = f2.to_dnf()
+# # print('f1m:', f1m)
+# print('f2m:', f2m)
+# print('f2m expresso:', espresso_exprs(f2m))
+# # print('f3m:', f3m)
+parsed_string = parse_ast(f2m)
+print(parsed_string)
