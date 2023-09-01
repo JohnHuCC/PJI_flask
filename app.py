@@ -16,10 +16,8 @@ import pymysql
 import personal_DecisionPath2
 import personal_DecisionPath_for_reactive
 from flask import jsonify, request
-from celery import Celery
 from flask_socketio import SocketIO
 import time
-from celery.exceptions import SoftTimeLimitExceeded
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(24)
 # app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=31)
@@ -36,82 +34,6 @@ reactived_data_key = ["A", "B", "C", "D", "E", "F", "G",
                       "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"]
 
 
-def make_celery(app):
-    celery = Celery(
-        app.import_name,
-        backend=app.config['CELERY_RESULT_BACKEND'],
-        broker=app.config['CELERY_BROKER_URL']
-    )
-    celery.conf.update(app.config)
-    return celery
-
-
-app.config.update(
-    CELERY_BROKER_URL='redis://localhost:6379/0',
-    CELERY_RESULT_BACKEND='redis://localhost:6379/0'
-)
-
-celery = make_celery(app)
-
-
-@app.route('/start')
-def start():
-    return render_template('start.html')
-
-
-# @celery.task(bind=True, time_limit=200, soft_time_limit=195, CELERYD_FORCE=True, CELERYD_MAX_TASKS_PER_CHILD=5)
-# def reactived_data_task(self, arr, name):
-#     try:
-#         print("calling reactived_data_task")
-#         global result1
-#         reactived_data_key = ["A", "B", "C", "D", "E", "F", "G",
-#                               "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"]
-#         print('success reactived_data_key:', reactived_data_key)
-#         reactived_data_dict = {k: v for k, v in zip(reactived_data_key, arr)}
-
-#         with open("Decision_rule/reactived_data.json", "w") as file:
-#             json.dump(reactived_data_dict, file)
-#         for i in range(1, 21):
-#             time.sleep(1)
-#             self.update_state(state='PROGRESS', meta={'progress': i*1})
-#         for i in range(21, 26):
-#             time.sleep(1)
-#             self.update_state(state='PROGRESS', meta={'progress': i*1})
-#         predict_data = Vision_compare.tran_df(arr)
-#         reactive_diagram_dp = personal_DecisionPath_for_reactive.run_test(
-#             int(name), predict_data)
-#         for i in range(26, 101):
-#             time.sleep(1)
-#             self.update_state(state='PROGRESS', meta={'progress': i*1})
-#         return 'Task completed'
-#     except SoftTimeLimitExceeded:
-    # print('Error Time Exceed')
-
-def reactived_data_task(self, arr, name):
-    print("calling reactived_data_task")
-    global result1
-    reactived_data_key = ["A", "B", "C", "D", "E", "F", "G",
-                          "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S"]
-    print('success reactived_data_key:', reactived_data_key)
-    reactived_data_dict = {k: v for k, v in zip(reactived_data_key, arr)}
-
-    with open("Decision_rule/reactived_data.json", "w") as file:
-        json.dump(reactived_data_dict, file)
-    for i in range(1, 21):
-        time.sleep(1)
-        self.update_state(state='PROGRESS', meta={'progress': i*1})
-    for i in range(21, 26):
-        time.sleep(1)
-        self.update_state(state='PROGRESS', meta={'progress': i*1})
-    predict_data = Vision_compare.tran_df(arr)
-    reactive_diagram_dp = personal_DecisionPath_for_reactive.run_test(
-        int(name), predict_data)
-    for i in range(26, 101):
-        time.sleep(1)
-        self.update_state(state='PROGRESS', meta={'progress': i*1})
-    return 'Task completed'
-
-
 socketio = SocketIO(app)
 
 
@@ -122,8 +44,6 @@ def run_task(message):
     with open("Decision_rule/reactived_data_onlyvalue.json", "w") as file:
         json.dump(arr, file)
     name = message.get('name', "")
-    # task = reactived_data_task.apply_async(
-    #     args=[arr, name])
     print("calling reactived_data_task")
     global result1
     reactived_data_key = ["A", "B", "C", "D", "E", "F", "G",
@@ -134,61 +54,22 @@ def run_task(message):
     with open("Decision_rule/reactived_data.json", "w") as file:
         json.dump(reactived_data_dict, file)
     for i in range(1, 21):
-        time.sleep(0.5)
+        time.sleep(0.3)
         progress = i
         socketio.emit('task_progress', {'progress': progress})
-    for i in range(21, 26):
-        time.sleep(1)
+    for i in range(21, 36):
+        time.sleep(0.5)
         progress = i
         socketio.emit('task_progress', {'progress': progress})
     predict_data = Vision_compare.tran_df(arr)
     reactive_diagram_dp = personal_DecisionPath_for_reactive.run_test(
         int(name), predict_data)
-    for i in range(26, 100):
+    for i in range(36, 100):
         time.sleep(0.1)
         progress = i
         socketio.emit('task_progress', {'progress': progress})
-    global result_text
-    result1 = Vision_compare.stacking_predict(predict_data)
-    if (result1[0] == 1):
-        result_text = "Infected"
-    else:
-        result_text = "Aseptic"
-    result_xgb = Vision_compare.xgboost_predict(predict_data)
-    result_rf = Vision_compare.rf_predict(predict_data)
-    result_nb = Vision_compare.nb_predict(predict_data)
-    result_lr = Vision_compare.lr_predict(predict_data)
-    reactive_rule_json = json.load(
-        open("Decision_rule/reactive_rule.json"))
-
-    reactive_rule_map_json = json.load(
-        open("Decision_rule/reactive_rule_map.json"))
-
-    reactive_decision_list_json = json.load(
-        open("Decision_rule/decision_rule_reactive_diagram.json"))
-
-    reactive_decision_list_map_json = json.load(
-        open("Decision_rule/decision_rule_reactive_diagram_map.json"))
-
-    reactived_data_json = json.load(
-        open("Decision_rule/reactived_data.json"))
-
-    frontend_combined_data = {
-        'reactive_rule_json': reactive_rule_json,
-        'reactive_rule_map_json': reactive_rule_map_json,
-        'reactive_decision_list_json': reactive_decision_list_json,
-        'reactive_decision_list_map_json': reactive_decision_list_map_json,
-        'reactived_data_json': reactived_data_json
-    }
     socketio.emit('task_progress', {'progress': 100})
-    socketio.emit('update_frontend', {'result_text': result_text, 'result_xgb': int(result_xgb[0]),
-                                      'result_rf': int(result_rf[0]), 'result_nb': int(result_nb[0]), 'result_lr': int(result_lr[0])})
-    socketio.emit('update_frontend_data', frontend_combined_data)
-    # self.update_state(state='PROGRESS', meta={'progress': i*1})
-    # while not task.ready():
-    #     progress = task.info.get('progress', 0) if task.info else 0
-    #     socketio.emit('task_progress', {'progress': progress})
-    #     time.sleep(1)
+    socketio.emit('update_frontend', {'progress': 100})
 
 
 def tran_df(arr):
@@ -583,42 +464,6 @@ def get_reactive_bar_data(request):
     return arr
 
 
-def reactive_diagram_fix(arr):
-    user = 'shit'
-    user_data_json = json.load(open("Decision_rule/user_data.json"))
-    predict_data = Vision_compare.tran_df(arr)
-    result1 = Vision_compare.stacking_predict(predict_data)
-    result_xgb = Vision_compare.xgboost_predict(predict_data)
-    result_rf = Vision_compare.rf_predict(predict_data)
-    result_nb = Vision_compare.nb_predict(predict_data)
-    result_lr = Vision_compare.lr_predict(predict_data)
-    print("running start")
-    if (result1[0] == 1):
-        result_text = "Infected"
-    else:
-        result_text = "Aseptic"
-
-    reactive_rule_json = json.load(
-        open("Decision_rule/reactive_rule.json"))
-
-    reactive_rule_map_json = json.load(
-        open("Decision_rule/reactive_rule_map.json"))
-
-    reactive_decision_list_json = json.load(
-        open("Decision_rule/decision_rule_reactive_diagram.json"))
-
-    reactive_decision_list_map_json = json.load(
-        open("Decision_rule/decision_rule_reactive_diagram_map.json"))
-
-    reactived_data_json = json.load(
-        open("Decision_rule/reactived_data.json"))
-
-    Vision_compare.plt_con()
-    print("running end")
-    return render_template('reactive_diagram.html', result=result_text, reactive_rule_json=reactive_rule_json, reactive_rule_map_json=reactive_rule_map_json,
-                           result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user, predict_data=arr, reactive_decision_list_json=reactive_decision_list_json, reactive_decision_list_map_json=reactive_decision_list_map_json, user_data_json=user_data_json, reactived_data_json=reactived_data_json, name=name)
-
-
 @app.route('/reactive_diagram', methods=['GET', 'POST'])
 def reactive_diagram():
     session.permanent = True
@@ -676,10 +521,9 @@ def reactive_diagram():
 
         Vision_compare.plt_con()
         print("running end")
+
         return render_template('reactive_diagram.html', result=result_text, reactive_rule_json=reactive_rule_json, reactive_rule_map_json=reactive_rule_map_json,
                                result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user, predict_data=arr, reactive_decision_list_json=reactive_decision_list_json, reactive_decision_list_map_json=reactive_decision_list_map_json, user_data_json=user_data_json, reactived_data_json=reactived_data_json, name=name)
-        # return render_template('reactive_diagram.html', result=result_text, reactive_rule_json=reactive_rule_json, reactive_rule_map_json=reactive_rule_map_json,
-        #                        result_xgb=result_xgb[0], result_rf=result_rf[0], result_nb=result_nb[0], result_lr=result_lr[0], user=user)
     return render_template('reactive_diagram.html', user=user, user_data_json=user_data_json, name=name)
 
 
@@ -713,10 +557,3 @@ def personal_info():
     user = cur.fetchall()
     conn.close()
     return render_template('personal_info.html', name=name, u=user, result=result_text, username=username)
-
-
-# @app.route('/progress')
-# def progress():
-#     tempfile = open("progress.tmp", "r").read()
-#     tempfile.close()
-#     return tempfile

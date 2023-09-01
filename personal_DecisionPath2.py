@@ -170,8 +170,7 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]
-        :node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]                                        :node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -640,7 +639,7 @@ df = pd.read_excel(
 # df = pd.read_excel('/Users/johnnyhu/Desktop/Revision_PJI_main.xlsx')
 
 df.drop(columns=['Name', 'CTNO', 'CSN',
-        'Turbidity', 'Color'], inplace=True)
+                 'Turbidity', 'Color'], inplace=True)
 df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
 df['Joint'].replace(['H', 'K'], [0, 1], inplace=True)
 # 將'group', 'gender' 資料分為 0, 1 兩類
@@ -707,7 +706,7 @@ if (debug_model == 1):
     print("Columns should be drop out: \n{}".format(
         table[table.values < THRESHOLD].index.tolist()))
 df.drop(columns=table[table.values <
-        THRESHOLD].index.tolist(), inplace=True)
+                      THRESHOLD].index.tolist(), inplace=True)
 
 temp_col = [
     'No.Group', 'No. ', 'Group',
@@ -1026,7 +1025,7 @@ def personalDP(PID):
                 res = interpret(X_test, explainers[explain_i].estimators_[
                                 idx], feature_selection2)
                 rule = " and ".join([" ".join([str(w_) for w_ in r_])
-                                    for r_ in res['info']])
+                                     for r_ in res['info']])
                 rules.append(rule)
                 res_combined = res_combined + \
                     [" ".join([str(w_) for w_ in r_]) for r_ in res['info']]
@@ -1126,7 +1125,8 @@ def personalDP(PID):
         print(rules_list)
         # In[26]: Call the transPOSForm func.
         POS_Form, final_singleton = transPOSForm(rules_list)
-
+        print('final_singleton:')
+        print(final_singleton)
         ## 20210531 ##
         # 套用演算法分類 ICM & non_ICM 分類
         # 原始推導資料請參閱文件
@@ -1207,12 +1207,14 @@ def personalDP(PID):
         rule_str = Simplify_DecisionRules
         print('rule_str:')
         print(Simplify_DecisionRules)
+        print('final_singleton:')
+        print(final_singleton)
         j = 65
         for i in range(len(final_singleton)):
             a = j + i
             rule_str = rule_str.replace(final_singleton[i], str(chr(a)))
 
-        regex = re.compile('[A-Z]')
+        regex = re.compile('[A-Za-z]')
         rule_str_sp = rule_str.split('|')
 
         decision_rule = {}
@@ -1273,9 +1275,6 @@ def personalDP(PID):
 
 
 if __name__ == "__main__":
-    # run_id = int(sys.argv[1])
-    # run_id = 62
-    # personalDP(run_id)
-    run_id = [62, 121, 151, 171, 231, 271, 331, 491, 531]
+    run_id = [121, 151, 171, 231, 271, 331, 491, 531]
     for i in range(len(run_id)):
         personalDP(run_id[i])

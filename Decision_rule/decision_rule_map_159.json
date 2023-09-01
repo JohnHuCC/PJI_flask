@@ -1,7 +1,0 @@
-{
-    "A": "Serum_ESR <= 40.5",
-    "B": "Serum_CRP <= 59.0",
-    "C": "Positive_Histology == False",
-    "D": "Synovial_PMN <= 89.5",
-    "E": "Synovial_WBC <= 70350.0"
-}

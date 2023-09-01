@@ -1,0 +1,21 @@
+{
+    "A": "two_positive_culture == False",
+    "B": "Age > 47.0",
+    "C": "Positive_Histology == False",
+    "D": "Total_CCI <= 1.5",
+    "E": "Purulence == False",
+    "F": "Age <= 65.0",
+    "G": "Serum_ESR <= 25.0",
+    "H": "Serum_ESR <= 25.0",
+    "I": "APTT <= 27.0",
+    "J": "Single_Positive_culture <= 0.0",
+    "K": "Synovial_PMN <= 13.0",
+    "L": "APTT <= 27.0",
+    "M": "Segment <= 62.0",
+    "N": "Synovial_WBC <= 1250.0",
+    "O": "Serum_ESR <= 25.0",
+    "P": "Serum_CRP <= 6.0",
+    "Q": "Serum_ESR <= 25.0",
+    "R": "P_T <= 10.0",
+    "S": "ASA_2 >= 1.0"
+}

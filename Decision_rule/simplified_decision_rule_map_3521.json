@@ -1,0 +1,15 @@
+{
+    "A": "two_positive_culture == True",
+    "B": "Positive_Histology == True",
+    "C": "Segment <= 71.5",
+    "D": "Synovial_PMN >= 59.0",
+    "E": "P_T >= 12.0",
+    "F": "P_T >= 12.0",
+    "G": "Hb <= 11.0",
+    "H": "Synovial_WBC >= 35846.0",
+    "I": "Synovial_WBC >= 35846.0",
+    "J": "Serum_CRP >= 29.0",
+    "K": "PLATELET >= 312.0",
+    "L": "Synovial_WBC >= 35846.0",
+    "M": "APTT >= 33.0"
+}

@@ -1,0 +1,23 @@
+{
+    "A": "Positive_Histology == True",
+    "B": "Age > 29.0",
+    "C": "Age <= 87.5",
+    "D": "Synovial_PMN >= 79.0",
+    "E": "APTT >= 33.0",
+    "F": "Serum_ESR >= 92.0",
+    "G": "Serum_CRP >= 110.0",
+    "H": "Segment >= 81.0",
+    "I": "Hb > 4.5",
+    "J": "P_T >= 11.0",
+    "K": "Serum_ESR >= 92.0",
+    "L": "Synovial_PMN >= 79.0",
+    "M": "Synovial_WBC >= 49439.0",
+    "N": "Synovial_WBC >= 49439.0",
+    "O": "Serum_WBC_ >= 10.0",
+    "P": "Segment >= 81.0",
+    "Q": "Synovial_WBC >= 49439.0",
+    "R": "Segment >= 81.0",
+    "S": "Serum_CRP >= 110.0",
+    "T": "Serum_CRP >= 110.0",
+    "U": "Serum_ESR >= 92.0"
+}

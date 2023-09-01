@@ -1,0 +1,17 @@
+{
+    "A": "Synovial_PMN > 56.0",
+    "B": "Synovial_PMN > 63.5",
+    "C": "Serum_ESR > 51.0",
+    "D": "Synovial_WBC > 8280.0",
+    "E": "Synovial_WBC > 85880.0",
+    "F": "Serum_CRP > 24.5",
+    "G": "Hb > 4.5",
+    "H": "Hb <= 13.5",
+    "I": "Serum_CRP > 72.5",
+    "J": "Serum_WBC_ > 8.5",
+    "K": "Hb <= 12.5",
+    "L": "Synovial_WBC > 3612.5",
+    "M": "Segment > 57.0",
+    "N": "Serum_CRP > 13.5",
+    "O": "Positive_Histology == True"
+}

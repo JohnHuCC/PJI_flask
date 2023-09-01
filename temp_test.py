@@ -228,16 +228,20 @@ def pp(e):
         return "{}".format(e)
 
 
-f1 = C & D | C & I & G | C & H & I | C & H & B & A | C & E & F & J | C & H & G & E
-f2 = A & B & C | A & B | A & C & D | A & E | B & C & F & G | A & E & H | C & E & G
-f3 = a & b | a & c
-f1m, f2m, f3m = espresso_exprs(f1.to_dnf(), f2.to_dnf(), f3.to_dnf())
-# print(f1m)
-print(f2m)
-# f2m = f2.to_dnf()
-# # print('f1m:', f1m)
-# print('f2m:', f2m)
-# print('f2m expresso:', espresso_exprs(f2m))
-# # print('f3m:', f3m)
-parsed_string = parse_ast(f2m)
-print(parsed_string)
+# f1 = C & D | C & I & G | C & H & I | C & H & B & A | C & E & F & J | C & H & G & E
+# f2 = A & B & C | A & B | A & C & D | A & E | B & C & F & G | A & E & H | C & E & G
+# f3 = a & b | a & c
+# f1m, f2m, f3m = espresso_exprs(f1.to_dnf(), f2.to_dnf(), f3.to_dnf())
+# # print(f1m)
+# print(f2m)
+# # f2m = f2.to_dnf()
+# # # print('f1m:', f1m)
+# # print('f2m:', f2m)
+# # print('f2m expresso:', espresso_exprs(f2m))
+# # # print('f3m:', f3m)
+# parsed_string = parse_ast(f2m)
+# print(parsed_string)
+df = pd.read_csv('PJI_Dataset/PJI_all.csv')
+
+id = df['No.Group'].values.tolist()
+print(id)

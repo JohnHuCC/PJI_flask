@@ -1,0 +1,17 @@
+{
+    "A": "two_positive_culture == True",
+    "B": "Segment <= 81.0",
+    "C": "Segment <= 69.5",
+    "D": "Positive_Histology == True",
+    "E": "Synovial_PMN <= 54.0",
+    "F": "APTT <= 28.5",
+    "G": "Hb > 4.5",
+    "H": "Synovial_WBC >= 18106.0",
+    "I": "Serum_CRP >= 17.0",
+    "J": "PLATELET >= 232.0",
+    "K": "Synovial_WBC >= 18106.0",
+    "L": "Serum_CRP >= 17.0",
+    "M": "Hb <= 12.0",
+    "N": "PLATELET >= 232.0",
+    "O": "Total_Elixhauser_Groups_per_record >= 2.0"
+}

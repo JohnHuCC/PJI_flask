@@ -1,0 +1,19 @@
+{
+    "A": "PLATELET <= 471.5",
+    "B": "Synovial_WBC > 8280.0",
+    "C": "Positive_Histology == False",
+    "D": "two_positive_culture == False",
+    "E": "Age >= 75.0",
+    "F": "Serum_WBC_ >= 7.0",
+    "G": "Serum_CRP <= 1.0",
+    "H": "Serum_WBC_ <= 7.0",
+    "I": "APTT <= 27.0",
+    "J": "Serum_ESR <= 12.0",
+    "K": "Serum_ESR <= 12.0",
+    "L": "ASA_2 >= 1.0",
+    "M": "APTT <= 27.0",
+    "N": "Hb >= 13.0",
+    "O": "Serum_CRP < 1.0",
+    "P": "Serum_ESR <= 12.0",
+    "Q": "Serum_ESR <= 12.0"
+}

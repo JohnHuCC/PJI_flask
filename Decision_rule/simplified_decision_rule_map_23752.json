@@ -1,0 +1,16 @@
+{
+    "A": "Age > 46.0",
+    "B": "Serum_CRP > 13.5",
+    "C": "Total_Elixhauser_Groups_per_record <= 2.5",
+    "D": "two_positive_culture == False",
+    "E": "Purulence == False",
+    "F": "Total_CCI <= 1.5",
+    "G": "Surgery == True",
+    "H": "Positive_Histology == False",
+    "I": "Synovial_WBC <= 590.0",
+    "J": "Segment <= 56.0",
+    "K": "Synovial_PMN <= 74.0",
+    "L": "APTT > 28.5",
+    "M": "Segment <= 56.0",
+    "N": "Serum_ESR <= 28.0"
+}

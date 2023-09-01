@@ -1,0 +1,21 @@
+{
+    "A": "Age > 62.5",
+    "B": "Positive_Histology == True",
+    "C": "Purulence == True",
+    "D": "Hb <= 13.5",
+    "E": "Serum_ESR > 28.5",
+    "F": "Segment > 65.5",
+    "G": "PLATELET <= 248.0",
+    "H": "two_positive_culture == True",
+    "I": "APTT > 26.5",
+    "J": "Synovial_PMN <= 63.0",
+    "K": "Segment > 64.5",
+    "L": "Segment > 66.5",
+    "M": "Serum_WBC_ > 8.5",
+    "N": "Age <= 68.0",
+    "O": "PLATELET <= 308.0",
+    "P": "APTT <= 32.5",
+    "Q": "Hb <= 12.5",
+    "R": "PLATELET <= 269.0",
+    "S": "APTT > 23.5"
+}

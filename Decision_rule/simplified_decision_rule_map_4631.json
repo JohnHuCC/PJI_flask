@@ -1,0 +1,13 @@
+{
+    "A": "two_positive_culture == True",
+    "B": "Positive_Histology == True",
+    "C": "Purulence == True",
+    "D": "APTT <= 28.5",
+    "E": "Serum_WBC_ <= 5.5",
+    "F": "Synovial_WBC >= 40950.0",
+    "G": "Serum_CRP >= 61.0",
+    "H": "Serum_ESR >= 102.0",
+    "I": "Synovial_WBC >= 40950.0",
+    "J": "Synovial_WBC >= 40950.0",
+    "K": "PLATELET >= 149.0"
+}

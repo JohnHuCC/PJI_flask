@@ -1,0 +1,20 @@
+{
+    "A": "Positive_Histology == False",
+    "B": "two_positive_culture == False",
+    "C": "Surgery == True",
+    "D": "Purulence == False",
+    "E": "Synovial_WBC <= 228.0",
+    "F": "PLATELET <= 199.0",
+    "G": "Synovial_PMN <= 1.0",
+    "H": "Serum_CRP <= 2.0",
+    "I": "Synovial_PMN <= 1.0",
+    "J": "Segment <= 50.0",
+    "K": "Total_Elixhauser_Groups_per_record <= 0.0",
+    "L": "APTT <= 27.0",
+    "M": "Serum_ESR <= 9.0",
+    "N": "Synovial_WBC <= 228.0",
+    "O": "Hb < 12.5",
+    "P": "APTT <= 27.0",
+    "Q": "APTT <= 27.0",
+    "R": "Serum_ESR <= 9.0"
+}

@@ -1,0 +1,13 @@
+{
+    "A": "two_positive_culture == False",
+    "B": "Serum_ESR <= 28.5",
+    "C": "Positive_Histology == True",
+    "D": "Total_CCI <= 0.5",
+    "E": "Surgery == True",
+    "F": "APTT <= 28.5",
+    "G": "APTT <= 29.5",
+    "H": "Synovial_WBC >= 77400.0",
+    "I": "Serum_CRP >= 28.0",
+    "J": "Segment >= 74.0",
+    "K": "Synovial_WBC >= 77400.0"
+}

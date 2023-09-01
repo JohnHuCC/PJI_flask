@@ -1,0 +1,21 @@
+{
+    "A": "Synovial_WBC <= 41460.0",
+    "B": "Single_Positive_culture <= 0.5",
+    "C": "Hb > 9.5",
+    "D": "Serum_CRP <= 118.5",
+    "E": "two_positive_culture == False",
+    "F": "Synovial_PMN > 60.5",
+    "G": "Serum_ESR > 48.5",
+    "H": "P_T > 5.5",
+    "I": "Serum_ESR <= 95.5",
+    "J": "Synovial_WBC <= 2068.5",
+    "K": "Segment <= 69.5",
+    "L": "Synovial_PMN > 65.0",
+    "M": "Serum_ESR > 29.5",
+    "N": "APTT > 23.5",
+    "O": "Synovial_PMN > 3.0",
+    "P": "Serum_WBC_ <= 8.5",
+    "Q": "Synovial_WBC <= 2483.5",
+    "R": "Positive_Histology == True",
+    "S": "Serum_CRP > 13.5"
+}

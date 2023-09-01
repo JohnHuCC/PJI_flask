@@ -1,0 +1,15 @@
+{
+    "A": "Serum_ESR > 38.0",
+    "B": "Synovial_PMN > 68.5",
+    "C": "Positive_Histology == True",
+    "D": "Serum_CRP > 7.5",
+    "E": "Serum_CRP > 24.5",
+    "F": "Purulence == False",
+    "G": "Age <= 72.5",
+    "H": "Serum_ESR > 38.5",
+    "I": "Serum_ESR > 49.5",
+    "J": "APTT > 28.5",
+    "K": "Segment > 70.5",
+    "L": "Synovial_PMN > 49.0",
+    "M": "two_positive_culture == False"
+}

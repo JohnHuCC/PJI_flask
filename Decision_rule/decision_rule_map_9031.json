@@ -1,0 +1,21 @@
+{
+    "A": "Serum_CRP > 26.0",
+    "B": "APTT > 32.5",
+    "C": "Synovial_PMN > 51.5",
+    "D": "APTT > 28.5",
+    "E": "Synovial_WBC > 6556.5",
+    "F": "Synovial_WBC > 5416.0",
+    "G": "Serum_CRP > 7.5",
+    "H": "Positive_Histology == True",
+    "I": "Synovial_WBC > 8280.0",
+    "J": "Serum_ESR > 22.5",
+    "K": "Serum_CRP > 37.5",
+    "L": "Serum_CRP > 3.5",
+    "M": "Age > 68.5",
+    "N": "Serum_CRP > 25.0",
+    "O": "PLATELET > 323.0",
+    "P": "Synovial_WBC > 14485.0",
+    "Q": "Total_CCI > 0.5",
+    "R": "Synovial_WBC > 4608.5",
+    "S": "APTT > 27.5"
+}

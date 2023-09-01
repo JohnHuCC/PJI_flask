@@ -1,0 +1,14 @@
+{
+    "A": "Serum_CRP > 3.0",
+    "B": "two_positive_culture == True",
+    "C": "Synovial_PMN > 68.5",
+    "D": "Positive_Histology == True",
+    "E": "Hb <= 11.5",
+    "F": "PLATELET > 25.5",
+    "G": "Hb <= 13.5",
+    "H": "Serum_ESR > 51.0",
+    "I": "APTT > 28.5",
+    "J": "Serum_ESR > 40.0",
+    "K": "Synovial_WBC > 5895.5",
+    "L": "Serum_ESR > 40.5"
+}

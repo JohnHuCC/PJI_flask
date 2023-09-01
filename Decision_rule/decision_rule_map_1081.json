@@ -1,0 +1,19 @@
+{
+    "A": "Serum_CRP > 22.5",
+    "B": "Serum_WBC_ > 11.5",
+    "C": "two_positive_culture == True",
+    "D": "Serum_CRP > 26.5",
+    "E": "Hb > 4.5",
+    "F": "Serum_ESR > 28.5",
+    "G": "Positive_Histology == True",
+    "H": "Hb > 12.5",
+    "I": "Segment > 71.0",
+    "J": "Serum_CRP > 2.5",
+    "K": "APTT > 24.0",
+    "L": "Age <= 67.5",
+    "M": "Age <= 88.0",
+    "N": "Hb > 13.5",
+    "O": "Segment > 78.5",
+    "P": "APTT > 23.5",
+    "Q": "APTT > 28.5"
+}

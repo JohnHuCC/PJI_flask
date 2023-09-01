@@ -290,13 +290,13 @@ def singleton_opt(singleton_list, stacking_result, X_test, top, depth):
                 if len(result) == 5:
                     operator_relax, operator_strict, _relax_value, _strict_value, situation_num = result
                     relax_value, strict_value = nonICM[_relax_value], nonICM[_strict_value]
-                    dump_nonICM_parameters(
-                        top, depth, ele, mu_N, mu_I, delta, Q, situation_num)
+                    # dump_nonICM_parameters(
+                    #     top, depth, ele, mu_N, mu_I, delta, Q, situation_num)
                 else:  # 不考慮
                     NotUsed_flag = 1
                     not_used_, situation_num = result
-                    dump_nonICM_notused_parameters(
-                        top, depth, ele, mu_N, mu_I, delta, Q, situation_num)
+                    # dump_nonICM_notused_parameters(
+                    #     top, depth, ele, mu_N, mu_I, delta, Q, situation_num)
 
             elif variable in list(_2018ICM_['variable']):  # 2018ICM List
                 index = list(_2018ICM_['variable']).index(variable)
@@ -321,13 +321,13 @@ def singleton_opt(singleton_list, stacking_result, X_test, top, depth):
                 if len(result) == 5:
                     operator_relax, operator_strict, _relax_value, _strict_value, situation_num = result
                     relax_value, strict_value = ICM[_relax_value], ICM[_strict_value]
-                    dump_ICM_parameters(top, depth, ele, ICM_threshold,
-                                        delta, Q, situation_num)
+                    # dump_ICM_parameters(top, depth, ele, ICM_threshold,
+                    #                     delta, Q, situation_num)
                 else:  # 不考慮
                     NotUsed_flag = 1
                     not_used_, situation_num = result
-                    dump_ICM_notused_parameters(top, depth, ele, ICM_threshold,
-                                                delta, Q, situation_num)
+                    # dump_ICM_notused_parameters(top, depth, ele, ICM_threshold,
+                    #                             delta, Q, situation_num)
 
             if NotUsed_flag == 1:
                 continue
@@ -336,8 +336,8 @@ def singleton_opt(singleton_list, stacking_result, X_test, top, depth):
                     variable)+' '+str(operator_relax)+' '+str(relax_value)
                 decision_list_strict[ele] = str(
                     variable)+' '+str(operator_strict)+' '+str(strict_value)
-                dump_final_singleton(
-                    top, depth, ele, decision_list_relax, decision_list_strict)
+                # dump_final_singleton(
+                #     top, depth, ele, decision_list_relax, decision_list_strict)
 
     return decision_list_relax, decision_list_strict
 

@@ -1,0 +1,20 @@
+{
+    "A": "Age <= 89.0",
+    "B": "two_positive_culture == True",
+    "C": "PLATELET <= 333.5",
+    "D": "Serum_CRP > 13.5",
+    "E": "Total_Elixhauser_Groups_per_record <= 0.5",
+    "F": "Positive_Histology == True",
+    "G": "Hb <= 11.5",
+    "H": "Serum_ESR > 28.5",
+    "I": "Synovial_WBC > 2508.5",
+    "J": "Synovial_PMN > 67.5",
+    "K": "APTT > 30.0",
+    "L": "Serum_CRP <= 141.5",
+    "M": "Serum_ESR > 45.5",
+    "N": "APTT > 28.5",
+    "O": "APTT > 33.5",
+    "P": "Serum_ESR > 39.5",
+    "Q": "Serum_ESR > 53.0",
+    "R": "Serum_WBC_ <= 5.5"
+}

@@ -59,7 +59,7 @@ function startTask() {
     var name = document.getElementById("model_diagnosis_link").dataset.myValue;
     console.log('name:', name)
     socket.emit('run_task', { arr: arr, name: name});
-
+    
     socket.on('update_frontend', function(data) {
         window.location.href = "/reactive_diagram?p_id="+name;
         // fetch('/reactive_diagram?p_id='+name, {
@@ -69,21 +69,13 @@ function startTask() {
         //     },
         //     body: JSON.stringify(data)
         // })
-        // console.log('update frontend:', data)
-        // document.getElementById('result_text').textContent = 'Result: '+ data.result_text;
-        // const result_xgb = data.result_xgb;
-        // const result_rf = data.result_rf;
-        // const result_nb = data.result_nb;
-        // const result_lr = data.result_lr;
+        
     });
-
-    // socket.on('update_frontend_data', function(data) {
-    //     console.log('update frontend data:', data)
-    //     var reactive_rule_json = data.reactive_rule_json;
-    //     var reactive_rule_map_json = data.reactive_rule_map_json;
-    //     var reactive_decision_list_json = data.reactive_decision_list_json;
-    //     var reactive_decision_list_map_json = data.reactive_decision_list_map_json;
-    //     var reactived_data_json = data.reactived_data_json;
+    document.getElementById('progress_bar_text').textContent = 'Task Progress: Processing...'
+    // socket.on('update_progressbar', function(data) {
+    //     console.log('update progressbar:', data)
+    //     var progressBar = document.getElementById('progress-bar');
+    //     progressBar.value = data.progress;
     // });
     
 }

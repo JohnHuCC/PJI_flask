@@ -1,0 +1,21 @@
+{
+    "A": "Positive_Histology == True",
+    "B": "two_positive_culture == True",
+    "C": "Total_CCI <= 0.5",
+    "D": "Surgery == False",
+    "E": "ASA_2 > 0.5",
+    "F": "Serum_WBC_ <= 12.5",
+    "G": "Synovial_PMN >= 98.0",
+    "H": "Hb <= 10.0",
+    "I": "Hb > 8.0",
+    "J": "P_T >= 10.0",
+    "K": "Serum_ESR <= 30.0",
+    "L": "Segment <= 81.0",
+    "M": "Serum_ESR <= 30.0",
+    "N": "Synovial_PMN >= 98.0",
+    "O": "Serum_CRP >= 8.0",
+    "P": "Synovial_WBC >= 3600.0",
+    "Q": "Age <= 51.0",
+    "R": "Age <= 51.0",
+    "S": "Synovial_WBC <= 3600.0"
+}

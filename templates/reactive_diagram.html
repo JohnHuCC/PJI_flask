@@ -462,8 +462,8 @@
                                                     <div class="card mb-4">
                                                         <div style="flex: 1; font-size: 2rem; font-weight: 600;" class="card-body">
                                                             <div >
-                                                                <label for="progress-bar" style="flex: 1; font-size: 1.5rem; font-weight: 800;">Task Progress:</label>
-                                                                <progress id="progress-bar" value="0" max="100"></progress>
+                                                                <label for="progress-bar" id="progress_bar_text" style="flex: 1; font-size: 1.5rem; font-weight: 800;">Task Progress: Finish</label>
+                                                                <progress id="progress-bar" value="100" max="100"></progress>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -553,7 +553,11 @@
                 </footer>
             </div>
         </div>
-        <script>
+        <!-- <script type="text/javascript">
+            // 使用內建的 alert 函數
+            alert("模型處理已完成");
+          </script>
+        <script> -->
             const user_data_json = JSON.parse('{{ user_data_json | tojson }}');
         </script>
         {% if reactive_rule_json is defined %}

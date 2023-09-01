@@ -1,0 +1,14 @@
+{
+    "A": "two_positive_culture == True",
+    "B": "Positive_Histology == True",
+    "C": "Serum_ESR <= 30.5",
+    "D": "Serum_ESR <= 28.0",
+    "E": "Serum_WBC_ >= 10.0",
+    "F": "P_T >= 11.0",
+    "G": "Serum_CRP >= 35.0",
+    "H": "Synovial_WBC >= 101460.0",
+    "I": "Synovial_WBC >= 101460.0",
+    "J": "Segment >= 87.0",
+    "K": "Serum_CRP >= 35.0",
+    "L": "Segment >= 87.0"
+}

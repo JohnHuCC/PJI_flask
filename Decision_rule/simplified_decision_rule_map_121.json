@@ -1,0 +1,23 @@
+{
+    "A": "Hb > 4.5",
+    "B": "Hb <= 15.0",
+    "C": "Serum_ESR <= 28.0",
+    "D": "Positive_Histology == True",
+    "E": "Total_CCI <= 0.5",
+    "F": "Serum_ESR <= 38.0",
+    "G": "Serum_ESR <= 33.5",
+    "H": "P_T >= 11.0",
+    "I": "Synovial_WBC >= 22100.0",
+    "J": "APTT >= 36.0",
+    "K": "APTT >= 36.0",
+    "L": "P_T >= 11.0",
+    "M": "Serum_ESR >= 28.0",
+    "N": "Synovial_PMN >= 95.0",
+    "O": "Synovial_WBC >= 22100.0",
+    "P": "Serum_WBC_ < 9.5",
+    "Q": "PLATELET >= 455.0",
+    "R": "Serum_ESR >= 28.0",
+    "S": "Synovial_WBC >= 22100.0",
+    "T": "Serum_CRP >= 15.0",
+    "U": "Serum_CRP >= 15.0"
+}
