@@ -57,8 +57,9 @@ Scrolling down the page, you can get a general understanding of the composition 
 Instructions to install the project:
 
 ```bash
-git clone [https://yourproject.git](https://github.com/JohnHuCC/PJI_flask.git]
+git clone [[https://github.com/JohnHuCC/PJI_flask.git]
 cd PJI_flask
-
-npm install
+```
+```bash
+pip3 install virtualenv
 ```
