@@ -30,7 +30,7 @@ On the left, features related to biomedical aspects,
 In the middle, features related to comorbidity,
 On the right, features related to ICM (Infection Control Measures).
 
-![image](to_diagnosis)
+![image](to_diagnosis.png)
 Next, we return to the top and enter the diagnostic explanation section. When you press the diagnostic explanation button, the system will display the diagnostic pathway diagram, starting from the left side.
 
 ## Installation
