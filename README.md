@@ -54,12 +54,21 @@ Scrolling down the page, you can get a general understanding of the composition 
 
 ## Installation
 
-Instructions to install the project:
+Clone the project:
 
 ```bash
 git clone [[https://github.com/JohnHuCC/PJI_flask.git]
 cd PJI_flask
 ```
+
+Install virtualenv:
 ```bash
-pip3 install virtualenv
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Install packages:
+```bash
+pip install requirement.txt
+pip install requirements.txt
 ```
