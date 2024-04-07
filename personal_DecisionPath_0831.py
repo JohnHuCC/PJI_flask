@@ -165,8 +165,6 @@ def transPOSForm(Candidate_DecisionPath):
                         if (singleton_temp[1] == '>=' or singleton_temp[1] == '>'):
                             _singleton_list_[_singleton_list[i]
                                              ] = _singleton_list[index[max_index]]
-
-    print('_singleton_list_:', _singleton_list_)
     # In[24]: 宣告 Symbols by ns[] for symbols
     sym = "a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z"
     a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z, A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z = symbols(
@@ -185,7 +183,6 @@ def transPOSForm(Candidate_DecisionPath):
     ironmen_dict = {"featureSet": data_}
     # 建立 data frame
     df = pd.DataFrame(ironmen_dict)
-    print('df:', df)
     # logic_path = set()
     transPOSForm = []
     for line in df['featureSet']:
@@ -243,7 +240,6 @@ def getCandidate(X_train, y_train, test_X, stacking_model, Explainer_depth,
         stacking_pred = stacking_model.predict(test_X)
         explainers_pred = explainers[i-1].predict(test_X)
         if stacking_pred == explainers_pred:
-            print("(stacking_pred == explainers_pred)")
             tree_candidate = []
             for tree_idx in range(explainers[i-1].n_estimators):
                 tree_model = explainers[i-1].estimators_[tree_idx]
@@ -317,7 +313,8 @@ def interpret(sample, estimator, feature_names):
 
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]                                        :node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]
+        :node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -343,7 +340,7 @@ def getTopN_Fidelity(fidelity_list, top_N_indices, top_N, PID, explainer_depth):
     fidelity_list_ = []
     rules_list_ = []
     for idx in top_N_indices:
-        print('fidelity_list[idx, fidelity]:', fidelity_list[idx, 'fidelity'])
+        # print('fidelity_list[idx, fidelity]:', fidelity_list[idx, 'fidelity'])
         fidelity_list_ = fidelity_list_ + \
             fidelity_list[idx, 'fidelity']
         rules_list_ = rules_list_ + fidelity_list[idx, 'rules']
@@ -452,10 +449,10 @@ def dp_to_json(rule_str, final_singleton, PID):
     for k, v in decision_rule.items():
         decision_rule[k] = list(
             sorted(v, key=lambda x: nodeOrder.index(x)))
-    print("nodeOrder:")
-    print(nodeOrder)
-    with open("Decision_rule/decision_rule_"+str(PID)+".json", "w") as decision_rule_file:
-        json.dump(decision_rule, decision_rule_file, indent=4)
+    # print("nodeOrder:")
+    # print(nodeOrder)
+    # with open("Decision_rule/decision_rule_"+str(PID)+".json", "w") as decision_rule_file:
+    #     json.dump(decision_rule, decision_rule_file, indent=4)
 
     decision_rule_map = {}
     for i in range(len(final_singleton)):
@@ -507,10 +504,10 @@ def dp_to_json_simplified(rule_str, final_singleton, PID):
     for k, v in decision_rule.items():
         decision_rule[k] = list(
             sorted(v, key=lambda x: nodeOrder.index(x)))
-    print("nodeOrder:")
-    print(nodeOrder)
-    with open("Decision_rule/simplified_decision_rule_"+str(PID)+".json", "w") as decision_rule_file:
-        json.dump(decision_rule, decision_rule_file, indent=4)
+    # print("nodeOrder:")
+    # print(nodeOrder)
+    # with open("Decision_rule/simplified_decision_rule_"+str(PID)+".json", "w") as decision_rule_file:
+    #     json.dump(decision_rule, decision_rule_file, indent=4)
 
     decision_rule_map = {}
     for i in range(len(final_singleton)):
@@ -578,25 +575,25 @@ def espresso_simplify(final_singleton, singleton_dict, rules_, PID):
     expr_map, singleton_map = map_to_var(
         final_singleton_fix, _POS_Form_fix, singleton_map)
 
-    print('singleton_map:', singleton_map)
-    print('map to var:', expr_map)
+    # print('singleton_map:', singleton_map)
+    # print('map to var:', expr_map)
     f1 = eval(expr_map)
     f2 = ~a & ~b & ~c | ~a & ~b & c | a & ~b & c | a & b & c | a & b & ~c
     f3 = W & Q & S | P & E & W | P & N & T | P & D & T
     f1m, f2m, f3m = espresso_exprs(
         f1.to_dnf(), f2.to_dnf(), f3.to_dnf())
-    print(f1m)
-    print(f2m)
+    # print(f1m)
+    # print(f2m)
     simplified_rule = parse_ast(f1m)
-    print('simplified_rule:', simplified_rule)
+    # print('simplified_rule:', simplified_rule)
     simplified_rule = alphabet_to_singleton(
         simplified_rule, singleton_map)
 
     rule_splited = spilt_rule(simplified_rule)
-    print('splited_rule:', rule_splited)
+    # print('splited_rule:', rule_splited)
     rule_dict = split_singleton(rule_splited)
     rule_dict = filt_rule(rule_dict, PID)
-    print('rule_dict:', rule_dict)
+    # print('rule_dict:', rule_dict)
     rule_str = concat_rule(rule_dict)
     return rule_str, final_singleton_fix
 
@@ -672,7 +669,7 @@ kmap_time_list = list()
 def run_test(PID, top_num, Explainer_depth):
     explainers_counter = 1  # 找出 n 組候選 explainers
     X_res_test = pd.read_csv(
-        'PJI_Dataset/internal_x_test.csv', encoding='utf-8')
+        'PJI_Dataset/internal_x_test.csv', encoding='utf-8')  # 列出id用
     internal_X = pd.read_csv(
         'PJI_Dataset/internal_x_all.csv', encoding='utf-8')
     internal_y = pd.read_csv(
@@ -689,24 +686,25 @@ def run_test(PID, top_num, Explainer_depth):
                                      1], internal_y.iloc[PID_index:PID_index + 1]
     print('PID:', PID)
     print('PID_index:', PID_index)
-    print(X_test)
+    # print(X_test)
 
     # 7.2 Split dataset to tr (80%) and val (20%) random seed diff
     X_tr, X_val, y_tr, y_val = train_test_split(
         X_train, y_train, test_size=0.2, random_state=PID, shuffle=True)
 
-    Train_Dataset, y_train_Dataset = bootstrap_data(10, X_tr, y_tr, 210, PID)
+    Train_Dataset, y_train_Dataset = bootstrap_data(
+        1, X_train, y_train, 210, PID)
     Train_Dataset_merged, y_train_Dataset_merged = merge_bootstrap_data(
         Train_Dataset, y_train_Dataset)
 
-    VAL_SIZE = 10
+    VAL_SIZE = 1
     VAL_DATASET, Y_VAL_DATASET = bootstrap_data(
         VAL_SIZE, X_val, y_val, 50, PID)
 
     loaded_model = gen_stacking_model(
-        X_train, y_train)
+        Train_Dataset_merged, y_train_Dataset_merged)
     stacking_result = loaded_model.predict(X_test)
-    print('stacking_result:', stacking_result)
+    # print('stacking_result:', stacking_result)
     # 根據ground_truth & Meta Learner 調節
     if stacking_result == 0:
         rule_1, rule_2 = 0, 1  # ground_truth: N, Meta: N
@@ -727,7 +725,7 @@ def run_test(PID, top_num, Explainer_depth):
         top_n_rank = {}
         top_n_tree_idx = {}
         stack_pred_for_patient = loaded_model.predict(X_test)
-        print('Num of consistent trees:', len(tree_candidates[explain_i]))
+        # print('Num of consistent trees:', len(tree_candidates[explain_i]))
         for val_df, y_val_df in zip(VAL_DATASET, Y_VAL_DATASET):
             tree_index_list = []
             ACC_list = []
@@ -766,11 +764,12 @@ def run_test(PID, top_num, Explainer_depth):
                 [" ".join([str(w_) for w_ in r_]) for r_ in res['info']]
 
         rules_ = fix_dp(rules)
-
         print('rules_list_ini:')
         print(rules_)
-
-        CONDITIOS = rules_
+        combined_rule = list()
+        combined_rule.append(' or '.join(rules_))
+        print('combined rules:', combined_rule)
+        CONDITIOS = combined_rule
         AV_FIDELITYS = []
 
         fidelity = []
@@ -785,26 +784,26 @@ def run_test(PID, top_num, Explainer_depth):
         end_tree_candidate = time.time()
         tree_candiate_time = end_tree_candidate - start_tree_candidate
         tree_candiate_time_list.append(tree_candiate_time)
-        print("tree candidate time = {}".format(tree_candiate_time))
+        # print("tree candidate time = {}".format(tree_candiate_time))
         avg = np.mean(AV_FIDELITYS)
-        print(avg)
+        print('Fidelity average:', avg)
 
         final_singleton = dp_to_singleton(rules_)
-        print('final_singleton:', final_singleton)
+        # print('final_singleton:', final_singleton)
         rule_str = ' | '.join(str(item) for item in rules_)
         dp_to_json(rule_str, final_singleton, PID)
         X_test_ = X_test_rename(X_test)
         singleton_relax, singleton_strict = singleton_opt(
             final_singleton, stacking_result, X_test_, top_num, Explainer_depth)
-        print('singleton_relax:', singleton_relax)
-        print('singleton_strict:', singleton_strict)
+        # print('singleton_relax:', singleton_relax)
+        # print('singleton_strict:', singleton_strict)
         start_kmap = time.time()
         rule_str_relax, final_singleton_relax = espresso_simplify(
             final_singleton, singleton_relax, rules_, PID)
         rule_str_strict, final_singleton_strict = espresso_simplify(
             final_singleton, singleton_strict, rules_, PID)
-        print('rule_str_strict:', rule_str_strict)
-        print('final_singleton_strict:', final_singleton_strict)
+        # print('rule_str_strict:', rule_str_strict)
+        # print('final_singleton_strict:', final_singleton_strict)
         dp_to_json_simplified(rule_str_strict, final_singleton_strict, PID)
         end_kmap = time.time()
         kmap_time = end_kmap - start_kmap
@@ -815,10 +814,10 @@ if __name__ == "__main__":
     run_ok = [121, 271, 331, 531, 541, 581, 631, 671, 1101, 1121, 1291, 1311, 1331, 1721, 1861, 2351, 2441, 2951, 3211, 3621, 3661, 3671, 3971, 4111, 4621, 5221, 5291, 5391, 5541, 5631, 5761, 5841, 5991, 6091, 6101, 6121, 6181, 6411, 6751, 6971, 7011, 7031, 7331, 7361, 7451, 7551, 7611, 7831, 8021, 8061, 8131, 8201, 8381, 8491, 8511, 8601, 8631, 8641, 8691, 8841, 8901, 9011, 9031, 9131, 9201, 9301, 9341, 9391, 9481, 9991, 10161, 10191, 10221, 11121, 11301, 12401, 12601, 12691, 12701, 42, 62, 1302, 1312, 1882, 1912, 2102, 2502, 2892, 4562, 5082, 6012, 6142, 6182, 6512, 6582, 6672, 6852, 6912, 7312, 7332, 7482, 8232, 8782, 8792, 8872, 8942, 11732, 12242, 12632, 12712, 12752, 12942, 13402, 13702, 13862, 14042, 14512, 14722, 16172, 16532, 16962, 17512, 17702, 17722, 17762, 18112, 18502, 18722, 18782, 18832, 18912, 18932, 19122, 19162, 19242, 19282, 19262, 19322, 19332, 19342, 19352, 19392, 20022, 20142, 20152, 20172, 20182, 20532, 20652, 20692, 20732, 20992, 21242, 21312, 21612, 21882, 22472, 22642, 22702, 23012, 23132,
               23142, 23152, 23172, 23182, 23202, 23212, 23222, 23242, 23292, 23362, 23372, 23452, 23512, 23522, 23602, 23632, 23642, 23672, 23392, 23682, 23742, 23812, 23852, 23892, 23952, 23982, 24002, 24032, 24042, 24082, 24092, 24102, 24112, 24162, 24182, 23802, 23862, 24302, 24352, 24362, 24392, 24402, 24062, 24462, 24472, 24152, 21802, 24372, 23752, 24122, 151, 171, 231, 491, 591, 681, 1041, 1081, 1091, 1181, 1191, 1201, 1301, 1411, 1851, 2001, 2151, 2321, 2841, 2851, 2971, 3141, 3391, 3431, 3501, 3521, 3871, 3881, 4481, 4631, 4701, 5071, 5251, 5461, 5521, 5911, 6031, 6141, 6171, 6381, 6641, 6661, 6711, 6721, 6731, 6771, 6781, 6811, 6871, 6951, 7171,
               7261, 9421, 9451, 10381, 12271, 12501, 12751, 12781, 2591, 3601, 4451, 6741, 6941, 7911, 9041, 9051, 12331, 12721, 551, 1071, 1261, 1471, 1741, 1941, 2731, 5281, 5331, 5811, 6071, 6291, 6391, 7751, 8701, 8861, 9771, 11281, 1371, 1551, 1931, 2081, 2211, 2511, 2601, 2931, 3001, 3081, 3551, 4441, 4681, 4941, 4981, 5021, 5481, 5921, 6001, 6021, 6131, 6261, 11291, 2401]
-    run_id = [24422, 8841]
-    top_num, Explainer_depth = 10, 1
-    for i in range(len(run_id)):
+    run_id = [23142]
+    top_num, Explainer_depth = 10, 12
+    for i in range(len(run_ok)):
         # if run_id[i] == 23752 or run_id[i] == 8841 or run_id[i] == 24422:
         #     continue
         # else:
-        run_test(run_id[i], top_num, Explainer_depth)
+        run_test(run_ok[i], top_num, Explainer_depth)

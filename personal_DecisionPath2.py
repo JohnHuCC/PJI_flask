@@ -170,7 +170,7 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]                                        :node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]:node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -635,7 +635,7 @@ CONDITIOS_AvgFidelity = {}
 # In[7]: File reading and pre-processing
 # 6.1 讀檔與前處理作業
 df = pd.read_excel(
-    '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
+    'PJI_20210428_InterpretableML/PJI/Revision PJI For交大 V9(6月信Validation).xlsx')
 # df = pd.read_excel('/Users/johnnyhu/Desktop/Revision_PJI_main.xlsx')
 
 df.drop(columns=['Name', 'CTNO', 'CSN',
@@ -888,8 +888,10 @@ def personalDP(PID):
     X_res_test = pd.read_csv(
         'PJI_Dataset/internal_x_test.csv', encoding='utf-8')
     y_res = pd.read_csv('PJI_Dataset/New_data_y.csv', encoding='utf-8')
-    internal_X = pd.read_csv('PJI_Dataset/internal_x.csv', encoding='utf-8')
-    internal_y = pd.read_csv('PJI_Dataset/internal_y.csv', encoding='utf-8')
+    internal_X = pd.read_csv(
+        'PJI_Dataset/internal_x_all.csv', encoding='utf-8')
+    internal_y = pd.read_csv(
+        'PJI_Dataset/internal_y_all.csv', encoding='utf-8')
 
     no_group = list(X_res_test['No.Group'])
     PID_index = 2 + no_group.index(PID)
@@ -952,7 +954,7 @@ def personalDP(PID):
     # tempfile.close()
     # '''end test'''
 
-    if os.path.exists('PJI_model/Stacking_model_'+str(PID)) & os.path.exists("Decision_rule/decision_rule_"+str(PID)+".json"):
+    if os.path.exists('PJI_model/Stacking_model_'+str(PID)) & os.path.exists("shitDecision_rule/decision_rule_"+str(PID)+".json"):
         print("model exists, skip pruning...")
     else:
         print("model missing, pruning...")
@@ -1026,6 +1028,7 @@ def personalDP(PID):
                                 idx], feature_selection2)
                 rule = " and ".join([" ".join([str(w_) for w_ in r_])
                                      for r_ in res['info']])
+                print(rule)
                 rules.append(rule)
                 res_combined = res_combined + \
                     [" ".join([str(w_) for w_ in r_]) for r_ in res['info']]
@@ -1095,6 +1098,7 @@ def personalDP(PID):
             condition_i = 0
             AVG_FIDELITYS = []
             CONDITIOS = rules_
+            print('rules_:', rules_)
             # if (debug_model == 1):
             #     print("Enumerate the decision path of the explain[{n}]".format(
             #         n=explain_i))
@@ -1125,16 +1129,16 @@ def personalDP(PID):
         print(rules_list)
         # In[26]: Call the transPOSForm func.
         POS_Form, final_singleton = transPOSForm(rules_list)
-        print('final_singleton:')
-        print(final_singleton)
+        # print('final_singleton:')
+        # print(final_singleton)
         ## 20210531 ##
         # 套用演算法分類 ICM & non_ICM 分類
         # 原始推導資料請參閱文件
-        ## singleton_opt == parser.py
+        # singleton_opt == parser.py
         # In[27]: Call the singleton_opt function
-        rules_list = auto_pick_boundary_v1.singleton_opt(PID, final_singleton)
-        print('rules list after auto bound:'+str(PID))
-        print(rules_list)
+        # rules_list = auto_pick_boundary_v1.singleton_opt(PID, final_singleton)
+        # print('rules list after auto bound:'+str(PID))
+        # print(rules_list)
         # print('opt_decision_list:')
         # print(opt_decision_list)
         # In[28]: return the indices of the each rule with in truth table
@@ -1238,23 +1242,23 @@ def personalDP(PID):
                 sorted(v, key=lambda x: nodeOrder.index(x)))
         print("nodeOrder:")
         print(nodeOrder)
-        with open("Decision_rule/decision_rule_"+str(PID)+".json", "w") as decision_rule_file:
-            json.dump(decision_rule, decision_rule_file, indent=4)
+        # with open("Decision_rule/decision_rule_"+str(PID)+".json", "w") as decision_rule_file:
+        #     json.dump(decision_rule, decision_rule_file, indent=4)
 
         decision_rule_map = {}
         for i in range(len(final_singleton)):
             a = j + i
             decision_rule_map.setdefault(str(chr(a)), final_singleton[i])
 
-        with open("Decision_rule/decision_rule_map_"+str(PID)+".json", "w") as decision_rule_file:
-            json.dump(decision_rule_map, decision_rule_file, indent=4)
+        # with open("Decision_rule/decision_rule_map_"+str(PID)+".json", "w") as decision_rule_file:
+        #     json.dump(decision_rule_map, decision_rule_file, indent=4)
 
         rule_str_sp = Simplify_DecisionRules
         rule_str_sp = rule_str_sp.split('|')
         for i in range(len(rule_str_sp)):
             rule_str_sp[i] = rule_str_sp[i].replace('&', 'and').replace(
                 ' (', '').replace('(', '').replace(') ', '').replace(')', '')
-
+        print('rule_str_sp!!:', rule_str_sp)
         AV_FIDELITYS = []
         for condition in rule_str_sp:
             fidelity = []
@@ -1265,7 +1269,7 @@ def personalDP(PID):
                 for tree_idx in tree_candidates[explain_i]:
                     fidelity.append(accuracy_score(stack_pred, merge_pred))
             AV_FIDELITYS.append(round(np.mean(fidelity), 3))
-        # print(AV_FIDELITYS)
+        print('AV_FIDELITYS:', AV_FIDELITYS)
 
         cytime = end_c - start_c
         print("Start time = {}".format(start_c))

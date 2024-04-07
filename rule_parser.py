@@ -138,7 +138,6 @@ singleton_map = dict()
 def map_to_var(final_singleton, rule_str, singleton_map):
     # j = 65
     final_singleton = list(set(final_singleton))
-    print('final_singleton:', final_singleton)
     for i in range(len(final_singleton)):
         if i < 26:
             j = 65

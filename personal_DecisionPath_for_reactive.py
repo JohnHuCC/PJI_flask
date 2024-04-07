@@ -671,7 +671,7 @@ kmap_time_list = list()
 
 def run_test(PID, X_test):
     internal_X = pd.read_csv(
-        'PJI_Dataset/internal_X_all.csv', encoding='utf-8')
+        'PJI_Dataset/internal_x_all.csv', encoding='utf-8')
     internal_y = pd.read_csv(
         'PJI_Dataset/internal_y_all.csv', encoding='utf-8')
     kfold = kf_validation(internal_X, internal_y)

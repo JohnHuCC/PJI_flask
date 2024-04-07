@@ -411,16 +411,16 @@ if __name__ == "__main__":
           'Serum_CRP > 13.5 and Serum_ESR > 28.5 and Synovial_WBC > 7003.0 and two_positive_culture == False',
           'Age <= 88.0 and PLATELET > 213.5 and Serum_CRP > 13.5 and Synovial_PMN > 51.5 and Synovial_WBC > 7003.0']
     final_singleton = dp_to_singleton(dp)
-    print(final_singleton)
+    # print(final_singleton)
     X_test_ = X_test_rename(X_test)
     singleton_relax, singleton_strict = singleton_opt(
         final_singleton, 1, X_test_)
-    print('singleton_relax:', singleton_relax)
-    print('singleton_strict:', singleton_strict)
+    # print('singleton_relax:', singleton_relax)
+    # print('singleton_strict:', singleton_strict)
     final_singleton_relax = refresh_final_singleton(
         singleton_relax, final_singleton)
     pos_form = to_POSform(dp, singleton_relax, final_singleton_relax)
-    print('pos_form', pos_form)
+    # print('pos_form', pos_form)
     # grid_search()
 
 # %%

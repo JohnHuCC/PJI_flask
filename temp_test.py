@@ -1,7 +1,8 @@
+import os
 import ast
-from pyeda.boolalg.expr import exprvar
-from pyeda.boolalg import boolfunc
-from pyeda.boolalg.minimization import espresso_exprs
+# from pyeda.boolalg.expr import exprvar
+# from pyeda.boolalg import boolfunc
+# from pyeda.boolalg.minimization import espresso_exprs
 from sympy.logic.boolalg import to_dnf
 # from rule_no_tune import transPOSForm
 import re
@@ -241,7 +242,22 @@ def pp(e):
 # # # print('f3m:', f3m)
 # parsed_string = parse_ast(f2m)
 # print(parsed_string)
+
 df = pd.read_csv('PJI_Dataset/PJI_all.csv')
 
-id = df['No.Group'].values.tolist()
-print(id)
+all_ids = df['No.Group'].values.tolist()
+
+
+# 資料夾路徑，其中應該包含所有的 JSON 檔
+folder_path = 'Decision_rule/'
+
+# 存儲缺失的 ID
+missing_ids = []
+
+# 檢查每個 ID 以查看是否有一個對應的 JSON 檔
+for id in all_ids:
+    expected_filename = f"decision_rule_map_{id}.json"
+    if expected_filename not in os.listdir(folder_path):
+        missing_ids.append(id)
+
+print("缺失的 ID:", missing_ids)

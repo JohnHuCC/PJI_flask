@@ -1,3 +1,4 @@
+import vonage
 from sklearn.model_selection import train_test_split
 from sklearn import ensemble
 import joblib
@@ -15,14 +16,31 @@ from datetime import timedelta
 import pymysql
 import personal_DecisionPath2
 import personal_DecisionPath_for_reactive
-from flask import jsonify, request
+from flask import jsonify, request, make_response
 from flask_socketio import SocketIO
 import time
+import csv
+import html
+from urllib.parse import urlparse
+from preprocessing_data import preprocessing_data, upload_to_db
+from flask_sqlalchemy import SQLAlchemy
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+import psutil
+from apscheduler.schedulers.background import BackgroundScheduler
+import logging
+
+logging.basicConfig(filename='app.log', filemode='w', level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 app = Flask(__name__)
+
+
 app.config['SECRET_KEY'] = os.urandom(24)
 # app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=31)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:love29338615@127.0.0.1:3306/PJI"
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+
 
 app.config['WTF_CSRF_ENABLED'] = False
 app.permanent_session_lifetime = timedelta(minutes=10)
@@ -35,6 +53,67 @@ reactived_data_key = ["A", "B", "C", "D", "E", "F", "G",
 
 
 socketio = SocketIO(app)
+
+
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["20000 per day", "1000 per hour"],
+    storage_uri="memory://",
+)
+
+# 自定義錯誤處理器
+
+
+@app.errorhandler(429)
+def rate_limit_exceeded(e):
+    response = make_response(
+        '<html><body><h1 style="font-size: 32px;">系統繁忙，請稍後再試。</h1></body></html>', 429)
+    response.headers["Content-Type"] = "text/html; charset=utf-8"
+    return response
+
+
+global current_limit
+current_limit = "5 per minute"  # 初始速率限制
+
+
+@app.route("/adjust_rate_limiting", methods=['GET', 'POST'])
+def adjust_rate_limiting():
+    global current_limit
+    cpu_usage = psutil.cpu_percent(interval=1)
+    memory = psutil.virtual_memory()
+    print(f"CPU Usage: {cpu_usage}%, Memory Usage: {memory.percent}%")
+    if cpu_usage > 75 or memory.percent > 80:
+        current_limit = "10 per minute"
+    else:
+        current_limit = "500 per minute"
+    print('current_limit:', current_limit)
+    return current_limit
+
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=adjust_rate_limiting,
+                  trigger="interval", seconds=5)
+scheduler.start()
+
+
+@app.route("/auth_login", methods=['GET', 'POST'])
+@limiter.limit(lambda: current_limit)
+def auth_login():
+    if request.method == 'GET':
+        return render_template('auth_login.html')
+    elif request.method == 'POST':
+        print('db:', db)
+        username = request.form['username']
+        user = User.get_by_name(username)
+        if user.check_password(request.form['password']):
+            session_hash = username + str(os.urandom(30))
+            user.session_hash = session_hash
+            db.session.commit()
+            session['user-id'] = session_hash
+            return redirect('/')
+        else:
+            return redirect('/auth_login')
 
 
 @socketio.on('run_task')
@@ -98,7 +177,11 @@ def index():
             redirect('/auth_login')
     else:
         redirect('/auth_login')
-
+    # 获取 URI 信息
+    db_uri_info = urlparse(os.environ.get('DATABASE_URL'))
+    print('db_uri_info:', db_uri_info)
+    # conn = pymysql.connect(host=db_uri_info.hostname, user=db_uri_info.username,
+    #                        password=db_uri_info.password, port=db_uri_info.port, db=db_uri_info.path[1:])
     conn = pymysql.connect(host='127.0.0.1', user='root',
                            password='love29338615', port=3306, db='PJI')
     cur = conn.cursor()
@@ -155,6 +238,9 @@ def new_data_buffer():
 
     conn = pymysql.connect(host='127.0.0.1', user='root',
                            password='love29338615', port=3306, db='PJI')
+    db_uri_info = urlparse(os.environ.get('DATABASE_URL'))
+    # conn = pymysql.connect(host=db_uri_info.hostname, user=db_uri_info.username,
+    #                        password=db_uri_info.password, port=db_uri_info.port, db=db_uri_info.path[1:])
     cur = conn.cursor()
     sql = "SELECT * FROM PJI.pji_new_data_buffer ORDER BY CAST(pji_new_data_buffer.no_group AS unsigned);"
     cur.execute(sql)
@@ -189,8 +275,11 @@ def train_new_data():
     else:
         redirect('/auth_login')
 
-    conn = pymysql.connect(host='127.0.0.1', user='root',
-                           password='love29338615', port=3306, db='PJI')
+    # conn = pymysql.connect(host='127.0.0.1', user='root',
+    #                        password='love29338615', port=3306, db='PJI')
+    db_uri_info = urlparse(os.environ.get('DATABASE_URL'))
+    conn = pymysql.connect(host=db_uri_info.hostname, user=db_uri_info.username,
+                           password=db_uri_info.password, port=db_uri_info.port, db=db_uri_info.path[1:])
     cur = conn.cursor()
     sql = "SELECT * FROM PJI.pji_new_data ORDER BY CAST(pji_new_data.no_group AS unsigned);"
     cur.execute(sql)
@@ -204,27 +293,6 @@ def train_new_data():
             return url_for('pick_new_data', p_id=p_id)
 
     return render_template('train_new_data.html', u=u, name=user)
-
-
-if __name__ == "__main__":
-    app.run()
-
-
-@ app.route("/auth_login", methods=['GET', 'POST'])
-def auth_login():
-    if request.method == 'GET':
-        return render_template('auth_login.html')
-    elif request.method == 'POST':
-        username = request.form['username']
-        user = User.get_by_name(username)
-        if user.check_password(request.form['password']):
-            session_hash = username + str(os.urandom(30))
-            user.session_hash = session_hash
-            db.session.commit()
-            session['user-id'] = session_hash
-            return redirect('/')
-        else:
-            return redirect('/auth_login')
 
 
 @ app.route("/auth_register", methods=['GET', 'POST'])
@@ -283,8 +351,11 @@ def pick_new_data_view():
         result_text = "Aseptic"
     else:
         result_text = "None"
-    conn = pymysql.connect(host='127.0.0.1', user='root',
-                           password='love29338615', port=3306, db='PJI')
+    # conn = pymysql.connect(host='127.0.0.1', user='root',
+    #                        password='love29338615', port=3306, db='PJI')
+    db_uri_info = urlparse(os.environ.get('DATABASE_URL'))
+    conn = pymysql.connect(host=db_uri_info.hostname, user=db_uri_info.username,
+                           password=db_uri_info.password, port=db_uri_info.port, db=db_uri_info.path[1:])
     cur = conn.cursor()
     sql = "SELECT * FROM PJI.pji_new_data_buffer WHERE no_group =" + str(name)
     cur.execute(sql)
@@ -325,8 +396,11 @@ def pick_new_data():
         result_text = "Infected"
     else:
         result_text = "Aseptic"
-    conn = pymysql.connect(host='127.0.0.1', user='root',
-                           password='love29338615', port=3306, db='PJI')
+    # conn = pymysql.connect(host='127.0.0.1', user='root',
+    #                        password='love29338615', port=3306, db='PJI')
+    db_uri_info = urlparse(os.environ.get('DATABASE_URL'))
+    conn = pymysql.connect(host=db_uri_info.hostname, user=db_uri_info.username,
+                           password=db_uri_info.password, port=db_uri_info.port, db=db_uri_info.path[1:])
     cur = conn.cursor()
     sql = "SELECT * FROM PJI.pji_new_data WHERE no_group =" + str(name)
     cur.execute(sql)
@@ -363,8 +437,11 @@ def upload_new_data():
     else:
         redirect('/auth_login')
     name = request.args.get('p_id')
-    conn = pymysql.connect(host='127.0.0.1', user='root',
-                           password='love29338615', port=3306, db='PJI')
+    # conn = pymysql.connect(host='127.0.0.1', user='root',
+    #                        password='love29338615', port=3306, db='PJI')
+    db_uri_info = urlparse(os.environ.get('DATABASE_URL'))
+    conn = pymysql.connect(host=db_uri_info.hostname, user=db_uri_info.username,
+                           password=db_uri_info.password, port=db_uri_info.port, db=db_uri_info.path[1:])
     cur = conn.cursor()
     sql_delete = f"DELETE FROM PJI.pji_new_data WHERE no_group = {str(name)};"
     sql_insert = f"INSERT INTO PJI.pji_new_data_buffer SELECT * FROM PJI.pji_new_data WHERE no_group = {str(name)};"
@@ -394,8 +471,11 @@ def back_new_data():
     else:
         redirect('/auth_login')
     name = request.args.get('p_id')
-    conn = pymysql.connect(host='127.0.0.1', user='root',
-                           password='love29338615', port=3306, db='PJI')
+    # conn = pymysql.connect(host='127.0.0.1', user='root',
+    #                        password='love29338615', port=3306, db='PJI')
+    db_uri_info = urlparse(os.environ.get('DATABASE_URL'))
+    conn = pymysql.connect(host=db_uri_info.hostname, user=db_uri_info.username,
+                           password=db_uri_info.password, port=db_uri_info.port, db=db_uri_info.path[1:])
     cur = conn.cursor()
     sql_insert = f"INSERT INTO PJI.pji_new_data SELECT * FROM PJI.pji_new_data_buffer WHERE no_group = {str(name)};"
     sql_delete = f"DELETE FROM PJI.pji_new_data_buffer WHERE no_group = {str(name)};"
@@ -464,7 +544,7 @@ def get_reactive_bar_data(request):
     return arr
 
 
-@app.route('/reactive_diagram', methods=['GET', 'POST'])
+@ app.route('/reactive_diagram', methods=['GET', 'POST'])
 def reactive_diagram():
     session.permanent = True
     uid = None
@@ -476,8 +556,11 @@ def reactive_diagram():
 
     user = User.get_by_uid(uid)
     name = request.args.get('p_id')
-    conn = pymysql.connect(host='127.0.0.1', user='root',
-                           password='love29338615', port=3306, db='PJI')
+    # conn = pymysql.connect(host='127.0.0.1', user='root',
+    #                        password='love29338615', port=3306, db='PJI')
+    db_uri_info = urlparse(os.environ.get('DATABASE_URL'))
+    conn = pymysql.connect(host=db_uri_info.hostname, user=db_uri_info.username,
+                           password=db_uri_info.password, port=db_uri_info.port, db=db_uri_info.path[1:])
     cur = conn.cursor()
     sql = "SELECT * FROM PJI.revision_pji WHERE no_group =" + str(name)
     cur.execute(sql)
@@ -528,6 +611,7 @@ def reactive_diagram():
 
 
 @ app.route('/personal_info')
+@limiter.limit(lambda: current_limit)
 def personal_info():
     session.permanent = True
     uid = None
@@ -551,9 +635,161 @@ def personal_info():
         result_text = "Aseptic!"
     conn = pymysql.connect(host='127.0.0.1', user='root',
                            password='love29338615', port=3306, db='PJI')
+    # db_uri_info = urlparse(os.environ.get('DATABASE_URL'))
+    # conn = pymysql.connect(host=db_uri_info.hostname, user=db_uri_info.username,
+    #                        password=db_uri_info.password, port=db_uri_info.port, db=db_uri_info.path[1:])
     cur = conn.cursor()
     sql = "SELECT * FROM PJI.revision_pji WHERE no_group =" + str(name)
     cur.execute(sql)
     user = cur.fetchall()
     conn.close()
     return render_template('personal_info.html', name=name, u=user, result=result_text, username=username)
+
+
+@ app.route('/upload_new_data_csv', methods=['GET', 'POST'])
+def upload_new_data_csv():
+    session.permanent = True
+    uid = None
+    try:
+        uid = session['user-id']
+    except KeyError:
+        print("Session timeout!")
+        return redirect('/auth_login')
+    # uid = session['user-id']
+    if uid != None:
+        user = User.get_by_uid(uid)
+        if user == None:
+            redirect('/auth_login')
+        else:
+            username = user
+    name = request.args.get('p_id')
+
+    if not os.path.exists('uploads'):
+        os.makedirs('uploads')
+    if request.method == 'POST':
+        uploaded_file = request.files['file']
+        if uploaded_file.filename != '':
+            if not uploaded_file.filename.endswith('.csv') and not uploaded_file.filename.endswith('.xlsx'):
+                return "Please upload a CSV or Excel file.", 400
+            file_extension = os.path.splitext(uploaded_file.filename)[1]
+
+            if file_extension == '.csv':
+                file_path = os.path.join('uploads', 'New_data.csv')
+                uploaded_file.save(file_path)
+                df = pd.read_csv(file_path)
+            elif file_extension == '.xlsx':
+                file_path = os.path.join('uploads', 'New_data.xlsx')
+                uploaded_file.save(file_path)
+                df = pd.read_excel(file_path)
+
+            for i in range(1, 26):
+                time.sleep(0.3)
+                progress = i
+                socketio.emit('progress_percent', {'percentage': progress})
+
+            required_columns = ['No.Group', 'PJI/Revision Date', 'Primary, Revision\nnative hip', 'ASA', 'Age',
+                                'Serum ESR', 'Serum WBC ', 'Segment (%)', 'HGB', 'PLATELET', 'P.T',
+                                'APTT', 'Serum CRP', 'Positive Histology', 'Synovial WBC',
+                                '2X positive culture', 'Pulurence', 'Single Positive culture', 'Total CCI',
+                                'Total Elixhauser Groups per record']
+
+            if not all(col in df.columns for col in required_columns):
+                return jsonify({"status": "error", "message": "Missing required columns"}), 400
+
+            try:
+                preprocessing_data(df)
+            except Exception as preprocess_error:
+                return f"An error occurred during preprocessing: {preprocess_error}", 400
+            for i in range(26, 71):
+                time.sleep(0.1)
+                progress = i
+                socketio.emit('progress_percent', {'percentage': progress})
+            try:
+                upload_to_db()
+            except Exception as upload_error:
+                return f"An error occurred during database upload: {upload_error}", 400
+
+            for i in range(71, 101):
+                time.sleep(0.1)
+                progress = i
+                socketio.emit('progress_percent', {'percentage': progress})
+
+        socketio.emit('task_completed')
+        return "File uploaded and checked successfully."
+
+    return render_template('upload_new_data_csv.html')
+
+
+client = vonage.Client(key="da423732", secret="PBx69gqMyaAYvTIP")
+# sms = vonage.Sms(client)
+
+
+@ app.route('/message_board', methods=['GET', 'POST'])
+def message_board():
+    session.permanent = True
+    uid = session.get('user-id', None)
+
+    if uid is None:
+        print("Session timeout!")
+        return redirect('/auth_login')
+
+    user = User.get_by_uid(uid)
+    if user is None:
+        return redirect('/auth_login')
+
+    if request.method == 'POST':
+        username = request.form['username']
+        content = request.form['content']
+
+        # Input validation should be here
+        # ...
+
+        try:
+            conn = pymysql.connect(
+                host='127.0.0.1', user='root', password='love29338615', port=3306, db='PJI')
+            db_uri_info = urlparse(os.environ.get('DATABASE_URL'))
+            # conn = pymysql.connect(host=db_uri_info.hostname, user=db_uri_info.username,
+            #                        password=db_uri_info.password, port=db_uri_info.port, db=db_uri_info.path[1:])
+            cur = conn.cursor()
+            sql_insert = "INSERT INTO message (username, content) VALUES (%s, %s)"
+            cur.execute(sql_insert, (username, content))
+            conn.commit()
+            flash("Leave a message successfully!", "success")
+
+            responseData = client.sms.send_message(
+                {
+                    "from": "Vonage APIs",
+                    "to": "886975286089",
+                    "text": f"New message from {username}: {content}",
+                    'type': 'unicode',
+                }
+            )
+
+            if responseData["messages"][0]["status"] == "0":
+                print("Message sent successfully.")
+                flash("Leave a message and SMS sent successfully!", "success")
+            else:
+                print(
+                    f"Message failed with error: {responseData['messages'][0]['error-text']}")
+                flash(
+                    f"Leave a message but failed to send SMS: {responseData['messages'][0]['error-text']}", "error")
+        except Exception as e:
+            flash("Failed to leave a message", "error")
+            print("Failed to insert data", e)
+        finally:
+            conn.close()
+
+    return render_template('message_board.html')
+
+    # conn = pymysql.connect(host='127.0.0.1', user='root',
+    #                        password='love29338615', port=3306, db='PJI')
+    # cur = conn.cursor()
+    # cur.execute("SELECT username, content FROM messages")
+    # messages = cur.fetchall()
+    # conn.close()
+    return render_template('message_board.html')
+
+
+    # return render_template('message_board.html', messages=messages)
+if __name__ == "__main__":
+    app.run()

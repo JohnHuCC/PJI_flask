@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  web:
+    build: /Users/johnnyhu/Desktop/PJI_flask/  # Dockerfile 的路徑
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      FLASK_ENV: development
+      DATABASE_URL: mysql+pymysql://root:love29338615@127.0.0.1:3306/PJI
+      # DATABASE_URL: mysql+pymysql://root:love29338615@db:3306/PJI
+    networks:
+      - pji
+
+  db:
+    image: mysql:8.0
+    command:
+      --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: love29338615
+      MYSQL_DATABASE: PJI
+    ports:
+      # - "3307:3306"
+      - "3306:3306"
+    # volumes:
+    #   - mysql_data:/var/lib/mysql
+    networks:
+      - pji
+
+# volumes:
+#   mysql_data:
+
+networks:
+  pji:
