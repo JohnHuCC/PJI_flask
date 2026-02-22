@@ -28,6 +28,9 @@
 - `archive/legacy/scripts/`: temporary or experimental scripts moved out of root.
 - `archive/legacy/config/requirement.txt`: deprecated requirements file.
 - `archive/legacy/versions/`: duplicate versioned algorithm scripts kept for reference.
+- `archive/legacy/tools/`: standalone utility/analysis scripts not used by main runtime.
+- `archive/legacy/config/package*.json`: legacy JS package configs.
+- `archive/legacy/auto_boundary_versions/`: non-runtime `auto_pick_boundary` variant files.
 
 ## Docs
 - `docs/images/`: screenshots used by `README.md`.
