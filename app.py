@@ -5,6 +5,7 @@ import time
 import logging
 import csv
 import glob
+from contextlib import contextmanager
 
 import psutil
 import pymysql
@@ -32,6 +33,16 @@ DEFAULT_APP_HOST = "127.0.0.1"
 DEFAULT_APP_PORT = 5001
 DEFAULT_APP_DEBUG = True
 DECISION_RULE_DIR = "Decision_rule"
+INDEX_ACTION_ROUTES = {
+    "0": "/personal_info?p_id={patient_id}",
+    "1": "/model_diagnosis?p_id={patient_id}",
+    "2": "/reactive_diagram?p_id={patient_id}",
+    "3": "/upload_new_data?p_id={patient_id}",
+    "5": "/pick_new_data?p_id={patient_id}",
+    "6": "/pick_new_data_view?p_id={patient_id}",
+    "7": "/back_new_data?p_id={patient_id}",
+    "8": "/merge_new_data",
+}
 
 
 # -------------------------
@@ -188,6 +199,29 @@ def mysql_conn(db_name="PJI"):
     return pymysql.connect(host=host, user=user, password=password, port=port, db=dbn)
 
 
+@contextmanager
+def mysql_cursor(db_name="PJI"):
+    conn = mysql_conn(db_name)
+    cur = conn.cursor()
+    try:
+        yield conn, cur
+    finally:
+        conn.close()
+
+
+def db_fetch_all(sql, params=None, db_name="PJI"):
+    with mysql_cursor(db_name) as (_conn, cur):
+        cur.execute(sql, params or ())
+        return cur.fetchall()
+
+
+def db_execute(sql, params=None, commit=True, db_name="PJI"):
+    with mysql_cursor(db_name) as (conn, cur):
+        cur.execute(sql, params or ())
+        if commit:
+            conn.commit()
+
+
 def get_current_user_or_redirect():
     session.permanent = True
     uid = session.get("user-id")
@@ -221,51 +255,33 @@ def load_json_file_safe(path, default):
 
 
 def read_patient_rows(name):
-    conn = mysql_conn("PJI")
-    cur = conn.cursor()
-    cur.execute("SELECT * FROM PJI.revision_pji WHERE no_group = %s", (name,))
-    rows = cur.fetchall()
-    conn.close()
-    return rows
+    sql = "SELECT * FROM PJI.revision_pji WHERE no_group = %s"
+    return db_fetch_all(sql, (name,), db_name="PJI")
 
 
 def read_rows_from_table(table_name):
-    conn = mysql_conn("PJI")
     try:
-        cur = conn.cursor()
         sql = f"SELECT * FROM PJI.{table_name} ORDER BY {table_name}.no_group;"
-        cur.execute(sql)
-        return cur.fetchall()
+        return db_fetch_all(sql, db_name="PJI")
     except Exception as exc:
         logging.warning("read_rows_from_table failed for %s: %s", table_name, exc)
         return []
-    finally:
-        conn.close()
 
 
 def ensure_message_table():
-    conn = mysql_conn("PJI")
-    try:
-        cur = conn.cursor()
-        cur.execute(
-            """
-            CREATE TABLE IF NOT EXISTS PJI.message (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                username VARCHAR(255) NOT NULL,
-                content TEXT NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            )
-            """
+    sql = """
+        CREATE TABLE IF NOT EXISTS PJI.message (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(255) NOT NULL,
+            content TEXT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
-        conn.commit()
-    finally:
-        conn.close()
+    """
+    db_execute(sql, db_name="PJI")
 
 
 def ensure_new_data_tables():
-    conn = mysql_conn("PJI")
-    try:
-        cur = conn.cursor()
+    with mysql_cursor("PJI") as (conn, cur):
         cur.execute("CREATE TABLE IF NOT EXISTS PJI.pji_new_data LIKE PJI.revision_pji")
         cur.execute("CREATE TABLE IF NOT EXISTS PJI.pji_new_data_buffer LIKE PJI.revision_pji")
         cur.execute("SELECT COUNT(*) FROM PJI.pji_new_data")
@@ -273,8 +289,6 @@ def ensure_new_data_tables():
         if new_data_count == 0:
             cur.execute("INSERT INTO PJI.pji_new_data SELECT * FROM PJI.revision_pji")
         conn.commit()
-    finally:
-        conn.close()
 
 
 def import_revision_csv(file_path):
@@ -282,12 +296,10 @@ def import_revision_csv(file_path):
     匯入 CSV 到 revision_pji / pji_new_data（upsert）。
     只填必要欄位，避免 schema 約束造成整批失敗。
     """
-    conn = mysql_conn("PJI")
     inserted = 0
     updated = 0
-    try:
+    with mysql_cursor("PJI") as (conn, cur):
         ensure_new_data_tables()
-        cur = conn.cursor()
         with open(file_path, "r", encoding="utf-8-sig", newline="") as f:
             reader = csv.DictReader(f)
             for row in reader:
@@ -321,9 +333,7 @@ def import_revision_csv(file_path):
                     (no_group, no, group, name, computed),
                 )
         conn.commit()
-        return inserted, updated
-    finally:
-        conn.close()
+    return inserted, updated
 
 
 def first_json_match(pattern, default):
@@ -506,6 +516,20 @@ def str_to_bool(value, default=False):
     return str(value).strip().lower() in {"1", "true", "yes", "on"}
 
 
+def resolve_index_action(btn_id, patient_id):
+    route = INDEX_ACTION_ROUTES.get(btn_id, "/")
+    if "{patient_id}" in route:
+        return route.format(patient_id=patient_id)
+    return route
+
+
+def get_new_data_row_or_redirect(name, source_table, fallback_route):
+    rows = read_rows_with_name(source_table, name)
+    if not rows:
+        return None, redirect(fallback_route)
+    return rows[0], None
+
+
 # -------------------------
 # Routes
 # -------------------------
@@ -541,24 +565,7 @@ def index():
         patient_id = str(payload.get("patientID", "")).strip()
         if not patient_id:
             return "/", 400
-
-        if btn_id == "0":
-            return f"/personal_info?p_id={patient_id}"
-        if btn_id == "1":
-            return f"/model_diagnosis?p_id={patient_id}"
-        if btn_id == "2":
-            return f"/reactive_diagram?p_id={patient_id}"
-        if btn_id == "3":
-            return f"/upload_new_data?p_id={patient_id}"
-        if btn_id == "5":
-            return f"/pick_new_data?p_id={patient_id}"
-        if btn_id == "6":
-            return f"/pick_new_data_view?p_id={patient_id}"
-        if btn_id == "7":
-            return f"/back_new_data?p_id={patient_id}"
-        if btn_id == "8":
-            return "/merge_new_data"
-        return "/"
+        return resolve_index_action(btn_id, patient_id)
 
     rows = read_rows_from_table("revision_pji")
 
@@ -664,14 +671,11 @@ def message_board():
 
         try:
             ensure_message_table()
-            conn = mysql_conn("PJI")
-            cur = conn.cursor()
-            cur.execute(
+            db_execute(
                 "INSERT INTO PJI.message (username, content) VALUES (%s, %s)",
                 (username, content),
+                db_name="PJI",
             )
-            conn.commit()
-            conn.close()
             flash("Leave a message successfully!", "success")
         except Exception as exc:
             logging.exception("message_board insert failed: %s", exc)
@@ -720,17 +724,13 @@ def personal_info():
 
 
 def move_patient_between_tables(name, src_table, dst_table):
-    conn = mysql_conn("PJI")
-    try:
-        cur = conn.cursor()
+    with mysql_cursor("PJI") as (conn, cur):
         cur.execute(
             f"INSERT INTO PJI.{dst_table} SELECT * FROM PJI.{src_table} WHERE no_group = %s",
             (name,),
         )
         cur.execute(f"DELETE FROM PJI.{src_table} WHERE no_group = %s", (name,))
         conn.commit()
-    finally:
-        conn.close()
 
 
 @app.route("/upload_new_data")
@@ -770,14 +770,10 @@ def merge_new_data():
         return redirect_response
 
     ensure_new_data_tables()
-    conn = mysql_conn("PJI")
-    try:
-        cur = conn.cursor()
+    with mysql_cursor("PJI") as (conn, cur):
         cur.execute("INSERT IGNORE INTO PJI.pji_new_data SELECT * FROM PJI.pji_new_data_buffer")
         cur.execute("DELETE FROM PJI.pji_new_data_buffer")
         conn.commit()
-    finally:
-        conn.close()
     return redirect("/train_new_data")
 
 
@@ -802,16 +798,18 @@ def pick_new_data():
     if not name:
         return redirect("/train_new_data")
 
-    rows = read_rows_with_name("pji_new_data", name)
-    if not rows:
-        return redirect("/train_new_data")
+    row, redirect_response = get_new_data_row_or_redirect(
+        name, "pji_new_data", "/train_new_data"
+    )
+    if redirect_response:
+        return redirect_response
 
     payload = build_model_diagnosis_payload(name)
-    result_text = infer_result_text_from_row(rows[0])
+    result_text = infer_result_text_from_row(row)
     return render_template(
         "pick_new_data.html",
         name=name,
-        u=rows,
+        u=[row],
         result=result_text,
         username=user,
         decision_list=[],
@@ -831,16 +829,18 @@ def pick_new_data_view():
     if not name:
         return redirect("/new_data_buffer")
 
-    rows = read_rows_with_name("pji_new_data_buffer", name)
-    if not rows:
-        return redirect("/new_data_buffer")
+    row, redirect_response = get_new_data_row_or_redirect(
+        name, "pji_new_data_buffer", "/new_data_buffer"
+    )
+    if redirect_response:
+        return redirect_response
 
     payload = build_model_diagnosis_payload(name)
-    result_text = infer_result_text_from_row(rows[0])
+    result_text = infer_result_text_from_row(row)
     return render_template(
         "pick_new_data_view.html",
         name=name,
-        u=rows,
+        u=[row],
         result=result_text,
         username=user,
         decision_list=[],
@@ -850,16 +850,12 @@ def pick_new_data_view():
 
 
 def read_rows_with_name(table_name, name):
-    conn = mysql_conn("PJI")
     try:
-        cur = conn.cursor()
-        cur.execute(f"SELECT * FROM PJI.{table_name} WHERE no_group = %s", (name,))
-        return cur.fetchall()
+        sql = f"SELECT * FROM PJI.{table_name} WHERE no_group = %s"
+        return db_fetch_all(sql, (name,), db_name="PJI")
     except Exception as exc:
         logging.warning("read_rows_with_name failed for %s/%s: %s", table_name, name, exc)
         return []
-    finally:
-        conn.close()
 
 
 @app.route("/reactive_diagram", methods=["GET", "POST"])
