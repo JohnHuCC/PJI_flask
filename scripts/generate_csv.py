@@ -1,4 +1,5 @@
 import csv
+from pathlib import Path
 
 title = ["no_group", "no", "group", "name", "ctno", "csn", "PJI_revision_date",
          "Date_of_first_surgery", "Date_of_last_surgery", "primary_revision_native_hip",
@@ -28,9 +29,10 @@ title = ["no_group", "no", "group", "name", "ctno", "csn", "PJI_revision_date",
          "drug_abuse", "psychoses", "depression",
          "total_elixhauser_groups_per_record"]
 
-filename = "Revision_PJI_test_2.csv"
+filename = Path("data/samples/Revision_PJI_test_2.csv")
+filename.parent.mkdir(parents=True, exist_ok=True)
 
-with open(filename, "w", newline="", encoding="utf-8") as f:
+with filename.open("w", newline="", encoding="utf-8") as f:
     writer = csv.DictWriter(f, fieldnames=title)
     writer.writeheader()
 

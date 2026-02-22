@@ -11,7 +11,7 @@ from sqlalchemy.exc import IntegrityError
 
 # ====== 你可以改這裡 ======
 DEFAULT_DB_URL = "mysql+pymysql://root@127.0.0.1:3306/PJI"
-DEFAULT_CSV_PATH = "Revision_PJI_test_2.csv"
+DEFAULT_CSV_PATH = "data/samples/Revision_PJI_test_2.csv"
 TABLE_NAME = "revision_pji"
 TRUNCATE_BEFORE_IMPORT = False  # True = 每次匯入前先清空表（小心！）
 ECHO_SQL = True
@@ -99,7 +99,7 @@ def main():
 
     if not csv_path.exists():
         print(f"[ERROR] CSV not found: {csv_path.resolve()}")
-        print("用法：python pji_csv_to_db.py /path/to/Revision_PJI_test_2.csv")
+        print("用法：python scripts/pji_csv_to_db.py /path/to/Revision_PJI_test_2.csv")
         sys.exit(1)
 
     engine = create_engine(db_url, echo=ECHO_SQL, future=True)
