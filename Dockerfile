@@ -6,13 +6,10 @@ WORKDIR /usr/src/app
 
 # 安裝依賴
 COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --default-timeout=120 --retries=10 -r requirements.txt
 
 # 複製全部源代碼
 COPY . .
 
-# 設定環境變數
-ENV FLASK_APP=app.py
-
 # 啟動應用
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["python", "app.py"]
