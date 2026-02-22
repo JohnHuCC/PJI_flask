@@ -27,6 +27,7 @@
 - `archive/app_recovery.py`: recovery version kept for reference.
 - `archive/legacy/scripts/`: temporary or experimental scripts moved out of root.
 - `archive/legacy/config/requirement.txt`: deprecated requirements file.
+- `archive/legacy/versions/`: duplicate versioned algorithm scripts kept for reference.
 
 ## Docs
 - `docs/images/`: screenshots used by `README.md`.
