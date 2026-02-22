@@ -1,0 +1,19 @@
+{
+    "A": "two_positive_culture == True",
+    "B": "Hb > 4.5",
+    "C": "Positive_Histology == True",
+    "D": "Hb > 12.5",
+    "E": "Hb > 13.5",
+    "F": "Serum_CRP >= 271.0",
+    "G": "Serum_WBC_ >= 22.0",
+    "H": "Serum_CRP >= 271.0",
+    "I": "Serum_ESR >= 52.0",
+    "J": "Segment >= 88.0",
+    "K": "Serum_CRP >= 271.0",
+    "L": "APTT >= 34.0",
+    "M": "Age <= 48.0",
+    "N": "Age <= 48.0",
+    "O": "Segment >= 88.0",
+    "P": "APTT >= 34.0",
+    "Q": "APTT >= 34.0"
+}

@@ -1,2 +1,8 @@
 venv/
 __pycache__/
+*.log
+.python-version
+uploads/
+artifacts/
+*.tmp
+dump.rdb

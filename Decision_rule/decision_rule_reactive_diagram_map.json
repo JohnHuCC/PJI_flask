@@ -1,0 +1,21 @@
+{
+    "A": "Synovial_PMN >= 100.0",
+    "B": "Serum_ESR <= 55.0",
+    "C": "APTT >= 30.0",
+    "D": "Serum_CRP >= 160.0",
+    "E": "Serum_ESR >= 55.0",
+    "F": "two_positive_culture == False",
+    "G": "Serum_WBC_ >= 10.0",
+    "H": "Age > 68.5",
+    "I": "Total_Elixhauser_Groups_per_record >= 1.0",
+    "J": "PLATELET >= 300.0",
+    "K": "Positive_Histology == False",
+    "L": "Age > 69.0",
+    "M": "Hb > 12.5",
+    "N": "Hb > 4.5",
+    "O": "P_T >= 12.0",
+    "P": "Purulence == False",
+    "Q": "Age > 70.5",
+    "R": "Synovial_WBC >= 85000.0",
+    "S": "Hb > 5.5"
+}

@@ -1,0 +1,23 @@
+{
+    "A": "PLATELET > 428.5",
+    "B": "Synovial_WBC > 3650.0",
+    "C": "Synovial_WBC > 2775.0",
+    "D": "Hb <= 12.5",
+    "E": "Segment > 65.5",
+    "F": "Total_Elixhauser_Groups_per_record <= 1.5",
+    "G": "Synovial_WBC > 2498.5",
+    "H": "Serum_ESR > 29.5",
+    "I": "Hb > 5.0",
+    "J": "Serum_ESR > 30.5",
+    "K": "Serum_ESR > 51.5",
+    "L": "Serum_ESR > 41.0",
+    "M": "P_T > 5.5",
+    "N": "Synovial_WBC > 4957.5",
+    "O": "Serum_ESR > 20.0",
+    "P": "Positive_Histology == True",
+    "Q": "Serum_ESR > 47.5",
+    "R": "Synovial_PMN > 30.5",
+    "S": "PLATELET > 414.5",
+    "T": "Serum_WBC_ > 5.5",
+    "U": "APTT > 28.5"
+}

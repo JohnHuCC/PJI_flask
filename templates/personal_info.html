@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,45 +11,29 @@
     <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
     <link href="/static/css/styles.css" rel="stylesheet" />
     <link href="/static/css/style.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="/static/assets/img/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png"  />
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script data-search-pseudo-elements defer
         src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous">
     </script>
-
 </head>
 
 <body class="sb-nav-fixed">
-    <h1>Welcome {{ name }}</h1>
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="/">Start</a>
-        <!-- Sidebar Toggle-->
         <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
                 class="fas fa-bars"></i></button>
-        <!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            <div class="input-group">
-                <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..."
-                    aria-describedby="btnNavbarSearch" />
-                <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i
-                        class="fas fa-search"></i></button>
-            </div>
         </form>
-        <!-- Navbar-->
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
                     aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -65,73 +48,19 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Patient Table
                         </a>
-                        <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Functions
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        <a class="nav-link" href="model_diagnosis?p_id={{name}}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Decision Path
                         </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="model_diagnosis">Decision Path</a>
-                                <a class="nav-link" href="reactive_diagram">Reactive Diagram</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        <a class="nav-link" href="reactive_diagram?p_id={{name}}">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Reactive Diagram
                         </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
-                                    Authentication
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="login.html">Login</a>
-                                        <a class="nav-link" href="register.html">Register</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>
-                                    </nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseError" aria-expanded="false"
-                                    aria-controls="pagesCollapseError">
-                                    Error
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="401.html">401 Page</a>
-                                        <a class="nav-link" href="404.html">404 Page</a>
-                                        <a class="nav-link" href="500.html">500 Page</a>
-                                    </nav>
-                                </div>
-                            </nav>
-                        </div>
-                        <!-- <div class="sb-sidenav-menu-heading">Addons</div>
-                        <a class="nav-link" href="charts.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                            Charts
-                        </a>
-                        <a class="nav-link" href="tables.html">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Tables
-                        </a> -->
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
                     <div class="small">Logged in as:</div>
-                    Johnny Hu
+                    {{ username }}
                 </div>
             </nav>
         </div>
@@ -166,7 +95,7 @@
                         <div class="col-xxl-4 col-xl-12 mb-4">
                             <div class="card h-100">
                                 <!-- Profile picture card-->
-                                <div class="card mb-4 mb-xl-0">
+                                <div class="card mb-4 mb-xl-0 h-100">
                                     <div class="card-header">Profile Picture</div>
                                     <div class="card-body text-center">
                                         <!-- Profile picture image-->
@@ -174,128 +103,45 @@
                                             src="static/assets/img/profile-2.png" alt="" />
                                         <!-- Profile picture help block-->
                                         {% for i in u %}
-                                        <div class="small font-italic text-muted mb-4">Name: {{ i[3] }}
-                                        </div>
-                                        <div class="small font-italic text-muted mb-4">Age: {{ i[15] }}
-                                        </div>
-                                        <div class="small font-italic text-muted mb-4">Height(m)/Weight(kg): {{ i[16] }}/{{ i[17] }}
-                                        </div>
-                                        <div class="small font-italic text-muted mb-4">ID: {{ i[0] }}
-                                        </div>
+                                        <h4 class="small">
+                                            <p class="lh-lg">
+                                                <div class="fs-2 text-body">ID: {{ i[0] }}
+                                                </div>
+                                                <div class="fs-2 text-body">Age: {{ i[1] }}
+                                                </div>
+                                            </p>
+                                        </h4>                      
                                         {% endfor %}
                                         <!-- Profile picture upload button-->
                                         <!-- <button class="btn btn-primary" type="button">Upload new image</button> -->
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
-                        <!-- <div class="col-xxl-4 col-xl-6 mb-4">
+                        <div class="col-xxl-4 col-xl-6 mb-4">
                             <div class="card card-header-actions h-100">
-                                <div class="card-header">
-                                    Recent Record
-                                    <div class="dropdown no-caret">
-                                        <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                            id="dropdownMenuButton" type="button" data-bs-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false"><i class="text-gray-500"
-                                                data-feather="more-vertical"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                            aria-labelledby="dropdownMenuButton">
-                                            <h6 class="dropdown-header">Filter Activity:</h6>
-                                            <a class="dropdown-item" href="#!"><span
-                                                    class="badge bg-green-soft text-green my-1">Commerce</span></a>
-                                            <a class="dropdown-item" href="#!"><span
-                                                    class="badge bg-blue-soft text-blue my-1">Reporting</span></a>
-                                            <a class="dropdown-item" href="#!"><span
-                                                    class="badge bg-yellow-soft text-yellow my-1">Server</span></a>
-                                            <a class="dropdown-item" href="#!"><span
-                                                    class="badge bg-purple-soft text-purple my-1">Users</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div class="timeline timeline-xs">
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">3 Days</div>
-                                                <div class="timeline-item-marker-indicator bg-green"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                New case placed!
-                                                <a class="fw-bold text-dark" href="#!">Case #2912</a>
-                                                has been successfully placed.
+                                <div class="card mb-4 mb-xl-0 h-100">
+                                    <div class="card-header">Model Result</div>
+                                    <div class="card-body" style="display: flex; flex-direction: column; height: max-content;">
+                                        <div style="flex: 3; display: flex; justify-content: center; align-items: center; font-weight: 600; font-size: 2rem;">
+                                            <div>Result: {{ result }}
                                             </div>
                                         </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">10 Days</div>
-                                                <div class="timeline-item-marker-indicator bg-blue"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                Your
-                                                <a class="fw-bold text-dark" href="#!">weekly report</a>
-                                                has been generated and is ready to view.
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">1 month</div>
-                                                <div class="timeline-item-marker-indicator bg-purple"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                New patient
-                                                <a class="fw-bold text-dark" href="#!">Valerie Luna</a>
-                                                has registered
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">3 months</div>
-                                                <div class="timeline-item-marker-indicator bg-yellow"></div>
-                                            </div>
-                                            <div class="timeline-item-content">Server activity monitor alert
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">6 months</div>
-                                                <div class="timeline-item-marker-indicator bg-green"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                New symptom placed!
-                                                <a class="fw-bold text-dark" href="#!">Symptom #1581</a>
-                                                has been successfully placed.
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">1 year</div>
-                                                <div class="timeline-item-marker-indicator bg-purple"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                Details for
-                                                <a class="fw-bold text-dark" href="#!">diagnosis and treatment</a>
-                                                have been updated.
-                                            </div>
-                                        </div>
-                                        <div class="timeline-item">
-                                            <div class="timeline-item-marker">
-                                                <div class="timeline-item-marker-text">2 years</div>
-                                                <div class="timeline-item-marker-indicator bg-green"></div>
-                                            </div>
-                                            <div class="timeline-item-content">
-                                                New symptom placed!
-                                                <a class="fw-bold text-dark" href="#!">Symptom #1580</a>
-                                                has been successfully placed.
-                                            </div>
+                                        <div style="flex: 2; display:flex; justify-content: center;">
+                                            <button type="button" class="btn btn-secondary btn-lg editbtn" style="display: block; height: 3rem;"
+                                            data-btn="1" data-itemId="{{ name }}">模型診斷</button>
+
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div> -->
-                        <!-- <div class="col-xxl-4 col-xl-6 mb-4">
+                        </div>
+                        <div class="col-xxl-4 col-xl-6 mb-4">
                             <div class="card card-header-actions h-100">
                                 <div class="card-header">
-                                    Treatment Tracker
+                                    SHAP value
                                     <div class="dropdown no-caret">
                                         <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
                                             id="dropdownMenuButton" type="button" data-bs-toggle="dropdown"
@@ -322,141 +168,113 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small">
-                                        Cold and Heat Therapy
-                                        <span class="float-end fw-bold">48%</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 48%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small">
-                                        Vector Interference Wave
-                                        <span class="float-end fw-bold">25%</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 25%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small">
-                                        Electrical Nerve Stimulation
-                                        <span class="float-end fw-bold">60%</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: 60%"
-                                            aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small">
-                                        Ultrasound
-                                        <span class="float-end fw-bold">35%</span>
-                                    </h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 35%"
-                                            aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small">
-                                        Treatment Setup
-                                        <span class="float-end fw-bold">Complete!</span>
-                                    </h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                                <div class="card-footer position-relative">
-                                    <div class="d-flex align-items-center justify-content-between small text-body">
-                                        <a class="stretched-link text-body" href="#!">Visit Task Center</a>
-                                        <i class="fas fa-angle-right"></i>
-                                    </div>
+                                    <img src="static/assets/img/summary_plot.png" width="400" height="455">
                                 </div>
                             </div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xl-6">
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-chart-area me-1"></i>
-                                GOT/GPT
-                            </div>
-                            <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
                         </div>
                     </div>
-                    <div class="col-xl-6">
+                    <style>
+                        h4 > div {
+                            margin-bottom: 1rem;
+                        }
+                    </style>
+                    <div class="row">
+                        <div class="mb-4">
+                        <div class="card card-header-actions h-100">
                         <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-chart-bar me-1"></i>
-                                Blood Pressure
+                            <div class="card-header">Feature Importance</div>
+                            <div class="card-body">
+                                <img src="static/assets/img/feature_importances.png" width="1296" height="576">
                             </div>
-                            <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xxl-4 col-xl-6 mb-4">
+                            <div class="card card-header-actions h-100">
+                                <div class="card mb-4 mb-xl-0 h-100">
+                                    <div class="card-header">
+                                        <i class="fas fa-table me-1"></i>
+                                        Biomedical features value
+                                    </div>
+                                    <div class="card-body">
+                                        {% for i in u %}
+                                        <h4 class="small">
+                                            <div class="fs-3 text-body fw-bolder">Serum_WBC: {{ i[5] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">Segment (%): {{ i[2] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">HGB: {{ i[3] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">Platelet: {{ i[4] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">P_T: {{ i[6] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">APTT: {{ i[7] }}
+                                            </div>
+                                        </h4>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4 col-xl-6 mb-4">
+                            <div class="card card-header-actions h-100">
+                                <div class="card mb-4 mb-xl-0 h-100">
+                                    <div class="card-header">
+                                        <i class="fas fa-table me-1"></i>
+                                        Comorbidity & Operation-related features value
+                                    </div>
+                                    <div class="card-body">
+                                        {% for i in u %}
+                                        <h4 class="small">
+                                            <div class="fs-3 text-body fw-bolder">Total_CCI: {{ i[8] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">Total_elixhauser_groups_per_record: {{ i[9] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">Primary_Revision_Native_Hip: {{ i[10] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">ASA: {{ i[11] }}
+                                            </div>
+                                        </h4>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4 col-xl-6 mb-4">
+                            <div class="card card-header-actions h-100">
+                                <div class="card mb-4 mb-xl-0 h-100">
+                                    <div class="card-header">
+                                        <i class="fas fa-table me-1"></i>
+                                        ICM-related features value
+                                    </div>
+                                    <div class="card-body">
+                                        {% for i in u %}
+                                        <h4 class="small">
+                                            <div class="fs-3 text-body fw-bolder">Serum_CRP: {{ i[13] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">Positive Histology: {{ i[18] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">Synovial WBC: {{ i[15] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">2X Positive_Culture: {{ i[12] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">Pulurence: {{ i[19] }}
+                                            </div>
+                                            <div class="fs-3 text-body fw-bolder">Single_Positive_Culture: {{ i[16] }}
+                                            </div>
+                                        </h4>
+                                    {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-table me-1"></i>
-                        PJI personal Data
-                    </div>
-                    <div class="card-body">
-                        <table id="datatablesSimple">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Group</th>
-                                    <th>Name</th>
-                                    <th>Serum ESR</th>
-                                    <th>Positive Histology</th>
-                                    <th>Synovial WBC</th>
-                                    <th>Serum CRP</th>
-
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Group</th>
-                                    <th>Name</th>
-                                    <th>Serum ESR</th>
-                                    <th>Positive Histology</th>
-                                    <th>Synovial WBC</th>
-                                    <th>Serum CRP</th>
-                                </tr>
-                            </tfoot>
-                            <tbody>
-                                {% for i in u %}
-                                <tr>
-                                    <td>{{ i[0] }}</td>
-                                    <td>{{ i[2] }}</td>
-                                    <td>{{ i[3] }}</td>
-                                    <td>{{ i[19] }}</td>
-                                    <td>{{ i[32] }}</td>
-                                    <td>{{ i[33] }}</td>
-                                    <td>{{ i[28] }}</td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-
-                    </div>
-                </div>
+            </main>
         </div>
-
-        </main>
-
-        <!-- <footer class="py-4 bg-light mt-auto">
-            <div class="container-fluid px-4">
-                <div class="d-flex align-items-center justify-content-between small">
-                    <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                    <div>
-                        <a href="#">Privacy Policy</a>
-                        &middot;
-                        <a href="#">Terms &amp; Conditions</a>
-                    </div>
-                </div>
-            </div>
-        </footer> -->
-    </div>
     </div>
     <script>
         $(() => {
@@ -467,6 +285,7 @@
                     type: "POST",
                     url: "/", //localhost Flask
                     data: JSON.stringify({
+                        btnID: this.getAttribute("data-btn"),
                         patientID: this.getAttribute("data-itemId")
                     }),
                     contentType: "application/json",

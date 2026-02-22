@@ -90,7 +90,7 @@ def getCandidate(X_train, y_train, test_X, stacking_model, Explainer_depth,
         explainers[i-1].fit(X_train.values, y_train.values)
         stacking_pred = stacking_model.predict(test_X)
         explainers_pred = explainers[i-1].predict(test_X)
-        print("train:"+str(i))
+
         if stacking_pred == explainers_pred:
             # print("(stacking_pred == explainers_pred) + 1")
             tree_candidate = []
@@ -140,7 +140,8 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]:node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]
+        :node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -196,7 +197,7 @@ def getTopN_Fidelity(fidelity_list, top_N_indices, top_N):
 # 主體參數設定
 debug_model = 0
 Explainer_depth = 12  # The depth of Explainer Model
-pID_idx = 5
+pID_idx = 0
 pID = [11, 212, 51, 210, 79, 159]
 PID = pID[pID_idx]
 explainers_counter = 5  # 找出 n 組候選 explainers
@@ -210,7 +211,7 @@ else:
 # In[7]: File reading and pre-processing
 # 6.1 讀檔與前處理作業
 df = pd.read_excel(
-    '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
+    'Revision PJI For交大 V9(6月信Validation).xlsx')
 df.drop(columns=['Name', 'CTNO', 'CSN', 'Turbidity', 'Color'], inplace=True)
 df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
 df['Joint'].replace(['H', 'K'], [0, 1], inplace=True)
@@ -421,6 +422,7 @@ impute_internal.loc[impute_internal['Synovial Neutrophil']
                     > 100, 'Synovial Neutrophil'] = 100
 
 # 6.14 補值後 drop 'outcome' 以外的其他cols 做為建模的基礎
+
 internal_X, internal_y = impute_internal[impute_internal.columns[10:]
                                          ], impute_internal['Group']
 internal_y.value_counts().sort_index().plot(
@@ -490,7 +492,10 @@ if (debug_model == 1):
     print(internal_X.shape)
 internal_X.tail()
 internal_X.columns
-
+internal_X.to_csv(
+    r"PJI_Dataset/internal_X.csv", index=False, sep=',')
+internal_y.to_csv(
+    r"PJI_Dataset/internal_y.csv", index=False, sep=',')
 # 7.1 Get the specific patient profile by PID
 X_train, y_train = internal_X.drop(index=PID), internal_y.drop(index=PID)
 
@@ -510,13 +515,13 @@ df_y_train_sp = pd.DataFrame(y_tr)
 df_y_validation_sp = pd.DataFrame(y_val)
 
 df_x_train_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_x_train_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_x_train_sp.csv", index=False, sep=',')
 df_x_validation_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_x_val_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_x_val_sp.csv", index=False, sep=',')
 df_y_train_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_y_train_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_y_train_sp.csv", index=False, sep=',')
 df_y_validation_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_y_validation_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_y_validation_sp.csv", index=False, sep=',')
 
 if (debug_model == 1):
     print("Val shape: {}".format(X_val.shape))
@@ -586,16 +591,16 @@ explainer = RandomForestClassifier(
     max_depth=Explainer_depth, n_estimators=100, random_state=123)
 explainer.fit(X_train.values, y_train.values)
 estimator = explainer.estimators_[5]
-export_graphviz(estimator, out_file='tree.dot',
-                feature_names=df_x_train.columns.tolist(),
-                class_names=target,
-                rounded=True, proportion=False,
-                precision=2, filled=True)
-# Convert to png using system command (requires Graphviz)
-call(['dot', '-Tpng', 'tree.dot', '-o', 'tree.png', '-Gdpi=600'])
+# export_graphviz(estimator, out_file='tree.dot',
+#                 feature_names=df_x_train.columns.tolist(),
+#                 class_names=target,
+#                 rounded=True, proportion=False,
+#                 precision=2, filled=True)
+# # Convert to png using system command (requires Graphviz)
+# call(['dot', '-Tpng', 'tree.dot', '-o', 'tree.png', '-Gdpi=600'])
 
 # Display in jupyter notebook
-Image(filename='tree.png')
+# Image(filename='tree.png')
 
 joblib.dump(explainer, 'explainer_rf.pkl')
 # 8.5 Check whether the prediction result of RandomForest of ts case is equal to Stacking Modeling
@@ -688,9 +693,9 @@ for explain_i in list(explainers.keys()):
         # if (debug_model == 1):
         #     print("Decision Path_{} : ".format(num+1))
         res = interpret(X_test, explainers[explain_i].estimators_[
-                        idx], feature_selection2)
+            idx], feature_selection2)
         rule = " and ".join([" ".join([str(w_) for w_ in r_])
-                            for r_ in res['info']])
+                             for r_ in res['info']])
         rules.append(rule)
         res_combined = res_combined + \
             [" ".join([str(w_) for w_ in r_]) for r_ in res['info']]
@@ -768,6 +773,7 @@ for explain_i in list(explainers.keys()):
     #         n=explain_i))
     print("Enumerate the decision path of the explain[{n}]".format(
         n=explain_i))
+    print(rules_)
     for condition in rules_:
         fidelity = []
         for val_df in VAL_DATASET:
@@ -787,6 +793,7 @@ end_c = time.time()
 # In[14]: Concatenate multi lists for CONDITIOS_AvgFidelity
 rules_list = getTopN_Fidelity(
     CONDITIOS_AvgFidelity, list(explainers.keys()), 13)
+print('rules_ini:')
 print(rules_list)
 
 cytime = end_c - start_c
@@ -863,9 +870,9 @@ def ICM_0(x):
 # 注意：此處須匯入兩個檔案: Non2018ICM.xlsx, 2018ICM.xlsx
 def singleton_opt(X_test):
     non2018ICM = pd.read_excel(
-        "/Users/johnnyhu/Desktop/PJI_20210428_InterpretableML/Non2018ICM.xlsx")
+        "PJI_20210428_InterpretableML/Non2018ICM.xlsx")
     _2018ICM = pd.read_excel(
-        "/Users/johnnyhu/Desktop/PJI_20210428_InterpretableML/2018ICM.xlsx")
+        "PJI_20210428_InterpretableML/2018ICM.xlsx")
 
     _2018ICM_ = _2018ICM[['variable', 'threshold']]
     non2018ICM_ = non2018ICM[['variable', 'mu(N)', 'mu(I)']]
@@ -920,7 +927,7 @@ def singleton_opt(X_test):
                 delta = float(X_test_[variable])
 
                 nonICM = {"mu(N)": mu_N, "mu(I)": mu_I, "delta": delta}
-                #nonICM_Sorting = (sorted(nonICM.items(), key=lambda x:x[1]))
+                # nonICM_Sorting = (sorted(nonICM.items(), key=lambda x:x[1]))
                 nonICM_Sorting = sorted(nonICM, key=nonICM.get)
                 concate_nonICM_Sorting = '_'.join(nonICM_Sorting)
 
@@ -993,8 +1000,8 @@ def transPOSForm(Candidate_DecisionPath):
     data = Candidate_DecisionPath
     res_combined = []
     # In[20] 拆解所有的 decision path 元素
-    ## input: all_path
-    ## output: all_singleton
+    # input: all_path
+    # output: all_singleton
     for element in data:
         element = element.replace(') | (', ' and ')
         element = element.replace('(', '')
@@ -1151,7 +1158,7 @@ POS_Form, final_singleton = transPOSForm(rules_list)
 ## 20210531 ##
 # 套用演算法分類 ICM & non_ICM 分類
 # 原始推導資料請參閱文件
-## singleton_opt == parser.py
+# singleton_opt == parser.py
 # In[27]: Call the singleton_opt function
 opt_decision_list = singleton_opt(X_test)
 
@@ -1220,3 +1227,23 @@ for s_, singleton_ in zip(sym_array, final_singleton):
 # In[30]: call the simplify_logic and get the Simplify_decisionRules
 Simplify_DecisionRules = "{}".format(
     simplify_logic(SOPform(ns_all, minterms_), 'dnf'))
+
+rule_str_sp = Simplify_DecisionRules
+rule_str_sp = rule_str_sp.split('|')
+for i in range(len(rule_str_sp)):
+    rule_str_sp[i] = rule_str_sp[i].replace('&', 'and').replace(
+        ' (', '').replace('(', '').replace(') ', '').replace(')', '')
+
+AV_FIDELITYS = []
+for explain_i in list(explainers.keys()):
+    for condition in rule_str_sp:
+        fidelity = []
+        for val_df in VAL_DATASET:
+            stack_pred = stacking_model.predict(val_df)
+            val_df = val_df.rename(columns=d_path)
+            merge_pred = np.where(val_df.eval(condition), rule_1, rule_2)
+            for tree_idx in tree_candidates[explain_i]:
+                fidelity.append(accuracy_score(stack_pred, merge_pred))
+        AV_FIDELITYS.append(round(np.mean(fidelity), 3))
+
+print(numpy.mean(AV_FIDELITYS))

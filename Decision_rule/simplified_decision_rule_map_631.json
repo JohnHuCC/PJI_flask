@@ -1,0 +1,8 @@
+{
+    "A": "Serum_ESR <= 40.5",
+    "B": "PLATELET <= 196.5",
+    "C": "Positive_Histology == True",
+    "D": "Serum_ESR <= 39.0",
+    "E": "Purulence == False",
+    "F": "two_positive_culture == False"
+}

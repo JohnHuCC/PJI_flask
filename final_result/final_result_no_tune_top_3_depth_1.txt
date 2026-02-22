@@ -1,0 +1,6 @@
+Singleton:Serum_ESR > 28.5
+ICM_threshold:30  delta:52.0  Q:28.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_ESR > 28.5
+Singleton strict: Serum_ESR >= 52.0
+

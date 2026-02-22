@@ -140,7 +140,7 @@ def interpret(sample, estimator, feature_names):
     node_indicator = estimator.decision_path(X_test)
     leave_id = estimator.apply(X_test)
     sample_id = 0
-    node_index = node_indicator.indices[node_indicator.indptr[sample_id]                                        :node_indicator.indptr[sample_id + 1]]
+    node_index = node_indicator.indices[node_indicator.indptr[sample_id]:node_indicator.indptr[sample_id + 1]]
     result['info'] = []
 
     for node_id in node_index:
@@ -210,7 +210,7 @@ else:
 # In[7]: File reading and pre-processing
 # 6.1 讀檔與前處理作業
 df = pd.read_excel(
-    '/Users/johnnyhu/Desktop/Revision PJI For交大 V9(6月信Validation).xlsx')
+    'Revision PJI For交大 V9(6月信Validation).xlsx')
 df.drop(columns=['Name', 'CTNO', 'CSN', 'Turbidity', 'Color'], inplace=True)
 df['Laterality '].replace(['R', 'L'], [0, 1], inplace=True)
 df['Joint'].replace(['H', 'K'], [0, 1], inplace=True)
@@ -510,13 +510,13 @@ df_y_train_sp = pd.DataFrame(y_tr)
 df_y_validation_sp = pd.DataFrame(y_val)
 
 df_x_train_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_x_train_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_x_train_sp.csv", index=False, sep=',')
 df_x_validation_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_x_val_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_x_val_sp.csv", index=False, sep=',')
 df_y_train_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_y_train_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_y_train_sp.csv", index=False, sep=',')
 df_y_validation_sp.to_csv(
-    r"/Users/johnnyhu/Desktop/PJI_Dataset/PJI_y_validation_sp.csv", index=False, sep=',')
+    r"PJI_Dataset/PJI_y_validation_sp.csv", index=False, sep=',')
 
 if (debug_model == 1):
     print("Val shape: {}".format(X_val.shape))
@@ -647,7 +647,8 @@ if (debug_model == 1):
         X_test_val[['Total Score']].values[0][0]))
 
 # In[11]: Randomly generate random forest and candidate tree
-stacking_model2 = joblib.load('/Users/johnnyhu/Desktop/PJI_flask/stacking_model.pkl')
+stacking_model2 = joblib.load(
+    'stacking_model.pkl')
 explainers, tree_candidates = getCandidate(X_train, y_train,
                                            X_test, stacking_model2,
                                            Explainer_depth, explainers_counter)
@@ -863,9 +864,9 @@ def ICM_0(x):
 # 注意：此處須匯入兩個檔案: Non2018ICM.xlsx, 2018ICM.xlsx
 def singleton_opt(X_test):
     non2018ICM = pd.read_excel(
-        "/Users/johnnyhu/Desktop/PJI_20210428_InterpretableML/Non2018ICM.xlsx")
+        "PJI_20210428_InterpretableML/Non2018ICM.xlsx")
     _2018ICM = pd.read_excel(
-        "/Users/johnnyhu/Desktop/PJI_20210428_InterpretableML/2018ICM.xlsx")
+        "PJI_20210428_InterpretableML/2018ICM.xlsx")
 
     _2018ICM_ = _2018ICM[['variable', 'threshold']]
     non2018ICM_ = non2018ICM[['variable', 'mu(N)', 'mu(I)']]

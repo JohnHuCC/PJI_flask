@@ -1,0 +1,74 @@
+progress[value] {
+    /* 重置默认样式 */
+    -webkit-appearance: none;
+    appearance: none;
+  
+    /* 设定尺寸 */
+    width: 100%;
+    height: 20px;
+  
+    /* 圆角效果 */
+    border-radius: 10px;
+  }
+  
+  /* 设置背景颜色 */
+  progress[value]::-webkit-progress-bar {
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  }
+  
+  /* 设置进度颜色为蓝色 */
+  progress[value]::-webkit-progress-value {
+    background-color: #3498db; /* 蓝色 */
+    border-radius: 10px;
+  }
+  
+  /* 为Firefox设置 */
+  progress[value]::-moz-progress-bar {
+    background-color: #3498db; /* 蓝色 */
+    border-radius: 10px;
+  }
+
+
+  @keyframes progressBar {
+    from { background-position: 0 0; }
+    to { background-position: 100% 0; }
+  }
+  
+  @keyframes glowEffect {
+    0% {
+      box-shadow: 0 0 5px #3498db, 0 0 10px #3498db;
+    }
+    50% {
+      box-shadow: 0 0 20px #3498db, 0 0 30px #3498db;
+    }
+    100% {
+      box-shadow: 0 0 5px #3498db, 0 0 10px #3498db;
+    }
+  }
+  
+  progress[value] {
+    border: none;
+    color: #3498db;
+    position: relative;
+    animation: glowEffect 2s ease-in-out infinite;
+  }
+  
+  progress[value]::-webkit-progress-value {
+    background-color: #3498db;
+    background-image:
+      -webkit-linear-gradient(-45deg,
+                              transparent 25%,
+                              rgba(0, 0, 0, .2) 25%,
+                              rgba(0, 0, 0, .2) 50%,
+                              transparent 50%,
+                              transparent 100%),
+      -webkit-linear-gradient(top,
+                              rgba(255, 255, 255, .2),
+                              rgba(0, 0, 0, .2)),
+      -webkit-linear-gradient(left, #3498db, #3498db);
+  
+    animation: progressBar 1s linear infinite;
+  }
+  

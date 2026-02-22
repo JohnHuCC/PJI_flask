@@ -1,0 +1,17 @@
+{
+    "A": "Age <= 77.5",
+    "B": "Total_Elixhauser_Groups_per_record <= 0.5",
+    "C": "Positive_Histology == True",
+    "D": "Age <= 89.0",
+    "E": "Surgery == True",
+    "F": "Serum_WBC_ <= 7.5",
+    "G": "APTT >= 50.0",
+    "H": "Serum_CRP >= 28.0",
+    "I": "Synovial_PMN >= 66.0",
+    "J": "APTT >= 50.0",
+    "K": "Synovial_WBC >= 52239.0",
+    "L": "Segment < 69.5",
+    "M": "Serum_ESR >= 70.0",
+    "N": "Synovial_PMN >= 66.0",
+    "O": "Segment < 81.5"
+}

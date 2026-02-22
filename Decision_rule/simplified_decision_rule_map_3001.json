@@ -1,0 +1,17 @@
+{
+    "A": "APTT >= 35.0",
+    "B": "Serum_ESR >= 67.0",
+    "C": "P_T >= 11.0",
+    "D": "Serum_ESR <= 67.0",
+    "E": "Synovial_PMN >= 92.0",
+    "F": "Synovial_WBC >= 439200.0",
+    "G": "Synovial_WBC >= 439200.0",
+    "H": "Synovial_WBC >= 439200.0",
+    "I": "Serum_WBC_ >= 11.0",
+    "J": "PLATELET >= 324.0",
+    "K": "Synovial_WBC >= 439200.0",
+    "L": "APTT >= 35.0",
+    "M": "Synovial_WBC >= 439200.0",
+    "N": "Synovial_WBC >= 439200.0",
+    "O": "Segment >= 80.0"
+}

@@ -1,0 +1,214 @@
+<!-- upload_new_data_csv.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upload New Data</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link href="/static/css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png"  />
+    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+    <style>
+      /* Custom CSS for progress bar container */
+      .progress-custom-container {
+        border: 1px solid #ccc;  /* Add border */
+        border-radius: 4px;  /* Add rounded corners */
+      }
+      /* Custom CSS for progress bar */
+      .progress-bar-custom {
+        background-image: linear-gradient(45deg, #3498db 25%, transparent 25%, transparent 50%, #3498db 50%, #3498db 75%, transparent 75%, transparent);
+        background-size: 40px 40px;
+        animation: progress-bar-stripes 1s linear infinite;
+      }
+    </style>
+</head>
+
+<body class="bg-primary">
+  <div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container-xl px-4">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <!-- Basic registration form-->
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header justify-content-center"><h3 class="fw-light my-4">Upload a CSV or Excel File</h3></div>
+                            <div class="card-body">
+                                <!-- Registration form-->
+                                <form>
+                                    <div class="row gx-3">
+                                      <input type="file" id="csvFile" name="file" accept=".csv,.xlsx">
+                                      
+                                    </div>
+                                    <div class="mb-3"></div>
+                                    <!-- Form Group (email address)            -->
+                                    <div class="mb-3">
+                                      <div class="progress progress-custom-container">
+                                        <div id="progress_bar_upload_new_data" class="progress-bar progress-bar-custom progress-bar-animated" style="width:0%">
+                                          0%
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <!-- Form Row    -->
+                                    
+                                    <div class="mb-3">
+                                      <button class="btn btn-primary btn-block" id="uploadButton">Upload</button>
+                                    </div>
+
+                                </form>
+                            </div>
+                            <!-- <div class="card-footer text-center">
+                                <div class="small"><a href="auth-login-basic.html">Have an account? Go to login</a></div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="layoutAuthentication_footer">
+        <footer class="footer-admin mt-auto footer-dark">
+            <div class="container-xl px-4">
+                <div class="row">
+                    <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                    <div class="col-md-6 text-md-end small">
+                        <a href="#!">Privacy Policy</a>
+                        &middot;
+                        <a href="#!">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+
+<div class="container mt-5">
+  <h1>Upload a CSV or Excel File</h1>
+  <div class="progress">
+    <div id="progress_bar_upload_new_data" class="progress-bar progress-bar-striped progress-bar-animated" style="width:0%">
+      0%
+    </div>
+  </div>
+  <input type="file" id="csvFile" name="file" accept=".csv,.xlsx">
+  <button id="uploadButton">Upload</button>
+</div> -->
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $('#uploadButton').click(function(event) {
+        event.preventDefault();
+        var fileInput = $('#csvFile')[0];
+        var file = fileInput.files[0];
+        var fileName = file.name;
+        var fileType = file.type;
+
+        // Check file name
+        if (fileName.includes('#') || fileName.includes('&')) {
+            alert('File name should not contain special characters like # or &.');
+            return;
+        }
+
+        // Check file size (1 MB = 1024 * 1024 bytes)
+        var maxFileSize = 1024 * 1024;  // 1 MB in bytes
+        if (file.size > maxFileSize) {
+            alert("File size should not exceed 1 MB.");
+            return;
+        }
+        var requiredColumns = ['No.Group', 'PJI/Revision Date', 'ASA', 'Age',
+                                'Serum ESR', 'Serum WBC ', 'Segment (%)', 'HGB', 'PLATELET',
+                                'Serum CRP', 'Positive Histology',
+                                '2X positive culture', 'Pulurence', 'Single Positive culture', 'Total CCI',
+                                'Total Elixhauser Groups per record'];
+
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var data = e.target.result;
+
+            if (fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+                // Process Excel file
+                var workbook = XLSX.read(data, {type: 'binary'});
+                var first_sheet_name = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[first_sheet_name];
+                var sheetData = XLSX.utils.sheet_to_json(worksheet);
+                var sheetColumns = Object.keys(sheetData[0]);
+            } else if (fileType === 'text/csv') {
+                // Process CSV file
+                var lines = data.split('\n');
+                var headers = lines[0].split(',');
+                var sheetColumns = headers.map(header => header.trim());  // Remove possible extra spaces
+            } else {
+                alert("Unsupported file type");
+                return;
+            }
+
+            // Column check
+            var missingColumns = requiredColumns.filter(col => !sheetColumns.includes(col));
+            console.log(sheetColumns)
+            if (missingColumns.length > 0) {
+                alert('Missing columns: ' + missingColumns.join(', '));
+                return;
+            }
+
+            // TODO: Additional data format checks can be added here
+
+            var formData = new FormData();
+            formData.append('file', file);
+
+            $.ajax({
+                url: '/upload_new_data_csv',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    console.log("success");
+                    alert(response);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log("error");
+                    if (jqXHR.status === 400) {
+                        var errorData = JSON.parse(jqXHR.responseText);
+                        alert(`Error: ${errorData.message}`);
+                    } else {
+                        alert(`An unknown error occurred: ${errorThrown}`);
+                    }
+                }
+            });
+        };
+
+        // Initiate the file reading
+        if (fileType === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || fileType === 'text/csv') {
+            reader.readAsBinaryString(file);
+        } else {
+            alert("Unsupported file type");
+        }
+    });
+});
+</script>
+<script type="text/javascript">
+    const socket = io.connect('http://' + document.domain + ':' + location.port);
+    socket.on('progress_percent', function(data) {
+    let percentage = data.percentage;
+    // 更新進度條
+    document.getElementById('progress_bar_upload_new_data').style.width = percentage + '%';
+    document.getElementById('progress_bar_upload_new_data').innerText = percentage + '%';
+  });
+    socket.on('task_completed', function() {
+    // 任務完成，導向另一個頁面
+    window.location.href = '/train_new_data';
+  });
+</script>
+</body>
+</html>

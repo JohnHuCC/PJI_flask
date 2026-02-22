@@ -1,0 +1,15 @@
+{
+    "A": "two_positive_culture == False",
+    "B": "Surgery == True",
+    "C": "Purulence == False",
+    "D": "Positive_Histology == False",
+    "E": "Serum_ESR <= 27.0",
+    "F": "Total_Elixhauser_Groups_per_record <= 0.0",
+    "G": "Serum_ESR <= 27.0",
+    "H": "Synovial_PMN <= 2.0",
+    "I": "Synovial_WBC <= 30.0",
+    "J": "Segment <= 50.0",
+    "K": "Synovial_WBC <= 30.0",
+    "L": "Synovial_WBC <= 30.0",
+    "M": "Serum_CRP <= 3.0"
+}

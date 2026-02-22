@@ -1,0 +1,17 @@
+{
+    "A": "Hb > 4.5",
+    "B": "Positive_Histology == True",
+    "C": "PLATELET <= 311.5",
+    "D": "PLATELET <= 330.5",
+    "E": "P_T >= 12.0",
+    "F": "Segment >= 91.0",
+    "G": "Serum_WBC_ >= 16.0",
+    "H": "Synovial_PMN >= 65.0",
+    "I": "Segment >= 91.0",
+    "J": "Serum_CRP >= 215.0",
+    "K": "PLATELET >= 114.0",
+    "L": "Synovial_WBC >= 157881.0",
+    "M": "APTT >= 37.0",
+    "N": "Serum_ESR <= 32.0",
+    "O": "Serum_ESR <= 32.0"
+}

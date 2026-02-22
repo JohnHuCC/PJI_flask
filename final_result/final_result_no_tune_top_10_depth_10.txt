@@ -1,0 +1,6081 @@
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:311.0  Q:275.0
+situation_num:nonICM_1_morethan_s4
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 311.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:75.4  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 75.4
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_WBC_ > 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:11.2  Q:7.5
+situation_num:nonICM_1_morethan_s4
+Singleton relax: Serum_WBC_ > 7.5
+Singleton strict: Serum_WBC_ >= 11.2
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:10.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 10.0
+Singleton strict: Hb > 4.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:360.0  Q:275.0
+situation_num:nonICM_1_morethan_s4
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 360.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.6  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_WBC_ > 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:11.6  Q:7.5
+situation_num:nonICM_1_morethan_s4
+Singleton relax: Serum_WBC_ > 7.5
+Singleton strict: Serum_WBC_ >= 11.6
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:360.0  Q:275.0
+situation_num:nonICM_1_morethan_s4
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 360.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.6  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_WBC_ > 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:11.6  Q:7.5
+situation_num:nonICM_1_morethan_s4
+Singleton relax: Serum_WBC_ > 7.5
+Singleton strict: Serum_WBC_ >= 11.6
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:10.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 10.0
+Singleton strict: Hb > 4.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:10.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 10.0
+Singleton strict: Hb > 4.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:10.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 10.0
+Singleton strict: Hb > 4.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:10.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 10.0
+Singleton strict: Hb > 4.5
+
+Not Used Singleton:Synovial_WBC <= 14942.5
+ICM_threshold:3000  delta:0.0  Q:14942.5
+situation_num:ICM_1_lessthan_s5
+Singleton:P_T > 5.5
+mu_N:9.77570093457944  mu_I:11.25  delta:11.0  Q:5.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 5.5
+Singleton strict: P_T >= 11.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_PMN > 51.5
+ICM_threshold:70  delta:63.0  Q:51.5
+situation_num:ICM_1_morethan_s4
+Singleton relax: Synovial_PMN > 51.5
+Singleton strict: Synovial_PMN >= 63.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 322.5
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:322.5
+situation_num:nonICM_1_lessthan_s8
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_CRP > 7.0
+ICM_threshold:10  delta:20.0  Q:7.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 7.0
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Segment > 61.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:61.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: Segment > 61.5
+Singleton strict: Segment >= 63.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:11.0  Q:5.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 11.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:10.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 10.0
+Singleton strict: Hb > 4.5
+
+Singleton:APTT <= 33.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:33.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: APTT < 33.5
+Singleton strict: APTT < 33.5
+
+Singleton:Age <= 68.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:50.0  Q:68.5
+situation_num:nonICM_1_lessthan_s11
+Singleton relax: Age < 68.5
+Singleton strict: Age <= 50.0
+
+Not Used Singleton:Synovial_WBC <= 14942.5
+ICM_threshold:3000  delta:0.0  Q:14942.5
+situation_num:ICM_1_lessthan_s5
+Singleton:P_T > 5.5
+mu_N:9.77570093457944  mu_I:11.25  delta:11.0  Q:5.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 5.5
+Singleton strict: P_T >= 11.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_PMN > 51.5
+ICM_threshold:70  delta:63.0  Q:51.5
+situation_num:ICM_1_morethan_s4
+Singleton relax: Synovial_PMN > 51.5
+Singleton strict: Synovial_PMN >= 63.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 322.5
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:322.5
+situation_num:nonICM_1_lessthan_s8
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_CRP > 7.0
+ICM_threshold:10  delta:20.0  Q:7.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 7.0
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Segment > 61.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:61.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: Segment > 61.5
+Singleton strict: Segment >= 63.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:11.0  Q:5.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 11.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:10.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 10.0
+Singleton strict: Hb > 4.5
+
+Singleton:APTT <= 33.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:33.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: APTT < 33.5
+Singleton strict: APTT < 33.5
+
+Singleton:Age <= 68.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:50.0  Q:68.5
+situation_num:nonICM_1_lessthan_s11
+Singleton relax: Age < 68.5
+Singleton strict: Age <= 50.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:275.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:73.5  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 73.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.6  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.6
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_WBC_ > 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:7.6  Q:7.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Serum_WBC_ > 7.5
+Singleton strict: Serum_WBC_ >= 7.6
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:275.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.6  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.6
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:73.5  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 73.5
+
+Singleton:Serum_WBC_ > 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:7.6  Q:7.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Serum_WBC_ > 7.5
+Singleton strict: Serum_WBC_ >= 7.6
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.3  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.3
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:11.0  Q:5.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 11.0
+
+Singleton:Hb <= 13.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.3  Q:13.5
+situation_num:nonICM_1_lessthan_s21
+Singleton relax: Hb <= 12.3
+Singleton strict: Hb <= 12.3
+
+Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:270.0  Q:275.0
+situation_num:nonICM_1_lessthan_s1
+Singleton relax: PLATELET < 275.0
+Singleton strict: PLATELET < 275.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:Hb <= 12.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:12.5
+situation_num:nonICM_1_lessthan_s21
+Singleton relax: Hb <= 12.0
+Singleton strict: Hb <= 12.0
+
+Singleton:Serum_CRP > 3.0
+ICM_threshold:10  delta:20.0  Q:3.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 3.0
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:75.4  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 75.4
+
+Singleton:Synovial_PMN > 58.5
+ICM_threshold:70  delta:63.0  Q:58.5
+situation_num:ICM_1_morethan_s4
+Singleton relax: Synovial_PMN > 58.5
+Singleton strict: Synovial_PMN >= 63.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:275.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:P_T > 5.5
+mu_N:9.77570093457944  mu_I:11.25  delta:12.8  Q:5.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.5
+Singleton strict: P_T >= 12.8
+
+Singleton:Serum_WBC_ > 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:8.8  Q:7.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Serum_WBC_ > 7.5
+Singleton strict: Serum_WBC_ >= 8.8
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:32.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 32.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR <= 77.0
+ICM_threshold:30  delta:52.0  Q:77.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 77.0
+Singleton strict: Serum_ESR <= 52.0
+
+Not Used Singleton:Age <= 85.0
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:80.0  Q:85.0
+situation_num:nonICM_1_lessthan_s19
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 29.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:32.0  Q:29.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 29.5
+Singleton strict: APTT >= 32.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:33.0  Q:28.5
+situation_num:nonICM_1_morethan_s4
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 33.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:67.3  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.8  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.2  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.2
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:72.2  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.6  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.9  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:75.4  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 75.4
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.8  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:72.9  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 72.9
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:67.4  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:Age > 68.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:90.0  Q:68.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:11.0  Q:5.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 11.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Synovial_PMN > 51.5
+ICM_threshold:70  delta:63.0  Q:51.5
+situation_num:ICM_1_morethan_s4
+Singleton relax: Synovial_PMN > 51.5
+Singleton strict: Synovial_PMN >= 63.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 26.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:26.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 26.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Hb <= 13.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:13.5
+situation_num:nonICM_1_lessthan_s21
+Singleton relax: Hb <= 12.0
+Singleton strict: Hb <= 12.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.1  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.7  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.7
+Singleton strict: Hb > 4.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.3  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.8  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.8
+Singleton strict: Hb > 4.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.8  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.8  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.8
+Singleton strict: Hb > 4.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.7  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.7
+Singleton strict: Hb > 4.5
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:73.4  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 73.4
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.0
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:74.8  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 74.8
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:75.4  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 75.4
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.2  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.2
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.9  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.6  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.6
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:73.3  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 73.3
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.7  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.7
+Singleton strict: Hb > 4.5
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:63.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:10.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 10.0
+Singleton strict: Hb > 4.5
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.9  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.9
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:71.1  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:74.2  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 74.2
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.8  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.8
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:74.2  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 74.2
+
+Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:258.0  Q:275.0
+situation_num:nonICM_1_lessthan_s1
+Singleton relax: PLATELET < 275.0
+Singleton strict: PLATELET < 275.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_WBC_ > 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:7.9  Q:7.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Serum_WBC_ > 7.5
+Singleton strict: Serum_WBC_ >= 7.9
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.9  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.3  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.6  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.6
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.3  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.3  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.6  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.6  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.6  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.6
+Singleton strict: Hb > 4.5
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.7  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.7
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.2  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.2
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:67.5  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:71.1  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.4  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.2  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.2  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.2
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.7  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.5  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.5
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:74.5  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 74.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.2  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.2
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:66.6  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.6  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:71.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.6  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.6
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.1  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.5  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.5
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:68.1  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:74.0  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 74.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.2  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.2
+Singleton strict: Hb > 4.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.6  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:72.2  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:14.4  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:77.9  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 77.9
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.2  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.2
+Singleton strict: Hb > 4.5
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:70.9  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.2  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.2
+Singleton strict: Hb > 4.5
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:67.4  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.2  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.2
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.4  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:11.8  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 11.8
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:72.2  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.0  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.0
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.3  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.3
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:73.4  Q:81.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 81.5
+Singleton strict: Segment <= 73.4
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.5  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:67.9  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.3  Q:4.5
+situation_num:nonICM_1_morethan_s18
+Singleton relax: Hb >= 12.3
+Singleton strict: Hb > 4.5
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:69.0  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:52.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:Segment <= 81.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:72.2  Q:81.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 81.5
+Singleton strict: Segment < 81.5
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:150.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_ESR > 46.0
+ICM_threshold:30  delta:52.0  Q:46.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.0
+Singleton strict: Serum_ESR >= 52.0
+
+Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Serum_WBC_ <= 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:4.0  Q:7.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:66633.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:29.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 29.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:66633.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 66633.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:20.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 20.0
+
+Singleton:Serum_ESR > 47.0
+ICM_threshold:30  delta:55.0  Q:47.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 47.0
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:APTT > 26.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:26.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 26.5
+Singleton strict: APTT >= 30.0
+
+Not Used Singleton:Hb <= 13.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.1  Q:13.5
+situation_num:nonICM_1_lessthan_s19
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.0
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 12.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 30.0
+
+Singleton:Serum_ESR <= 78.0
+ICM_threshold:30  delta:55.0  Q:78.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 78.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:PLATELET > 214.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:214.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: PLATELET > 214.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:APTT > 29.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:29.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 29.5
+Singleton strict: APTT >= 30.0
+
+Not Used Singleton:Age > 68.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:70.0  Q:68.5
+situation_num:nonICM_1_morethan_s20
+Singleton:P_T > 5.5
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.5
+Singleton strict: P_T >= 12.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:55.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:Synovial_PMN > 8.0
+ICM_threshold:70  delta:100.0  Q:8.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 8.0
+Singleton strict: Synovial_PMN >= 100.0
+
+Singleton:Serum_ESR > 8.5
+ICM_threshold:30  delta:55.0  Q:8.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_ESR > 8.5
+Singleton strict: Serum_ESR >= 55.0
+
+Not Used Singleton:Hb > 12.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.1  Q:12.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Total_Elixhauser_Groups_per_record > 0.5
+mu_N:0.6822429906542056  mu_I:0.9013157894736842  delta:1.0  Q:0.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: Total_Elixhauser_Groups_per_record > 0.5
+Singleton strict: Total_Elixhauser_Groups_per_record >= 1.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.1  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:85000.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:275.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:PLATELET > 278.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:278.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 278.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:Synovial_PMN > 51.5
+ICM_threshold:70  delta:100.0  Q:51.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 51.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Singleton:Serum_ESR <= 77.0
+ICM_threshold:30  delta:55.0  Q:77.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 77.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Synovial_WBC > 28541.5
+ICM_threshold:3000  delta:85000.0  Q:28541.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 28541.5
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:Serum_ESR > 47.0
+ICM_threshold:30  delta:55.0  Q:47.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 47.0
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.0
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 12.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:85000.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 30.0
+
+Singleton:Serum_ESR <= 78.0
+ICM_threshold:30  delta:55.0  Q:78.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 78.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:PLATELET > 214.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:214.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: PLATELET > 214.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:APTT > 29.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:29.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 29.5
+Singleton strict: APTT >= 30.0
+
+Singleton:P_T > 5.5
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.5
+Singleton strict: P_T >= 12.0
+
+Singleton:Age <= 68.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:63.0  Q:68.5
+situation_num:nonICM_1_lessthan_s21
+Singleton relax: Age <= 63.0
+Singleton strict: Age <= 63.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:55.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:Synovial_PMN > 8.0
+ICM_threshold:70  delta:100.0  Q:8.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 8.0
+Singleton strict: Synovial_PMN >= 100.0
+
+Singleton:Serum_ESR > 8.5
+ICM_threshold:30  delta:55.0  Q:8.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_ESR > 8.5
+Singleton strict: Serum_ESR >= 55.0
+
+Not Used Singleton:Hb > 12.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.6  Q:12.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Total_Elixhauser_Groups_per_record > 0.5
+mu_N:0.6822429906542056  mu_I:0.9013157894736842  delta:1.0  Q:0.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: Total_Elixhauser_Groups_per_record > 0.5
+Singleton strict: Total_Elixhauser_Groups_per_record >= 1.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.6  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:85000.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:275.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:PLATELET > 278.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:278.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 278.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:Synovial_PMN > 51.5
+ICM_threshold:70  delta:100.0  Q:51.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 51.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Singleton:Serum_ESR <= 77.0
+ICM_threshold:30  delta:55.0  Q:77.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 77.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Synovial_WBC > 28541.5
+ICM_threshold:3000  delta:85000.0  Q:28541.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 28541.5
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:Serum_ESR > 47.0
+ICM_threshold:30  delta:55.0  Q:47.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 47.0
+Singleton strict: Serum_ESR >= 55.0
+
+Not Used Singleton:Hb <= 13.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:13.5
+situation_num:nonICM_1_lessthan_s19
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.0
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 12.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 30.0
+
+Not Used Singleton:Age <= 69.0
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:67.0  Q:69.0
+situation_num:nonICM_1_lessthan_s19
+Singleton:Serum_ESR <= 78.0
+ICM_threshold:30  delta:55.0  Q:78.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 78.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Synovial_WBC > 3650.0
+ICM_threshold:3000  delta:85000.0  Q:3650.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 3650.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:APTT > 29.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:29.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 29.5
+Singleton strict: APTT >= 30.0
+
+Singleton:P_T > 5.5
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.5
+Singleton strict: P_T >= 12.0
+
+Not Used Singleton:Age <= 68.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:67.0  Q:68.5
+situation_num:nonICM_1_lessthan_s19
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:55.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:Serum_ESR > 8.5
+ICM_threshold:30  delta:55.0  Q:8.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_ESR > 8.5
+Singleton strict: Serum_ESR >= 55.0
+
+Not Used Singleton:Hb > 12.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:12.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Total_Elixhauser_Groups_per_record > 0.5
+mu_N:0.6822429906542056  mu_I:0.9013157894736842  delta:1.0  Q:0.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: Total_Elixhauser_Groups_per_record > 0.5
+Singleton strict: Total_Elixhauser_Groups_per_record >= 1.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:85000.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:275.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:PLATELET > 278.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:278.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 278.0
+Singleton strict: PLATELET >= 300.0
+
+Not Used Singleton:Hb > 5.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:5.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_ESR <= 77.0
+ICM_threshold:30  delta:55.0  Q:77.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 77.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Synovial_WBC > 28541.5
+ICM_threshold:3000  delta:85000.0  Q:28541.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 28541.5
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:Synovial_PMN > 58.5
+ICM_threshold:70  delta:100.0  Q:58.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 58.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Singleton:Serum_ESR > 47.0
+ICM_threshold:30  delta:55.0  Q:47.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 47.0
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:Synovial_WBC > 22190.0
+ICM_threshold:3000  delta:85000.0  Q:22190.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 22190.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:APTT > 26.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:26.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 26.5
+Singleton strict: APTT >= 30.0
+
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.0
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 12.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 30.0
+
+Singleton:Serum_ESR <= 78.0
+ICM_threshold:30  delta:55.0  Q:78.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 78.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Synovial_WBC > 3650.0
+ICM_threshold:3000  delta:85000.0  Q:3650.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 3650.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:PLATELET > 214.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:214.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: PLATELET > 214.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:APTT > 29.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:29.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 29.5
+Singleton strict: APTT >= 30.0
+
+Not Used Singleton:Age > 68.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:83.0  Q:68.5
+situation_num:nonICM_1_morethan_s20
+Singleton:P_T > 5.5
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.5
+Singleton strict: P_T >= 12.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:55.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 55.0
+
+Not Used Singleton:Age > 69.0
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:83.0  Q:69.0
+situation_num:nonICM_1_morethan_s20
+Singleton:Synovial_PMN > 8.0
+ICM_threshold:70  delta:100.0  Q:8.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 8.0
+Singleton strict: Synovial_PMN >= 100.0
+
+Singleton:Synovial_PMN > 91.5
+ICM_threshold:70  delta:100.0  Q:91.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_PMN > 91.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Not Used Singleton:Hb > 12.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.2  Q:12.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Serum_CRP > 3.5
+ICM_threshold:10  delta:160.0  Q:3.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 3.5
+Singleton strict: Serum_CRP >= 160.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.2  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:85000.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:275.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 300.0
+
+Not Used Singleton:Age > 70.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:83.0  Q:70.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Synovial_PMN > 51.5
+ICM_threshold:70  delta:100.0  Q:51.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 51.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Not Used Singleton:Hb > 5.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.2  Q:5.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_ESR <= 77.0
+ICM_threshold:30  delta:55.0  Q:77.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 77.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Serum_WBC_ > 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:10.0  Q:7.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Serum_WBC_ > 7.5
+Singleton strict: Serum_WBC_ >= 10.0
+
+Singleton:Synovial_WBC > 28541.5
+ICM_threshold:3000  delta:85000.0  Q:28541.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 28541.5
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:Serum_ESR > 47.0
+ICM_threshold:30  delta:55.0  Q:47.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 47.0
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:APTT > 26.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:26.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 26.5
+Singleton strict: APTT >= 30.0
+
+Not Used Singleton:Hb <= 13.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:13.5
+situation_num:nonICM_1_lessthan_s19
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.0
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 12.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 30.0
+
+Singleton:Serum_ESR <= 78.0
+ICM_threshold:30  delta:55.0  Q:78.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 78.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:PLATELET > 214.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:214.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: PLATELET > 214.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:APTT > 29.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:29.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 29.5
+Singleton strict: APTT >= 30.0
+
+Not Used Singleton:Age > 68.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:70.0  Q:68.5
+situation_num:nonICM_1_morethan_s20
+Singleton:P_T > 5.5
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.5
+Singleton strict: P_T >= 12.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:55.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:Synovial_PMN > 8.0
+ICM_threshold:70  delta:100.0  Q:8.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 8.0
+Singleton strict: Synovial_PMN >= 100.0
+
+Singleton:Serum_ESR > 8.5
+ICM_threshold:30  delta:55.0  Q:8.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_ESR > 8.5
+Singleton strict: Serum_ESR >= 55.0
+
+Not Used Singleton:Hb > 12.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:12.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Total_Elixhauser_Groups_per_record > 0.5
+mu_N:0.6822429906542056  mu_I:0.9013157894736842  delta:1.0  Q:0.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: Total_Elixhauser_Groups_per_record > 0.5
+Singleton strict: Total_Elixhauser_Groups_per_record >= 1.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:12.8  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:85000.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:275.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:PLATELET > 278.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:278.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 278.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:Synovial_PMN > 51.5
+ICM_threshold:70  delta:100.0  Q:51.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 51.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Singleton:Serum_ESR <= 77.0
+ICM_threshold:30  delta:55.0  Q:77.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 77.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Synovial_WBC > 28541.5
+ICM_threshold:3000  delta:85000.0  Q:28541.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 28541.5
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:Synovial_PMN > 58.5
+ICM_threshold:70  delta:100.0  Q:58.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 58.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Not Used Singleton:Hb > 13.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.6  Q:13.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Serum_ESR > 47.0
+ICM_threshold:30  delta:55.0  Q:47.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 47.0
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.0
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 12.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:85000.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 30.0
+
+Singleton:Serum_ESR <= 78.0
+ICM_threshold:30  delta:55.0  Q:78.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 78.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Synovial_PMN > 35.5
+ICM_threshold:70  delta:100.0  Q:35.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 35.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Singleton:APTT > 29.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:29.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 29.5
+Singleton strict: APTT >= 30.0
+
+Singleton:P_T > 5.5
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.5
+Singleton strict: P_T >= 12.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:55.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:Serum_ESR > 8.5
+ICM_threshold:30  delta:55.0  Q:8.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_ESR > 8.5
+Singleton strict: Serum_ESR >= 55.0
+
+Not Used Singleton:Hb > 12.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.6  Q:12.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Total_Elixhauser_Groups_per_record > 0.5
+mu_N:0.6822429906542056  mu_I:0.9013157894736842  delta:1.0  Q:0.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: Total_Elixhauser_Groups_per_record > 0.5
+Singleton strict: Total_Elixhauser_Groups_per_record >= 1.0
+
+Singleton:Serum_CRP > 3.5
+ICM_threshold:10  delta:160.0  Q:3.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 3.5
+Singleton strict: Serum_CRP >= 160.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.6  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:85000.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:275.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:PLATELET > 278.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:278.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 278.0
+Singleton strict: PLATELET >= 300.0
+
+Singleton:Serum_ESR <= 77.0
+ICM_threshold:30  delta:55.0  Q:77.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 77.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Synovial_WBC > 28541.5
+ICM_threshold:3000  delta:85000.0  Q:28541.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 28541.5
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:Segment <= 80.5
+mu_N:62.03738317757009  mu_I:72.54605263157895  delta:72.2  Q:80.5
+situation_num:nonICM_0_lessthan_s2
+Singleton relax: Segment <= 72.2
+Singleton strict: Segment <= 72.2
+
+Singleton:Single_Positive_culture <= 0.5
+ICM_threshold:1  delta:0.0  Q:0.5
+situation_num:ICM_0_lessthan_s1
+Singleton relax: Single_Positive_culture < 0.5
+Singleton strict: Single_Positive_culture <= 0.0
+
+Singleton:Synovial_PMN <= 81.0
+ICM_threshold:70  delta:0.0  Q:81.0
+situation_num:ICM_0_lessthan_s2
+Singleton relax: Synovial_PMN < 81.0
+Singleton strict: Synovial_PMN <= 0.0
+
+Singleton:Synovial_PMN <= 51.5
+ICM_threshold:70  delta:0.0  Q:51.5
+situation_num:ICM_0_lessthan_s1
+Singleton relax: Synovial_PMN < 51.5
+Singleton strict: Synovial_PMN <= 0.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT > 28.5
+
+Singleton:Hb > 11.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.2  Q:11.5
+situation_num:nonICM_0_morethan_s23
+Singleton relax: Hb > 11.5
+Singleton strict: Hb >= 13.2
+
+Singleton:Serum_ESR <= 78.0
+ICM_threshold:30  delta:0.0  Q:78.0
+situation_num:ICM_0_lessthan_s2
+Singleton relax: Serum_ESR < 78.0
+Singleton strict: Serum_ESR <= 0.0
+
+Singleton:Serum_ESR <= 99.0
+ICM_threshold:30  delta:0.0  Q:99.0
+situation_num:ICM_0_lessthan_s2
+Singleton relax: Serum_ESR < 99.0
+Singleton strict: Serum_ESR <= 0.0
+
+Singleton:PLATELET <= 426.5
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:426.5
+situation_num:nonICM_0_lessthan_s2
+Singleton relax: PLATELET <= 300.0
+Singleton strict: PLATELET <= 300.0
+
+Singleton:Synovial_WBC <= 56800.0
+ICM_threshold:3000  delta:0.0  Q:56800.0
+situation_num:ICM_0_lessthan_s2
+Singleton relax: Synovial_WBC < 56800.0
+Singleton strict: Synovial_WBC <= 0.0
+
+Not Used Singleton:ASA_2 <= 0.5
+mu_N:0.6822429906542056  mu_I:0.3815789473684211  delta:0.0  Q:0.5
+situation_num:nonICM_0_lessthan_s10
+Singleton:Serum_ESR <= 47.0
+ICM_threshold:30  delta:0.0  Q:47.0
+situation_num:ICM_0_lessthan_s2
+Singleton relax: Serum_ESR < 47.0
+Singleton strict: Serum_ESR <= 0.0
+
+Singleton:APTT <= 31.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:31.5
+situation_num:nonICM_0_lessthan_s1
+Singleton relax: APTT < 31.5
+Singleton strict: APTT <= 30.0
+
+Singleton:Serum_ESR <= 37.5
+ICM_threshold:30  delta:0.0  Q:37.5
+situation_num:ICM_0_lessthan_s2
+Singleton relax: Serum_ESR < 37.5
+Singleton strict: Serum_ESR <= 0.0
+
+Singleton:Synovial_WBC <= 14942.5
+ICM_threshold:3000  delta:0.0  Q:14942.5
+situation_num:ICM_0_lessthan_s2
+Singleton relax: Synovial_WBC < 14942.5
+Singleton strict: Synovial_WBC <= 0.0
+
+Singleton:Serum_ESR <= 39.5
+ICM_threshold:30  delta:0.0  Q:39.5
+situation_num:ICM_0_lessthan_s2
+Singleton relax: Serum_ESR < 39.5
+Singleton strict: Serum_ESR <= 0.0
+
+Singleton:Hb > 12.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.2  Q:12.5
+situation_num:nonICM_0_morethan_s20
+Singleton relax: Hb > 12.5
+Singleton strict: Hb >= 13.2
+
+Singleton:PLATELET <= 356.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:356.0
+situation_num:nonICM_0_lessthan_s2
+Singleton relax: PLATELET <= 300.0
+Singleton strict: PLATELET <= 300.0
+
+Singleton:Synovial_WBC <= 30850.0
+ICM_threshold:3000  delta:0.0  Q:30850.0
+situation_num:ICM_0_lessthan_s2
+Singleton relax: Synovial_WBC < 30850.0
+Singleton strict: Synovial_WBC <= 0.0
+
+Singleton:Serum_WBC_ <= 10.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:10.0  Q:10.5
+situation_num:nonICM_0_lessthan_s2
+Singleton relax: Serum_WBC_ <= 10.0
+Singleton strict: Serum_WBC_ <= 10.0
+
+Singleton:Serum_CRP <= 14.0
+ICM_threshold:10  delta:0.0  Q:14.0
+situation_num:ICM_0_lessthan_s2
+Singleton relax: Serum_CRP < 14.0
+Singleton strict: Serum_CRP <= 0.0
+
+Singleton:Synovial_PMN > 58.5
+ICM_threshold:70  delta:100.0  Q:58.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 58.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Singleton:Serum_ESR > 47.0
+ICM_threshold:30  delta:55.0  Q:47.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 47.0
+Singleton strict: Serum_ESR >= 55.0
+
+Singleton:Synovial_WBC > 22190.0
+ICM_threshold:3000  delta:85000.0  Q:22190.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 22190.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:APTT > 26.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:26.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 26.5
+Singleton strict: APTT >= 30.0
+
+Singleton:P_T > 5.0
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.0
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 12.0
+
+Singleton:Synovial_WBC > 14942.5
+ICM_threshold:3000  delta:85000.0  Q:14942.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 14942.5
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:APTT > 28.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 30.0
+
+Singleton:Serum_ESR <= 78.0
+ICM_threshold:30  delta:55.0  Q:78.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 78.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Synovial_WBC > 3650.0
+ICM_threshold:3000  delta:85000.0  Q:3650.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 3650.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:APTT > 29.5
+mu_N:28.02803738317757  mu_I:32.36184210526316  delta:30.0  Q:29.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 29.5
+Singleton strict: APTT >= 30.0
+
+Not Used Singleton:Age > 68.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:80.0  Q:68.5
+situation_num:nonICM_1_morethan_s20
+Singleton:P_T > 5.5
+mu_N:9.77570093457944  mu_I:11.25  delta:12.0  Q:5.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.5
+Singleton strict: P_T >= 12.0
+
+Singleton:Serum_ESR > 39.5
+ICM_threshold:30  delta:55.0  Q:39.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 39.5
+Singleton strict: Serum_ESR >= 55.0
+
+Not Used Singleton:Age > 69.0
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:80.0  Q:69.0
+situation_num:nonICM_1_morethan_s20
+Singleton:Synovial_PMN > 91.5
+ICM_threshold:70  delta:100.0  Q:91.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_PMN > 91.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Not Used Singleton:Hb > 12.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.6  Q:12.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Total_Elixhauser_Groups_per_record > 0.5
+mu_N:0.6822429906542056  mu_I:0.9013157894736842  delta:1.0  Q:0.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: Total_Elixhauser_Groups_per_record > 0.5
+Singleton strict: Total_Elixhauser_Groups_per_record >= 1.0
+
+Singleton:Serum_CRP > 3.5
+ICM_threshold:10  delta:160.0  Q:3.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 3.5
+Singleton strict: Serum_CRP >= 160.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.6  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 2640.0
+ICM_threshold:3000  delta:85000.0  Q:2640.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2640.0
+Singleton strict: Synovial_WBC >= 85000.0
+
+Singleton:PLATELET > 275.0
+mu_N:235.42990654205607  mu_I:300.4144736842105  delta:300.0  Q:275.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: PLATELET > 275.0
+Singleton strict: PLATELET >= 300.0
+
+Not Used Singleton:Age > 70.5
+mu_N:64.81308411214954  mu_I:60.94736842105263  delta:80.0  Q:70.5
+situation_num:nonICM_1_morethan_s20
+Singleton:Synovial_PMN > 51.5
+ICM_threshold:70  delta:100.0  Q:51.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 51.5
+Singleton strict: Synovial_PMN >= 100.0
+
+Not Used Singleton:Hb > 5.5
+mu_N:12.317757009345794  mu_I:10.894736842105264  delta:13.6  Q:5.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_ESR <= 77.0
+ICM_threshold:30  delta:55.0  Q:77.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 77.0
+Singleton strict: Serum_ESR <= 55.0
+
+Singleton:Serum_WBC_ > 7.5
+mu_N:7.046728971962617  mu_I:10.157894736842104  delta:10.0  Q:7.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Serum_WBC_ > 7.5
+Singleton strict: Serum_WBC_ >= 10.0
+
+Singleton:Synovial_WBC > 28541.5
+ICM_threshold:3000  delta:85000.0  Q:28541.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 28541.5
+Singleton strict: Synovial_WBC >= 85000.0
+
+Not Used Singleton:Synovial_WBC <= 1250.0
+ICM_threshold:3000  delta:580.0  Q:1250.0
+situation_num:ICM_1_lessthan_s6
+Singleton:APTT > 28.5
+mu_N:28.065420560747665  mu_I:32.125  delta:37.0  Q:28.5
+situation_num:nonICM_1_morethan_s4
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 37.0
+
+Not Used Singleton:Age <= 87.5
+mu_N:65.20560747663552  mu_I:62.18421052631579  delta:71.0  Q:87.5
+situation_num:nonICM_1_lessthan_s19
+Not Used Singleton:Age > 35.0
+mu_N:65.20560747663552  mu_I:62.18421052631579  delta:71.0  Q:35.0
+situation_num:nonICM_1_morethan_s17
+Not Used Singleton:Synovial_WBC <= 5699.0
+ICM_threshold:3000  delta:580.0  Q:5699.0
+situation_num:ICM_1_lessthan_s5
+Singleton:PLATELET > 262.5
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:544.0  Q:262.5
+situation_num:nonICM_1_morethan_s4
+Singleton relax: PLATELET > 262.5
+Singleton strict: PLATELET >= 544.0
+
+Not Used Singleton:Synovial_PMN <= 67.5
+ICM_threshold:70  delta:64.0  Q:67.5
+situation_num:ICM_1_lessthan_s6
+Singleton:P_T > 5.0
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:11.0  Q:5.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 11.0
+
+Singleton:APTT > 32.0
+mu_N:28.065420560747665  mu_I:32.125  delta:37.0  Q:32.0
+situation_num:nonICM_1_morethan_s4
+Singleton relax: APTT > 32.0
+Singleton strict: APTT >= 37.0
+
+Not Used Singleton:Age > 29.0
+mu_N:65.20560747663552  mu_I:62.18421052631579  delta:71.0  Q:29.0
+situation_num:nonICM_1_morethan_s17
+Singleton:Hb <= 13.0
+mu_N:12.242990654205608  mu_I:10.875  delta:11.0  Q:13.0
+situation_num:nonICM_1_lessthan_s21
+Singleton relax: Hb <= 11.0
+Singleton strict: Hb <= 11.0
+
+Singleton:Serum_ESR <= 77.5
+ICM_threshold:30  delta:57.0  Q:77.5
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 77.5
+Singleton strict: Serum_ESR <= 57.0
+
+Singleton:Serum_WBC_ > 8.5
+mu_N:7.009345794392523  mu_I:10.361842105263158  delta:13.0  Q:8.5
+situation_num:nonICM_1_morethan_s4
+Singleton relax: Serum_WBC_ > 8.5
+Singleton strict: Serum_WBC_ >= 13.0
+
+Singleton:Segment <= 84.5
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:78.0  Q:84.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 84.5
+Singleton strict: Segment <= 78.0
+
+Singleton:Serum_CRP <= 107.5
+ICM_threshold:10  delta:66.0  Q:107.5
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_CRP < 107.5
+Singleton strict: Serum_CRP <= 66.0
+
+Singleton:Segment > 73.5
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:78.0  Q:73.5
+situation_num:nonICM_1_morethan_s6
+Singleton relax: Segment > 73.5
+Singleton strict: Segment >= 78.0
+
+Not Used Singleton:Synovial_WBC <= 4013.0
+ICM_threshold:3000  delta:580.0  Q:4013.0
+situation_num:ICM_1_lessthan_s5
+Singleton:PLATELET > 19.5
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:544.0  Q:19.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: PLATELET > 19.5
+Singleton strict: PLATELET >= 544.0
+
+Singleton:Serum_WBC_ > 5.5
+mu_N:7.009345794392523  mu_I:10.361842105263158  delta:13.0  Q:5.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: Serum_WBC_ > 5.5
+Singleton strict: Serum_WBC_ >= 13.0
+
+Singleton:Segment > 71.0
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:78.0  Q:71.0
+situation_num:nonICM_1_morethan_s4
+Singleton relax: Segment > 71.0
+Singleton strict: Segment >= 78.0
+
+Singleton:Serum_ESR > 54.5
+ICM_threshold:30  delta:57.0  Q:54.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 54.5
+Singleton strict: Serum_ESR >= 57.0
+
+Singleton:Total_CCI > 1.5
+mu_N:0.38317757009345793  mu_I:0.5657894736842105  delta:2.0  Q:1.5
+situation_num:nonICM_1_morethan_s6
+Singleton relax: Total_CCI > 1.5
+Singleton strict: Total_CCI >= 2.0
+
+Singleton:Serum_CRP <= 161.0
+ICM_threshold:10  delta:66.0  Q:161.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_CRP < 161.0
+Singleton strict: Serum_CRP <= 66.0
+
+Singleton:Serum_ESR > 46.5
+ICM_threshold:30  delta:57.0  Q:46.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 46.5
+Singleton strict: Serum_ESR >= 57.0
+
+Singleton:Synovial_PMN > 63.0
+ICM_threshold:70  delta:64.0  Q:63.0
+situation_num:ICM_1_morethan_s4
+Singleton relax: Synovial_PMN > 63.0
+Singleton strict: Synovial_PMN >= 64.0
+
+Singleton:P_T > 9.5
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:11.0  Q:9.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 9.5
+Singleton strict: P_T >= 11.0
+
+Singleton:Segment <= 79.5
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:78.0  Q:79.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Segment < 79.5
+Singleton strict: Segment <= 78.0
+
+Singleton:Serum_ESR > 48.5
+ICM_threshold:30  delta:57.0  Q:48.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 48.5
+Singleton strict: Serum_ESR >= 57.0
+
+Singleton:Serum_CRP > 4.0
+ICM_threshold:10  delta:66.0  Q:4.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 4.0
+Singleton strict: Serum_CRP >= 66.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:66.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 66.0
+
+Singleton:Serum_CRP > 5.0
+ICM_threshold:10  delta:66.0  Q:5.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 5.0
+Singleton strict: Serum_CRP >= 66.0
+
+Singleton:Synovial_WBC > 2475.0
+ICM_threshold:3000  delta:82260.0  Q:2475.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2475.0
+Singleton strict: Synovial_WBC >= 82260.0
+
+Not Used Singleton:Age > 63.0
+mu_N:65.20560747663552  mu_I:62.18421052631579  delta:67.0  Q:63.0
+situation_num:nonICM_1_morethan_s23
+Singleton:Serum_ESR > 41.0
+ICM_threshold:30  delta:117.0  Q:41.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 41.0
+Singleton strict: Serum_ESR >= 117.0
+
+Singleton:Synovial_WBC > 39387.0
+ICM_threshold:3000  delta:82260.0  Q:39387.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 39387.0
+Singleton strict: Synovial_WBC >= 82260.0
+
+Singleton:Serum_WBC_ <= 11.5
+mu_N:7.009345794392523  mu_I:10.361842105263158  delta:10.0  Q:11.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Serum_WBC_ < 11.5
+Singleton strict: Serum_WBC_ < 11.5
+
+Singleton:Serum_WBC_ > 9.5
+mu_N:7.009345794392523  mu_I:10.361842105263158  delta:10.0  Q:9.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Serum_WBC_ > 9.5
+Singleton strict: Serum_WBC_ >= 10.0
+
+Singleton:Synovial_WBC > 2293.5
+ICM_threshold:3000  delta:82260.0  Q:2293.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 2293.5
+Singleton strict: Synovial_WBC >= 82260.0
+
+Singleton:Serum_ESR > 55.5
+ICM_threshold:30  delta:117.0  Q:55.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 55.5
+Singleton strict: Serum_ESR >= 117.0
+
+Singleton:Segment > 73.5
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:74.0  Q:73.5
+situation_num:nonICM_1_morethan_s6
+Singleton relax: Segment > 73.5
+Singleton strict: Segment >= 74.0
+
+Singleton:Synovial_WBC > 4608.5
+ICM_threshold:3000  delta:82260.0  Q:4608.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 4608.5
+Singleton strict: Synovial_WBC >= 82260.0
+
+Singleton:APTT > 26.5
+mu_N:28.065420560747665  mu_I:32.125  delta:28.0  Q:26.5
+situation_num:nonICM_1_morethan_s15
+Singleton relax: APTT > 26.5
+Singleton strict: APTT >= 28.0
+
+Singleton:Synovial_WBC > 5416.0
+ICM_threshold:3000  delta:82260.0  Q:5416.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 5416.0
+Singleton strict: Synovial_WBC >= 82260.0
+
+Singleton:Synovial_PMN > 63.0
+ICM_threshold:70  delta:95.0  Q:63.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 63.0
+Singleton strict: Synovial_PMN >= 95.0
+
+Singleton:P_T > 9.5
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:10.0  Q:9.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 9.5
+Singleton strict: P_T >= 10.0
+
+Singleton:Serum_ESR > 50.5
+ICM_threshold:30  delta:117.0  Q:50.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 50.5
+Singleton strict: Serum_ESR >= 117.0
+
+Singleton:Hb > 7.5
+mu_N:12.242990654205608  mu_I:10.875  delta:10.0  Q:7.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 10.0
+Singleton strict: Hb > 7.5
+
+Singleton:APTT > 24.5
+mu_N:28.065420560747665  mu_I:32.125  delta:28.0  Q:24.5
+situation_num:nonICM_1_morethan_s15
+Singleton relax: APTT > 24.5
+Singleton strict: APTT >= 28.0
+
+Singleton:Hb <= 13.5
+mu_N:12.242990654205608  mu_I:10.875  delta:10.0  Q:13.5
+situation_num:nonICM_1_lessthan_s11
+Singleton relax: Hb < 13.5
+Singleton strict: Hb <= 10.0
+
+Singleton:Serum_ESR > 40.5
+ICM_threshold:30  delta:117.0  Q:40.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 40.5
+Singleton strict: Serum_ESR >= 117.0
+
+Singleton:Synovial_PMN > 54.0
+ICM_threshold:70  delta:92.0  Q:54.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 54.0
+Singleton strict: Synovial_PMN >= 92.0
+
+Singleton:Synovial_WBC > 715.0
+ICM_threshold:3000  delta:1230.0  Q:715.0
+situation_num:ICM_1_morethan_s4
+Singleton relax: Synovial_WBC > 715.0
+Singleton strict: Synovial_WBC >= 1230.0
+
+Singleton:P_T > 5.0
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:11.0  Q:5.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 11.0
+
+Singleton:APTT > 29.5
+mu_N:28.065420560747665  mu_I:32.125  delta:32.0  Q:29.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 29.5
+Singleton strict: APTT >= 32.0
+
+Singleton:Synovial_PMN > 52.0
+ICM_threshold:70  delta:92.0  Q:52.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 52.0
+Singleton strict: Synovial_PMN >= 92.0
+
+Not Used Singleton:Synovial_WBC <= 7467.0
+ICM_threshold:3000  delta:1230.0  Q:7467.0
+situation_num:ICM_1_lessthan_s5
+Singleton:APTT > 27.0
+mu_N:28.065420560747665  mu_I:32.125  delta:32.0  Q:27.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 27.0
+Singleton strict: APTT >= 32.0
+
+Singleton:P_T > 10.5
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:11.0  Q:10.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: P_T > 10.5
+Singleton strict: P_T >= 11.0
+
+Singleton:Synovial_PMN > 60.5
+ICM_threshold:70  delta:92.0  Q:60.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 60.5
+Singleton strict: Synovial_PMN >= 92.0
+
+Not Used Singleton:Synovial_WBC <= 14761.5
+ICM_threshold:3000  delta:1230.0  Q:14761.5
+situation_num:ICM_1_lessthan_s5
+Singleton:Age <= 62.0
+mu_N:65.20560747663552  mu_I:62.18421052631579  delta:58.0  Q:62.0
+situation_num:nonICM_1_lessthan_s12
+Singleton relax: Age < 62.0
+Singleton strict: Age <= 58.0
+
+Not Used Singleton:Segment <= 64.0
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:49.0  Q:64.0
+situation_num:nonICM_1_lessthan_s7
+Not Used Singleton:PLATELET <= 340.0
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:129.0  Q:340.0
+situation_num:nonICM_1_lessthan_s8
+Not Used Singleton:Synovial_WBC <= 1850.0
+ICM_threshold:3000  delta:1230.0  Q:1850.0
+situation_num:ICM_1_lessthan_s6
+Singleton:APTT > 27.5
+mu_N:28.065420560747665  mu_I:32.125  delta:32.0  Q:27.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 27.5
+Singleton strict: APTT >= 32.0
+
+Singleton:Serum_ESR > 34.5
+ICM_threshold:30  delta:88.0  Q:34.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 34.5
+Singleton strict: Serum_ESR >= 88.0
+
+Singleton:Hb > 4.5
+mu_N:12.242990654205608  mu_I:10.875  delta:10.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 10.0
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_CRP <= 161.0
+ICM_threshold:10  delta:44.0  Q:161.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_CRP < 161.0
+Singleton strict: Serum_CRP <= 44.0
+
+Not Used Singleton:Segment <= 65.5
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:49.0  Q:65.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:ASA_2 <= 0.5
+mu_N:0.6448598130841121  mu_I:0.42105263157894735  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s10
+Singleton relax: ASA_2 < 0.5
+Singleton strict: ASA_2 <= 0.0
+
+Not Used Singleton:Segment <= 55.0
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:49.0  Q:55.0
+situation_num:nonICM_1_lessthan_s9
+Singleton:Serum_ESR > 21.5
+ICM_threshold:30  delta:88.0  Q:21.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_ESR > 21.5
+Singleton strict: Serum_ESR >= 88.0
+
+Singleton:Serum_CRP > 2.5
+ICM_threshold:10  delta:44.0  Q:2.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 2.5
+Singleton strict: Serum_CRP >= 44.0
+
+Singleton:Serum_CRP > 22.5
+ICM_threshold:10  delta:44.0  Q:22.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_CRP > 22.5
+Singleton strict: Serum_CRP >= 44.0
+
+Singleton:Serum_ESR > 51.5
+ICM_threshold:30  delta:140.0  Q:51.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 51.5
+Singleton strict: Serum_ESR >= 140.0
+
+Singleton:P_T > 5.0
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:12.0  Q:5.0
+situation_num:nonICM_1_morethan_s14
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 12.0
+
+Singleton:Age > 34.0
+mu_N:65.20560747663552  mu_I:62.18421052631579  delta:62.0  Q:34.0
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Age >= 62.0
+Singleton strict: Age > 34.0
+
+Not Used Singleton:Synovial_WBC <= 3337.5
+ICM_threshold:3000  delta:800.0  Q:3337.5
+situation_num:ICM_1_lessthan_s5
+Singleton:Serum_ESR > 27.5
+ICM_threshold:30  delta:140.0  Q:27.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_ESR > 27.5
+Singleton strict: Serum_ESR >= 140.0
+
+Singleton:Serum_ESR > 38.0
+ICM_threshold:30  delta:140.0  Q:38.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 38.0
+Singleton strict: Serum_ESR >= 140.0
+
+Singleton:Serum_CRP > 5.0
+ICM_threshold:10  delta:22.0  Q:5.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 5.0
+Singleton strict: Serum_CRP >= 22.0
+
+Singleton:APTT > 28.5
+mu_N:28.065420560747665  mu_I:32.125  delta:32.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 32.0
+
+Not Used Singleton:Synovial_WBC <= 15105.5
+ICM_threshold:3000  delta:800.0  Q:15105.5
+situation_num:ICM_1_lessthan_s5
+Singleton:Serum_CRP > 13.5
+ICM_threshold:10  delta:22.0  Q:13.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_CRP > 13.5
+Singleton strict: Serum_CRP >= 22.0
+
+Not Used Singleton:Synovial_PMN <= 51.5
+ICM_threshold:70  delta:4.0  Q:51.5
+situation_num:ICM_1_lessthan_s6
+Singleton:Age > 51.5
+mu_N:65.20560747663552  mu_I:62.18421052631579  delta:62.0  Q:51.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Age >= 62.0
+Singleton strict: Age > 51.5
+
+Not Used Singleton:Synovial_PMN <= 32.5
+ICM_threshold:70  delta:4.0  Q:32.5
+situation_num:ICM_1_lessthan_s6
+Singleton:Hb > 4.5
+mu_N:12.242990654205608  mu_I:10.875  delta:9.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 9.0
+Singleton strict: Hb > 4.5
+
+Not Used Singleton:PLATELET <= 350.5
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:168.0  Q:350.5
+situation_num:nonICM_1_lessthan_s8
+Not Used Singleton:PLATELET <= 204.5
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:168.0  Q:204.5
+situation_num:nonICM_1_lessthan_s9
+Singleton:Serum_ESR > 74.0
+ICM_threshold:30  delta:140.0  Q:74.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_ESR > 74.0
+Singleton strict: Serum_ESR >= 140.0
+
+Not Used Singleton:PLATELET <= 302.0
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:168.0  Q:302.0
+situation_num:nonICM_1_lessthan_s8
+Singleton:Hb <= 12.5
+mu_N:12.242990654205608  mu_I:10.875  delta:9.0  Q:12.5
+situation_num:nonICM_1_lessthan_s11
+Singleton relax: Hb < 12.5
+Singleton strict: Hb <= 9.0
+
+Not Used Singleton:Hb <= 15.0
+mu_N:12.242990654205608  mu_I:10.875  delta:15.0  Q:15.0
+situation_num:nonICM_1_lessthan_s19
+Singleton:Synovial_PMN > 51.5
+ICM_threshold:70  delta:95.0  Q:51.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 51.5
+Singleton strict: Synovial_PMN >= 95.0
+
+Singleton:Serum_ESR > 21.5
+ICM_threshold:30  delta:28.0  Q:21.5
+situation_num:ICM_1_morethan_s4
+Singleton relax: Serum_ESR > 21.5
+Singleton strict: Serum_ESR >= 28.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.242990654205608  mu_I:10.875  delta:15.0  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Synovial_WBC > 3700.0
+ICM_threshold:3000  delta:22100.0  Q:3700.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 3700.0
+Singleton strict: Synovial_WBC >= 22100.0
+
+Singleton:APTT > 26.5
+mu_N:28.065420560747665  mu_I:32.125  delta:36.0  Q:26.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: APTT > 26.5
+Singleton strict: APTT >= 36.0
+
+Singleton:Serum_CRP > 13.5
+ICM_threshold:10  delta:15.0  Q:13.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_CRP > 13.5
+Singleton strict: Serum_CRP >= 15.0
+
+Singleton:P_T > 10.5
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:11.0  Q:10.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: P_T > 10.5
+Singleton strict: P_T >= 11.0
+
+Singleton:Serum_ESR > 22.5
+ICM_threshold:30  delta:28.0  Q:22.5
+situation_num:ICM_1_morethan_s4
+Singleton relax: Serum_ESR > 22.5
+Singleton strict: Serum_ESR >= 28.0
+
+Not Used Singleton:Total_CCI <= 0.5
+mu_N:0.38317757009345793  mu_I:0.5657894736842105  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:P_T > 5.0
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:11.0  Q:5.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 11.0
+
+Singleton:Serum_WBC_ <= 9.5
+mu_N:7.009345794392523  mu_I:10.361842105263158  delta:8.0  Q:9.5
+situation_num:nonICM_1_lessthan_s1
+Singleton relax: Serum_WBC_ < 9.5
+Singleton strict: Serum_WBC_ < 9.5
+
+Singleton:Synovial_WBC > 6730.0
+ICM_threshold:3000  delta:22100.0  Q:6730.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 6730.0
+Singleton strict: Synovial_WBC >= 22100.0
+
+Not Used Singleton:Serum_ESR <= 38.0
+ICM_threshold:30  delta:28.0  Q:38.0
+situation_num:ICM_1_lessthan_s5
+Singleton:Serum_CRP > 3.5
+ICM_threshold:10  delta:15.0  Q:3.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 3.5
+Singleton strict: Serum_CRP >= 15.0
+
+Singleton:Synovial_WBC > 107.5
+ICM_threshold:3000  delta:22100.0  Q:107.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 107.5
+Singleton strict: Synovial_WBC >= 22100.0
+
+Singleton:PLATELET > 350.5
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:455.0  Q:350.5
+situation_num:nonICM_1_morethan_s6
+Singleton relax: PLATELET > 350.5
+Singleton strict: PLATELET >= 455.0
+
+Not Used Singleton:Serum_ESR <= 28.0
+ICM_threshold:30  delta:28.0  Q:28.0
+situation_num:ICM_1_lessthan_s4
+Singleton:APTT > 28.5
+mu_N:28.065420560747665  mu_I:32.125  delta:36.0  Q:28.5
+situation_num:nonICM_1_morethan_s4
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 36.0
+
+Not Used Singleton:Serum_ESR <= 33.5
+ICM_threshold:30  delta:28.0  Q:33.5
+situation_num:ICM_1_lessthan_s5
+Singleton:P_T <= 10.5
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:10.0  Q:10.5
+situation_num:nonICM_1_lessthan_s1
+Singleton relax: P_T < 10.5
+Singleton strict: P_T < 10.5
+
+Not Used Singleton:PLATELET <= 269.5
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:184.0  Q:269.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_WBC_ > 9.5
+mu_N:7.009345794392523  mu_I:10.361842105263158  delta:10.0  Q:9.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Serum_WBC_ > 9.5
+Singleton strict: Serum_WBC_ >= 10.0
+
+Singleton:Hb > 4.5
+mu_N:12.242990654205608  mu_I:10.875  delta:8.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 8.0
+Singleton strict: Hb > 4.5
+
+Singleton:Total_Elixhauser_Groups_per_record <= 1.5
+mu_N:0.6822429906542056  mu_I:0.875  delta:1.0  Q:1.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Total_Elixhauser_Groups_per_record < 1.5
+Singleton strict: Total_Elixhauser_Groups_per_record <= 1.0
+
+Singleton:Hb <= 13.5
+mu_N:12.242990654205608  mu_I:10.875  delta:8.0  Q:13.5
+situation_num:nonICM_1_lessthan_s11
+Singleton relax: Hb < 13.5
+Singleton strict: Hb <= 8.0
+
+Singleton:Serum_CRP > 13.5
+ICM_threshold:10  delta:32.0  Q:13.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_CRP > 13.5
+Singleton strict: Serum_CRP >= 32.0
+
+Singleton:APTT > 24.0
+mu_N:28.065420560747665  mu_I:32.125  delta:30.0  Q:24.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 24.0
+Singleton strict: APTT >= 30.0
+
+Singleton:Total_Elixhauser_Groups_per_record > 0.5
+mu_N:0.6822429906542056  mu_I:0.875  delta:1.0  Q:0.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: Total_Elixhauser_Groups_per_record > 0.5
+Singleton strict: Total_Elixhauser_Groups_per_record >= 1.0
+
+Singleton:Segment > 66.0
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:68.0  Q:66.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Segment > 66.0
+Singleton strict: Segment >= 68.0
+
+Singleton:APTT > 23.5
+mu_N:28.065420560747665  mu_I:32.125  delta:30.0  Q:23.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 23.5
+Singleton strict: APTT >= 30.0
+
+Singleton:Serum_CRP > 24.0
+ICM_threshold:10  delta:32.0  Q:24.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_CRP > 24.0
+Singleton strict: Serum_CRP >= 32.0
+
+Singleton:Hb <= 12.5
+mu_N:12.242990654205608  mu_I:10.875  delta:8.0  Q:12.5
+situation_num:nonICM_1_lessthan_s11
+Singleton relax: Hb < 12.5
+Singleton strict: Hb <= 8.0
+
+Not Used Singleton:Synovial_WBC <= 640.0
+ICM_threshold:3000  delta:40.0  Q:640.0
+situation_num:ICM_1_lessthan_s6
+Singleton:Serum_ESR <= 41.0
+ICM_threshold:30  delta:30.0  Q:41.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 41.0
+Singleton strict: Serum_ESR <= 30.0
+
+Not Used Singleton:PLATELET <= 210.5
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:184.0  Q:210.5
+situation_num:nonICM_1_lessthan_s9
+Not Used Singleton:PLATELET <= 275.0
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:184.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Segment <= 77.0
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:68.0  Q:77.0
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 77.0
+Singleton strict: Segment < 77.0
+
+Singleton:APTT <= 32.5
+mu_N:28.065420560747665  mu_I:32.125  delta:30.0  Q:32.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: APTT < 32.5
+Singleton strict: APTT < 32.5
+
+Singleton:Serum_ESR <= 37.0
+ICM_threshold:30  delta:30.0  Q:37.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 37.0
+Singleton strict: Serum_ESR <= 30.0
+
+Not Used Singleton:Synovial_WBC <= 4013.0
+ICM_threshold:3000  delta:40.0  Q:4013.0
+situation_num:ICM_1_lessthan_s5
+Singleton:Synovial_PMN > 63.0
+ICM_threshold:70  delta:94.0  Q:63.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 63.0
+Singleton strict: Synovial_PMN >= 94.0
+
+Singleton:Age <= 82.5
+mu_N:65.20560747663552  mu_I:62.18421052631579  delta:51.0  Q:82.5
+situation_num:nonICM_1_lessthan_s11
+Singleton relax: Age < 82.5
+Singleton strict: Age <= 51.0
+
+Singleton:Serum_ESR <= 41.5
+ICM_threshold:30  delta:30.0  Q:41.5
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 41.5
+Singleton strict: Serum_ESR <= 30.0
+
+Singleton:APTT > 28.5
+mu_N:28.065420560747665  mu_I:32.125  delta:30.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 30.0
+
+Not Used Singleton:Serum_ESR <= 28.0
+ICM_threshold:30  delta:28.0  Q:28.0
+situation_num:ICM_1_lessthan_s4
+Singleton:APTT > 28.5
+mu_N:28.065420560747665  mu_I:32.125  delta:36.0  Q:28.5
+situation_num:nonICM_1_morethan_s4
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 36.0
+
+Singleton:Serum_ESR > 22.5
+ICM_threshold:30  delta:28.0  Q:22.5
+situation_num:ICM_1_morethan_s4
+Singleton relax: Serum_ESR > 22.5
+Singleton strict: Serum_ESR >= 28.0
+
+Not Used Singleton:Serum_ESR <= 38.0
+ICM_threshold:30  delta:28.0  Q:38.0
+situation_num:ICM_1_lessthan_s5
+Singleton:Serum_CRP > 13.5
+ICM_threshold:10  delta:15.0  Q:13.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_CRP > 13.5
+Singleton strict: Serum_CRP >= 15.0
+
+Singleton:Synovial_PMN > 51.5
+ICM_threshold:70  delta:95.0  Q:51.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 51.5
+Singleton strict: Synovial_PMN >= 95.0
+
+Singleton:Serum_WBC_ <= 9.5
+mu_N:7.009345794392523  mu_I:10.361842105263158  delta:8.0  Q:9.5
+situation_num:nonICM_1_lessthan_s1
+Singleton relax: Serum_WBC_ < 9.5
+Singleton strict: Serum_WBC_ < 9.5
+
+Not Used Singleton:Total_CCI <= 0.5
+mu_N:0.38317757009345793  mu_I:0.5657894736842105  delta:0.0  Q:0.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:P_T > 5.0
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:11.0  Q:5.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: P_T > 5.0
+Singleton strict: P_T >= 11.0
+
+Singleton:Serum_CRP > 3.5
+ICM_threshold:10  delta:15.0  Q:3.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Serum_CRP > 3.5
+Singleton strict: Serum_CRP >= 15.0
+
+Singleton:P_T > 10.5
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:11.0  Q:10.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: P_T > 10.5
+Singleton strict: P_T >= 11.0
+
+Singleton:Synovial_WBC > 6730.0
+ICM_threshold:3000  delta:22100.0  Q:6730.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 6730.0
+Singleton strict: Synovial_WBC >= 22100.0
+
+Not Used Singleton:Hb <= 15.0
+mu_N:12.242990654205608  mu_I:10.875  delta:15.0  Q:15.0
+situation_num:nonICM_1_lessthan_s19
+Singleton:APTT > 26.5
+mu_N:28.065420560747665  mu_I:32.125  delta:36.0  Q:26.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: APTT > 26.5
+Singleton strict: APTT >= 36.0
+
+Not Used Singleton:Hb > 4.5
+mu_N:12.242990654205608  mu_I:10.875  delta:15.0  Q:4.5
+situation_num:nonICM_1_morethan_s17
+Singleton:Serum_ESR > 21.5
+ICM_threshold:30  delta:28.0  Q:21.5
+situation_num:ICM_1_morethan_s4
+Singleton relax: Serum_ESR > 21.5
+Singleton strict: Serum_ESR >= 28.0
+
+Singleton:Synovial_WBC > 107.5
+ICM_threshold:3000  delta:22100.0  Q:107.5
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_WBC > 107.5
+Singleton strict: Synovial_WBC >= 22100.0
+
+Singleton:PLATELET > 350.5
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:455.0  Q:350.5
+situation_num:nonICM_1_morethan_s6
+Singleton relax: PLATELET > 350.5
+Singleton strict: PLATELET >= 455.0
+
+Singleton:Synovial_WBC > 3700.0
+ICM_threshold:3000  delta:22100.0  Q:3700.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Synovial_WBC > 3700.0
+Singleton strict: Synovial_WBC >= 22100.0
+
+Not Used Singleton:Serum_ESR <= 33.5
+ICM_threshold:30  delta:28.0  Q:33.5
+situation_num:ICM_1_lessthan_s5
+Not Used Singleton:Synovial_WBC <= 4013.0
+ICM_threshold:3000  delta:40.0  Q:4013.0
+situation_num:ICM_1_lessthan_s5
+Not Used Singleton:PLATELET <= 210.5
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:184.0  Q:210.5
+situation_num:nonICM_1_lessthan_s9
+Singleton:P_T <= 10.5
+mu_N:9.785046728971963  mu_I:11.177631578947368  delta:10.0  Q:10.5
+situation_num:nonICM_1_lessthan_s1
+Singleton relax: P_T < 10.5
+Singleton strict: P_T < 10.5
+
+Singleton:APTT <= 32.5
+mu_N:28.065420560747665  mu_I:32.125  delta:30.0  Q:32.5
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: APTT < 32.5
+Singleton strict: APTT < 32.5
+
+Singleton:Segment <= 77.0
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:68.0  Q:77.0
+situation_num:nonICM_1_lessthan_s2
+Singleton relax: Segment < 77.0
+Singleton strict: Segment < 77.0
+
+Singleton:APTT > 28.5
+mu_N:28.065420560747665  mu_I:32.125  delta:30.0  Q:28.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: APTT > 28.5
+Singleton strict: APTT >= 30.0
+
+Not Used Singleton:PLATELET <= 275.0
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:184.0  Q:275.0
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_CRP > 13.5
+ICM_threshold:10  delta:32.0  Q:13.5
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_CRP > 13.5
+Singleton strict: Serum_CRP >= 32.0
+
+Singleton:Hb <= 12.5
+mu_N:12.242990654205608  mu_I:10.875  delta:8.0  Q:12.5
+situation_num:nonICM_1_lessthan_s11
+Singleton relax: Hb < 12.5
+Singleton strict: Hb <= 8.0
+
+Singleton:Synovial_PMN > 63.0
+ICM_threshold:70  delta:94.0  Q:63.0
+situation_num:ICM_1_morethan_s3
+Singleton relax: Synovial_PMN > 63.0
+Singleton strict: Synovial_PMN >= 94.0
+
+Singleton:APTT > 23.5
+mu_N:28.065420560747665  mu_I:32.125  delta:30.0  Q:23.5
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 23.5
+Singleton strict: APTT >= 30.0
+
+Singleton:Age <= 82.5
+mu_N:65.20560747663552  mu_I:62.18421052631579  delta:51.0  Q:82.5
+situation_num:nonICM_1_lessthan_s11
+Singleton relax: Age < 82.5
+Singleton strict: Age <= 51.0
+
+Singleton:Total_Elixhauser_Groups_per_record <= 1.5
+mu_N:0.6822429906542056  mu_I:0.875  delta:1.0  Q:1.5
+situation_num:nonICM_1_lessthan_s5
+Singleton relax: Total_Elixhauser_Groups_per_record < 1.5
+Singleton strict: Total_Elixhauser_Groups_per_record <= 1.0
+
+Not Used Singleton:Synovial_WBC <= 640.0
+ICM_threshold:3000  delta:40.0  Q:640.0
+situation_num:ICM_1_lessthan_s6
+Singleton:Serum_ESR <= 41.5
+ICM_threshold:30  delta:30.0  Q:41.5
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 41.5
+Singleton strict: Serum_ESR <= 30.0
+
+Singleton:Hb > 4.5
+mu_N:12.242990654205608  mu_I:10.875  delta:8.0  Q:4.5
+situation_num:nonICM_1_morethan_s16
+Singleton relax: Hb >= 8.0
+Singleton strict: Hb > 4.5
+
+Singleton:Serum_ESR <= 37.0
+ICM_threshold:30  delta:30.0  Q:37.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 37.0
+Singleton strict: Serum_ESR <= 30.0
+
+Singleton:Total_Elixhauser_Groups_per_record > 0.5
+mu_N:0.6822429906542056  mu_I:0.875  delta:1.0  Q:0.5
+situation_num:nonICM_1_morethan_s14
+Singleton relax: Total_Elixhauser_Groups_per_record > 0.5
+Singleton strict: Total_Elixhauser_Groups_per_record >= 1.0
+
+Singleton:Serum_ESR <= 41.0
+ICM_threshold:30  delta:30.0  Q:41.0
+situation_num:ICM_1_lessthan_s2
+Singleton relax: Serum_ESR < 41.0
+Singleton strict: Serum_ESR <= 30.0
+
+Singleton:APTT > 24.0
+mu_N:28.065420560747665  mu_I:32.125  delta:30.0  Q:24.0
+situation_num:nonICM_1_morethan_s13
+Singleton relax: APTT > 24.0
+Singleton strict: APTT >= 30.0
+
+Singleton:Segment > 66.0
+mu_N:62.39252336448598  mu_I:73.3157894736842  delta:68.0  Q:66.0
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Segment > 66.0
+Singleton strict: Segment >= 68.0
+
+Not Used Singleton:PLATELET <= 269.5
+mu_N:231.66355140186917  mu_I:299.2894736842105  delta:184.0  Q:269.5
+situation_num:nonICM_1_lessthan_s7
+Singleton:Serum_WBC_ > 9.5
+mu_N:7.009345794392523  mu_I:10.361842105263158  delta:10.0  Q:9.5
+situation_num:nonICM_1_morethan_s3
+Singleton relax: Serum_WBC_ > 9.5
+Singleton strict: Serum_WBC_ >= 10.0
+
+Singleton:Hb <= 13.5
+mu_N:12.242990654205608  mu_I:10.875  delta:8.0  Q:13.5
+situation_num:nonICM_1_lessthan_s11
+Singleton relax: Hb < 13.5
+Singleton strict: Hb <= 8.0
+
+Singleton:Serum_CRP > 24.0
+ICM_threshold:10  delta:32.0  Q:24.0
+situation_num:ICM_1_morethan_s1
+Singleton relax: Serum_CRP > 24.0
+Singleton strict: Serum_CRP >= 32.0
+

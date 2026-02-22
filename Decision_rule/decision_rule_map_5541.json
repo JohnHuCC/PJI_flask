@@ -1,0 +1,17 @@
+{
+    "A": "APTT > 25.5",
+    "B": "Serum_CRP > 24.5",
+    "C": "Synovial_PMN > 54.0",
+    "D": "Age <= 77.5",
+    "E": "APTT > 33.5",
+    "F": "Total_Elixhauser_Groups_per_record <= 0.5",
+    "G": "Positive_Histology == True",
+    "H": "Synovial_WBC > 14610.0",
+    "I": "Age <= 89.0",
+    "J": "Surgery == True",
+    "K": "Segment <= 69.5",
+    "L": "Serum_WBC_ <= 7.5",
+    "M": "Serum_ESR > 39.5",
+    "N": "Synovial_PMN > 58.5",
+    "O": "Segment <= 81.5"
+}

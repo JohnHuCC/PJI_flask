@@ -1,0 +1,22 @@
+{
+    "A": "PLATELET > 405.5",
+    "B": "Hb <= 15.0",
+    "C": "Synovial_PMN > 57.5",
+    "D": "APTT > 24.0",
+    "E": "Serum_CRP <= 23.0",
+    "F": "Synovial_PMN > 63.5",
+    "G": "Synovial_PMN > 75.0",
+    "H": "Serum_CRP <= 118.5",
+    "I": "Serum_ESR <= 28.5",
+    "J": "APTT > 23.5",
+    "K": "Synovial_PMN > 63.0",
+    "L": "Segment <= 64.5",
+    "M": "Serum_ESR > 17.0",
+    "N": "Positive_Histology == True",
+    "O": "Total_Elixhauser_Groups_per_record <= 0.5",
+    "P": "Segment <= 69.5",
+    "Q": "Synovial_PMN > 64.0",
+    "R": "Serum_CRP <= 20.5",
+    "S": "PLATELET > 226.0",
+    "T": "two_positive_culture == False"
+}

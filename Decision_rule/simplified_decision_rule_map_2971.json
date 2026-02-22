@@ -1,0 +1,18 @@
+{
+    "A": "two_positive_culture == True",
+    "B": "Total_Elixhauser_Groups_per_record <= 0.5",
+    "C": "Synovial_WBC <= 7003.0",
+    "D": "Synovial_PMN <= 87.5",
+    "E": "Positive_Histology == False",
+    "F": "APTT <= 28.5",
+    "G": "Serum_CRP >= 53.0",
+    "H": "Synovial_PMN >= 47.0",
+    "I": "Age > 52.0",
+    "J": "Serum_ESR <= 82.0",
+    "K": "Serum_ESR >= 82.0",
+    "L": "Hb > 5.0",
+    "M": "Hb > 10.5",
+    "N": "Serum_ESR >= 82.0",
+    "O": "Serum_ESR >= 82.0",
+    "P": "Serum_ESR >= 82.0"
+}

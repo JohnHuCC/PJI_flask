@@ -1,0 +1,16 @@
+{
+    "A": "Single_Positive_culture <= 0.5",
+    "B": "Serum_ESR <= 105.5",
+    "C": "Synovial_WBC > 187.5",
+    "D": "Segment <= 69.5",
+    "E": "two_positive_culture == False",
+    "F": "Positive_Histology == False",
+    "G": "Surgery == True",
+    "H": "Synovial_WBC <= 70530.0",
+    "I": "Serum_ESR <= 38.5",
+    "J": "Hb <= 12.5",
+    "K": "Purulence == False",
+    "L": "PLATELET <= 324.0",
+    "M": "APTT <= 28.5",
+    "N": "Serum_ESR <= 28.5"
+}

@@ -1,0 +1,4 @@
+{
+    "A": "Positive_Histology == False",
+    "B": "Serum_CRP <= 2.0"
+}

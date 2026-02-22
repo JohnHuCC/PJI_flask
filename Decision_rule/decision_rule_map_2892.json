@@ -1,0 +1,19 @@
+{
+    "A": "Serum_ESR <= 41.5",
+    "B": "Synovial_WBC > 530.0",
+    "C": "Serum_WBC_ <= 7.5",
+    "D": "Synovial_PMN <= 58.5",
+    "E": "Synovial_PMN <= 65.0",
+    "F": "APTT <= 27.5",
+    "G": "Positive_Histology == False",
+    "H": "two_positive_culture == False",
+    "I": "Hb > 10.0",
+    "J": "Segment > 69.5",
+    "K": "Synovial_WBC <= 2100.0",
+    "L": "Purulence == False",
+    "M": "Serum_CRP <= 4.0",
+    "N": "APTT <= 28.5",
+    "O": "Age > 59.5",
+    "P": "Serum_CRP <= 13.5",
+    "Q": "Serum_ESR <= 28.5"
+}

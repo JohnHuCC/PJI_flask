@@ -1,0 +1,23 @@
+{
+    "A": "Purulence == True",
+    "B": "two_positive_culture == True",
+    "C": "Positive_Histology == False",
+    "D": "PLATELET <= 266.0",
+    "E": "PLATELET <= 236.5",
+    "F": "P_T >= 11.0",
+    "G": "Synovial_PMN >= 74.0",
+    "H": "Total_CCI >= 1.0",
+    "I": "APTT >= 31.0",
+    "J": "Synovial_WBC >= 115200.0",
+    "K": "Serum_CRP >= 413.0",
+    "L": "Segment >= 96.0",
+    "M": "Hb > 4.5",
+    "N": "Serum_CRP >= 413.0",
+    "O": "Serum_ESR <= 32.0",
+    "P": "Synovial_WBC >= 115200.0",
+    "Q": "Serum_CRP >= 413.0",
+    "R": "Hb > 10.5",
+    "S": "Serum_WBC_ >= 13.0",
+    "T": "APTT < 32.5",
+    "U": "Synovial_WBC <= 115200.0"
+}

@@ -1,68 +1,125 @@
-  // Create a new directed graph
-  console.log('from decisionpath.js')
+// Create a new directed graph
+console.log('from decisionpath.js')
+var g = new dagreD3.graphlib.Graph().setGraph({});
+let range_inputs = document.querySelectorAll(".range_input");
+g.setNode("start", { label: "start" });
+g.setNode("infected", { label: "infected" });
 
-  var g = new dagreD3.graphlib.Graph().setGraph({});
+range_inputs.forEach(element => {
+    let range_value = document.querySelector(`#${element.id}_value`);
+    range_value.innerHTML = element.value;
+    element.addEventListener("change", event => {
+        console.log(`${element.id}: ${event.target.value}`);
+        document.getElementById("diagnosis_box").innerHTML = "";
+        range_value.innerHTML = element.value;
+        var svg = d3.select("#diagnosis_box").append("svg").attr("width", 1300).attr("height", 500);
+        var inner = svg.append("g");
+        var g = new dagreD3.graphlib.Graph().setGraph({});
+        g.setNode("start", { label: "start" });
+        g.setNode("infected", { label: "infected" });
+        g.graph().rankdir = "LR";
+        g.graph().nodesep = 60;
+        processLL(g, decision_list_json, event.target.value);
+        // Set up zoom support
+        var zoom = d3.behavior.zoom().on("zoom", function () {
+            inner.attr("transform", "translate(" + d3.event.translate + ")" +
+                "scale(" + d3.event.scale + ")");
+        });
+        svg.call(zoom);
+        var render = new dagreD3.render();
+        render(inner, g);
+        // var initialScale = 0.95;
+        var initialScale = 0.1;
+        zoom
+            .translate([(svg_rd_dp.attr("width") - g_rd_dp.graph().width * initialScale_rd_dp) , 20])
+            // .translate([(svg.attr("width") - g.graph().width * initialScale) , 20])
+            .scale(initialScale)
+            .event(svg);
+        svg.attr('height', g.graph().height * initialScale + 40);
+            });
+});
 
-  var nodes = [ "Start", "Histology", "Serum CRP", "PT",
-                 "Neutrophil Segment", "APTT", "Serum ESR", "Synovial WBC", "Infected"
-              ];
-  
-  // Automatically label each of the nodes
-  nodes.forEach(function(node) {
-      g.setNode(node, { label: node }); 
-  });
-  
-  //LV1
-  g.setEdge("Start", "Histology", { label: "" });
-  g.setEdge("Start", "APTT", { label: "" });
-  //LV2
-  g.setEdge("Histology", "Serum CRP", { label: "positive" });
-  g.setEdge("Histology", "PT", { label: "positive" });
-  g.setEdge("APTT", "Serum ESR", { label: "≥ 28.0" });
-  //LV3 
-  g.setEdge("Serum CRP", "Infected", { label: "≥ 16.0" });
-  g.setEdge("PT", "Neutrophil Segment", { label: "≥ 9.8" });
-  g.setEdge("Serum ESR", "Synovial WBC", { label: "≥ 38.0" });
-  //LV4
-  g.setEdge("Neutrophil Segment", "Infected", { label: "≥ 62.0" });
-  g.setEdge("Synovial WBC", "Infected", { label: "≥ 3780.0" });
-//   g.setEdge("148570025_1100", "148570010_1100", { label: "" });
-//   g.setEdge("148570025_1100", "148570026_1100", { label: "" });
-//   g.setEdge("148570021_1100", "148570022_1100", { label: "" });
-//   g.setEdge("148570010_1100", "148570011_1100", { label: "" });
-//   g.setEdge("148570010_1100", "148570010_1200", { label: "" });
-//   g.setEdge("148570020_1100", "148570020_1200", { label: "" });
-//   g.setEdge("148570026_1100", "148570026_1200", { label: "" });
-//   g.setEdge("148570026_1200", "148570011_1200", { label: "" });
-//   g.setEdge("148570010_1200", "148570011_1200", { label: "" });
-//   g.setEdge("148570022_1100", "148570023_1100", { label: "" });
-//   g.setEdge("148570023_1100", "148570023_1200", { label: "" });
-  
-  var svg = d3.select("svg"),
-      inner = svg.select("g");
-  
-  // Set the rankdir
-  g.graph().rankdir = "LR";
-  g.graph().nodesep = 60;
-  
-  // Set up zoom support
-  var zoom = d3.behavior.zoom().on("zoom", function() {
-        inner.attr("transform", "translate(" + d3.event.translate + ")" +
-                                    "scale(" + d3.event.scale + ")");
-      });
-  svg.call(zoom);
-  
-  // Create the renderer
-  var render = new dagreD3.render();
-  
-  
-  // Run the renderer. This is what draws the final graph.
-  render(inner, g);
-  
-  // Center the graph
-  var initialScale = 0.75;
-  zoom
-    .translate([(svg.attr("width") - g.graph().width * initialScale) / 2, 20])
+function insertEdge(g, na, nb) {
+    if (!g.hasEdge(na, nb)) {
+        g.setEdge(na, nb, {})
+    }
+}
+function insertNode(g, name) {
+    if (!g.hasNode(name)) {
+        g.setNode(name, { label: rule_map_json[name] })
+    }
+}
+
+function processL(g, ns) {
+  ns.forEach((n) => insertNode(g, n));
+  insertEdge(g, "start", ns[0])
+  for (let i = 0; i < (ns.length-1); i += 1) {
+        insertEdge(g, ns[i], ns[i+1])
+  }
+  insertEdge(g, ns[ns.length-1], "infected")
+}
+
+function processLL(g, nss, max_num) {
+    Object.keys(nss).forEach(k => {
+        if (Number(k) < max_num || max_num == -1) {
+            let ns = nss[k]
+            processL(g, ns)
+        }
+    })
+}
+
+processLL(g, decision_list_json, 5)
+
+var svg = d3.select("#diagnosis_box").append("svg").attr("width", 1300).attr("height", 700);
+var inner = svg.append("g");
+
+
+// Set the rankdir
+g.graph().rankdir = "LR";
+g.graph().nodesep = 30;
+
+// Set up zoom support
+var zoom = d3.behavior.zoom().on("zoom", function () {
+    inner.attr("transform", "translate(" + d3.event.translate + ")" +
+        "scale(" + d3.event.scale + ")");
+});
+svg.call(zoom);
+
+// Create the renderer
+var render = new dagreD3.render();
+
+// Run the renderer. This is what draws the final graph.
+render(inner, g);
+
+// // Create the renderer
+// let render = new dagreD3.render();
+// // Draw graph
+// render(inner, g);
+
+// Center the graph
+var initialScale = 0.95;
+// var initialScale = 2;
+zoom     
+    .translate([(svg.attr("width")/1.2 - g.graph().width * initialScale) , 100])
     .scale(initialScale)
     .event(svg);
-  svg.attr('height', g.graph().height * initialScale + 40);
+svg.attr('height', g.graph().height * initialScale + 200);
+
+
+
+/*
+
+json:
+    nss = { "key": [ "value1", "value2",  ], "key": [ "value1", "value2",  ] }
+    Object.keys(decision_list_json).forEach(k => { 
+        ns = decision_list_json[k]
+    })
+
+array:
+    nss = [ [ "value1", "value2",  ], [ "value1", "value2",  ] ]
+    nss.forEach(ns => {
+        
+    })
+
+
+*/

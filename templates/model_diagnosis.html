@@ -9,24 +9,49 @@
         <title>Decision path</title>
         <link href="/static/css/styles.css" rel="stylesheet" />
         <link href="/static/css/style.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="/static/assets/img/favicon.png" />
+        <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png"/>
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/d3js/3.5.17/d3.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre-d3/0.6.4/dagre-d3.min.js" integrity="sha512-fdYLm4hXxJ/tPMptvdDDwuJme6jTgvoZ0g6pflEkyG9MqPejLspnCjkwX3bD69GFT2N/refZGjPr6b9RdoCyxQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <!-- <script defer src="/static/js/decisionpath.js"></script> -->
-        <script defer src="/static/js/decisionpath2.js"></script>
-        <script defer src="/static/js/model_diagnosis.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+        <script type="text/javascript" defer src="/static/js/decisionpath.js"></script>
+        <script type="text/javascript" defer src="/static/js/model_diagnosis.js"></script>
+        <script type="text/javascript" defer src="/static/js/model_diagnosis_sp_rule.js"></script>
     </head>
+    <html>
+    <head>
+        <script type="module">
+            import cytoscape from "https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.esm.min.js"
+            let cy = cytoscape({
+              container: document.getElementById('cy'),
+              elements: [
+                { data: { id: 'a' } },
+                { data: { id: 'b' } },
+                { data: { id: 'ab', source: 'a', target: 'b' }},
+              ]
+            })
+            cy.pan({
+              x: 100,
+              y: 100
+            })
+            console.log(cy.data())
+        </script>
+    </head>
+    <body>
+        <div id="cy"></div>
+        <h1>test</h1>
+    </body>
+</html>
     <body class="nav-fixed">
-        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
+        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-dark" id="sidenavAccordion">
             <!-- Sidenav Toggle Button-->
             <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
             <!-- Navbar Brand-->
             <!-- * * Tip * * You can use text or an image for your navbar brand.-->
             <!-- * * * * * * When using an image, we recommend the SVG format.-->
             <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-            <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="/">Start</a>
+            <!-- <a class="navbar-brand ps-3" href="/">Start</a> -->
             <!-- Navbar Search Input-->
             <!-- * * Note: * * Visible only on and above the lg breakpoint-->
             <!-- <form class="form-inline me-auto d-none d-lg-block me-3">
@@ -39,7 +64,7 @@
             <!-- Navbar Items-->
             <ul class="navbar-nav align-items-center ms-auto">
                 <!-- Documentation Dropdown-->
-                <li class="nav-item dropdown no-caret d-none d-md-block me-3">
+                <!-- <li class="nav-item dropdown no-caret d-none d-md-block me-3">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownDocs" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="fw-500">Documentation</div>
                         <i class="fas fa-chevron-right dropdown-arrow"></i>
@@ -69,7 +94,7 @@
                             </div>
                         </a>
                     </div>
-                </li>
+                </li> -->
                 <!-- Navbar Search Dropdown-->
                 <!-- * * Note: * * Visible only below the lg breakpoint-->
                 <li class="nav-item dropdown no-caret me-3 d-lg-none">
@@ -78,97 +103,10 @@
                     <div class="dropdown-menu dropdown-menu-end p-3 shadow animated--fade-in-up" aria-labelledby="searchDropdown">
                         <form class="form-inline me-auto w-100">
                             <div class="input-group input-group-joined input-group-solid">
-                                <input class="form-control pe-0" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                                <div class="input-group-text"><i data-feather="search"></i></div>
+                                <!-- <input class="form-control pe-0" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" /> -->
+                                <!-- <div class="input-group-text"><i data-feather="search"></i></div> -->
                             </div>
                         </form>
-                    </div>
-                </li>
-                <!-- Alerts Dropdown-->
-                <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownAlerts" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="bell"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownAlerts">
-                        <h6 class="dropdown-header dropdown-notifications-header">
-                            <i class="me-2" data-feather="bell"></i>
-                            Alerts Center
-                        </h6>
-                        <!-- Example Alert 1-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-warning"><i data-feather="activity"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 29, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">This is an alert message. It's nothing serious, but it requires your attention.</div>
-                            </div>
-                        </a>
-                        <!-- Example Alert 2-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-info"><i data-feather="bar-chart"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 22, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">A new monthly report is ready. Click here to view!</div>
-                            </div>
-                        </a>
-                        <!-- Example Alert 3-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-danger"><i class="fas fa-exclamation-triangle"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 8, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">Critical system failure, systems shutting down.</div>
-                            </div>
-                        </a>
-                        <!-- Example Alert 4-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <div class="dropdown-notifications-item-icon bg-success"><i data-feather="user-plus"></i></div>
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-details">December 2, 2021</div>
-                                <div class="dropdown-notifications-item-content-text">New user request. Woody has requested access to the organization.</div>
-                            </div>
-                        </a>
-                        <a class="dropdown-item dropdown-notifications-footer" href="#!">View All Alerts</a>
-                    </div>
-                </li>
-                <!-- Messages Dropdown-->
-                <li class="nav-item dropdown no-caret d-none d-sm-block me-3 dropdown-notifications">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="mail"></i></a>
-                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownMessages">
-                        <h6 class="dropdown-header dropdown-notifications-header">
-                            <i class="me-2" data-feather="mail"></i>
-                            Message Center
-                        </h6>
-                        <!-- Example Message 1  -->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="/static/assets/img/illustrations/profiles/profile-2.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Thomas Wilcox · 58m</div>
-                            </div>
-                        </a>
-                        <!-- Example Message 2-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="/static/assets/img/illustrations/profiles/profile-3.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Emily Fowler · 2d</div>
-                            </div>
-                        </a>
-                        <!-- Example Message 3-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="/static/assets/img/illustrations/profiles/profile-4.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Marshall Rosencrantz · 3d</div>
-                            </div>
-                        </a>
-                        <!-- Example Message 4-->
-                        <a class="dropdown-item dropdown-notifications-item" href="#!">
-                            <img class="dropdown-notifications-item-img" src="/static/assets/img/illustrations/profiles/profile-5.png" />
-                            <div class="dropdown-notifications-item-content">
-                                <div class="dropdown-notifications-item-content-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-                                <div class="dropdown-notifications-item-content-details">Colby Newton · 3d</div>
-                            </div>
-                        </a>
-                        <!-- Footer Link-->
-                        <a class="dropdown-item dropdown-notifications-footer" href="#!">Read All Messages</a>
                     </div>
                 </li>
                 <!-- User Dropdown-->
@@ -183,11 +121,11 @@
                             </div>
                         </h6>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#!">
+                        <!-- <a class="dropdown-item" href="#!">
                             <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
                             Account
-                        </a>
-                        <a class="dropdown-item" href="#!">
+                        </a> -->
+                        <a class="dropdown-item" href="/logout">
                             <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
                             Logout
                         </a>
@@ -205,73 +143,19 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Patient Table
                             </a>
-                            <div class="sb-sidenav-menu-heading">Interface</div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                Functions
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            <a class="nav-link" href="personal_info?p_id={{name}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Personal Information
                             </a>
-                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="model_diagnosis">Decision Path</a>
-                                    <a class="nav-link" href="reactive_diagram">Reactive Diagram</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                                aria-expanded="false" aria-controls="collapsePages">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                Pages
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                            <a class="nav-link" href="reactive_diagram?p_id={{name}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Reactive Diagram
                             </a>
-                            <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                                data-bs-parent="#sidenavAccordion">
-                                <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                        data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                        aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                        data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="login.html">Login</a>
-                                            <a class="nav-link" href="register.html">Register</a>
-                                            <a class="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                        data-bs-target="#pagesCollapseError" aria-expanded="false"
-                                        aria-controls="pagesCollapseError">
-                                        Error
-                                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                    </a>
-                                    <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                        data-bs-parent="#sidenavAccordionPages">
-                                        <nav class="sb-sidenav-menu-nested nav">
-                                            <a class="nav-link" href="401.html">401 Page</a>
-                                            <a class="nav-link" href="404.html">404 Page</a>
-                                            <a class="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div>
-                            <!-- <div class="sb-sidenav-menu-heading">Addons</div>
-                            <a class="nav-link" href="charts.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a class="nav-link" href="tables.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                Tables
-                            </a> -->
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Johnny Hu
+                        {{ username }}
                     </div>
                 </nav>
             </div>
@@ -289,24 +173,19 @@
                                         <!-- <div class="page-header-subtitle">What are you looking for? Our knowledge base is here to help.</div> -->
                                     </div>
                                 </div>
-                                <div class="page-header-search mt-4">
+                                <!-- <div class="page-header-search mt-4">
                                     <div class="input-group input-group-joined">
                                         <input class="form-control" type="text" placeholder="Search..." aria-label="Search" autofocus />
                                         <span class="input-group-text"><i data-feather="search"></i></span>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </header>
                     <div class="container-xl px-4">
                         <div class="card mb-4">
                             <div class="card-header d-flex align-items-center">
-                                <div class="card-body" id="diagnosis_box">
-                                    
-                                    <!-- <svg width="1000" height="2000" style="display: block; margin: auto;">
-                                        <g></g>
-                                    </svg> -->
-                                </div>                          
+                                <div class="card-body" id="diagnosis_box"></div>                          
                             </div>
     
                         </div>
@@ -324,51 +203,48 @@
                             </div>
 
                             <div id="diagnosis_result" class="card-body">
-                                <!-- <p class="lead">Explanation for the diagnosis prediction of Case 1. In the if-then rule, the symbol “&” means logic AND, whereas the symbol “|” means logic OR. Three plausible conjunctions
-                                    of different patient features were identified to explain the diagnosis prediction of Case 1. Likewise, each path from Start to the right end via certain patient features indicates a
-                                    plausible decision support for the prediction in the pictorial decision diagram. APTT, activated partial thromboplastin time; PT, prothrombin time.</p> -->
-                                <h4>If (Histology = positive & Serum CRP ≥ 16.0)</h4>
-                                <!-- <p class="lead mb-4">Here is some example text of a longer version of a first step. This format is great when you need to explain things more, not just using a ordered list.</p> -->
-                                <h4>| (Histology = positive & PT ≥ 9.8 & Neutrophil Segment ≥ 62.0)</h4>
-                                <!-- <p class="lead mb-4">We're using built-in elements and text utilities to make this list more legible and understandable. This is a great starting point for a step by step guide within your knowledge base article.</p> -->
-                                <h4>| (APTT ≥ 28.0 & Serum ESR ≥ 38.0 & Synovial WBC ≥ 3780.0)</h4>
-                                <h4>then infected</h4>
-                                <!-- <p class="lead mb-5">We've used spacing utilities, text utilities, and other components within this article example. This is just an example layout of a few things you can do within an article page. Thanks for reading!</p> -->
-                                <!-- <div class="alert alert-primary alert-icon mb-0" role="alert">
-                                    <div class="alert-icon-aside"><i data-feather="alert-triangle"></i></div>
-                                    <div class="alert-icon-content">
-                                        <h5 class="alert-heading">Article Alert</h5>
-                                        If there is something in your article that you really want to emphasize, use the alert component, or our custom icon alert component like this one here!
-                                    </div>
-                                </div> -->
-                                <!-- <div>
-                                    {% for path in decision_list %}
-                                        {{path}}<br>
-                                    {% endfor %}
-                                </div> -->
+                            </div>
+                            <div class="card-header d-flex align-items-center">
+                                <a class="btn btn-transparent-dark btn-icon" href="knowledge-base-category.html"><i data-feather="arrow-left"></i></a>
                             </div>
                         </div>
-                        <!-- Knowledge base rating-->
-                        <div class="text-center mt-5">
-                            <h4 class="mb-3">Was this diagnosis helpful?</h4>
-                            <div class="mb-3">
-                                <button class="btn btn-primary mx-2 px-3" role="button">
-                                    <i class="me-2" data-feather="thumbs-up"></i>
-                                    Yes
-                                </button>
-                                <button class="btn btn-primary mx-2 px-3" role="button">
-                                    <i class="me-2" data-feather="thumbs-down"></i>
-                                    No
-                                </button>
+                        <div class="card mb-4">
+                            
+                            <div class="card-header d-flex align-items-center">
+                                <a class="btn btn-transparent-dark btn-icon" href="knowledge-base-category.html"><i data-feather="arrow-left"></i></a>
+                                <div class="ms-3"><h2 class="my-3">Simplified decision path example</h2></div>
                             </div>
-                            <div class="text-small text-muted"><em>29 people found this page helpful so far!</em></div>
+
+                            <div id="diagnosis_simplified_result" class="card-body">
+                                <p>(Age <= 89.0 & Positive_Histology == True) | (Positive_Histology == True & Segment <= 70.0 & Serum_ESR <= 70.5 & Total_Elixhauser_Groups_per_record > 0.5)</p>
+                            </div>  
+                            
+                        </div>
+                        <div>
+                            <label for="Decision_Path_num">Decision_Path_num</label>
+                            <input class="range_input input_arg" type="range" id="Decision_Path_num" name="Decision_Path_num" 
+                                    min="1" max="10" value="7" step="1" list="tickmarks_14">
+                                    <datalist id="tickmarks_14">
+                                        <option value="1"></option>
+                                        <option value="2"></option>
+                                        <option value="3"></option>
+                                        <option value="4"></option>
+                                        <option value="5"></option>
+                                        <option value="6"></option>
+                                        <option value="7"></option>
+                                        <option value="8"></option>
+                                        <option value="9"></option>
+                                        <option value="10"></option>
+                                    </datalist>
+                            <span id="Decision_Path_num_value"></span>
                         </div>
                     </div>
+                    
                 </main>
                 <footer class="footer-admin mt-auto footer-light">
                     <div class="container-xl px-4">
                         <div class="row">
-                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                            <div class="col-md-6 small">Copyright &copy; Your Website 2022</div>
                             <div class="col-md-6 text-md-end small">
                                 <a href="#!">Privacy Policy</a>
                                 &middot;
@@ -383,9 +259,11 @@
         <script src="/static/js/scripts.js"></script>
         <script>
             console.log("running");
-            //const decision_list = JSON.parse('{{ decision_list | tojson }}');
             const decision_list_json = JSON.parse('{{ decision_list_json | tojson }}');
             const rule_map_json = JSON.parse('{{ rule_map_json | tojson }}');
+            const simplified_rule_json = JSON.parse('{{ simplified_rule_json | tojson }}');
+            const simplified_rule_map_json = JSON.parse('{{ simplified_rule_map_json | tojson }}');
+            const decision_path_num = '{{ decision_path_num }}'
         </script>
     </body>
 </html>

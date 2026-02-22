@@ -1,0 +1,20 @@
+{
+    "A": "Synovial_PMN > 51.5",
+    "B": "two_positive_culture == False",
+    "C": "Synovial_WBC > 2039.0",
+    "D": "Purulence == False",
+    "E": "Synovial_PMN > 82.0",
+    "F": "Positive_Histology == False",
+    "G": "Synovial_PMN > 83.0",
+    "H": "Age > 51.5",
+    "I": "Surgery == True",
+    "J": "Serum_CRP <= 6.0",
+    "K": "Total_Elixhauser_Groups_per_record <= 0.0",
+    "L": "Serum_ESR <= 19.0",
+    "M": "Synovial_WBC <= 20980.0",
+    "N": "PLATELET <= 270.0",
+    "O": "APTT >= 28.0",
+    "P": "Serum_CRP <= 6.0",
+    "Q": "Serum_ESR <= 19.0",
+    "R": "Serum_CRP <= 6.0"
+}
