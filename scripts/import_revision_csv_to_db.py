@@ -93,13 +93,13 @@ def main():
     db_url = DEFAULT_DB_URL
     csv_path = Path(DEFAULT_CSV_PATH)
 
-    # 支援 CLI：python pji_csv_to_db.py path/to.csv
+    # CLI: python scripts/import_revision_csv_to_db.py path/to.csv
     if len(sys.argv) >= 2:
         csv_path = Path(sys.argv[1])
 
     if not csv_path.exists():
         print(f"[ERROR] CSV not found: {csv_path.resolve()}")
-        print("用法：python scripts/pji_csv_to_db.py /path/to/Revision_PJI_test_2.csv")
+        print("用法：python scripts/import_revision_csv_to_db.py /path/to/Revision_PJI_test_2.csv")
         sys.exit(1)
 
     engine = create_engine(db_url, echo=ECHO_SQL, future=True)

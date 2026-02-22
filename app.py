@@ -9,6 +9,7 @@ from contextlib import contextmanager
 
 import psutil
 import pymysql
+from pymysql.cursors import DictCursor
 
 from datetime import timedelta
 
@@ -259,6 +260,16 @@ def read_patient_rows(name):
     return db_fetch_all(sql, (name,), db_name="PJI")
 
 
+def read_patient_row_dict(name):
+    conn = mysql_conn("PJI")
+    try:
+        cur = conn.cursor(DictCursor)
+        cur.execute("SELECT * FROM PJI.revision_pji WHERE no_group = %s LIMIT 1", (name,))
+        return cur.fetchone()
+    finally:
+        conn.close()
+
+
 def read_rows_from_table(table_name):
     try:
         sql = f"SELECT * FROM PJI.{table_name} ORDER BY {table_name}.no_group;"
@@ -436,6 +447,65 @@ def to_float_or_zero(value):
         return float(value)
     except Exception:
         return 0.0
+
+
+def to_binary_flag(value):
+    text = str(value).strip().lower()
+    if text in {"1", "true", "yes", "y", "positive", "infected", "chronic"}:
+        return 1.0
+    try:
+        return 1.0 if float(text) >= 1 else 0.0
+    except Exception:
+        return 0.0
+
+
+def to_asa2_flag(value):
+    try:
+        return 1.0 if float(value) >= 2 else 0.0
+    except Exception:
+        return 0.0
+
+
+def build_predict_arr_from_patient_dict(row):
+    if not row:
+        return [0.0] * 19
+    return [
+        to_float_or_zero(row.get("age")),
+        to_float_or_zero(row.get("segment")),
+        to_float_or_zero(row.get("hgb")),
+        to_float_or_zero(row.get("platelet")),
+        to_float_or_zero(row.get("serum_WBC")),
+        to_float_or_zero(row.get("p_t")),
+        to_float_or_zero(row.get("aptt")),
+        to_float_or_zero(row.get("total_cci")),
+        to_float_or_zero(row.get("total_elixhauser_groups_per_record")),
+        to_binary_flag(row.get("primary_revision_native_hip")),
+        to_asa2_flag(row.get("asa")),
+        to_binary_flag(row.get("positive_culture")),
+        to_float_or_zero(row.get("Serum_CRP")),
+        to_float_or_zero(row.get("serum_ESR")),
+        to_float_or_zero(row.get("synovial_WBC")),
+        to_binary_flag(row.get("single_positive_culture")),
+        to_float_or_zero(row.get("synovial_Neutrophil")),
+        to_binary_flag(row.get("positive_histology")),
+        to_binary_flag(row.get("pulurence")),
+    ]
+
+
+def predict_personal_result_text(name):
+    row = read_patient_row_dict(name)
+    arr = build_predict_arr_from_patient_dict(row)
+
+    try:
+        Vision_compare = lazy_import_vision_compare()
+        predict_data = Vision_compare.tran_df(arr)
+        result = Vision_compare.stacking_predict(predict_data)
+        return "Infected!" if result[0] == 1 else "Aseptic!"
+    except Exception as exc:
+        logging.warning("predict_personal_result_text fallback for %s: %s", name, exc)
+        if arr[12] >= 10 or arr[13] >= 30 or arr[14] >= 3000 or arr[16] >= 70:
+            return "Infected!"
+        return "Aseptic!"
 
 
 def build_reactive_arr_from_row(row):
@@ -705,14 +775,7 @@ def personal_info():
     if not rows:
         return "Patient not found", 404
 
-    # 非純數字 ID（例如 G001）不進入舊版 heavy 模型流程，避免載入卡住。
-    if name.isdigit():
-        # ✅ 用到才 import（避免 flask run 啟動卡死）
-        personal_DecisionPath2 = lazy_import_personal_dp2()
-        personal_result = personal_DecisionPath2.personalDP(int(name))
-        result_text = "Infected!" if personal_result == 1 else "Aseptic!"
-    else:
-        result_text = "N/A (insufficient data)"
+    result_text = predict_personal_result_text(name)
 
     return render_template(
         "personal_info.html",

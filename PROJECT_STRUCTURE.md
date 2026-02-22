@@ -17,9 +17,9 @@
 - `artifacts/`: runtime or generated artifacts (logs/reports/runtime temp files).
 
 ## Utility Scripts
-- `scripts/generate_csv.py`: generate sample CSV.
-- `scripts/pji_csv_to_db.py`: import revision CSV into MySQL.
-- `scripts/pji_newdata_to_db.py`: legacy helper for message/new-data related table init.
+- `scripts/generate_sample_revision_csv.py`: generate sample revision CSV.
+- `scripts/import_revision_csv_to_db.py`: import revision CSV into MySQL.
+- `scripts/init_new_data_tables.py`: legacy helper for message/new-data related table init.
 
 ## Archive
 - `archive/`: old snapshots and legacy scripts kept for rollback/reference.
@@ -37,5 +37,5 @@
 
 ## Common Commands
 - Run app (docker): `docker compose up -d --build`
-- Generate sample CSV: `python scripts/generate_csv.py`
-- Import sample CSV: `python scripts/pji_csv_to_db.py`
+- Generate sample CSV: `python scripts/generate_sample_revision_csv.py`
+- Import sample CSV: `python scripts/import_revision_csv_to_db.py`
