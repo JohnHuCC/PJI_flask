@@ -1,0 +1,227 @@
+:root {
+    --h-bg: #f4f7f9;
+    --h-surface: #ffffff;
+    --h-surface-2: #f8fafb;
+    --h-border: #d7e0e6;
+    --h-text: #1f2a33;
+    --h-subtext: #5e6f7b;
+    --h-primary: #2e5d7b;
+    --h-primary-2: #3a6f90;
+    --h-success: #2f7d4a;
+    --h-warning: #b26a1e;
+    --h-danger: #b13b3b;
+}
+
+body.hospital-ui {
+    background: var(--h-bg) !important;
+    color: var(--h-text);
+}
+
+.hospital-ui .hero,
+.hospital-ui .dp-hero,
+.hospital-ui .rd-hero,
+.hospital-ui .hero-panel,
+.hospital-ui .pool-hero,
+.hospital-ui .upload-header,
+.hospital-ui .board-hero {
+    background: linear-gradient(120deg, var(--h-primary), var(--h-primary-2)) !important;
+    color: #ffffff !important;
+    border-color: #c3d2dc !important;
+    box-shadow: 0 8px 18px rgba(21, 43, 58, 0.16) !important;
+}
+
+.hospital-ui .profile-card,
+.hospital-ui .cardx,
+.hospital-ui .summary-card,
+.hospital-ui .upload-shell,
+.hospital-ui .input-panel,
+.hospital-ui .output-panel .card,
+.hospital-ui .board-card,
+.hospital-ui .card,
+.hospital-ui .summary,
+.hospital-ui .pool-hero,
+.hospital-ui .hero-panel {
+    border-color: var(--h-border) !important;
+    background: var(--h-surface) !important;
+    box-shadow: 0 4px 14px rgba(27, 48, 62, 0.08) !important;
+}
+
+.hospital-ui .card-header,
+.hospital-ui .head,
+.hospital-ui .profile-card .card-header,
+.hospital-ui .board-card .head {
+    background: var(--h-surface-2) !important;
+    border-color: var(--h-border) !important;
+    color: var(--h-text) !important;
+}
+
+.hospital-ui .identity-item,
+.hospital-ui .metric-row,
+.hospital-ui .metric,
+.hospital-ui .id-box,
+.hospital-ui #myForm > div,
+.hospital-ui .status-box,
+.hospital-ui .file-box,
+.hospital-ui .rule-box {
+    background: var(--h-surface-2) !important;
+    border-color: var(--h-border) !important;
+}
+
+.hospital-ui .summary-label,
+.hospital-ui .page-caption .hint,
+.hospital-ui .metric-name,
+.hospital-ui .metric .n,
+.hospital-ui .id-box .l,
+.hospital-ui .status-box .label,
+.hospital-ui #myForm label,
+.hospital-ui .quick-item .k {
+    color: var(--h-subtext) !important;
+}
+
+.hospital-ui .summary-value,
+.hospital-ui .metric-value,
+.hospital-ui .metric .v,
+.hospital-ui .id-box .v,
+.hospital-ui .result-value,
+.hospital-ui .quick-item .v,
+.hospital-ui .result-title,
+.hospital-ui .profile-card,
+.hospital-ui .card,
+.hospital-ui .input-title {
+    color: var(--h-text) !important;
+}
+
+.hospital-ui .summary-value.alert,
+.hospital-ui .identity-item .value.bad,
+.hospital-ui .id-box .v.bad,
+.hospital-ui .result-value.bad {
+    color: var(--h-danger) !important;
+}
+
+.hospital-ui .summary-value.safe,
+.hospital-ui .identity-item .value.good,
+.hospital-ui .id-box .v.good,
+.hospital-ui .result-value.good {
+    color: var(--h-success) !important;
+}
+
+.hospital-ui .btn-primary,
+.hospital-ui .btn-action,
+.hospital-ui .btn-info {
+    background: var(--h-primary) !important;
+    border-color: var(--h-primary) !important;
+    color: #fff !important;
+}
+
+.hospital-ui .btn-primary:hover,
+.hospital-ui .btn-action:hover,
+.hospital-ui .btn-info:hover {
+    background: #274f69 !important;
+    border-color: #274f69 !important;
+}
+
+.hospital-ui .btn-outline-primary {
+    color: var(--h-primary) !important;
+    border-color: #8ea7b8 !important;
+}
+
+.hospital-ui .btn-outline-primary:hover {
+    background: #edf3f6 !important;
+}
+
+.hospital-ui .datatable-table tr:nth-child(odd) {
+    background-color: #ffffff !important;
+}
+
+.hospital-ui .datatable-table tr:nth-child(even) {
+    background-color: #f4f8fa !important;
+}
+
+.hospital-ui a,
+.hospital-ui .nav-link {
+    color: #315e7b;
+}
+
+/* Compact sidebar UX for hospital workflows */
+.hospital-ui #layoutSidenav #layoutSidenav_nav {
+    flex-basis: 220px;
+}
+
+.hospital-ui #layoutSidenav #layoutSidenav_content {
+    margin-left: 0 !important;
+}
+
+.hospital-ui.sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
+    width: 220px;
+}
+
+.hospital-ui.sb-nav-fixed #layoutSidenav #layoutSidenav_content {
+    padding-left: 220px;
+    transition: padding-left 0.2s ease-in-out;
+}
+
+@media (min-width: 992px) {
+    .hospital-ui.hospital-sidenav-compact #layoutSidenav #layoutSidenav_nav {
+        flex-basis: 76px;
+    }
+
+    .hospital-ui.hospital-sidenav-compact.sb-nav-fixed #layoutSidenav #layoutSidenav_nav {
+        width: 76px;
+    }
+
+    .hospital-ui.hospital-sidenav-compact.sb-nav-fixed #layoutSidenav #layoutSidenav_content {
+        padding-left: 76px;
+    }
+
+    .hospital-ui.hospital-sidenav-compact .sb-sidenav-menu .sb-sidenav-menu-heading {
+        display: none;
+    }
+
+    .hospital-ui.hospital-sidenav-compact .sb-sidenav .sb-sidenav-menu .nav .nav-link {
+        justify-content: center;
+        font-size: 0;
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    .hospital-ui.hospital-sidenav-compact .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon {
+        margin-right: 0;
+        font-size: 1rem;
+    }
+
+    .hospital-ui.hospital-sidenav-compact .sb-sidenav .sb-sidenav-footer {
+        display: none;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .hospital-ui #layoutSidenav #layoutSidenav_nav {
+        position: fixed;
+        top: 56px;
+        left: 0;
+        height: calc(100vh - 56px);
+        transform: translateX(-220px) !important;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .hospital-ui #layoutSidenav #layoutSidenav_content {
+        padding-left: 0 !important;
+    }
+
+    .hospital-ui.hospital-sidenav-open #layoutSidenav #layoutSidenav_nav {
+        transform: translateX(0) !important;
+    }
+
+    .hospital-ui.hospital-sidenav-open #layoutSidenav #layoutSidenav_content:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.28;
+        z-index: 1037;
+    }
+}

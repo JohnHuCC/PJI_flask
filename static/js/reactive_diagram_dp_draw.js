@@ -34,7 +34,9 @@ function processLL(g, nss) {
 
 processLL(g_rd_dp, reactive_decision_list_json)
 
-var svg_rd_dp = d3.select("#diagnosis_box_reactive").append("svg").attr("width", 1200).attr("height", 400);
+var diagnosisBox = document.getElementById("diagnosis_box_reactive");
+var svgWidth = diagnosisBox ? Math.max(760, diagnosisBox.clientWidth || 960) : 960;
+var svg_rd_dp = d3.select("#diagnosis_box_reactive").append("svg").attr("width", svgWidth).attr("height", 420);
 var inner_rd_dp = svg_rd_dp.append("g");
 
 // Set the rankdir
@@ -60,10 +62,13 @@ render_rd_dp(inner_rd_dp, g_rd_dp);
 // render(inner, g);
 
 // Center the graph
-var initialScale_rd_dp = 0.1;
-zoom
-    .translate([(svg_rd_dp.attr("width") - g_rd_dp.graph().width * initialScale_rd_dp) , 20])
+var graphWidth = g_rd_dp.graph().width || 1;
+var fitScale = (svgWidth - 60) / graphWidth;
+var initialScale_rd_dp = Math.max(0.45, Math.min(0.85, fitScale));
+
+zoom_rd_dp
+    .translate([24, 20])
     .scale(initialScale_rd_dp)
     .event(svg_rd_dp);
-svg_rd_dp.attr('height', g_rd_dp.graph().height * initialScale_rd_dp + 40);
 
+svg_rd_dp.attr("height", Math.max(280, g_rd_dp.graph().height * initialScale_rd_dp + 70));

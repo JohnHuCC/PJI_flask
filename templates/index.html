@@ -1,104 +1,162 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
+    <meta name="description" content="PJI patient dashboard" />
     <meta name="author" content="" />
-    <title>PJI Admin</title>
+    <title>PJI Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
     <link href="/static/css/style.css" rel="stylesheet" />
     <link href="/static/css/styles.css" rel="stylesheet" />
-
-    <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png"  />
+    <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/static/js/jquery.shCircleLoader-min.js"></script>
+    <style>
+        :root {
+            --pji-bg: #f4f7fb;
+            --pji-card: #ffffff;
+            --pji-border: #d6dee8;
+            --pji-accent: #1269d3;
+            --pji-alert: #d94848;
+            --pji-safe: #198754;
+            --pji-text: #1f2a37;
+        }
+
+        body { background: radial-gradient(circle at 0% 0%, #edf4ff 0, var(--pji-bg) 42%, #eef3fb 100%); }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .summary-card {
+            border: 1px solid var(--pji-border);
+            background: var(--pji-card);
+            border-radius: 14px;
+            padding: 0.9rem 1rem;
+            box-shadow: 0 8px 18px rgba(17, 24, 39, 0.05);
+        }
+
+        .summary-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .summary-value {
+            color: var(--pji-text);
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .summary-value.alert { color: var(--pji-alert); }
+        .summary-value.safe { color: var(--pji-safe); }
+
+        .page-caption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            gap: 0.75rem;
+        }
+
+        .page-caption h2 {
+            margin: 0;
+            color: var(--pji-text);
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .page-caption .hint {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .datatable-table tr:nth-child(odd) { background-color: #fbfdff; }
+        .datatable-table tr:nth-child(even) { background-color: #f0f5fb; }
+
+        .btn-action {
+            border-radius: 999px;
+            font-weight: 600;
+            padding: 0.35rem 0.85rem;
+            border: 1px solid #9dc1ef;
+            background: #e9f2ff;
+            color: #0c4a9a;
+        }
+
+        .btn-action:hover { background: #dcecff; color: #0a3d81; }
+
+        .risk-chip {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 999px;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1px solid #d5dce6;
+            background: #fff;
+            color: #4b5563;
+        }
+    </style>
+    <link href="/static/css/hospital-theme.css" rel="stylesheet" />
 </head>
 
-<body class="sb-nav-fixed">
-    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <!-- Navbar Brand-->
-        <a class="navbar-brand ps-3" href="">Start</a>
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-        </form>
-        <!-- Navbar-->
+{% set ns = namespace(total=0, infected=0, aseptic=0) %}
+{% for i in u %}
+    {% set ns.total = ns.total + 1 %}
+    {% set crp = i[13]|default('0')|float %}
+    {% set esr = i[14]|default('0')|float %}
+    {% set swbc = i[15]|default('0')|float %}
+    {% set pmn = i[17]|default('0')|float %}
+    {% if crp >= 10 or esr >= 30 or swbc >= 3000 or pmn >= 70 %}
+        {% set ns.infected = ns.infected + 1 %}
+    {% else %}
+        {% set ns.aseptic = ns.aseptic + 1 %}
+    {% endif %}
+{% endfor %}
 
+<body class="sb-nav-fixed hospital-ui">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-2 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <a class="navbar-brand ps-3" href="/">PJI Console</a>
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <!-- <li><a class="dropdown-item" href="#!">Settings</a></li>
-                    <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                    <li>
-                        <hr class="dropdown-divider" />
-                    </li> -->
                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <div class="sb-sidenav-menu-heading">Workspace</div>
                         <a class="nav-link" href="train_new_data">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-database"></i></div>
                             New Data
                         </a>
                         <a class="nav-link" href="upload_new_data_csv">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-file-upload"></i></div>
                             Upload New Data
                         </a>
                         <a class="nav-link" href="message_board">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-comment-dots"></i></div>
                             Leave Message
                         </a>
-
-                        <!-- <div class="sb-sidenav-menu-heading">Interface</div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                            data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Functions
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="model_diagnosis">Decision Path</a>
-                                <a class="nav-link" href="reactive_diagram">Reactive Diagram</a>
-                            </nav>
-                        </div>
-                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages"
-                            aria-expanded="false" aria-controls="collapsePages">
-                            <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
-                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                        </a>
-                        <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                            data-bs-parent="#sidenavAccordion">
-                            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                    aria-controls="pagesCollapseAuth">
-                                    Authentication
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordionPages">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="auth_login.html">Login</a>
-                                        <a class="nav-link" href="auth_register.html">Register</a>
-                                    </nav>
-                                </div>
-                            </nav>
-                        </div> -->
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -107,88 +165,94 @@
                 </div>
             </nav>
         </div>
+
         <div id="layoutSidenav_content">
             <main>
-                <!--<div class="col-xxl-8"> -->
-                    <div id="example"></div>
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                PJI Data Example
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Age</th>
-                                            <th>Positive Histology</th>
-                                            <th>Serum ESR</th>
-                                            <th>Serum CRP</th>
-                                            <th>Synovial WBC</th>
-                                            <th>Synovial PMN</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Age</th>
-                                            <th>Positive Histology</th>
-                                            <th>Serum ESR</th>
-                                            <th>Serum CRP</th>
-                                            <th>Synovial WBC</th>
-                                            <th>Synovial PMN</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        {% for i in u %}
-                                        <tr>
-                                            <td>{{ i[0] }}</td>
-                                            <td>{{ i[1] }}</td>
-                                            <td>{{ i[18] }}</td>
-                                            <td>{{ i[14] }}</td>
-                                            <td>{{ i[13] }}</td>
-                                            <td>{{ i[15] }}</td>
-                                            <td>{{ i[17] }}</td>
-                                            <td>
-                                                <button type="button" class="btn btn-info btn-sm editbtn"
-                                                data-btn="0" data-id="{{ i[0] }}">個人資料</button>
-                                                <!-- <button type="button" class="btn btn-info btn-sm editbtn"
-                                                data-btn="2" data-id="{{ i[0] }}">互動圖表</button>                                   -->
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
+                <div id="example"></div>
+                <div class="container-xl px-4 mt-4">
+                    <div class="page-caption">
+                        <div>
+                            <h2>Patient Overview</h2>
+                            <p class="hint">Click `個人資料` to open profile and model analysis flow.</p>
                         </div>
-                <!--</div>-->
+                        <span class="risk-chip">Live table</span>
+                    </div>
+
+                    <div class="summary-grid">
+                        <div class="summary-card">
+                            <div class="summary-label">Total Patients</div>
+                            <div class="summary-value">{{ ns.total }}</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-label">Potential Infected</div>
+                            <div class="summary-value alert">{{ ns.infected }}</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="summary-label">Likely Aseptic</div>
+                            <div class="summary-value safe">{{ ns.aseptic }}</div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <i class="fas fa-table me-1"></i>
+                            PJI Data Example
+                        </div>
+                        <div class="card-body">
+                            <table id="datatablesSimple">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Age</th>
+                                        <th>Positive Histology</th>
+                                        <th>Serum ESR</th>
+                                        <th>Serum CRP</th>
+                                        <th>Synovial WBC</th>
+                                        <th>Synovial PMN</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Age</th>
+                                        <th>Positive Histology</th>
+                                        <th>Serum ESR</th>
+                                        <th>Serum CRP</th>
+                                        <th>Synovial WBC</th>
+                                        <th>Synovial PMN</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    {% for i in u %}
+                                    <tr>
+                                        <td>{{ i[0] }}</td>
+                                        <td>{{ i[1] }}</td>
+                                        <td>{{ i[18] }}</td>
+                                        <td>{{ i[14] }}</td>
+                                        <td>{{ i[13] }}</td>
+                                        <td>{{ i[15] }}</td>
+                                        <td>{{ i[17] }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-sm btn-action editbtn" data-btn="0" data-id="{{ i[0] }}">個人資料</button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </main>
         </div>
-    </div> <!--layoutSidenav-->
-    </div> <!--?-->
-    <style>
-        .datatable-table tr:nth-child(odd){
-            background-color: #f8f9fa;
-        }
-        .datatable-table tr:nth-child(even){
-            background-color: #e2e6ea;
-        }
-    </style>
+    </div>
+
     <script defer src="/static/js/index_btn.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="/static/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="/static/assets/demo/chart-area-demo.js"></script>
-    <script src="/static/assets/demo/chart-bar-demo.js"></script>
+    <script src="/static/js/hospital-sidebar.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="/static/js/datatables-simple-demo.js"></script>
-
-
-
 </body>
-
 </html>

@@ -4,56 +4,242 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Personal profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
+    <meta name="description" content="Personal profile" />
+    <title>Personal Profile</title>
     <link href="/static/css/styles.css" rel="stylesheet" />
     <link href="/static/css/style.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png"  />
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png" />
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script data-search-pseudo-elements defer
-        src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous">
-    </script>
-</head>
+    <style>
+        @font-face {
+            font-family: Metropolis;
+            src: url('/static/assets/img/fonts/metropolis/Metropolis-Medium.otf') format('opentype');
+            font-weight: 500;
+        }
 
-<body class="sb-nav-fixed">
+        @font-face {
+            font-family: Metropolis;
+            src: url('/static/assets/img/fonts/metropolis/Metropolis-ExtraBold.otf') format('opentype');
+            font-weight: 800;
+        }
+
+        :root {
+            --pf-bg: #f2f7ff;
+            --pf-bg-2: #f8fbff;
+            --pf-card: #ffffff;
+            --pf-border: #d7e2f0;
+            --pf-text: #162034;
+            --pf-sub: #63748c;
+            --pf-accent: #1163d6;
+            --pf-good: #17905a;
+            --pf-bad: #d03b42;
+        }
+
+        body {
+            font-family: Metropolis, sans-serif;
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 0% 0%, #dcecff 0%, transparent 42%),
+                radial-gradient(circle at 100% 100%, #e3f5ff 0%, transparent 40%),
+                linear-gradient(160deg, var(--pf-bg) 0%, var(--pf-bg-2) 62%, #ffffff 100%);
+        }
+
+        .page-shell { margin-top: 1rem; margin-bottom: 1.4rem; }
+
+        .hero {
+            background: linear-gradient(125deg, #0f4ca4, #136fcb 56%, #2aa3d7 100%);
+            color: #fff;
+            border-radius: 18px;
+            padding: 1.2rem 1.25rem;
+            box-shadow: 0 16px 36px rgba(18, 89, 180, 0.28);
+        }
+
+        .hero-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .hero h1 {
+            margin: 0;
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+        }
+
+        .hero p { margin: 0.4rem 0 0; opacity: 0.95; }
+
+        .result-chip {
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            padding: 0.35rem 0.8rem;
+            font-size: 0.82rem;
+            background: rgba(255, 255, 255, 0.15);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .quick-grid {
+            margin-top: 0.95rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 0.55rem;
+        }
+
+        .quick-item {
+            border: 1px solid rgba(255, 255, 255, 0.42);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.14);
+            padding: 0.5rem 0.6rem;
+        }
+
+        .quick-item .k {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.9;
+            margin-bottom: 0.16rem;
+        }
+
+        .quick-item .v {
+            font-size: 1rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .profile-grid {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.9rem;
+        }
+
+        .cardx {
+            border: 1px solid var(--pf-border);
+            background: var(--pf-card);
+            border-radius: 14px;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+            overflow: hidden;
+        }
+
+        .cardx .head {
+            padding: 0.75rem 0.9rem;
+            border-bottom: 1px solid var(--pf-border);
+            font-size: 0.93rem;
+            font-weight: 800;
+            color: var(--pf-text);
+            letter-spacing: 0.02em;
+        }
+
+        .cardx .body { padding: 0.8rem 0.9rem; }
+
+        .id-grid {
+            display: grid;
+            gap: 0.58rem;
+        }
+
+        .id-box {
+            border: 1px solid #dfe8f5;
+            border-radius: 10px;
+            background: #f9fbff;
+            padding: 0.6rem 0.66rem;
+        }
+
+        .id-box .l {
+            color: var(--pf-sub);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.7rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .id-box .v {
+            color: var(--pf-text);
+            font-size: 1.08rem;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .id-box .v.good { color: var(--pf-good); }
+        .id-box .v.bad { color: var(--pf-bad); }
+
+        .metric-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 0.52rem;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #e1e9f4;
+            border-radius: 10px;
+            background: #fbfdff;
+            padding: 0.53rem 0.65rem;
+            gap: 0.6rem;
+        }
+
+        .metric .n { color: #495a73; font-size: 0.88rem; font-weight: 600; }
+        .metric .v { color: #111b2e; font-size: 0.9rem; font-weight: 800; }
+
+        .action-row {
+            margin-top: 0.85rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .btn-pill {
+            border-radius: 999px;
+            font-weight: 700;
+            padding-inline: 0.95rem;
+        }
+
+        @media (min-width: 1180px) {
+            .profile-grid {
+                grid-template-columns: 300px 1fr 1fr;
+            }
+        }
+    </style>
+    <link href="/static/css/hospital-theme.css" rel="stylesheet" />
+</head>
+<body class="sb-nav-fixed hospital-ui">
     <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i
-                class="fas fa-bars"></i></button>
-        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-        </form>
+        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-2 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <a class="navbar-brand ps-3" href="/">PJI Console</a>
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="/logout">Logout</a></li>
                 </ul>
             </li>
         </ul>
     </nav>
+
     <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <div class="sb-sidenav-menu-heading">Patient</div>
                         <a class="nav-link" href="/">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Patient Table
                         </a>
                         <a class="nav-link" href="model_diagnosis?p_id={{name}}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-project-diagram"></i></div>
                             Decision Path
                         </a>
                         <a class="nav-link" href="reactive_diagram?p_id={{name}}">
-                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-wave-square"></i></div>
                             Reactive Diagram
                         </a>
                     </div>
@@ -64,226 +250,91 @@
                 </div>
             </nav>
         </div>
+
         <div id="layoutSidenav_content">
             <main>
-                <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-                    <div class="container-xl px-4">
-                        <div class="page-header-content pt-4">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-auto mt-4">
-                                    <h1 class="page-header-title">
-                                        <div class="page-header-icon"><i data-feather="activity"></i></div>
-                                        Personal profile
-                                    </h1>
-                                    <div class="page-header-subtitle">Personal data and dashboard overview
-                                    </div>
-                                </div>
-                                <div class="col-12 col-xl-auto mt-4">
-                                    <div class="input-group input-group-joined border-0" style="width: 16.5rem">
-                                        <span class="input-group-text"><i class="text-primary"
-                                                data-feather="calendar"></i></span>
-                                        <input class="form-control ps-0 pointer" id="litepickerRangePlugin"
-                                            placeholder="Select date range..." />
-                                    </div>
-                                </div>
+                <div class="container-xl px-4 page-shell">
+                    {% if u and u|length > 0 %}
+                    {% set r = u[0] %}
+                    <section class="hero">
+                        <div class="hero-top">
+                            <div>
+                                <h1>Personal Profile: {{ r[0] }}</h1>
+                                <p>Clinical overview and model outcome for this patient.</p>
                             </div>
+                            <span class="result-chip">Model: {{ result }}</span>
                         </div>
-                    </div>
-                </header>
-                <div class="container-xl px-4 mt-n10">
-                    <div class="row">
-                        <div class="col-xxl-4 col-xl-12 mb-4">
-                            <div class="card h-100">
-                                <!-- Profile picture card-->
-                                <div class="card mb-4 mb-xl-0 h-100">
-                                    <div class="card-header">Profile Picture</div>
-                                    <div class="card-body text-center">
-                                        <!-- Profile picture image-->
-                                        <img class="img-account-profile rounded-circle mb-2"
-                                            src="static/assets/img/profile-2.png" alt="" />
-                                        <!-- Profile picture help block-->
-                                        {% for i in u %}
-                                        <h4 class="small">
-                                            <p class="lh-lg">
-                                                <div class="fs-2 text-body">ID: {{ i[0] }}
-                                                </div>
-                                                <div class="fs-2 text-body">Age: {{ i[1] }}
-                                                </div>
-                                            </p>
-                                        </h4>                      
-                                        {% endfor %}
-                                        <!-- Profile picture upload button-->
-                                        <!-- <button class="btn btn-primary" type="button">Upload new image</button> -->
-                                    </div>
-                                </div>
-                                
-                            </div>
+                        <div class="quick-grid">
+                            <div class="quick-item"><div class="k">Age</div><div class="v">{{ r[1] }}</div></div>
+                            <div class="quick-item"><div class="k">CRP</div><div class="v">{{ r[13] }}</div></div>
+                            <div class="quick-item"><div class="k">ESR</div><div class="v">{{ r[14] }}</div></div>
+                            <div class="quick-item"><div class="k">Synovial WBC</div><div class="v">{{ r[15] }}</div></div>
+                            <div class="quick-item"><div class="k">Synovial PMN</div><div class="v">{{ r[17] }}</div></div>
                         </div>
-                        <div class="col-xxl-4 col-xl-6 mb-4">
-                            <div class="card card-header-actions h-100">
-                                <div class="card mb-4 mb-xl-0 h-100">
-                                    <div class="card-header">Model Result</div>
-                                    <div class="card-body" style="display: flex; flex-direction: column; height: max-content;">
-                                        <div style="flex: 3; display: flex; justify-content: center; align-items: center; font-weight: 600; font-size: 2rem;">
-                                            <div>Result: {{ result }}
-                                            </div>
-                                        </div>
-                                        <div style="flex: 2; display:flex; justify-content: center;">
-                                            <button type="button" class="btn btn-secondary btn-lg editbtn" style="display: block; height: 3rem;"
-                                            data-btn="1" data-itemId="{{ name }}">模型診斷</button>
+                    </section>
 
-                                            
-                                        </div>
-                                    </div>
+                    <div class="profile-grid">
+                        <section class="cardx">
+                            <div class="head">Identity & Actions</div>
+                            <div class="body">
+                                <div class="id-grid">
+                                    <div class="id-box"><div class="l">Patient ID</div><div class="v">{{ r[0] }}</div></div>
+                                    <div class="id-box"><div class="l">Age</div><div class="v">{{ r[1] }}</div></div>
+                                    <div class="id-box"><div class="l">Model Result</div><div class="v {% if 'infected' in result|lower %}bad{% else %}good{% endif %}">{{ result }}</div></div>
+                                </div>
+                                <div class="action-row">
+                                    <button type="button" class="btn btn-primary btn-pill editbtn" data-btn="1" data-itemId="{{ name }}">模型診斷</button>
+                                    <button type="button" class="btn btn-outline-primary btn-pill editbtn" data-btn="2" data-itemId="{{ name }}">互動圖表</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-xxl-4 col-xl-6 mb-4">
-                            <div class="card card-header-actions h-100">
-                                <div class="card-header">
-                                    SHAP value
-                                    <div class="dropdown no-caret">
-                                        <button class="btn btn-transparent-dark btn-icon dropdown-toggle"
-                                            id="dropdownMenuButton" type="button" data-bs-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false"><i class="text-gray-500"
-                                                data-feather="more-vertical"></i></button>
-                                        <div class="dropdown-menu dropdown-menu-end animated--fade-in-up"
-                                            aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#!">
-                                                <div class="dropdown-item-icon"><i class="text-gray-500"
-                                                        data-feather="list"></i></div>
-                                                Manage Tasks
-                                            </a>
-                                            <a class="dropdown-item" href="#!">
-                                                <div class="dropdown-item-icon"><i class="text-gray-500"
-                                                        data-feather="plus-circle"></i></div>
-                                                Add New Task
-                                            </a>
-                                            <a class="dropdown-item" href="#!">
-                                                <div class="dropdown-item-icon"><i class="text-gray-500"
-                                                        data-feather="minus-circle"></i></div>
-                                                Delete Tasks
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <img src="static/assets/img/summary_plot.png" width="400" height="455">
-                                </div>
+                        </section>
+
+                        <section class="cardx">
+                            <div class="head">Biomedical Features</div>
+                            <div class="body">
+                                <ul class="metric-list">
+                                    <li class="metric"><span class="n">Serum WBC</span><span class="v">{{ r[5] }}</span></li>
+                                    <li class="metric"><span class="n">Segment (%)</span><span class="v">{{ r[2] }}</span></li>
+                                    <li class="metric"><span class="n">HGB</span><span class="v">{{ r[3] }}</span></li>
+                                    <li class="metric"><span class="n">Platelet</span><span class="v">{{ r[4] }}</span></li>
+                                    <li class="metric"><span class="n">P.T</span><span class="v">{{ r[6] }}</span></li>
+                                    <li class="metric"><span class="n">APTT</span><span class="v">{{ r[7] }}</span></li>
+                                </ul>
                             </div>
-                        </div>
+                        </section>
+
+                        <section class="cardx">
+                            <div class="head">Comorbidity & ICM Features</div>
+                            <div class="body">
+                                <ul class="metric-list">
+                                    <li class="metric"><span class="n">Total CCI</span><span class="v">{{ r[8] }}</span></li>
+                                    <li class="metric"><span class="n">Elixhauser Groups</span><span class="v">{{ r[9] }}</span></li>
+                                    <li class="metric"><span class="n">Primary Revision</span><span class="v">{{ r[10] }}</span></li>
+                                    <li class="metric"><span class="n">ASA</span><span class="v">{{ r[11] }}</span></li>
+                                    <li class="metric"><span class="n">Serum CRP</span><span class="v">{{ r[13] }}</span></li>
+                                    <li class="metric"><span class="n">Positive Histology</span><span class="v">{{ r[18] }}</span></li>
+                                    <li class="metric"><span class="n">Synovial WBC</span><span class="v">{{ r[15] }}</span></li>
+                                    <li class="metric"><span class="n">2X Positive Culture</span><span class="v">{{ r[12] }}</span></li>
+                                    <li class="metric"><span class="n">Purulence</span><span class="v">{{ r[19] }}</span></li>
+                                    <li class="metric"><span class="n">Single Positive Culture</span><span class="v">{{ r[16] }}</span></li>
+                                </ul>
+                            </div>
+                        </section>
                     </div>
-                    <style>
-                        h4 > div {
-                            margin-bottom: 1rem;
-                        }
-                    </style>
-                    <div class="row">
-                        <div class="mb-4">
-                        <div class="card card-header-actions h-100">
-                        <div class="card mb-4">
-                            <div class="card-header">Feature Importance</div>
-                            <div class="card-body">
-                                <img src="static/assets/img/feature_importances.png" width="1296" height="576">
-                            </div>
-                        </div>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xxl-4 col-xl-6 mb-4">
-                            <div class="card card-header-actions h-100">
-                                <div class="card mb-4 mb-xl-0 h-100">
-                                    <div class="card-header">
-                                        <i class="fas fa-table me-1"></i>
-                                        Biomedical features value
-                                    </div>
-                                    <div class="card-body">
-                                        {% for i in u %}
-                                        <h4 class="small">
-                                            <div class="fs-3 text-body fw-bolder">Serum_WBC: {{ i[5] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Segment (%): {{ i[2] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">HGB: {{ i[3] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Platelet: {{ i[4] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">P_T: {{ i[6] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">APTT: {{ i[7] }}
-                                            </div>
-                                        </h4>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-4 col-xl-6 mb-4">
-                            <div class="card card-header-actions h-100">
-                                <div class="card mb-4 mb-xl-0 h-100">
-                                    <div class="card-header">
-                                        <i class="fas fa-table me-1"></i>
-                                        Comorbidity & Operation-related features value
-                                    </div>
-                                    <div class="card-body">
-                                        {% for i in u %}
-                                        <h4 class="small">
-                                            <div class="fs-3 text-body fw-bolder">Total_CCI: {{ i[8] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Total_elixhauser_groups_per_record: {{ i[9] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Primary_Revision_Native_Hip: {{ i[10] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">ASA: {{ i[11] }}
-                                            </div>
-                                        </h4>
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xxl-4 col-xl-6 mb-4">
-                            <div class="card card-header-actions h-100">
-                                <div class="card mb-4 mb-xl-0 h-100">
-                                    <div class="card-header">
-                                        <i class="fas fa-table me-1"></i>
-                                        ICM-related features value
-                                    </div>
-                                    <div class="card-body">
-                                        {% for i in u %}
-                                        <h4 class="small">
-                                            <div class="fs-3 text-body fw-bolder">Serum_CRP: {{ i[13] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Positive Histology: {{ i[18] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Synovial WBC: {{ i[15] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">2X Positive_Culture: {{ i[12] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Pulurence: {{ i[19] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Single_Positive_Culture: {{ i[16] }}
-                                            </div>
-                                        </h4>
-                                    {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {% else %}
+                    <div class="alert alert-warning">No data found for this patient.</div>
+                    {% endif %}
                 </div>
             </main>
         </div>
     </div>
+
     <script>
         $(() => {
             $(document).on("click", ".editbtn", function () {
-                console.log(this.getAttribute("data-itemId"));
-
                 $.ajax({
                     type: "POST",
-                    url: "/", //localhost Flask
+                    url: "/",
                     data: JSON.stringify({
                         btnID: this.getAttribute("data-btn"),
                         patientID: this.getAttribute("data-itemId")
@@ -293,40 +344,12 @@
                         window.location.href = data;
                     }
                 });
-
                 return false;
             });
-        })
+        });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="/static/js/scripts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" crossorigin="anonymous"></script>
-    <script src="/static/assets/demo/chart-area-demo.js"></script>
-    <script src="/static/assets/demo/chart-bar-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="/static/js/datatables-simple-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-    <script src="/static/js/datatables/datatables-simple-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
-    <script src="/static/js/litepicker.js"></script>
-
-
-
+    <script src="/static/js/hospital-sidebar.js"></script>
 </body>
-
-<!-- </html>
-<!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8" />
-    <title>template value</title>
-</head>
-
-<body>
-    <h1>Welcome {{ name }}</h1>
-</body>
-
-</html> -->
+</html>
