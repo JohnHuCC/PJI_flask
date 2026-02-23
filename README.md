@@ -41,82 +41,96 @@ Default test account:
 
 ---
 
-## Main Pages
+## Page Function Map (Chinese + English)
 
-After login:
+This section describes **every active page route** in the current system.
 
-- `/` : Patient table
-- `/personal_info?p_id=<ID>` : Personal info + model result
-- `/model_diagnosis?p_id=<ID>` : Decision path page
-- `/reactive_diagram?p_id=<ID>` : Reactive diagram page
-- `/train_new_data` : New data table
-- `/upload_new_data_csv` : Upload CSV/XLSX
-- `/message_board` : Message board
+### Authentication / 驗證
 
----
+1. `/auth_login`
+- 中文: 系統登入入口頁，輸入帳號密碼後進入主系統。
+- English: System login entry. Submit username/password to access the app.
+- Notes: Most routes require login; unauthenticated requests are redirected here.
 
-## Page Walkthrough
-
-### 1. Login Page (`/auth_login`)
-
-- Entry point for the system.
-- Use test account to sign in quickly.
+2. `/logout`
+- 中文: 清除目前 session，回到登入頁。
+- English: Clear current session and return to login page.
 
 ![Login](docs/images/login.png)
 
-### 2. Patient Table (`/`)
+### Core Clinical Pages / 核心臨床頁面
 
-- Shows all patient records currently available in `revision_pji`.
-- Supports search, paging, and direct navigation to diagnosis-related pages.
-- Action buttons route to:
-  - Personal info
-  - Model diagnosis
-  - Reactive diagram
+1. `/`
+- 中文: 病患總表（資料來源 `revision_pji`），可搜尋、分頁，並導向個案頁。
+- English: Patient master table (from `revision_pji`) with search/pagination and links to per-patient pages.
+- Actions: 個人資料 / 模型診斷 / 互動圖表。
+
+2. `/personal_info?p_id=<ID>`
+- 中文: 顯示單一病患重點欄位與模型判斷摘要，作為個案主檢視頁。
+- English: Patient detail page with key features and model summary result.
+
+3. `/model_diagnosis?p_id=<ID>`
+- 中文: 顯示 decision path 圖與規則文字；可用滑桿控制顯示路徑數量。
+- English: Decision-path interpretation page with graph and textual rules; slider controls number of displayed paths.
+
+4. `/reactive_diagram?p_id=<ID>`
+- 中文: 互動式特徵調整與模型結果觀察頁，包含流程圖與簡化規則。
+- English: Interactive scenario-analysis page for feature tuning, prediction flow, and simplified rules.
 
 ![Patient Table](docs/images/index.png)
-
-### 3. Personal Info (`/personal_info?p_id=<ID>`)
-
-- Displays selected patient key fields and a model result summary (`Infected!` / `Aseptic!`).
-- Used as the first-level view for one patient.
-
 ![Personal Info - Top](docs/images/basic_data_1.png)
-![Personal Info - Feature Block](docs/images/basic_data_2.png)
-![Personal Info - Full Fields](docs/images/basic_data_3.png)
-
-### 4. Model Diagnosis (`/model_diagnosis?p_id=<ID>`)
-
-- Visualizes decision paths used for model interpretation.
-- Shows path graph and textual rule list.
-- Slider controls how many paths/rules are displayed.
-
-![To Diagnosis](docs/images/to_diagnosis.png)
 ![Diagnosis Graph](docs/images/diagnosis_1.png)
-![Diagnosis Rules](docs/images/diagnosis_2.png)
-
-### 5. Reactive Diagram (`/reactive_diagram?p_id=<ID>`)
-
-- Interactive prediction view with feature-level values and model outputs.
-- Displays base-model/meta-model flow and decision-related structures.
-- Useful for scenario analysis and threshold checking.
-
-![To Reactive Diagram](docs/images/to_interactive_prediction.png)
-![Reactive Input](docs/images/interactive_pred_1.png)
-![Reactive Progress](docs/images/interactive_pred_2.png)
 ![Reactive Graph](docs/images/interactive_pred_3.png)
 
-### 6. New Data Flow
+### New Data Pipeline / 新資料流程
 
-- `/upload_new_data_csv`: upload new CSV/XLSX data.
-- `/train_new_data`: browse imported new data.
-- `/new_data_buffer`: waiting pool for data transition/review.
+1. `/upload_new_data_csv`
+- 中文: 上傳 CSV/XLSX 新資料，前端先做欄位驗證，再送入新資料池。
+- English: Upload CSV/XLSX and validate required columns before importing into new-data pool.
 
-This flow is used when adding fresh clinical records into the system pipeline.
+2. `/train_new_data`
+- 中文: 新資料清單頁（`pji_new_data`），可對單筆資料進行模型預覽流程。
+- English: New-data list (`pji_new_data`) for reviewing recently imported records.
 
-### 7. Message Board (`/message_board`)
+3. `/pick_new_data?p_id=<ID>`
+- 中文: 新資料「單筆預覽頁」；用途是確認該病患資料與規則，之後可移至 waiting pool。
+- English: Single-record preview for new data; inspect model/rules before moving to waiting pool.
 
-- Simple feedback/notes page.
-- Saves message content into `message` table.
+4. `/upload_new_data?p_id=<ID>`
+- 中文: 動作路由，將資料由 `pji_new_data` 移到 `pji_new_data_buffer`。
+- English: Action route to move one record from `pji_new_data` to `pji_new_data_buffer`.
+- Notes: 建議由按鈕觸發，不是給一般使用者當內容頁直接瀏覽。
+
+5. `/new_data_buffer`
+- 中文: 等待池清單頁（`pji_new_data_buffer`），可查閱、退回或合併。
+- English: Waiting-pool list (`pji_new_data_buffer`) for review, return, or merge operations.
+
+6. `/pick_new_data_view?p_id=<ID>`
+- 中文: waiting pool 的單筆預覽頁，確認後可退回新資料池或執行合併。
+- English: Single-record preview in waiting pool before return/merge decision.
+
+7. `/back_new_data?p_id=<ID>`
+- 中文: 動作路由，將資料由 `pji_new_data_buffer` 退回 `pji_new_data`。
+- English: Action route to move one record back from waiting pool to new-data pool.
+
+8. `/merge_new_data`
+- 中文: 動作路由，將 waiting pool 全部資料合併進 `pji_new_data`，並清空 waiting pool。
+- English: Action route to merge all waiting-pool records into `pji_new_data` and clear buffer.
+
+### Misc / 其他功能
+
+1. `/message_board`
+- 中文: 留言頁，提交訊息到 `message` 資料表。
+- English: Message page that stores feedback/notes in `message` table.
+
+2. `/adjust_rate_limiting`
+- 中文: 調整 rate limit 參數的管理路由（非一般使用者常用頁面）。
+- English: Admin/maintenance route for rate-limiting adjustment.
+
+### Route Usage Note / 路由使用說明
+
+- 中文: `upload_new_data`、`back_new_data`、`merge_new_data` 屬於「動作型路由」，主要由按鈕或程式流程觸發。
+- English: `upload_new_data`, `back_new_data`, and `merge_new_data` are action routes, intended to be triggered by UI actions/workflow, not as standalone content pages.
 
 ---
 

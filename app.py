@@ -787,7 +787,13 @@ def personal_info():
 
 
 def move_patient_between_tables(name, src_table, dst_table):
+    allowed_tables = {"pji_new_data", "pji_new_data_buffer"}
+    if src_table not in allowed_tables or dst_table not in allowed_tables:
+        raise ValueError("Invalid table name for move operation")
+
     with mysql_cursor("PJI") as (conn, cur):
+        # Keep move idempotent: remove any stale duplicate in destination first.
+        cur.execute(f"DELETE FROM PJI.{dst_table} WHERE no_group = %s", (name,))
         cur.execute(
             f"INSERT INTO PJI.{dst_table} SELECT * FROM PJI.{src_table} WHERE no_group = %s",
             (name,),
@@ -804,11 +810,20 @@ def upload_new_data():
 
     ensure_new_data_tables()
     name = request.args.get("p_id", "").strip()
+    target_route = "/new_data_buffer"
     if not name:
-        return "/train_new_data"
+        target_route = "/train_new_data"
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return target_route
+        return redirect(target_route)
 
-    move_patient_between_tables(name, "pji_new_data", "pji_new_data_buffer")
-    return "/new_data_buffer"
+    try:
+        move_patient_between_tables(name, "pji_new_data", "pji_new_data_buffer")
+    except Exception as exc:
+        logging.warning("upload_new_data move failed for %s: %s", name, exc)
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return target_route
+    return redirect(target_route)
 
 
 @app.route("/back_new_data")
@@ -819,11 +834,20 @@ def back_new_data():
 
     ensure_new_data_tables()
     name = request.args.get("p_id", "").strip()
+    target_route = "/train_new_data"
     if not name:
-        return "/new_data_buffer"
+        target_route = "/new_data_buffer"
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return target_route
+        return redirect(target_route)
 
-    move_patient_between_tables(name, "pji_new_data_buffer", "pji_new_data")
-    return "/train_new_data"
+    try:
+        move_patient_between_tables(name, "pji_new_data_buffer", "pji_new_data")
+    except Exception as exc:
+        logging.warning("back_new_data move failed for %s: %s", name, exc)
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return target_route
+    return redirect(target_route)
 
 
 @app.route("/merge_new_data")

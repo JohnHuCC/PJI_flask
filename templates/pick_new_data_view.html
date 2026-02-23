@@ -1,263 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Personal profile</title>
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css" rel="stylesheet" />
-        <link href="/static/css/styles.css" rel="stylesheet" />
-        <link href="/static/css/style.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="static/assets/img/nycu_logo.png"  />
-        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script data-search-pseudo-elements defer
-            src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous">
-        </script><script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/d3js/3.5.17/d3.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre-d3/0.6.4/dagre-d3.min.js" integrity="sha512-fdYLm4hXxJ/tPMptvdDDwuJme6jTgvoZ0g6pflEkyG9MqPejLspnCjkwX3bD69GFT2N/refZGjPr6b9RdoCyxQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
-        <script type="text/javascript" defer src="/static/js/decisionpath_new_data.js"></script>
-        <script type="text/javascript" defer src="/static/js/model_diagnosis.js"></script>
-    </head>
-    <body class="nav-fixed">
-        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-dark" id="sidenavAccordion">
-            <!-- Sidenav Toggle Button-->
-            <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
-            <!-- Navbar Brand-->
-            <!-- * * Tip * * You can use text or an image for your navbar brand.-->
-            <!-- * * * * * * When using an image, we recommend the SVG format.-->
-            <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
-            <a class="navbar-brand ps-3" href="/">Start</a>
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-            </form>
-            <!-- Navbar Items-->
-            <ul class="navbar-nav align-items-center ms-auto">
-                <!-- Navbar Search Dropdown-->
-                <!-- * * Note: * * Visible only below the lg breakpoint-->
-                <li class="nav-item dropdown no-caret me-3 d-lg-none">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="searchDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i data-feather="search"></i></a>
-                    <!-- Dropdown - Search-->
-                    <div class="dropdown-menu dropdown-menu-end p-3 shadow animated--fade-in-up" aria-labelledby="searchDropdown">
-                        <form class="form-inline me-auto w-100">
-                            <div class="input-group input-group-joined input-group-solid">
-                                <input class="form-control pe-0" type="text" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                                <div class="input-group-text"><i data-feather="search"></i></div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-                <li class="nav-item dropdown no-caret dropdown-user me-3 me-lg-4">
-                    <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownUserImage" href="javascript:void(0);" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="img-fluid" src="assets/img/illustrations/profiles/profile-1.png" /></a>
-                    <div class="dropdown-menu dropdown-menu-end border-0 shadow animated--fade-in-up" aria-labelledby="navbarDropdownUserImage">
-                        <h6 class="dropdown-header d-flex align-items-center">
-                            <!-- <img class="dropdown-user-img" src="static/assets/img/illustrations/profiles/profile-1.png" /> -->
-                            <div class="dropdown-user-details">
-                                <div class="dropdown-user-details-name">Valerie Luna</div>
-                                <div class="dropdown-user-details-email">vluna@aol.com</div>
-                            </div>
-                        </h6>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#!">
-                            <div class="dropdown-item-icon"><i data-feather="settings"></i></div>
-                            Account
-                        </a>
-                        <a class="dropdown-item" href="#!">
-                            <div class="dropdown-item-icon"><i data-feather="log-out"></i></div>
-                            Logout
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="/train_new_data">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                New Patient Table
-                            </a>
-                            <a class="nav-link" href="reactive_diagram">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Reactive Diagram
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <div class="small">Logged in as:</div>
-                        Johnny Hu
-                    </div>
-                </nav>
-            </div>
-            <div id="layoutSidenav_content">
-                <main>
-                    <!-- Main page content-->
-                    <div class="container-xl px-4 mt-5">
-                        <!-- Custom page header alternative example-->
-                        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
-                            <div class="me-4 mb-3 mb-sm-0">
-                                <h1 class="mb-0">New data inspect</h1>
-                                <div class="small">
-                                    <div id="current_date"></p>
-                                        <script>
-                                        document.getElementById("current_date").innerHTML = Date();
-                                        </script>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Date range picker example-->
-                            <div class="input-group input-group-joined border-0 shadow" style="width: 16.5rem">
-                                <span class="input-group-text"><i data-feather="calendar"></i></span>
-                                <input class="form-control ps-0 pointer" id="litepickerRangePlugin" placeholder="Select date range..." />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4 mb-4">
-                                <!-- Illustration card example-->
-                                <div class="card mb-4">
-                                    <div class="card-header">Profile Picture</div>
-                                    <div class="card-body text-center">
-                                        <!-- Profile picture image-->
-                                        <!-- <img class="img-account-profile rounded-circle mb-2"
-                                            src="static/assets/img/profile-2.png" alt="" /> -->
-                                        {% for i in u %}
-                                        <h4 class="small" >
-                                            <p class="lh-lg">
-                                                <div class="fs-2 text-body">ID: {{ i[0] }}
-                                                </div>
-                                                <div class="fs-2 text-body">Age: {{ i[1] }}
-                                                </div>
-                                        </h4>
-                                        <h4 class="small">
-                                            <div class="fs-3 text-body fw-bolder">------------------------------------
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Serum_WBC: {{ i[5] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Segment (%): {{ i[2] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">HGB: {{ i[3] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Platelet: {{ i[4] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">P_T: {{ i[6] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">APTT: {{ i[7] }}
-                                            </div>
-                                        </h4>
-                                        <h4 class="small">
-                                            <div class="fs-3 text-body fw-bolder">------------------------------------
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Total_CCI: {{ i[8] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Total_elixhauser_groups_per_record: {{ i[9] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Primary_Revision_Native_Hip: {{ i[10] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">ASA: {{ i[11] }}
-                                            </div>
-                                        </h4>
-                                        <h4 class="small">
-                                            <div class="fs-3 text-body fw-bolder">------------------------------------
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Serum_CRP: {{ i[13] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Positive Histology: {{ i[18] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Synovial WBC: {{ i[15] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">2X Positive_Culture: {{ i[12] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Pulurence: {{ i[19] }}
-                                            </div>
-                                            <div class="fs-3 text-body fw-bolder">Single_Positive_Culture: {{ i[16] }}
-                                            </div>
-                                        </h4>                      
-                                        {% endfor %}
-                                        <!-- Profile picture upload button-->
-                                        <!-- <button class="btn btn-primary" type="button">Update model</button> -->
-                                        <!-- <button type="button" class="btn btn-secondary btn-lg editbtn"
-                                            data-btn="3" data-itemId="{{ name }}">Update model</button> -->
-                                    </div>
-                                </div>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Waiting pool model preview" />
+    <title>Waiting Pool Preview</title>
+    <link href="/static/css/styles.css" rel="stylesheet" />
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <link href="/static/css/hospital-theme.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="/static/assets/img/nycu_logo.png" />
+    <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/3.5.17/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dagre-d3/0.6.4/dagre-d3.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <style>
+        .preview-shell { margin-top: 1rem; margin-bottom: 1.4rem; }
+        .preview-hero {
+            border: 1px solid #ccd9e5;
+            border-radius: 14px;
+            background: linear-gradient(120deg, #2e5d7b, #3a6f90);
+            color: #fff;
+            padding: 1rem 1.1rem;
+            margin-bottom: 0.9rem;
+        }
+        .preview-grid { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
+        .cardx {
+            border: 1px solid #d7e0e6;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 6px 16px rgba(23, 41, 56, 0.08);
+            overflow: hidden;
+        }
+        .cardx .head { border-bottom: 1px solid #d7e0e6; background: #f8fafb; padding: 0.7rem 0.9rem; font-weight: 800; color: #1f2a33; }
+        .cardx .body { padding: 0.85rem 0.9rem; }
+        .metric-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45rem; }
+        .metric { display: flex; justify-content: space-between; border: 1px solid #dfe6eb; border-radius: 8px; background: #f8fafb; padding: 0.45rem 0.55rem; }
+        .ctrl { display: flex; align-items: center; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.65rem; }
+        .range_input { width: min(420px, 100%); }
+        .action-row { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+        #diagnosis_box_new_data svg { width: 100%; max-width: 100%; border: 1px solid #dfe7ed; border-radius: 8px; background: #fbfdff; }
+        @media (min-width: 1100px) {
+            .preview-grid { grid-template-columns: 330px 1fr; }
+            .full { grid-column: 1 / -1; }
+        }
+    </style>
+</head>
+<body class="sb-nav-fixed hospital-ui">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-2 me-lg-0" id="sidebarToggle"><i class="fas fa-bars"></i></button>
+        <a class="navbar-brand ps-3" href="/">PJI Console</a>
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"></form>
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
 
-                                <!-- Progress card example-->
-                                <div class="card bg-primary border-0">
-                                    <div class="card-body">
-                                        <h5 class="text-white-50">Stacking Model Result</h5>
-                                        <div class="mb-4">
-                                            <span class="display-4 text-white">{{ result }}</span>
-                                            <!-- <span class="text-white-50">per year</span> -->
-                                        </div>
-                                        <div class="progress bg-white-25 rounded-pill" style="height: 0.5rem"><div class="progress-bar bg-white w-75 rounded-pill" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-8 mb-4">
-                                <!-- Area chart example-->
-                                <div class="card mb-4">
-                                    <div class="card-header d-flex align-items-center">
-                                        <div class="card-body" id="diagnosis_box_new_data"></div>                          
-                                    </div>
-                                </div>
-                                <div class="card mb-4">
-                                    <div class="card-header d-flex align-items-center">
-                                        <a class="btn btn-transparent-dark btn-icon" href="knowledge-base-category.html"><i data-feather="arrow-left"></i></a>
-                                        <div class="ms-3"><h2 class="my-3">Decision path content</h2></div>
-                                    </div>
-                                    <div id="diagnosis_result" class="card-body">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Waiting Pool</div>
+                        <a class="nav-link" href="/new_data_buffer"><div class="sb-nav-link-icon"><i class="fas fa-layer-group"></i></div>Waiting Pool List</a>
+                        <a class="nav-link" href="/train_new_data"><div class="sb-nav-link-icon"><i class="fas fa-database"></i></div>New Data List</a>
+                        <a class="nav-link" href="/upload_new_data_csv"><div class="sb-nav-link-icon"><i class="fas fa-file-upload"></i></div>Upload CSV</a>
                     </div>
-                </main>
-            </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    {{ username }}
+                </div>
+            </nav>
         </div>
-        <script>
-            $(() => {
-                $(document).on("click", ".editbtn", function () {
-                    console.log(this.getAttribute("data-itemId"));
-    
-                    $.ajax({
-                        type: "GET",
-                        url: "/upload_new_data?p_id="+this.getAttribute("data-itemId"), //localhost Flask
-                        data: '',
-                        success: function (data) {
-                            window.location.href = data;
-                        }
-                    });
-    
-                    return false;
-                });
-            })
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous">
-        </script>
-        <script src="/static/js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="/static/assets/demo/chart-area-demo.js"></script>
-        <script src="/static/assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="/static/js/datatables-simple-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="/static/js/datatables/datatables-simple-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/bundle.js" crossorigin="anonymous"></script>
-        <script src="/static/js/litepicker.js"></script>
-        <script>
-            console.log("running");
-            //const decision_list = JSON.parse('{{ decision_list | tojson }}');
-            const decision_list_json = JSON.parse('{{ decision_list_json | tojson }}');
-            const rule_map_json = JSON.parse('{{ rule_map_json | tojson }}');
-        </script>
-    </body>
+
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-xl px-4 preview-shell">
+                    {% set r = u[0] %}
+                    <section class="preview-hero">
+                        <h1 class="h4 mb-1">Waiting Pool Review: {{ r[0] }}</h1>
+                        <p class="mb-0">Purpose: inspect buffered patient before return or merge operation.</p>
+                    </section>
+
+                    <div class="preview-grid">
+                        <section class="cardx">
+                            <div class="head">Patient Summary</div>
+                            <div class="body">
+                                <ul class="metric-list">
+                                    <li class="metric"><span>ID</span><strong>{{ r[0] }}</strong></li>
+                                    <li class="metric"><span>Age</span><strong>{{ r[1] }}</strong></li>
+                                    <li class="metric"><span>Model Result</span><strong>{{ result }}</strong></li>
+                                    <li class="metric"><span>CRP</span><strong>{{ r[13] }}</strong></li>
+                                    <li class="metric"><span>ESR</span><strong>{{ r[14] }}</strong></li>
+                                    <li class="metric"><span>Synovial WBC</span><strong>{{ r[15] }}</strong></li>
+                                    <li class="metric"><span>Synovial PMN</span><strong>{{ r[17] }}</strong></li>
+                                </ul>
+                                <div class="action-row mt-3">
+                                    <a class="btn btn-outline-primary btn-sm" href="/back_new_data?p_id={{name}}">Return To New Data</a>
+                                    <a class="btn btn-primary btn-sm" href="/merge_new_data">Merge Waiting Pool</a>
+                                    <a class="btn btn-outline-secondary btn-sm" href="/new_data_buffer">Back</a>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="cardx full">
+                            <div class="head">Decision Path Graph</div>
+                            <div class="body">
+                                <div class="ctrl">
+                                    <label for="Decision_Path_num" class="mb-0">Displayed Paths</label>
+                                    <input class="range_input input_arg" type="range" id="Decision_Path_num" name="Decision_Path_num" min="1" max="{{ decision_list_json|length if decision_list_json else 1 }}" value="{{ decision_list_json|length if decision_list_json else 1 }}" step="1">
+                                    <span id="Decision_Path_num_value"></span>
+                                </div>
+                                <div id="diagnosis_box_new_data"></div>
+                            </div>
+                        </section>
+
+                        <section class="cardx full">
+                            <div class="head">Decision Rules</div>
+                            <div class="body" id="diagnosis_result"></div>
+                        </section>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        const decision_list_json = {{ decision_list_json | tojson }};
+        const rule_map_json = {{ rule_map_json | tojson }};
+    </script>
+    <script defer src="/static/js/decisionpath_new_data.js"></script>
+    <script defer src="/static/js/model_diagnosis.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="/static/js/scripts.js"></script>
+    <script src="/static/js/hospital-sidebar.js"></script>
+</body>
 </html>
