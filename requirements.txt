@@ -127,5 +127,5 @@ wcwidth==0.2.5
 Werkzeug==2.2.2
 wrapt==1.15.0
 WTForms==3.0.1
-xgboost==1.7.0
+xgboost==1.7.0.post0
 zipp==3.10.0
