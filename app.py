@@ -99,10 +99,12 @@ def create_app():
     )
 
     if app_env == "production":
-        app.config["SESSION_COOKIE_SECURE"] = True
+        session_cookie_secure = os.environ.get("SESSION_COOKIE_SECURE", "true").strip().lower()
+        app.config["SESSION_COOKIE_SECURE"] = session_cookie_secure in ("1", "true", "yes", "on")
         app.config["SESSION_COOKIE_HTTPONLY"] = True
         app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
-        app.config["PREFERRED_URL_SCHEME"] = "https"
+        if app.config["SESSION_COOKIE_SECURE"]:
+            app.config["PREFERRED_URL_SCHEME"] = "https"
 
     Bootstrap5(app)
     db.init_app(app)

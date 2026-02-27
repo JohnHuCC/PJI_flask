@@ -5,7 +5,7 @@ services:
     env_file:
       - .env.prod
     environment:
-      APP_ENV: production
+      APP_ENV: ${APP_ENV:-production}
       APP_HOST: 0.0.0.0
       APP_PORT: 5001
       APP_DEBUG: "false"
@@ -17,6 +17,7 @@ services:
       MYSQL_DB: ${MYSQL_DB}
       SECRET_KEY: ${SECRET_KEY}
       SESSION_MINUTES: ${SESSION_MINUTES:-30}
+      SESSION_COOKIE_SECURE: ${SESSION_COOKIE_SECURE:-true}
       ALLOWED_HOSTS: ${ALLOWED_HOSTS}
       ENABLE_ADMIN_ROUTES: ${ENABLE_ADMIN_ROUTES:-false}
       ADMIN_TOKEN: ${ADMIN_TOKEN:-}
