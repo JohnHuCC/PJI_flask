@@ -1,0 +1,75 @@
+services:
+  web:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env.prod
+    environment:
+      APP_ENV: production
+      APP_HOST: 0.0.0.0
+      APP_PORT: 5001
+      APP_DEBUG: "false"
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DB}
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DB: ${MYSQL_DB}
+      SECRET_KEY: ${SECRET_KEY}
+      SESSION_MINUTES: ${SESSION_MINUTES:-30}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+      ENABLE_ADMIN_ROUTES: ${ENABLE_ADMIN_ROUTES:-false}
+      ADMIN_TOKEN: ${ADMIN_TOKEN:-}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - pji
+
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    command:
+      --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - pji
+
+  nginx:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    depends_on:
+      - web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deployment/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./deployment/nginx/certbot/www:/var/www/certbot
+      - ./deployment/nginx/certbot/conf:/etc/letsencrypt
+    networks:
+      - pji
+
+  certbot:
+    image: certbot/certbot:latest
+    profiles: ["certbot"]
+    volumes:
+      - ./deployment/nginx/certbot/www:/var/www/certbot
+      - ./deployment/nginx/certbot/conf:/etc/letsencrypt
+
+volumes:
+  mysql_data:
+
+networks:
+  pji:

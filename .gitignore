@@ -6,3 +6,6 @@ uploads/
 artifacts/
 *.tmp
 dump.rdb
+backups/
+*.bundle
+.env.prod

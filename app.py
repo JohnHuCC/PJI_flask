@@ -15,7 +15,7 @@ from datetime import timedelta
 
 from flask import (
     Flask, render_template, request, redirect,
-    session, make_response, flash, jsonify
+    session, make_response, flash, jsonify, abort
 )
 from flask_bootstrap import Bootstrap5
 from flask_migrate import Migrate
@@ -32,7 +32,8 @@ DEFAULT_DATABASE_URL = "mysql+pymysql://root@127.0.0.1:3306/PJI"
 DEFAULT_SESSION_MINUTES = 10
 DEFAULT_APP_HOST = "127.0.0.1"
 DEFAULT_APP_PORT = 5001
-DEFAULT_APP_DEBUG = True
+DEFAULT_APP_DEBUG = False
+DEFAULT_APP_ENV = "development"
 DECISION_RULE_DIR = "Decision_rule"
 INDEX_ACTION_ROUTES = {
     "0": "/personal_info?p_id={patient_id}",
@@ -80,6 +81,7 @@ def lazy_import_vision_compare():
 # -------------------------
 def create_app():
     app = Flask(__name__)
+    app_env = os.environ.get("APP_ENV", DEFAULT_APP_ENV).strip().lower()
 
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", os.urandom(24))
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -91,9 +93,16 @@ def create_app():
     )
 
     app.config["WTF_CSRF_ENABLED"] = False
+    app.config["APP_ENV"] = app_env
     app.permanent_session_lifetime = timedelta(
         minutes=int(os.environ.get("SESSION_MINUTES", str(DEFAULT_SESSION_MINUTES)))
     )
+
+    if app_env == "production":
+        app.config["SESSION_COOKIE_SECURE"] = True
+        app.config["SESSION_COOKIE_HTTPONLY"] = True
+        app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+        app.config["PREFERRED_URL_SCHEME"] = "https"
 
     Bootstrap5(app)
     db.init_app(app)
@@ -103,6 +112,27 @@ def create_app():
 
 
 app = create_app()
+
+
+def is_production_env():
+    return app.config.get("APP_ENV") == "production"
+
+
+def parse_allowed_hosts():
+    raw = os.environ.get("ALLOWED_HOSTS", "")
+    hosts = [h.strip().lower() for h in raw.split(",") if h.strip()]
+    return set(hosts)
+
+
+@app.before_request
+def enforce_allowed_hosts():
+    allowed_hosts = parse_allowed_hosts()
+    if not allowed_hosts:
+        return
+
+    req_host = (request.host or "").split(":")[0].lower()
+    if req_host not in allowed_hosts:
+        abort(403)
 
 # ✅ SocketIO 強制用 threading（避免 eventlet greendns 慢）
 socketio = SocketIO(app, async_mode="threading")
@@ -179,6 +209,15 @@ def rate_limit_exceeded(e):
 
 @app.route("/adjust_rate_limiting", methods=["GET", "POST"])
 def adjust_rate_limiting_route():
+    if not str_to_bool(os.environ.get("ENABLE_ADMIN_ROUTES"), default=False):
+        abort(404)
+
+    admin_token = os.environ.get("ADMIN_TOKEN", "").strip()
+    if admin_token:
+        request_token = request.headers.get("X-Admin-Token", "").strip()
+        if request_token != admin_token:
+            abort(403)
+
     return str(adjust_rate_limiting())
 
 

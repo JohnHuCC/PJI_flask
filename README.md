@@ -41,6 +41,16 @@ Default test account:
 
 ---
 
+## Production Deployment (Domain + HTTPS)
+
+For VM deployment with domain + Nginx + Let's Encrypt:
+
+- See `docs/PRODUCTION_DEPLOYMENT.md`
+- Use `docker-compose.prod.yml` + `.env.prod`
+- AWS fast path: `docs/AWS_QUICKSTART.md`
+
+---
+
 ## Page Function Map (Chinese + English)
 
 This section describes **every active page route** in the current system.
